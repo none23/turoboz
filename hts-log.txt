@@ -1,0 +1,32 @@
+HTTrack3.48-22 launched on Sun, 24 Jul 2016 17:00:20 at http://turobozperm.ru/
+(httrack http://turobozperm.ru/ -r6 - )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+17:13:52	Warning: 	Moved Temporarily for turobozperm.ru/panel/?a=fm;n=1
+17:13:52	Warning: 	File has moved from turobozperm.ru/panel/?a=fm;n=1 to /admin/
+17:13:54	Error: 	"Not Found" (404) at link turobozperm.ru/board/zarubezhnye_tury/programma_stiljazhnaja<!-- (from turobozperm.ru/)
+17:13:57	Error: 	"Not Found" (404) at link turobozperm.ru/board/1/pizhamnaja_vecherinka_programma_domashnego_ujuta_<!-- (from turobozperm.ru/)
+17:13:58	Error: 	"Not Found" (404) at link turobozperm.ru/img/diz/footer.jpg (from turobozperm.ru/_st/my.css)
+17:13:58	Error: 	"Not Found" (404) at link turobozperm.ru/fonts/modernpics.woff (from turobozperm.ru/fonts/iconic_fill.css)
+17:13:58	Warning: 	File not parsed, looks like binary: turobozperm.ru/fonts/modernpics.svg
+17:13:58	Warning: 	Warning: store application/octet-stream without scan: turobozperm.ru/fonts/modernpics.svg
+17:13:58	Error: 	"Not Found" (404) at link turobozperm.ru/.s/img/icons/icon_sel.svg (from turobozperm.ru/.s/src/layer7.css)
+17:14:18	Warning: 	Moved Permanently for turobozperm.ru/index/
+17:14:18	Warning: 	File has moved from turobozperm.ru/index/ to http://turobozperm.ru/
+17:17:34	Warning: 	Retry after error 500 (Internal Server Error) at link turobozperm.ru/index/sub/ (from turobozperm.ru/admin)
+17:17:34	Warning: 	Found for turobozperm.ru/panel/sub/
+17:17:34	Warning: 	File has moved from turobozperm.ru/panel/sub/ to http://www.ucoz.com/
+17:17:38	Error: 	"Not Found" (404) at link turobozperm.ru/.s/src/panel-v2/fonts/pts55f_w.eot (from turobozperm.ru/.s/src/panel7.css)
+17:17:38	Error: 	"Not Found" (404) at link turobozperm.ru/.s/src/panel-v2/fonts/pts75f_w.eot (from turobozperm.ru/.s/src/panel7.css)
+17:17:38	Error: 	"Not Found" (404) at link turobozperm.ru/.s/fonts/OpenSans-Regular.eot (from turobozperm.ru/.s/src/panel7.css)
+17:17:40	Error: 	"Not Found" (404) at link turobozperm.ru/.s/src/(/.s/src/panel-v2/fonts/u-icons.eot?m0stmb (from turobozperm.ru/.s/src/panel7.css)
+17:17:40	Error: 	"Not Found" (404) at link turobozperm.ru/.s/img/select_double_arrow.png (from turobozperm.ru/.s/src/panel7.css)
+17:17:40	Warning: 	Retry after error 500 (Internal Server Error) at link turobozperm.ru/index/sub/ (from turobozperm.ru/admin)
+17:17:40	Error: 	"Internal Server Error" (500) after 2 retries at link turobozperm.ru/index/sub/ (from turobozperm.ru/admin)
+
+HTTrack Website Copier/3.48-22 mirror complete in 17 minutes 20 seconds : 625 links scanned, 608 files written (30845379 bytes overall) [25949496 bytes received at 24951 bytes/sec], 7589493 bytes transferred using HTTP compression in 331 files, ratio 30%, 7.0 requests per connection
+(11 errors, 10 warnings, 0 messages)
