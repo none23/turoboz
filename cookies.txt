@@ -1,0 +1,7 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+turobozperm.ru	TRUE	/panel/	FALSE	1999999999	4turobozuCozso	0
+.turobozperm.ru	TRUE	/board	FALSE	1999999999	4turobozbd	BACuzZRX
+.turobozperm.ru	TRUE	/news	FALSE	1999999999	4turoboznw	AQA0y5RX
+turobozperm.ru	TRUE	/	FALSE	1999999999	4turobozuri	/panel/%3Fa%3Dfm%3Bn%3D1
+
