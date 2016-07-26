@@ -23,7 +23,6 @@
     "critical": "^0.7.3",
     "cssnano-cli": "^1.0.4",
     "csso": "^2.1.1",
-    "doiuse": "^2.3.0",
     "gulp": "^3.9.1",
     "gulp-imagemin": "^3.0.1",
     "imagemagick": "^0.1.3",
@@ -46,35 +45,34 @@
             "build:jade:includes": "jade -o _includes/  _jadefiles/*.jade",
             "build:jade:layouts": "jade -o _layouts/  _jadefiles/layouts/*.jade",
 
-        "build:stylus": "npm run compile-stylus && npm run build:prefix-css",
+        "build:stylus": "npm run build:stylus:compile && npm run build:stylus:prefix",
             "build:stylus:compile": "stylus _styles/styles --out _styles/unprefixed",
-            "build:stylus:prefix": "postcss --use autoprefixer -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < _styles/unprefixed/*.css   | csso > css/", //TODO
+            "build:stylus:prefix": "(cd _styles/unprefixed && for file in *.css; do (postcss --use autoprefixer -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < *.css   | csso > ../../css/$file); done)", 
 
-        "build:scripts": "npm run compile-coffee && npm run build:uglify",
-            "compile-coffee": "rm assets/js/_scripts.js && cat assets/_js/main/*.coffee | coffee --compile --stdio >> assets/js/_scripts.js",
-                "postcompile-coffee": "rm assets/js/_merc.js && cat assets/_js/merc/*.coffee | coffee --compile --stdio >> assets/js/_merc.js",
-            "build:uglify": "uglifyjs -c -m -o _site/assets/js/scripts.js assets/js/_scripts.js",
+        "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify",
+            "build:scripts:compile": "(cd _scripts && for file in *; do (coffee --join --compile $file --stdio > ../js/$file.js); done)",
+            "build:scripts:uglify": "(cd js && for file in *; do (uglifyjs -c -m -o $file $file); done)",
 
         "build:jekyll": "jekyll build",
 
-        "doiuse": "doiuse --browsers 'ie >= 9, > 1%, last 2 versions' _site/assets/css/main.css > _doiuse_results",
-
-    "watch": "npm run watch:layouts & npm run watch:jade & npm run watch:jekyll -s & npm run watch:stylus -s & npm run watch:css -s & npm run watch:coffee & npm run browser-sync",
+    "watch": "npm run watch:jekyll & npm run watch:jade -s & npm run watch:styles -s & npm run watch:scripts -s & npm run browser-sync",
         "prewatch": "npm run build",
 
         "watch:jekyll": "jekyll build --watch --incremental",
 
-        "watch:jade": "jade -o _includes/ -w _jadefiles/*.jade",
-        "watch:layouts": "jade -o _layouts/ -w _jade_layouts/*.jade",
+        "watch:jade": "npm run watch:jade:includes && npm run watch:jade:layouts",
+            "watch:jade:includes": "jade -o _includes/ -w  _jadefiles/*.jade",
+            "watch:jade:layouts": "jade -o _layouts/ -w _jadefiles/layouts/*.jade",
 
-        "watch:stylus": "stylus -w _styles --out assets/_css",
-            "watch:prefix-css": "postcss --use autoprefixer -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < assets/_css/main.css > _site/assets/css/main.css",
-            "watch:css": "watch 'npm run watch:prefix-css' assets/_css",
+        "watch:stylus": "npm run watch:stylus:compile && npm run watch:stylus:prefix",
+            "watch:stylus:compile": "stylus -w _styles/styles --out _styles/unprefixed",
+            "watch:stylus:prefix": "watch '(cd _styles/unprefixed && for file in *.css; do (postcss --use autoprefixer -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < *.css   | csso > ../../css/$file); done)' _styles/unprefixed", 
 
-        "watch:coffee": "watch 'npm run compile-coffee && npm run watch:uglify' assets/_js",
-            "watch:uglify": "uglifyjs -c -m -o assets/js/scripts.js assets/js/_scripts.js",
+        "watch:scripts": "watch 'npm run watch:scripts:compile && npm run watch:scripts:uglify' _scripts",
+            "watch:scripts:compile": "(cd _scripts && for file in *; do (coffee --join --compile $file --stdio > ../js/$file.js); done)",
+            "watch:scripts:uglify": "(cd js && for file in *; do (uglifyjs -c -m -o $file $file); done)",
 
-        "browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*/*' --no-open"
+        "browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open"
   },
   "author": "none23",
   "license": "MIT",
