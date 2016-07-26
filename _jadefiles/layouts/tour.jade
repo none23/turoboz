@@ -30,11 +30,23 @@ article.tour-page
             h2.will_learn-heading
                 | Вы узнаете:
             ul.will_learn-list
-            | {% for will_learn_li in page.will_learn %}
-                li.will_learn-li
-                    | {{ will_learn_li }}
+            | {% for will_learn_item in page.will_learn %}
+                li.will_learn-item
+                    | {{ will_learn_item }}
             | {% endfor %}
     | {% endif %}
     //- /will_learn ------------------------------------------------------}}}
+    //- blueprint {{{--------------------------------------------------------
+    | {% if page.blueprint %}
+        section.blueprint
+            h2.blueprint-heading
+                | Вы узнаете:
+            ul.blueprint-list
+            | {% for blueprint_item in page.blueprint %}
+                li.blueprint-item
+                    | {{ blueprint_item }}
+            | {% endfor %}
+    | {% endif %}
+    //- /blueprint -------------------------------------------------------}}}
     
  
