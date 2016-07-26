@@ -8,7 +8,14 @@ url: "TODO"
 github_username:  none23
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet
+
+# Custom settings
+exclude: ["node_modules",
+          "gulpfile.js",
+          "gulpfile.coffee",
+          "package.json",
+          "README.md"]
 collections:
  - tours
  - testimonials

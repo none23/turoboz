@@ -41,14 +41,14 @@
   "devDependencies": {
   },
   "scripts": {
-    "build": "npm run build:layouts && npm run build:jade && npm run build:stylus && npm run build:jekyll && npm run build:scripts && npm run doiuse",
-        "build:jade": "jade -o _includes/  _jadefiles/*.jade",
-        "build:layouts": "jade -o _layouts/  _jade_layouts/*.jade",
+    "build": "npm run build:jade && npm run build:stylus && npm run build:jekyll && npm run build:scripts && npm run doiuse",
+        "build:jade": "npm run build:jade:includes && npm run build:jade:layouts",
+            "build:jade:includes": "jade -o _includes/  _jadefiles/*.jade",
+            "build:jade:layouts": "jade -o _layouts/  _jadefiles/layouts/*.jade",
 
         "build:stylus": "npm run compile-stylus && npm run build:prefix-css",
-            "compile-stylus": "stylus _styles --out assets/_css",
-            "build:prefix-css": "npm run build:prefix-main",
-                "build:prefix-main": "postcss --use autoprefixer -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < assets/_css/main.css   | csso > assets/css/main.css",
+            "build:stylus:compile": "stylus _styles/styles --out _styles/unprefixed",
+            "build:stylus:prefix": "postcss --use autoprefixer -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < _styles/unprefixed/*.css   | csso > css/", //TODO
 
         "build:scripts": "npm run compile-coffee && npm run build:uglify",
             "compile-coffee": "rm assets/js/_scripts.js && cat assets/_js/main/*.coffee | coffee --compile --stdio >> assets/js/_scripts.js",
