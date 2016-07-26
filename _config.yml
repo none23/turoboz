@@ -11,3 +11,4 @@ github_username:  none23
 markdown: kramdown
 collections:
  - tours
+ - testimonials
