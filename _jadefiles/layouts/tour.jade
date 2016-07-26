@@ -1,0 +1,40 @@
+| ---
+| layout: default
+| ---
+
+article.tour-page
+
+    header.tour-header
+        h1.tour-title
+            | {{ page.title }}
+    
+    //- introduction {{{-----------------------------------------------------
+    section.tour-introduction
+        p.intro
+            | {{ page.summary.intro }}
+        p
+            | {{ page.summary.text }}
+    //- /introduction ----------------------------------------------------}}}
+    //- details {{{----------------------------------------------------------
+    | {% if page.details %}
+        section.tour-details
+            | {% for details_p in page.details %}
+                p.details
+                    | {{ details_p }}
+            | {% endfor %}
+    | {% endif %}
+    //- /details ---------------------------------------------------------}}}
+    //- will_learn {{{-------------------------------------------------------
+    | {% if page.will_learn %}
+        section.tour-will_learn
+            h2.will_learn-heading
+                | Вы узнаете:
+            ul.will_learn-list
+            | {% for will_learn_li in page.will_learn %}
+                li.will_learn-li
+                    | {{ will_learn_li }}
+            | {% endfor %}
+    | {% endif %}
+    //- /will_learn ------------------------------------------------------}}}
+    
+ 
