@@ -1,0 +1,4 @@
+---
+layout: default
+---<article class="tour-page"><header class="tour-header"><h1 class="tour-title">{{ page.title }}</h1></header><section class="tour-introduction"><p class="intro">{{ page.summary.intro }}</p><p>{{ page.summary.text }}</p></section>{% if page.details %}<section class="tour-details">{% for details_p in page.details %}<p class="details">{{ details_p }}</p>{% endfor %}</section>{% endif %}{% if page.will_learn %}<section class="tour-will_learn"><h2 class="will_learn-heading">Вы узнаете:</h2><ul class="will_learn-list"></ul>{% for will_learn_item in page.will_learn %}<li class="will_learn-item">{{ will_learn_item }}</li>{% endfor %}</section>{% endif %}{% if page.blueprint %}<section class="blueprint"><h2 class="blueprint-heading">Вы узнаете:</h2><ul class="blueprint-list"></ul>{% for blueprint_item in page.blueprint %}<li class="blueprint-item">{{ blueprint_item }}</li>{% endfor %}</section>{% endif %}
+</article>
