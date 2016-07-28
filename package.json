@@ -40,14 +40,14 @@
   "devDependencies": {
   },
   "scripts": {
-    "build": "npm run build:jade && npm run build:stylus && npm run build:jekyll && npm run build:scripts && npm run doiuse",
+    "build": "npm run build:jade && npm run build:styles && npm run build:jekyll",
         "build:jade": "npm run build:jade:includes && npm run build:jade:layouts",
-            "build:jade:includes": "jade -o _includes/  _jadefiles/*.jade",
             "build:jade:layouts": "jade -o _layouts/  _jadefiles/layouts/*.jade",
+            "build:jade:includes": "jade -o _includes/  _jadefiles/includes/*.jade",
 
-        "build:stylus": "npm run build:stylus:compile && npm run build:stylus:prefix",
-            "build:stylus:compile": "stylus _styles/styles --out _styles/unprefixed",
-            "build:stylus:prefix": "(cd _styles/unprefixed && for file in *.css; do (postcss --use autoprefixer -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < *.css   | csso > ../../css/$file); done)", 
+        "build:styles": "npm run build:styles:compile && npm run build:styles:prefix",
+            "build:styles:compile": "stylus _styles/styles --out _styles/unprefixed",
+            "build:styles:prefix": "(cd _styles/unprefixed && for file in *.css; do (postcss --use autoprefixer -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < $file   | csso > ../../css/$file); done)", 
 
         "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify",
             "build:scripts:compile": "(cd _scripts && for file in *; do (coffee --join --compile $file --stdio > ../js/$file.js); done)",
@@ -55,18 +55,18 @@
 
         "build:jekyll": "jekyll build",
 
-    "watch": "npm run watch:jekyll & npm run watch:jade -s & npm run watch:styles -s & npm run watch:scripts -s & npm run browser-sync",
+    "watch": "npm run watch:jekyll & npm run watch:jade -s & npm run browser-sync",
         "prewatch": "npm run build",
 
         "watch:jekyll": "jekyll build --watch --incremental",
 
         "watch:jade": "npm run watch:jade:includes && npm run watch:jade:layouts",
-            "watch:jade:includes": "jade -o _includes/ -w  _jadefiles/*.jade",
             "watch:jade:layouts": "jade -o _layouts/ -w _jadefiles/layouts/*.jade",
+            "watch:jade:includes": "jade -o _includes/ -w  _jadefiles/includes/*.jade",
 
-        "watch:stylus": "npm run watch:stylus:compile && npm run watch:stylus:prefix",
-            "watch:stylus:compile": "stylus -w _styles/styles --out _styles/unprefixed",
-            "watch:stylus:prefix": "watch '(cd _styles/unprefixed && for file in *.css; do (postcss --use autoprefixer -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < *.css   | csso > ../../css/$file); done)' _styles/unprefixed", 
+        "watch:styles": "npm run watch:styles:compile && npm run watch:styles:prefix",
+            "watch:styles:compile": "stylus -w _styles/styles --out _styles/unprefixed",
+            "watch:styles:prefix": "watch '(cd _styles/unprefixed && for file in *.css; do (postcss --use autoprefixer -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < $file   | csso > ../../css/$file); done)' _styles/unprefixed", 
 
         "watch:scripts": "watch 'npm run watch:scripts:compile && npm run watch:scripts:uglify' _scripts",
             "watch:scripts:compile": "(cd _scripts && for file in *; do (coffee --join --compile $file --stdio > ../js/$file.js); done)",

@@ -1,0 +1,10 @@
+mixin phone(number1,number2,number3,number4='')
+    if number4
+        a.phone(href="tel:8#{number1}#{number2}#{number3}#{number4}")  
+            | 8 #{number1} #{number2} #{number3} #{number4}
+    else
+        a.phone(href="tel:8342#{number1}#{number2}#{number3}")  
+            | #{number1} #{number2} #{number3}
+
+mixin mail(address)
+    a.mail(href="mailto:#{address}") #{address}
