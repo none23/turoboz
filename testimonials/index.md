@@ -1,0 +1,4 @@
+---
+layout: testimonials
+title: Отзывы
+---
