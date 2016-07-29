@@ -1,0 +1,51 @@
+h1.page_heading
+    | ТурОбоз - Экскурсии по Перми и Пермскому краю, экскурсии для школьников, туры выходного дня из Перми
+section.m__news
+    h2.section_header
+        | Новости
+    ul.m__news__list
+        | {% for post in site.posts %}
+        li
+            a.m__news__link(href='{{ page.url }}')
+                | {{ page.title }}
+        | {% endfor %}
+
+section.m__coming_soon
+    p TODO
+
+section.m__vk_info
+    p TODO
+
+section.m__posts
+    ul.m__posts__list
+        | {% for post in site.posts %}
+        li.post__wrap
+            header.post__header
+                a.post__header_wrap(href='{{ post.url }}')
+                    | {{ post.title }}
+
+            | {% if page.image %}
+            picture.post__image
+                //- TODO: mobile images
+                //- source(srcset='{{ post.image }}', media='(max-width: 400px)')
+                source(srcset='{{ post.image }}')
+                img(srcset='{{ post.image }}', alt='{{ post.title }}')
+            | {% endif %}
+
+            p.post__summary
+                | {{ post.summary }}
+
+            a.post__show_more(href='{{ post.url | prepend: site.baseurl }}')
+                | Читать далее
+
+            footer.post__footer
+                | {% if page.category %}
+                span.post__footer__span.post__category
+                    | Категория: {{ post.category }}
+                | {% endif %}
+
+                span.post__footer__span.post__date
+                    | Добавлено: : {{ post.date }}
+
+        | {% endfor %}
+

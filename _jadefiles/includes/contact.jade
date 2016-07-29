@@ -1,6 +1,36 @@
-#contact_page
-    section.c__map
-    section.c__address
-    section.c__contacts
-    section.c__form
+include ../mixins.jade
+section.c__map
+    picture.c__map__picture
+        //- TODO: mobile image
+        source(srcset='/img/map_small.png', media='(max-width: 400px)')
+        source(srcset='/img/map.png')
+        img(srcset='/img/map.png', alt='Туробоз - Карты Гугл') 
+
+section.c__address
+    h2.section_header
+        | Наш адрес
+    p.c__address__line.c__address__zipcode
+        | 614000
+    p.c__address__line.c__address__city
+        | Россия, г.Пермь,
+    p.c__address__line.c__address__lineone
+        | Комсомольский проспект, д.67
+    p.c__address__line.c__address__description
+        | (зеленый дом, где магазин «Летуаль»),
+    p.c__address__line.c__address__entrance
+        | вход со двора.
+
+section.c__phones
+    h2.section_header
+        | Телефоны
+    ul.c__phones__ul
+        li.c__phones_li
+            +phone(908,275,70,92)
+        li.c__phones_li
+            +phone(342,281,15,25)
+        li.c__phones_li
+            +phone(342,268,03,62)
+
+section.c__form
+    p TODO
 

@@ -1,0 +1,16 @@
+ul.testimonials__list
+    | {% for testimonial in site.testimonials %}
+    li.testimonial
+        blockquote.testimonial__quote
+            p.testimonial__text
+                | {{ testimonial.text }}
+
+            cite.testimonial__name
+                | {{ testimonial.name }}
+
+        span.testimonial__date
+            | {{ testimonial.date }}
+
+    | {% endfor %}
+
+            
