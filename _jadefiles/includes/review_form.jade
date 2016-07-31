@@ -1,0 +1,61 @@
+section#review_form__wrap
+    h2.section_header
+       | Оставить отзыв
+
+    form#review_form.form__form(
+      role='form',
+      action="https://formspree.io/{{ site.email }}",
+      method='POST'
+      )
+
+        input#review_form__subject.hidden_field(
+          name='_subject',
+          type='hidden',
+          value='Testimonial'
+          )
+
+        input#review_form__next.hidden_field(
+          name='_next',
+          type='hidden',
+          value='#TODO:form_submit_fallback'
+          )
+        
+        .form__input_group
+            .form__input_label
+                | Как к Вам обращаться?
+            input#review_form__name.form__field(
+              name='clientName',
+              title='Имя',
+              type='text',
+              pattern=".{2,}",
+              placeholder='Имя',
+              required
+              )
+        
+        .form__input_group
+            .form__input_label
+                | Ваш email
+            input#review_form__mail.form__field(
+              title="Электронная  почта",
+              name="theEmail",
+              type="email",
+              pattern=".*",
+              placeholder="your@mail.com",
+              required
+              )
+
+        .modal_form__input_group
+            .form__input_label
+                | Ваш отзыв
+            input#review_form__question.form__large_field(
+              title="Вопрос",
+              name="theQuestion",
+              type="text",
+              pattern=".{8,}",
+              required
+              )
+
+        button#review_form__button.form__button(type='submit')
+           | Отправить отзыв
+
+

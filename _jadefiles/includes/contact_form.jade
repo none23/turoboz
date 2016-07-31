@@ -1,0 +1,59 @@
+section#contact_form__wrap
+   h2.section_header
+       | Написать нам
+
+    form#contact_form.modal_form__form(
+      role='form',
+      action="https://formspree.io/{{ site.email }}",
+      method='POST'
+      )
+
+        input#contact_form__subject.hidden_field(
+          name='_subject',
+          type='hidden',
+          value='ContactQuestion'
+          )
+
+        input#contact_form__next.hidden_field(
+          name='_next',
+          type='hidden',
+          value='#TODO:form_submit_fallback'
+          )
+        
+        .form__input_group
+            .form__input_label
+                | Как к Вам обращаться?
+            input#contact_form__name.modal_form__field(
+              name='clientName',
+              title='Имя',
+              type='text',
+              pattern=".{2,}",
+              placeholder='Имя',
+              required
+              )
+        
+        .form__input_group
+            .form__input_label
+                | Ваш email
+            input#contant_form__mail.modal_form__field(
+              title="Электронная  почта",
+              name="theEmail",
+              type="email",
+              pattern=".*",
+              placeholder="your@mail.com",
+              required
+              )
+
+        .form__input_group
+            .form__input_label
+                | Ваш вопрос
+            input#contact_form__question.modal_form__large_field(
+              title="Вопрос",
+              name="theQuestion",
+              type="text",
+              pattern=".{8,}",
+              required
+              )
+
+        button#contact_form__button.modal_form__button(type='submit')
+           | Отправить сообщение

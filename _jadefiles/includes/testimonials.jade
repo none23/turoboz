@@ -3,10 +3,10 @@ ul.testimonials__list
     li.testimonial
         blockquote.testimonial__quote
             p.testimonial__text
-                | {{ testimonial.text }}
+                | {{ testimonial.content }}
 
             cite.testimonial__name
-                | {{ testimonial.name }}
+                | {{ testimonial.author }}
 
         span.testimonial__date
             | {{ testimonial.date }}
