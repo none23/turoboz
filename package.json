@@ -55,7 +55,7 @@
 
         "build:jekyll": "jekyll build",
 
-    "watch": "npm run watch:jekyll & npm run watch:jade -s & npm run browser-sync",
+    "watch": "npm run watch:jekyll & npm run watch:jade -s & npm run watch:styles -s & npm run browser-sync",
         "prewatch": "npm run build",
 
         "watch:jekyll": "jekyll build --watch --incremental",
