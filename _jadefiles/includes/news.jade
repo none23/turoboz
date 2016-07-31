@@ -1,0 +1,9 @@
+section.news__wrap
+    h2.section_header
+        | Новости
+    ul.news__list
+        | {% for post in site.posts %}
+        li
+            a.news__link(href='{{ page.url }}')
+                | {{ page.title }}
+        | {% endfor %}

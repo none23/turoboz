@@ -1,0 +1,33 @@
+section.posts__wrap
+    ul.posts__list
+        | {% for post in site.posts %}
+        li.posts__post__wrap
+            header.posts__post__header
+                a.posts__post__header_wrap(href='{{ post.url }}')
+                    | {{ post.title }}
+
+            | {% if page.image %}
+            picture.posts__post__image
+                //- TODO: mobile images
+                //- source(srcset='{{ post.image }}', media='(max-width: 400px)')
+                source(srcset='{{ post.image }}')
+                img(srcset='{{ post.image }}', alt='{{ post.title }}')
+            | {% endif %}
+
+            p.posts__post__summary
+                | {{ post.summary }}
+
+            a.posts__post__show_more(href='{{ post.url | prepend: site.baseurl }}')
+                | Читать далее
+
+            footer.posts__post__footer
+                | {% if page.category %}
+                span.posts__post__footer__span.posts__post__category
+                    | Категория: {{ post.category }}
+                | {% endif %}
+
+                span.posts__post__footer__span.posts__post__date
+                    | Добавлено: : {{ post.date }}
+
+        | {% endfor %}
+
