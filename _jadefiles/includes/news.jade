@@ -4,6 +4,6 @@ section.news__wrap
     ul.news__list
         | {% for post in site.posts %}
         li
-            a.news__link(href='{{ page.url }}')
-                | {{ page.title }}
+            a.news__link(href='{{ post.url }}')
+                | {{ post.title }}
         | {% endfor %}
