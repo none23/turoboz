@@ -1,2 +1,18 @@
-<section class="tours_filters">TODO</section><section class="tours_list_wrap"><ul class="tours_list">{% for tour in site.tours %}<li class="tour_wrap">TODO
-{{ tour.title }}</li>{% endfor %}</ul></section>
+<section class="tours_list__wrap">{% if page.url == '/tours/' %}<ul class="tours_list">{% for tour in site.tours %}<li class="tours_list__item">{{ tour.title }}
+{% for tourtag in tour.tags %}
+{%     for tag in site.tags %}
+{%         if tag.filtertag == tourtag %}<div class="tours_list__item__tag tours_list__item__tag--{{ tourtag }}">{{ tag.title }}</div>{%         endif %}
+{%     endfor %}
+{% endfor %}</li>{% endfor %}</ul>{% else %}
+    {% for tag in site.tags %}
+        {% capture tagurl %}/tours/{{ tag.filtertag }}/{% endcapture %}
+        {% if page.url == tagurl %}<ul class="tours_list">{% for tour in site.tours %}<li class="tours_list__item">{% for ttag in tour.tags %}
+    {% if ttag == tag.filtertag %}{{ tour.title }}
+{% for tourtag in tour.tags %}
+{%     for tag in site.tags %}
+{%         if tag.filtertag == tourtag %}<div class="tours_list__item__tag tours_list__item__tag--{{ tourtag }}">{{ tag.title }}</div>{%         endif %}
+{%     endfor %}
+{% endfor %}    {% endif %}
+{% endfor %}</li>{% endfor %}</ul>        {% endif %}
+    {% endfor %}
+{% endif %}</section>

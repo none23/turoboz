@@ -1,1 +1,1 @@
-<section class="tours_filters_wrap"><p>TODO</p></section>
+<section class="tours_filters__wrap"><h2 class="section_header">Категории</h2><ul id="tours_filters__list" class="tours_filters__list">{% for tag in site.tags %}<li class="tours_filters__list__item"><a id="tours_filter_{{ tag.filtertag }}" href="/tours/{{ tag.filtertag }}" class="tours_filters__list__item__link">{{ tag.title }}</a></li>{% endfor %}</ul></section>

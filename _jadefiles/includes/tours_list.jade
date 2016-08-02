@@ -1,10 +1,37 @@
-section.tours_filters
-    | TODO
+mixin ToursListItems()
+    | {{ tour.title }}
+    | {% for tourtag in tour.tags %}
+    | {%     for tag in site.tags %}
+    | {%         if tag.filtertag == tourtag %}
+    .tours_list__item__tag(class='tours_list__item__tag--{{ tourtag }}')
+        | {{ tag.title }}
+    | {%         endif %}
+    | {%     endfor %}
+    | {% endfor %}
 
-section.tours_list_wrap
+mixin ToursList(filterTag='')
     ul.tours_list
         | {% for tour in site.tours %}
-        li.tour_wrap
-            | TODO
-            | {{ tour.title }}
+        li.tours_list__item
+            if filterTag
+                | {% for ttag in tour.tags %}
+                |     {% if ttag == #{filterTag} %}
+                +ToursListItems()
+                |     {% endif %}
+                | {% endfor %}
+            else
+                +ToursListItems()
+
         | {% endfor %}
+
+section.tours_list__wrap
+    | {% if page.url == '/tours/' %}
+    +ToursList()
+    | {% else %}
+    |     {% for tag in site.tags %}
+    |         {% capture tagurl %}/tours/{{ tag.filtertag }}/{% endcapture %}
+    |         {% if page.url == tagurl %}
+    +ToursList('tag.filtertag')
+    |         {% endif %}
+    |     {% endfor %}
+    | {% endif %}

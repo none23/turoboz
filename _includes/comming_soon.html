@@ -1,2 +1,4 @@
-<section class="coming_soon"><h2 class="section_header">Ближайшие туры</h2><ul class="comming_soon__list">{% assign items = site.tours | sort: 'tourdate' %}
-{% for tour in items reversed limit:8 %}<li class="comming_soon__list_item"><a href="{{ tour.url }}" class="comming_soon__link">{{ tour.title }}</a><div class="comming_soon__link__date">{{ tour.tourdate | date: "%d.%m.%Y" }}</div></li>{% endfor %}</ul></section>
+<section class="coming_soon"><h2 class="section_header">Ближайшие туры</h2><ul class="m__filter_list comming_soon__list">{% assign items = site.tours | sort: 'tourdate' %}
+{% for tour in items reversed %}
+{% if tour.tourdate == 'по заказу' %}<li class="m__filter_list__item--hidden comming_soon__list__item"><a href="{{ tour.url }}" class="m__filter_list__item__link comming_soon__list__item__link">{{ tour.title }}</a><time class="m__filter_list__item__link__date comming_soon__list__item__link__date">{{ tour.tourdate }}</time></li>{% else %}<li class="m__filter_list__item comming_soon__list__item"><a href="{{ tour.url }}" class="m__filter_list__item__link comming_soon__list__item__link">{{ tour.title }}</a><time class="m__filter_list__item__link__date comming_soon__list__item__link__date">{{ tour.tourdate }}</time></li>{% endif %}
+{% endfor %}</ul></section>
