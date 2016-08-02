@@ -1,2 +1,12 @@
-section.tours_filters_wrap
-    p TODO
+section.tours_filters__wrap
+    h2.section_header
+        | Категории
+    ul#tours_filters__list.tours_filters__list
+        | {% for tag in site.tags %}
+        li.tours_filters__list__item
+            a.tours_filters__list__item__link(
+              id='tours_filter_{{ tag.filtertag }}',
+              href='/tours/{{ tag.filtertag }}')
+                | {{ tag.title }}
+        | {% endfor %}
+

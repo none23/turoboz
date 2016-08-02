@@ -1,12 +1,20 @@
+mixin CommingSoonListItem()
+    a.m__filter_list__item__link.comming_soon__list__item__link(href='{{ tour.url }}')
+        | {{ tour.title }}
+    time.m__filter_list__item__link__date.comming_soon__list__item__link__date
+        | {{ tour.tourdate }}
+
 section.coming_soon
     h2.section_header
         | Ближайшие туры
-    ul.comming_soon__list
+    ul.m__filter_list.comming_soon__list
         | {% assign items = site.tours | sort: 'tourdate' %}
-        | {% for tour in items reversed limit:8 %}
-        li.comming_soon__list_item
-            a.comming_soon__link(href='{{ tour.url }}')
-                | {{ tour.title }}
-            .comming_soon__link__date
-                | {{ tour.tourdate | date: "%d.%m.%Y" }}
+        | {% for tour in items reversed %}
+        | {% if tour.tourdate == 'по заказу' %}
+        li.m__filter_list__item--hidden.comming_soon__list__item
+            +CommingSoonListItem()
+        | {% else %}
+        li.m__filter_list__item.comming_soon__list__item
+            +CommingSoonListItem()
+        | {% endif %}
         | {% endfor %}
