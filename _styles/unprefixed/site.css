@@ -509,15 +509,41 @@ section.c__address {
   font-style: italic;
 }
 #site_footer {
-  position: relative;
   width: 100%;
-  height: 6rem;
+  height: 8rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   z-index: 1000;
   background: #613b23;
+  color: #fff;
+}
+.f__contact {
+  flex: 0 0 12rem;
+  margin: 1rem;
+  text-align: center;
+  color: #fff;
+}
+.f__corner_box {
+  flex: 0 0 16rem;
+  text-align: right;
+  margin-right: 1rem;
+}
+.f__contact_icon {
+  height: 3rem;
+  width: 3rem;
+  margin: 1rem auto;
+}
+#f__developer,
+#f__developer__link {
+  font-size: 0.7rem;
+}
+#f__developer__link {
+  color: #3485a8;
+}
+.f__icon__path {
+  fill: #3485a8;
 }
 .modal_form__form,
 .section_form__form {

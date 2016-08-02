@@ -5,7 +5,8 @@ $site_header_logo_width = 16rem
 $site_header_logo_height = 6rem
 $vk_link_text_width = 28rem
 $vk_link_icon_width = 4rem
-$site_footer_height = 6rem
+$site_footer_height = 8rem
+$site_footer_icon_width = 3rem
 $modal_form_body_min_width = 18rem
 $modal_form_body_width = 50vw
 
@@ -27,6 +28,8 @@ $site_contacts_phone_fg = $turbo_brown
 $site_contacts_modal_opener_fg = $turbo_blue
 $modal_form_bg = wheat
 $site_footer_bg = $turbo_brown
+$site_footer_fg  = white
+$site_footer_icons_fg = $turbo_blue
 $modal_form_close_fg = maroon
 $modal_form_button_bg = $turbo_blue
 $modal_form_button_fg = white
@@ -399,15 +402,41 @@ section.c__address
 // footer {{{
 // =========================================================================
 #site_footer
-    position: relative
     width: 100%
     height: $site_footer_height 
     display: flex
     flex-direction: row
     justify-content: space-between
-    align-items: center
+    align-items: flex-end
     z-index: 1000
     background: $site_footer_bg 
+    color: $site_footer_fg 
+
+.f__contact
+    flex 0 0 12rem
+    margin: 1rem 
+    text-align: center
+    color: $site_footer_fg 
+
+.f__corner_box
+    flex 0 0 16rem
+    text-align: right
+    margin-right: 1rem
+
+.f__contact_icon
+    height: $site_footer_icon_width
+    width: $site_footer_icon_width
+    margin: 1rem auto
+
+#f__developer,
+#f__developer__link
+    font-size: 0.7rem 
+
+#f__developer__link
+    color: $turbo_blue
+
+.f__icon__path
+    fill: $site_footer_icons_fg
 // /footer }}}
 // forms {{{
 // =========================================================================
