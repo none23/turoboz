@@ -1,1 +1,17 @@
-<section id="testimonials_list__wrap"><ul class="testimonials__list"></ul>{% for testimonial in site.testimonials %}<li class="testimonial"><blockquote class="testimonial__quote"><p class="testimonial__text">{{ testimonial.content }}</p><cite class="testimonial__name">{{ testimonial.author }}</cite></blockquote><span class="testimonial__date">{{ testimonial.date }}</span></li>{% endfor %}</section>
+<section id="testimonials_list__wrap"><ul class="testimonials__list">{% for testimonial in site.testimonials reversed %}<li class="testimonial"><blockquote class="testimonial__quote"><p class="testimonial__text">{{ testimonial.content }}</p><footer class="testimonial__quote__footer"><cite class="testimonial__name">{{ testimonial.author }}</cite><div class="testimonial__date">{% assign m = testimonial.date | date: "%-m" %}
+{{ testimonial.date | date: "%-d" }}
+{% case m %} 
+{% when '1' %}января
+{% when '2' %}февраля
+{% when '3' %}марта
+{% when '4' %}апреля
+{% when '5' %}мая
+{% when '6' %}июня
+{% when '7' %}июля
+{% when '8' %}августа
+{% when '9' %}сентября
+{% when '10' %}октября
+{% when '11' %}ноября
+{% when '12' %}декабя
+{% endcase %} 
+{{ testimonial.date | date: "%Y" }}</div></footer></blockquote></li>{% endfor %}</ul></section>

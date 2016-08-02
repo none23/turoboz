@@ -1,17 +1,33 @@
 section#testimonials_list__wrap
     ul.testimonials__list
-    | {% for testimonial in site.testimonials %}
-    li.testimonial
-        blockquote.testimonial__quote
-            p.testimonial__text
-                | {{ testimonial.content }}
+        | {% for testimonial in site.testimonials reversed %}
+        li.testimonial
+            blockquote.testimonial__quote
+                p.testimonial__text
+                    | {{ testimonial.content }}
 
-            cite.testimonial__name
-                | {{ testimonial.author }}
+                footer.testimonial__quote__footer
+                    cite.testimonial__name
+                        | {{ testimonial.author }}
 
-        span.testimonial__date
-            | {{ testimonial.date }}
-
-    | {% endfor %}
+                    .testimonial__date
+                        | {% assign m = testimonial.date | date: "%-m" %}
+                        | {{ testimonial.date | date: "%-d" }}
+                        | {% case m %} 
+                        | {% when '1' %}января
+                        | {% when '2' %}февраля
+                        | {% when '3' %}марта
+                        | {% when '4' %}апреля
+                        | {% when '5' %}мая
+                        | {% when '6' %}июня
+                        | {% when '7' %}июля
+                        | {% when '8' %}августа
+                        | {% when '9' %}сентября
+                        | {% when '10' %}октября
+                        | {% when '11' %}ноября
+                        | {% when '12' %}декабя
+                        | {% endcase %} 
+                        | {{ testimonial.date | date: "%Y" }}
+        | {% endfor %}
 
             

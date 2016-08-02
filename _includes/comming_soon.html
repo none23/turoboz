@@ -1,1 +1,2 @@
-<section class="coming_soon"><p>TODO</p></section>
+<section class="coming_soon"><h2 class="section_header">Ближайшие туры</h2><ul class="comming_soon__list">{% assign items = site.tours | sort: 'tourdate' %}
+{% for tour in items reversed limit:8 %}<li class="comming_soon__list_item"><a href="{{ tour.url }}" class="comming_soon__link">{{ tour.title }}</a><div class="comming_soon__link__date">{{ tour.tourdate | date: "%d.%m.%Y" }}</div></li>{% endfor %}</ul></section>

@@ -1,2 +1,12 @@
 section.coming_soon
-    p TODO
+    h2.section_header
+        | Ближайшие туры
+    ul.comming_soon__list
+        | {% assign items = site.tours | sort: 'tourdate' %}
+        | {% for tour in items reversed limit:8 %}
+        li.comming_soon__list_item
+            a.comming_soon__link(href='{{ tour.url }}')
+                | {{ tour.title }}
+            .comming_soon__link__date
+                | {{ tour.tourdate | date: "%d.%m.%Y" }}
+        | {% endfor %}

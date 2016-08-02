@@ -1,8 +1,8 @@
-section#contact_form__wrap
+section#contact_form__wrap.section_form__wrap
    h2.section_header
        | Написать нам
 
-    form#contact_form.modal_form__form(
+    form#contact_form.section_form__form(
       role='form',
       action="https://formspree.io/{{ site.email }}",
       method='POST'
@@ -20,10 +20,10 @@ section#contact_form__wrap
           value='#TODO:form_submit_fallback'
           )
         
-        .form__input_group
+        .section_form__input_group
             .form__input_label
                 | Как к Вам обращаться?
-            input#contact_form__name.modal_form__field(
+            input#contact_form__name.section_form__field(
               name='clientName',
               title='Имя',
               type='text',
@@ -32,10 +32,10 @@ section#contact_form__wrap
               required
               )
         
-        .form__input_group
+        .section_form__input_group
             .form__input_label
                 | Ваш email
-            input#contant_form__mail.modal_form__field(
+            input#contant_form__mail.section_form__field(
               title="Электронная  почта",
               name="theEmail",
               type="email",
@@ -44,10 +44,10 @@ section#contact_form__wrap
               required
               )
 
-        .form__input_group
+        .section_form__input_group
             .form__input_label
                 | Ваш вопрос
-            input#contact_form__question.modal_form__large_field(
+            input#contact_form__question.section_form__large_field(
               title="Вопрос",
               name="theQuestion",
               type="text",
@@ -55,5 +55,5 @@ section#contact_form__wrap
               required
               )
 
-        button#contact_form__button.modal_form__button(type='submit')
+        button#contact_form__button.section_form__button(type='submit')
            | Отправить сообщение
