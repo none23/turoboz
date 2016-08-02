@@ -186,13 +186,32 @@ body {
   line-height: 1.5;
   overflow-y: visible;
   overflow-x: hidden;
-  width: 100vw;
-  color: textFG;
-  background: #fff;
+  color: #000;
+  background: #f5f5dc;
 }
-.page_wrap {
+.page_content {
+  max-width: 40rem;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 3rem 5rem 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.page_heading {
+  flex: 0 0 100%;
+}
+section {
+  margin: 2rem 0 0;
   width: 100%;
-  min-height: 100vh;
+}
+.section_header {
+  margin: 0 0 2rem;
+}
+.phone {
+  color: #613b23;
 }
 h1,
 h2,
@@ -215,9 +234,6 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-section {
-  width: 100vw;
 }
 input,
 select,
@@ -249,7 +265,6 @@ h5,
 h6 {
   line-height: 1.5;
   font-weight: 300;
-  font-size: 1.2rem;
 }
 p,
 li,
@@ -269,19 +284,19 @@ textarea {
 .phone {
   font-size: 1.2rem;
 }
+.page_heading h1,
 .section_header h1,
-.subsection_header h1,
+.page_heading h2,
 .section_header h2,
-.subsection_header h2,
+.page_heading h3,
 .section_header h3,
-.subsection_header h3,
+.page_heading h4,
 .section_header h4,
-.subsection_header h4,
+.page_heading h5,
 .section_header h5,
-.subsection_header h5,
-.section_header h6,
-.subsection_header h6 {
-  font-size: 1.3rem;
+.page_heading h6,
+.section_header h6 {
+  font-size: 2rem;
 }
 button {
   line-height: 1.2;
@@ -290,9 +305,6 @@ button {
 button:active,
 button:focus {
   border: none;
-}
-.button_copy {
-  font-size: 1.1rem;
 }
 .textlink {
   line-height: 2.5;
@@ -306,12 +318,15 @@ button:focus {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  z-index: 1000;
+  background: #fff;
 }
 #site_logo {
   flex: 0 0 16rem;
   height: 6rem;
   position: relative;
   color: transparent;
+  z-index: 1001;
 }
 #site_logo__icon {
   position: absolute;
@@ -321,13 +336,29 @@ button:focus {
 .site_nav__link {
   padding: 0.5rem;
   white-space: nowrap;
+  color: #613b23;
+  background: #fff;
+  transition: all 0.1s ease-in-out;
+}
+.site_nav__link.active {
+  color: #fff;
+  background: #613b23;
+}
+.site_nav__link:hover,
+.site_nav__link:focus {
+  color: #fff;
+  background: #3485a8;
 }
 #desktop_nav {
   flex: 1 0 26rem;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  align-items: stretch;
+}
+#desktop_nav .site_nav__link {
+  padding-top: 3.7rem;
 }
 #mobile_nav {
   display: none;
@@ -335,6 +366,8 @@ button:focus {
   left: 16rem;
   right: 0;
   top: 6rem;
+  padding: 2rem 0 1rem;
+  z-index: 999;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -342,6 +375,12 @@ button:focus {
   transform: translateY(-200%);
   will-change: transform;
   transition: transform 0.5s ease-in-out;
+}
+#mobile_nav .site_nav__link {
+  width: 97%;
+}
+#mobile_nav .site_nav__link:active {
+  width: 100%;
 }
 #mobile_nav.is_open {
   transform: translateY(0);
@@ -361,9 +400,11 @@ button:focus {
 }
 #mobile_nav_toggle {
   display: none;
+  position: relative;
   flex: 0 0 3rem;
   margin: 1rem 2rem;
   order: 1;
+  z-index: 1001;
 }
 #mobile_nav_toggle.is_open .mobile_nav_toggle__svg__top_bar {
   transform: translateX(10%) rotate(45deg);
@@ -386,14 +427,36 @@ button:focus {
   }
 }
 #site_contacts_wrap {
-  flex: 0 0 16rem;
-  height: 7rem;
-  margin-bottom: -1rem;
+  flex: 0 0 11rem;
+  position: relative;
+  height: 9rem;
+  z-index: 1001;
+  margin-bottom: -3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background: #ffc0cb;
+  background: #f5deb3;
+}
+.modal_opener {
+  color: #3485a8;
+}
+.comming_soon__list {
+  width: 100%;
+}
+.comming_soon__list_item {
+  position: relative;
+  height: 1rem;
+}
+.comming_soon__link {
+  width: 100%;
+  height: 1rem;
+}
+.comming_soon__link__date {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 1rem;
 }
 .vk_info__link {
   display: flex;
@@ -420,6 +483,85 @@ button:focus {
 .vk_info__link__icon__svg {
   fill: #fff;
 }
+.news__list {
+  width: 100%;
+}
+.news__list_item {
+  position: relative;
+  height: 1rem;
+  width: 100%;
+}
+.news__link {
+  width: 100%;
+  height: 1rem;
+}
+.news__link__date {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 1rem;
+}
+section.c__phones,
+section.c__address {
+  width: 50%;
+}
+.testimonial__quote {
+  margin-bottom: 2rem;
+}
+.testimonial__quote__footer {
+  margin-top: 0.5rem;
+  text-align: right;
+}
+.testimonial__name {
+  font-size: 1.2rem;
+  font-style: italic;
+}
+.testimonial__name:before {
+  content: '— ';
+}
+.testimonial__date {
+  font-style: italic;
+}
+#site_footer {
+  position: relative;
+  width: 100%;
+  height: 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: #613b23;
+}
+.modal_form__form,
+.section_form__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+.section_form__field,
+.section_form__large_field,
+.modal_form__field,
+.modal_form__large_field {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.section_form__large_field,
+.modal_form__large_field {
+  height: 5rem;
+}
+.section_form__button,
+.modal_form__button {
+  height: 3rem;
+  margin-top: 1.5rem;
+  border-radius: 4px;
+  background: #3485a8;
+  color: #fff;
+}
 .modal_form__wrap {
   position: fixed;
   top: 0;
@@ -428,24 +570,40 @@ button:focus {
   left: 0;
   background: rgba(0,0,0,0.5);
   transform: translateX(-100%);
+  z-index: 2000;
 }
 .modal_form__wrap.is_open {
   transform: translateX(0);
 }
 .modal_form__body {
-  width: 18rem;
+  min-width: 18rem;
+  width: 50vw;
   margin: 2rem auto;
-  border-radius: 0.5rem;
+  border-radius: 4px;
   background: #f5deb3;
 }
 .modal_form__header {
+  position: relative;
   text-align: center;
-  height: 3rem;
+  font-size: 1.3rem;
+  height: 3em;
 }
-.modal_form__form {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding-bottom: 1rem;
+.modal_form__close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 2rem;
+  line-height: 1;
+  padding: 0.5rem;
+  color: #800000;
+}
+.modal_form__input_group,
+.modal_form__button {
+  width: 90%;
+  margin: 0.5rem auto;
+}
+.section_form__input_group,
+.section_form__button {
+  width: 100%;
+  margin: 0.5rem auto;
 }

@@ -1,1 +1,1 @@
-<section class="news__wrap"><h2 class="section_header">Новости</h2><ul class="news__list">{% for post in site.news %}<li><a href="{{ post.url }}" class="news__link">{{ post.title }}</a></li>{% endfor %}</ul></section>
+<section class="news__wrap"><h2 class="section_header">Новости</h2><ul class="news__list">{% for post in site.news reversed limit:8 %}<li class="news__list_item"><a href="{{ post.url }}" class="news__link">{{ post.title }}</a><div class="news__link__date">{{ post.date | date: "%d.%m.%Y" }}</div></li>{% endfor %}</ul></section>

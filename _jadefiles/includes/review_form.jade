@@ -1,8 +1,8 @@
-section#review_form__wrap
+section#review_form__wrap.section_form__wrap
     h2.section_header
        | Оставить отзыв
 
-    form#review_form.form__form(
+    form#review_form.section_form__form(
       role='form',
       action="https://formspree.io/{{ site.email }}",
       method='POST'
@@ -20,10 +20,10 @@ section#review_form__wrap
           value='#TODO:form_submit_fallback'
           )
         
-        .form__input_group
-            .form__input_label
+        .section_form__input_group
+            .section_form__input_label
                 | Как к Вам обращаться?
-            input#review_form__name.form__field(
+            input#review_form__name.section_form__field(
               name='clientName',
               title='Имя',
               type='text',
@@ -32,10 +32,10 @@ section#review_form__wrap
               required
               )
         
-        .form__input_group
-            .form__input_label
+        .section_form__input_group
+            .section_form__input_label
                 | Ваш email
-            input#review_form__mail.form__field(
+            input#review_form__mail.section_form__field(
               title="Электронная  почта",
               name="theEmail",
               type="email",
@@ -44,10 +44,10 @@ section#review_form__wrap
               required
               )
 
-        .modal_form__input_group
-            .form__input_label
+        .section_form__input_group
+            .section_form__input_label
                 | Ваш отзыв
-            input#review_form__question.form__large_field(
+            input#review_form__question.section_form__large_field(
               title="Вопрос",
               name="theQuestion",
               type="text",
@@ -55,7 +55,7 @@ section#review_form__wrap
               required
               )
 
-        button#review_form__button.form__button(type='submit')
+        button#review_form__button.section_form__button(type='submit')
            | Отправить отзыв
 
 

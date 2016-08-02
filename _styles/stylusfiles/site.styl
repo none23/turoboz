@@ -1,13 +1,151 @@
+// vars {{{
+// =========================================================================
 $site_header_height = 6rem
 $site_header_logo_width = 16rem
 $site_header_logo_height = 6rem
 $vk_link_text_width = 28rem
 $vk_link_icon_width = 4rem
+$site_footer_height = 6rem
+$modal_form_body_min_width = 18rem
+$modal_form_body_width = 50vw
 
+$the_font = Roboto, serif
+$body_fg = black
+$body_bg = beige
+
+$turbo_brown = hsl(23, 47%, 26%)
+$turbo_blue = hsl(198, 53%, 43%)
+$turbo_gray = hsl(30, 1%, 44%)
+$site_nav_bg = white
 $mobile_nav_bg = white
-$site_contacts_wrap_bg = pink
+$site_nav_link_fg = $turbo_brown
+$site_nav_link_bg = white
+$site_nav_link_hover_fg = white
+$site_nav_link_hover_bg = $turbo_blue
+$site_contacts_wrap_bg = wheat
+$site_contacts_phone_fg = $turbo_brown
+$site_contacts_modal_opener_fg = $turbo_blue
 $modal_form_bg = wheat
+$site_footer_bg = $turbo_brown
+$modal_form_close_fg = maroon
+$modal_form_button_bg = $turbo_blue
+$modal_form_button_fg = white
+
+// /vars }}}
+// base {{{
+// =========================================================================
+html,
+body
+    position: relative
+    line-height: 1.5
+    overflow-y: visible
+    overflow-x: hidden
+    color: $body_fg
+    background: $body_bg
+
+.page_content
+    max-width: 40rem
+    margin: 2rem auto
+    background: white
+    padding: 3rem 5rem 1rem
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: flex-start
+    align-items: flex-start
+
+.page_heading
+    flex: 0 0 100%
+
+section
+    margin: 2rem 0 0
+    width: 100%
+
+.section_header
+    margin: 0 0 2rem
+
+.phone
+    color: $site_contacts_phone_fg
+
+h1, h2, h3, h4, h5, h6, p
+    margin: 0
+
+a
+    text-decoration: none
+
+img
+    margin: 0
+    padding: 0
+    border: none
+
+ul
+    margin: 0
+    padding: 0
+    list-style: none
+
+input,
+select,
+textarea
+    border-color beige
+    border-radius 2px
+    margin 1rem
+    padding-right 0
+    padding-left 1rem
+    border-width 0
+    border-style none
+
+button 
+    appearance none
+    border none
+// /base }}}
+// typography {{{
+// =========================================================================
+
+html,
+body
+    font-size: 17px
+    font-family: $the_font
+    font-weight: normal
+    line-height: 1.5 
+
+h1, h2, h3, h4, h5, h6
+    line-height: 1.5
+    font-weight: 300
+
+p, li, a 
+    line-height: 1.5
+    font-size: 1rem
+
+a
+    text-decoration: none
+
+input,
+select,
+textarea
+    font-size: 1.1rem
+    font-weight: 300
+
+.phone
+    font-size: 1.2rem
+
+.page_heading,
+.section_header
+    h1,h2,h3,h4,h5,h6
+        font-size: 2rem
+
+button
+    line-height: 1.2
+    appearance: none
     
+    &:active,
+    &:focus
+        border: none
+
+.textlink
+    line-height: 2.5
+    font-style: italic
+
+// /typography }}}
 // site_header {{{
 // =========================================================================
 #site_header
@@ -18,6 +156,8 @@ $modal_form_bg = wheat
     flex-direction: row
     justify-content: space-between
     align-items: center
+    z-index: 1000
+    background: $site_nav_bg 
 
 // logo {{{
 // ------------------------------------------------------------------------
@@ -26,6 +166,7 @@ $modal_form_bg = wheat
     height: $site_header_logo_height
     position: relative
     color: transparent
+    z-index: 1001
 
 #site_logo__icon
     position: absolute
@@ -38,14 +179,31 @@ $modal_form_bg = wheat
 .site_nav__link
     padding: 0.5rem
     white-space: nowrap
+    color: $site_nav_link_fg
+    background: $site_nav_link_bg
+    transition: all 0.1s ease-in-out
     
+    &.active
+        color: $site_nav_link_bg
+        background: $site_nav_link_fg
+
+    &:hover,
+    &:focus
+        color: $site_nav_link_hover_fg
+        background: $site_nav_link_hover_bg
+
 // desktop_nav {{{
 #desktop_nav 
     flex: 1 0 26rem
+    height: 100%
     display: flex
     flex-direction: row
     justify-content: space-around
-    align-items: center
+    align-items: stretch
+
+    .site_nav__link
+        padding-top: $site_header_height - 2.3rem
+
 
 // /desktop_nav }}}
 // mobile_nav {{{
@@ -55,6 +213,8 @@ $modal_form_bg = wheat
     left: $site_header_logo_width
     right: 0
     top: $site_header_height
+    padding: 2rem 0 1rem
+    z-index: 999
     flex-direction: column
     justify-content: space-around
     align-items: center
@@ -62,6 +222,12 @@ $modal_form_bg = wheat
     transform: translateY(-200%)
     will-change: transform
     transition: transform 0.5s ease-in-out
+
+    .site_nav__link
+        width: 97%
+
+        &:active
+            width: 100%
 
     &.is_open
         transform: translateY(0)
@@ -83,9 +249,11 @@ $modal_form_bg = wheat
 
 #mobile_nav_toggle
     display: none
+    position: relative
     flex: 0 0 3rem
     margin: 1rem 2rem
     order: 1
+    z-index: 1001
 
     &.is_open
         .mobile_nav_toggle__svg__top_bar
@@ -112,15 +280,19 @@ $modal_form_bg = wheat
 // contacts_box {{{
 // ------------------------------------------------------------------------
 #site_contacts_wrap
-    flex: 0 0 16rem
-    height: 7rem
+    flex: 0 0 11rem
+    position: relative
+    height: 9rem
+    z-index: 1001
     margin-bottom: $site_header_height - @height
     display: flex
     flex-direction: column
     justify-content: space-around
     align-items: center
-
     background: $site_contacts_wrap_bg
+
+.modal_opener
+    color: $site_contacts_modal_opener_fg
 
 // /contacts_box }}}
 // /site_header }}}
@@ -132,6 +304,22 @@ $modal_form_bg = wheat
 // /blog }}}
 // comming_soon {{{
 // ------------------------------------------------------------------------
+.comming_soon__list
+    width: 100%
+
+.comming_soon__list_item
+    position: relative
+    height: 1rem
+
+.comming_soon__link
+    width: 100%
+    height: 1rem
+
+.comming_soon__link__date
+    position: absolute
+    top: 0
+    right: 0
+    height: 1rem
 
 // /comming_soon }}}
 // vk_info {{{
@@ -165,6 +353,23 @@ $modal_form_bg = wheat
 // /vk_info }}}
 // news {{{
 // ------------------------------------------------------------------------
+.news__list
+    width: 100%
+
+.news__list_item
+    position: relative
+    height: 1rem
+    width: 100%
+
+.news__link
+    width: 100%
+    height: 1rem
+
+.news__link__date
+    position: absolute
+    top: 0
+    right: 0
+    height: 1rem
 
 // /news }}}
 // /main }}}
@@ -182,18 +387,81 @@ $modal_form_bg = wheat
 // /services }}}
 // contact {{{
 // =========================================================================
+// vk_info {{{
+// see main > vk_info
+// /vk_info }}}
+section.c__phones,
+section.c__address
+    width: 50%
 
 // /contact }}}
 // testimonials {{{
 // =========================================================================
+.testimonial__quote
+    margin-bottom: 2rem
+
+.testimonial__quote__footer
+    margin-top: 0.5rem
+    text-align: right
+
+.testimonial__name
+    font-size: 1.2rem
+    font-style: italic
+
+    &:before
+        content: '— '
+
+.testimonial__date
+    font-style: italic
+
 
 // /testimonials }}}
 // footer {{{
 // =========================================================================
-
+#site_footer
+    position: relative
+    width: 100%
+    height: $site_footer_height 
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    z-index: 1000
+    background: $site_footer_bg 
 // /footer }}}
 // forms {{{
 // =========================================================================
+.modal_form__form,
+.section_form__form
+    width: 100%
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: center
+    padding-bottom: 2rem
+
+.section_form__field,
+.section_form__large_field,
+.modal_form__field,
+.modal_form__large_field
+    width: 100%
+    padding: 0
+    margin: 0
+    
+.section_form__large_field,
+.modal_form__large_field
+    height: 5rem
+
+.section_form__button,
+.modal_form__button
+    height: 3rem
+    margin-top: 1.5rem
+    border-radius: 4px
+    background: $modal_form_button_bg
+    color: $modal_form_button_fg
+
+// modal_forms {{{
+// -------------------------------------------------------------------------
 .modal_form__wrap
     position: fixed
     top: 0
@@ -202,26 +470,46 @@ $modal_form_bg = wheat
     left: 0
     background: hsla(0,0,0,0.5)
     transform: translateX(-100%)
+    z-index: 2000
 
     &.is_open
         transform: translateX(0)
 
 .modal_form__body
-    width: 18rem
+    min-width: $modal_form_body_min_width
+    width: $modal_form_body_width
     margin: 2rem auto
-    border-radius: 0.5rem
+    border-radius: 4px
     background: $modal_form_bg
     
 .modal_form__header
+    position: relative
     text-align: center
-    height: 3rem
+    font-size: 1.3rem
+    height: 3em
 
-.modal_form__form
-    display: flex
-    flex-direction: column
-    justify-content: flex-start
-    align-items: center
-    padding-bottom: 1rem
+.modal_form__close
+    position: absolute
+    right: 0
+    top: 0
+    font-size: 2rem
+    line-height: 1
+    padding: 0.5rem
+    color: $modal_form_close_fg
+
+.modal_form__input_group, 
+.modal_form__button
+    width: 90%
+    margin: 0.5rem auto
+
+// /modal_forms }}}
+// section_forms {{{
+// -------------------------------------------------------------------------
+.section_form__input_group, 
+.section_form__button
+    width: 100%
+    margin: 0.5rem auto
 
 
+// /section_forms }}}
 // /forms }}}

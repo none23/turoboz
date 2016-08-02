@@ -1,5 +1,16 @@
 include ../mixins.jade
 
+section.c__phones
+    h2.section_header
+        | Телефоны
+    ul.c__phones__ul
+        li.c__phones_li
+            +phone(908,275,70,92)
+        li.c__phones_li
+            +phone(342,281,15,25)
+        li.c__phones_li
+            +phone(342,268,03,62)
+
 section.c__address
     h2.section_header
         | Наш адрес
@@ -13,14 +24,3 @@ section.c__address
         | (зеленый дом, где магазин «Летуаль»),
     p.c__address__line.c__address__entrance
         | вход со двора.
-
-section.c__phones
-    h2.section_header
-        | Телефоны
-    ul.c__phones__ul
-        li.c__phones_li
-            +phone(908,275,70,92)
-        li.c__phones_li
-            +phone(342,281,15,25)
-        li.c__phones_li
-            +phone(342,268,03,62)

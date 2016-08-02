@@ -2,8 +2,10 @@ section.news__wrap
     h2.section_header
         | Новости
     ul.news__list
-        | {% for post in site.news %}
-        li
+        | {% for post in site.news reversed limit:8 %}
+        li.news__list_item
             a.news__link(href='{{ post.url }}')
                 | {{ post.title }}
+            .news__link__date
+                | {{ post.date | date: "%d.%m.%Y" }}
         | {% endfor %}

@@ -3,14 +3,19 @@ questionFormModalOpen = ->
         $('#question_modal').addClass 'is_open'
     return
 
+questionFormModalClose = ->
+    $('#question_modal__close').on 'click', ->
+        $('#question_modal').removeClass 'is_open'
+    return
+
 callBackFormModalOpen = ->
     $('#call_back_form_opener').on 'click', ->
         $('#call_back_modal').addClass 'is_open'
     return
 
-formModalClose = ->
-    $('.modal_form__wrap').on 'click', ->
-        $(this).removeClass 'is_open'
+callBackFormModalClose = ->
+    $('#call_back_modal__close').on 'click', ->
+        $('#call_back_modal').removeClass 'is_open'
     return
 
 mobileNav = ->
@@ -42,6 +47,43 @@ enableQuestionForm = ->
     iSendAJAX event, TheForm, sendForm
     return
   return
+
+enableContactForm = ->
+  TheForm = document.getElementById('contact_form')
+  sendForm = document.getElementById('contact_form__button')
+  TheForm.addEventListener 'submit', (event) ->
+    iSendAJAX event, TheForm, sendForm
+    return
+  return
+
+enableReviewForm = ->
+  TheForm = document.getElementById('review_form')
+  sendForm = document.getElementById('review_form__button')
+  TheForm.addEventListener 'submit', (event) ->
+    iSendAJAX event, TheForm, sendForm
+    return
+  return
+
+enableOrderForm = ->
+  TheForm = document.getElementById('order_form')
+  sendForm = document.getElementById('order_form__button')
+  TheForm.addEventListener 'submit', (event) ->
+    iSendAJAX event, TheForm, sendForm
+    return
+  return
+
+ifExistsEnableContactForm = ->
+  if $('#contact_form').length > 0
+    return enableContactForm()
+
+ifExistsEnableReviewForm = ->
+  if $('#review_form').length > 0
+    return enableReviewForm()
+
+ifExistsEnableOrderForm = ->
+  if $('#ordert_form').length > 0
+    return enableOrderForm()
+
 
 iSendAJAX = (event, form, sendButton) ->
   event.preventDefault()
@@ -75,11 +117,16 @@ iSendAJAX = (event, form, sendButton) ->
 
   return
 
+
 $ ->
   mobileNav()
   callBackFormModalOpen()
+  callBackFormModalClose()
   questionFormModalOpen()
-  formModalClose()
+  questionFormModalClose()
   enableCallBackForm()
   enableQuestionForm()
+  ifExistsEnableContactForm()
+  ifExistsEnableReviewForm()
+  ifExistsEnableOrderForm()
   return

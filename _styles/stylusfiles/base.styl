@@ -4,14 +4,34 @@ body
     line-height 1.5
     overflow-y visible
     overflow-x hidden
-    width 100vw
     color textFG
-    background white
+    background beige
 
-.page_wrap
-    width 100%
-    min-height 100vh
-    
+.page_content
+    max-width 40rem
+    margin: 2rem auto
+    background: white
+    padding: 5rem
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: flex-start
+    align-items: flex-start
+
+.page_heading
+    flex: 0 0 100%
+
+section
+    margin: 2rem 0
+    width: 100%
+
+.section_header
+    margin: 2rem 0
+
+.phone
+    color: $site_contacts_phone_fg
+
+
 h1, h2, h3, h4, h5, h6, p
     margin 0
 
@@ -27,9 +47,6 @@ ul
     margin 0
     padding 0
     list-style none
-
-section
-    width 100vw
 
 input,
 select,

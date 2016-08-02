@@ -1,7 +1,11 @@
 #call_back_modal.modal_form__wrap
-   .modal_form__body 
-       header.modal_form__header
-           | Заказать обратный звонок
+    .modal_form__body 
+        header.modal_form__header
+            h2.section_header
+                | Заказать обратный звонок
+            a#call_back_modal__close.modal_form__close(href='')
+                | ×
+
         form#call_back_form.modal_form__form(
           role='form',
           action="https://formspree.io/{{ site.email }}",
@@ -48,9 +52,13 @@
                | Заказать звонок
 
 #question_modal.modal_form__wrap
-   .modal_form__body 
-       header.modal_form__header
-           | Задать вопрос
+    .modal_form__body 
+        header.modal_form__header
+            h2.section_header
+                | Задать вопрос
+            a#question_modal__close.modal_form__close(href='')
+                | ×
+            
         form#question_form.modal_form__form(
           role='form',
           action="https://formspree.io/{{ site.email }}",
