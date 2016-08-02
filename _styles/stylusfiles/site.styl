@@ -3,33 +3,43 @@
 $site_header_height = 6rem
 $site_header_logo_width = 16rem
 $site_header_logo_height = 6rem
+
 $vk_link_text_width = 28rem
 $vk_link_icon_width = 4rem
+
 $site_footer_height = 8rem
 $site_footer_icon_width = 3rem
+
 $modal_form_body_min_width = 18rem
 $modal_form_body_width = 50vw
+
 
 $the_font = Roboto, serif
 $body_fg = black
 $body_bg = beige
 
+
 $turbo_brown = hsl(23, 47%, 26%)
 $turbo_blue = hsl(198, 53%, 43%)
 $turbo_gray = hsl(30, 1%, 44%)
+$shadowy = hsl(0, 0, 0, 0.4)
+
 $site_nav_bg = white
 $mobile_nav_bg = white
 $site_nav_link_fg = $turbo_brown
 $site_nav_link_bg = white
 $site_nav_link_hover_fg = white
 $site_nav_link_hover_bg = $turbo_blue
-$site_contacts_wrap_bg = wheat
+
+$site_contacts_wrap_bg = white
 $site_contacts_phone_fg = $turbo_brown
 $site_contacts_modal_opener_fg = $turbo_blue
-$modal_form_bg = wheat
+
 $site_footer_bg = $turbo_brown
 $site_footer_fg  = white
-$site_footer_icons_fg = $turbo_blue
+$site_footer_icons_fg = white
+
+$modal_form_bg = wheat
 $modal_form_close_fg = maroon
 $modal_form_button_bg = $turbo_blue
 $modal_form_button_fg = white
@@ -48,7 +58,7 @@ body
 
 .page_content
     max-width: 40rem
-    margin: 2rem auto
+    margin: 5rem auto
     background: white
     padding: 3rem 5rem 1rem
     display: flex
@@ -56,6 +66,7 @@ body
     flex-wrap: wrap
     justify-content: flex-start
     align-items: flex-start
+    box-shadow: 0px 3px 14px -4px $shadowy
 
 .page_heading
     flex: 0 0 100%
@@ -158,9 +169,10 @@ button
     display: flex
     flex-direction: row
     justify-content: space-between
-    align-items: center
+    align-items: flex-start
     z-index: 1000
     background: $site_nav_bg 
+    box-shadow: 0 0 12px -4px $shadowy
 
 // logo {{{
 // ------------------------------------------------------------------------
@@ -194,6 +206,12 @@ button
     &:focus
         color: $site_nav_link_hover_fg
         background: $site_nav_link_hover_bg
+
+    &:hover,
+    &:focus,
+    &.active
+        box-shadow: 0 1px 3px -1px $shadowy
+        
 
 // desktop_nav {{{
 #desktop_nav 
@@ -239,7 +257,7 @@ button
 // mobile_nav_toggle {{{
 .mobile_nav_toggle__svg
     transition: all 0.5s ease-in-out
-    fill: hsl(23, 47%, 26%)
+    fill: $turbo_brown
 
 .mobile_nav_toggle__svg__top_bar
     transform-origin: 0 0
@@ -293,6 +311,7 @@ button
     justify-content: space-around
     align-items: center
     background: $site_contacts_wrap_bg
+    box-shadow: 0px 2px 13px -5px hsl(0,0,0,0.4)
 
 .modal_opener
     color: $site_contacts_modal_opener_fg
@@ -411,12 +430,19 @@ section.c__address
     z-index: 1000
     background: $site_footer_bg 
     color: $site_footer_fg 
+    box-shadow: 0 0 12px -4px $shadowy
 
 .f__contact
     flex 0 0 12rem
     margin: 1rem 
     text-align: center
     color: $site_footer_fg 
+    fill: @color
+
+    &:hover,
+    &:focus
+        color: $turbo_blue
+        fill: @color
 
 .f__corner_box
     flex 0 0 16rem
@@ -435,8 +461,6 @@ section.c__address
 #f__developer__link
     color: $turbo_blue
 
-.f__icon__path
-    fill: $site_footer_icons_fg
 // /footer }}}
 // forms {{{
 // =========================================================================
