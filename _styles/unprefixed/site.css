@@ -191,7 +191,7 @@ body {
 }
 .page_content {
   max-width: 40rem;
-  margin: 2rem auto;
+  margin: 5rem auto;
   background: #fff;
   padding: 3rem 5rem 1rem;
   display: flex;
@@ -199,6 +199,7 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
+  box-shadow: 0px 3px 14px -4px #000;
 }
 .page_heading {
   flex: 0 0 100%;
@@ -317,9 +318,10 @@ button:focus {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   z-index: 1000;
   background: #fff;
+  box-shadow: 0 0 12px -4px #000;
 }
 #site_logo {
   flex: 0 0 16rem;
@@ -348,6 +350,11 @@ button:focus {
 .site_nav__link:focus {
   color: #fff;
   background: #3485a8;
+}
+.site_nav__link:hover,
+.site_nav__link:focus,
+.site_nav__link.active {
+  box-shadow: 0 1px 3px -1px #000;
 }
 #desktop_nav {
   flex: 1 0 26rem;
@@ -436,7 +443,8 @@ button:focus {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background: #f5deb3;
+  background: #fff;
+  box-shadow: 0px 2px 13px -5px #000;
 }
 .modal_opener {
   color: #3485a8;
@@ -518,12 +526,19 @@ section.c__address {
   z-index: 1000;
   background: #613b23;
   color: #fff;
+  box-shadow: 0 0 12px -4px #000;
 }
 .f__contact {
   flex: 0 0 12rem;
   margin: 1rem;
   text-align: center;
   color: #fff;
+  fill: #fff;
+}
+.f__contact:hover,
+.f__contact:focus {
+  color: #3485a8;
+  fill: #3485a8;
 }
 .f__corner_box {
   flex: 0 0 16rem;
@@ -541,9 +556,6 @@ section.c__address {
 }
 #f__developer__link {
   color: #3485a8;
-}
-.f__icon__path {
-  fill: #3485a8;
 }
 .modal_form__form,
 .section_form__form {
