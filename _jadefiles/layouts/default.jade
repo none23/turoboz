@@ -2,11 +2,11 @@ doctype html
 html
     | {% include head.html %}
     body
-        | {% include header.html %}
-        .page_content
+        .page_wrap
+            | {% include header.html %}
             | {{ content }}
-        | {% include footer.html %}
-        | {% include header_forms.html %}
+            | {% include footer.html %}
+            | {% include header_forms.html %}
         script(src='/js/jquery-3.1.0.slim.min.js')
         //script(src='/js/jquery-3.1.0.min.js')
         script(src='/js/site.js')

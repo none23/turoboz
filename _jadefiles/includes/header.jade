@@ -12,8 +12,16 @@ mixin SiteNav()
     | {% endif %}
     | {% endfor %}
 
+mixin SiteContacts()
+    a.site_header__phone(href='tel:9082757092')
+        | 8 908 275 70 92
+    a#call_back_form_opener.site_header__call_back(href='#call_back_modal')
+        | Заказать звонок
+    a.site_header__vk_button
+        +iconVK('site_header__vk_icon')
+
 header#site_header
-    a#site_logo(href='{{ site.baseurl }}/')
+    a#site_logo(href='{{ site.baseurl }}')
         svg#site_logo__icon(viewbox='0 0 128 48')
             title
                 | {{ site.title }}
@@ -27,9 +35,6 @@ header#site_header
         +SiteNav()
     nav#mobile_nav
         +SiteNav()
+        +SiteContacts()
     #site_contacts_wrap
-        +phone(908,275,70,92)
-        a#call_back_form_opener.modal_opener(href='#call_back_modal')
-            | Заказать звонок
-        a#question_form_opener.modal_opener(href='#question_modal')
-            | Задать вопрос
+        +SiteContacts()
