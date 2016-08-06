@@ -1,8 +1,9 @@
 // vars {{{
 // =========================================================================
 $site_header_height = 6rem
-$site_header_logo_width = 16rem
-$site_header_logo_height = 6rem
+$site_header_logo_width = 14rem
+$site_header_logo_height = 5.25rem
+$site_header_contacts_width = 13rem
 
 $vk_link_text_width = 28rem
 $vk_link_icon_width = 4rem
@@ -14,15 +15,18 @@ $modal_form_body_min_width = 18rem
 $modal_form_body_width = 50vw
 
 
-$the_font = Roboto, serif
+$the_font = Ubuntu, Arial, Helvetica, sans-serif
 $body_fg = black
 $body_bg = beige
 
 
 $turbo_brown = hsl(23, 47%, 26%)
+$turbo_darkbrown = hsl(23, 50%, 18%)
 $turbo_blue = hsl(198, 53%, 43%)
 $turbo_gray = hsl(30, 1%, 44%)
 $shadowy = hsl(0, 0, 0, 0.4)
+
+$section_header_fg = $turbo_brown
 
 $site_nav_bg = white
 $mobile_nav_bg = white
@@ -31,9 +35,14 @@ $site_nav_link_bg = white
 $site_nav_link_hover_fg = white
 $site_nav_link_hover_bg = $turbo_blue
 
-$site_contacts_wrap_bg = white
+$main_heading_bg = hsla(0, 0%, 100%, 0.8)
+$main_heading_fg = $turbo_darkbrown
+$news_section_bg = hsl(198, 13%, 92%)
+$news_section_fg = $turbo_darkbrown
+
 $site_contacts_phone_fg = $turbo_brown
-$site_contacts_modal_opener_fg = $turbo_blue
+$site_contacts_modal_opener_bg = $turbo_brown
+$site_contacts_modal_opener_fg = white
 
 $site_footer_bg = $turbo_brown
 $site_footer_fg  = white
@@ -47,7 +56,6 @@ $modal_form_button_fg = white
 // /vars }}}
 // base {{{
 // =========================================================================
-html,
 body
     position: relative
     line-height: 1.5
@@ -55,28 +63,24 @@ body
     overflow-x: hidden
     color: $body_fg
     background: $body_bg
+    width: 100vw
 
-.page_content
-    max-width: 40rem
-    margin: 5rem auto
-    background: white
-    padding: 3rem 5rem 1rem
-    display: flex
-    flex-direction: row
-    flex-wrap: wrap
-    justify-content: flex-start
-    align-items: flex-start
-    box-shadow: 0px 3px 14px -4px $shadowy
+.page_wrap
+    width: 100%
 
 .page_heading
     flex: 0 0 100%
 
 section
-    margin: 2rem 0 0
+    margin: 0
     width: 100%
 
 .section_header
-    margin: 0 0 2rem
+    font-size: 1.6rem
+    margin: 1rem 0
+    text-align: center
+    text-transform: uppercase
+    color: $section_header_fg
 
 .phone
     color: $site_contacts_phone_fg
@@ -117,7 +121,7 @@ button
 
 html,
 body
-    font-size: 17px
+    font-size: 18px
     font-family: $the_font
     font-weight: normal
     line-height: 1.5 
@@ -141,11 +145,6 @@ textarea
 
 .phone
     font-size: 1.2rem
-
-.page_heading,
-.section_header
-    h1,h2,h3,h4,h5,h6
-        font-size: 2rem
 
 button
     line-height: 1.2
@@ -179,6 +178,7 @@ button
 #site_logo
     flex: 0 0 $site_header_logo_width
     height: $site_header_logo_height
+    margin: ($site_header_height - $site_header_logo_height) * 0.5
     position: relative
     color: transparent
     z-index: 1001
@@ -189,6 +189,45 @@ button
     width: 100%
     
 // /logo }}}
+// contacts_box {{{
+// ------------------------------------------------------------------------
+#site_contacts_wrap
+    flex: 0 0 $site_header_contacts_width 
+    position: relative
+    height: $site_header_height - 1.5rem
+    margin: 0.5rem 1.5rem 0.5rem 1rem
+    z-index: 1001
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    align-items: flex-end
+    align-content: space-between
+    flex-wrap: wrap
+
+.site_header__phone
+.site_header__call_back
+    flex: 0 0 2rem
+
+.site_header__phone
+    font-size: 1.2rem
+    margin-bottom: .4rem
+    color: $site_contacts_phone_fg
+
+.site_header__call_back
+    font-size: 0.875rem
+    line-height: 2.3
+    color: $site_contacts_modal_opener_fg
+    background: $site_contacts_modal_opener_bg
+    padding: 0 0.7rem
+    border-radius: 2px
+
+.site_header__vk_button
+    height: 3rem
+    width: @height
+    flex: 0 0 @height
+    fill: $turbo_blue
+
+// /contacts_box }}}
 // site_nav {{{
 // ------------------------------------------------------------------------
 .site_nav__link
@@ -215,12 +254,13 @@ button
 
 // desktop_nav {{{
 #desktop_nav 
-    flex: 1 0 26rem
+    flex: 1 0 20rem
     height: 100%
     display: flex
     flex-direction: row
     justify-content: space-around
     align-items: stretch
+    margin 0 1rem
 
     .site_nav__link
         padding-top: $site_header_height - 2.3rem
@@ -231,21 +271,45 @@ button
 #mobile_nav
     display: none
     position: absolute
-    left: $site_header_logo_width
     right: 0
+    left: calc(100% - 300px)
     top: $site_header_height
-    padding: 2rem 0 1rem
+    border-radius: 0 0 2px 2px
     z-index: 999
     flex-direction: column
     justify-content: space-around
-    align-items: center
+    align-items: flex-start
     background: $mobile_nav_bg
     transform: translateY(-200%)
     will-change: transform
     transition: transform 0.5s ease-in-out
+    box-shadow: 0 1px 14px -4px $shadowy
+
+    .site_header__phone,
+    .site_header__call_back
+        width: 100%
+        height: 3rem
+        line-height: 3rem
+        text-align: center
+        margin: 0
+
+    .site_header__phone
+        margin-top: 2rem
+        border-top: 1px solid $site_contacts_phone_fg
+
+    .site_header__vk_button
+        height: 2.8rem
+        fill: white
+        background: $turbo_blue
+        padding: 0.1rem calc((300px - 2.8rem) * 0.5)
+
+    .site_header__phone,
+    .site_header__call_back,
+    .site_header__vk_button
+        display: none
 
     .site_nav__link
-        width: 97%
+        width: 100%
 
         &:active
             width: 100%
@@ -272,7 +336,7 @@ button
     display: none
     position: relative
     flex: 0 0 3rem
-    margin: 1rem 2rem
+    margin: 1.7rem 2rem
     order: 1
     z-index: 1001
 
@@ -287,8 +351,8 @@ button
             transform: translateX(10%) rotate(-45deg)
 
 // /mobile_nav_toggle }}}
-@media(max-width: 58rem)
-    #desktop_nav 
+@media(max-width: 68rem)
+    #desktop_nav
         display: none
 
     #mobile_nav_toggle
@@ -297,29 +361,81 @@ button
     #mobile_nav
         display: flex
 
+
+
+@media(max-width: 44rem)
+    #site_contacts_wrap
+        display: none
+
+    #mobile_nav
+        .site_header__phone,
+        .site_header__call_back,
+        .site_header__vk_button
+            display: block
+
+@media(max-width: 23rem)
+    #site_logo
+        flex 0 0 60vw
+        
 // /site_nav }}}
-// contacts_box {{{
-// ------------------------------------------------------------------------
-#site_contacts_wrap
-    flex: 0 0 11rem
-    position: relative
-    height: 9rem
-    z-index: 1001
-    margin-bottom: $site_header_height - @height
-    display: flex
-    flex-direction: column
-    justify-content: space-around
-    align-items: center
-    background: $site_contacts_wrap_bg
-    box-shadow: 0px 2px 13px -5px hsl(0,0,0,0.4)
-
-.modal_opener
-    color: $site_contacts_modal_opener_fg
-
-// /contacts_box }}}
 // /site_header }}}
 // main {{{
 // =========================================================================
+// first_glance {{{
+// ------------------------------------------------------------------------
+.first_glance
+    width: 100% 
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: stretch
+    align-content: flex-start
+    flex-wrap: wrap
+
+// heading {{{
+.main__heading__section
+    flex: 1 0 600px
+    min-height: 420px
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    flex-wrap: nowrap
+    background-image: url(/img/main_bg.jpg)
+    background-size: 100% auto
+    background-repeat: no-repeat
+
+.main__heading__wrap
+    flex: 0 1 36rem 
+    background: $main_heading_bg
+    padding: 2rem 3rem
+
+.main__heading
+    color: $main_heading_fg
+    font-size: 1.6rem
+    
+
+// /heading }}}
+// news {{{
+.news__section
+    flex: 0 0 350px
+    background: $news_section_bg
+
+    .section_header
+        font-size: 1.4rem
+
+.news__list
+    margin: 0 1rem 1rem
+
+.news__list__item
+    margin: 0 0 1rem
+
+.news__list__item__link
+    color: $news_section_fg
+
+// /news }}}
+
+// /first_glance }}}
 // blog {{{
 // ------------------------------------------------------------------------
 
@@ -353,27 +469,6 @@ button
     //fill: #51739a 
 
 // /vk_info }}}
-.m__filter_list
-    width: 100%
-
-.m__filter_list__item
-    position: relative
-    height: 1rem
-    width: 100%
-
-    &--hidden
-        display: none
-
-.m__filter_list__item__link
-    width: 100%
-    height: 1rem
-
-.m__filter_list__item__link__date
-    position: absolute
-    top: 0
-    right: 0
-    height: 1rem
-
 // /main }}}
 // about {{{
 // =========================================================================
@@ -422,19 +517,23 @@ section.c__address
 // =========================================================================
 #site_footer
     width: 100%
-    height: $site_footer_height 
+    min-height: $site_footer_height 
     display: flex
     flex-direction: row
     justify-content: space-between
     align-items: flex-end
+    flex-wrap: wrap
     z-index: 1000
     background: $site_footer_bg 
     color: $site_footer_fg 
     box-shadow: 0 0 12px -4px $shadowy
 
-.f__contact
-    flex 0 0 12rem
+.f__contact,
+.f__corner_box
     margin: 1rem 
+    flex 1 0 13.5rem
+
+.f__contact
     text-align: center
     color: $site_footer_fg 
     fill: @color
@@ -444,15 +543,13 @@ section.c__address
         color: $turbo_blue
         fill: @color
 
-.f__corner_box
-    flex 0 0 16rem
-    text-align: right
-    margin-right: 1rem
-
 .f__contact_icon
     height: $site_footer_icon_width
     width: $site_footer_icon_width
     margin: 1rem auto
+
+.f__corner_box
+    text-align: right
 
 #f__developer,
 #f__developer__link
@@ -460,6 +557,7 @@ section.c__address
 
 #f__developer__link
     color: $turbo_blue
+    fill: $turbo_blue
 
 // /footer }}}
 // forms {{{

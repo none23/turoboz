@@ -1,11 +1,9 @@
-section.news__wrap
+section.news__section
     h2.section_header
         | Новости
-    ul.m__filter_list.news__list
-        | {% for post in site.news reversed limit:8 %}
-        li.m__filter_list__item.news__list__item
-            a.m__filter_list__item__link.news__list__item__link(href='{{ post.url }}')
+    ul.news__list
+        | {% for post in site.news reversed limit:5 %}
+        li.news__list__item
+            a.news__list__item__link(href='{{ post.url }}')
                 | {{ post.title }}
-            time.m__filter_list__item__link__date.news__link__date
-                | {{ post.date | date: "%d.%m.%Y" }}
         | {% endfor %}
