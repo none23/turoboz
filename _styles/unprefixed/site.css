@@ -181,23 +181,26 @@ textarea {
   font: inherit;
 }
 body {
-  position: relative;
-  line-height: 1.5;
   overflow-y: visible;
   overflow-x: hidden;
-  color: #000;
-  background: #f5f5dc;
   width: 100vw;
+  height: auto;
 }
 .page_wrap {
-  width: 100%;
-}
-.page_heading {
-  flex: 0 0 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  color: #000;
+  background: #f5f5dc;
 }
 section {
   margin: 0;
   width: 100%;
+}
+.page_heading {
+  flex: 0 0 100%;
 }
 .section_header {
   font-size: 1.6rem;
@@ -206,19 +209,16 @@ section {
   text-transform: uppercase;
   color: #613b23;
 }
-.phone {
-  color: #613b23;
-}
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-p {
+h6 {
   margin: 0;
 }
 a {
+  color: #000;
   text-decoration: none;
 }
 img {
@@ -234,13 +234,11 @@ ul {
 input,
 select,
 textarea {
-  border-color: #f5f5dc;
   border-radius: 2px;
   margin: 1rem;
   padding-right: 0;
   padding-left: 1rem;
-  border-width: 0;
-  border-style: none;
+  border: none;
 }
 button {
   appearance: none;
@@ -259,48 +257,28 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.5;
-  font-weight: 300;
+  font-weight: 100;
 }
 p,
 li,
 a {
-  line-height: 1.5;
   font-size: 1rem;
-}
-a {
-  text-decoration: none;
 }
 input,
 select,
 textarea {
   font-size: 1.1rem;
-  font-weight: 300;
 }
 .phone {
   font-size: 1.2rem;
 }
-button {
-  line-height: 1.2;
-  appearance: none;
-}
-button:active,
-button:focus {
-  border: none;
-}
-.textlink {
-  line-height: 2.5;
-  font-style: italic;
-}
 #site_header {
-  position: relative;
-  width: 100%;
   height: 6rem;
+  flex: 0 0 6rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  z-index: 1000;
   background: #fff;
   box-shadow: 0 0 12px -4px #000;
 }
@@ -309,8 +287,8 @@ button:focus {
   height: 5.25rem;
   margin: 0.375rem;
   position: relative;
-  color: transparent;
   z-index: 1001;
+  color: transparent;
 }
 #site_logo__icon {
   position: absolute;
@@ -465,7 +443,7 @@ button:focus {
 #mobile_nav_toggle.is_open .mobile_nav_toggle__svg__bot_bar {
   transform: translateX(10%) rotate(-45deg);
 }
-@media (max-width: 68rem) {
+@media (max-width: 1090px) {
   #desktop_nav {
     display: none;
   }
@@ -476,7 +454,7 @@ button:focus {
     display: flex;
   }
 }
-@media (max-width: 44rem) {
+@media (max-width: 790px) {
   #site_contacts_wrap {
     display: none;
   }
@@ -486,7 +464,7 @@ button:focus {
     display: block;
   }
 }
-@media (max-width: 23rem) {
+@media (max-width: 410px) {
   #site_logo {
     flex: 0 0 60vw;
   }
@@ -515,11 +493,12 @@ button:focus {
 .main__heading__wrap {
   flex: 0 1 36rem;
   background: rgba(255,255,255,0.8);
-  padding: 2rem 3rem;
+  margin: 2rem;
 }
 .main__heading {
   color: #452917;
   font-size: 1.6rem;
+  padding: 2rem 3rem;
 }
 .news__section {
   flex: 0 0 350px;
@@ -536,31 +515,6 @@ button:focus {
 }
 .news__list__item__link {
   color: #452917;
-}
-.vk_info__link {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 32rem;
-  margin: 1rem auto;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  background: #51739a;
-  color: #fff;
-}
-.vk_info__link__title {
-  flex: 0 0 28rem;
-  text-decoration: none !important;
-  white-space: nowrap;
-}
-.vk_info__link__icon {
-  flex: 0 0 4rem;
-  height: 4rem;
-  width: 4rem;
-}
-.vk_info__link__icon__svg {
-  fill: #fff;
 }
 section.c__phones,
 section.c__address {
@@ -584,17 +538,13 @@ section.c__address {
   font-style: italic;
 }
 #site_footer {
-  width: 100%;
-  min-height: 8rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
   flex-wrap: wrap;
-  z-index: 1000;
   background: #613b23;
   color: #fff;
-  box-shadow: 0 0 12px -4px #000;
 }
 .f__contact,
 .f__corner_box {
@@ -603,6 +553,7 @@ section.c__address {
 }
 .f__contact {
   text-align: center;
+  margin: 1rem 0.5rem;
   color: #fff;
   fill: #fff;
 }
@@ -614,7 +565,7 @@ section.c__address {
 .f__contact_icon {
   height: 3rem;
   width: 3rem;
-  margin: 1rem auto;
+  margin: 0 auto 1rem;
 }
 .f__corner_box {
   text-align: right;
@@ -625,7 +576,6 @@ section.c__address {
 }
 #f__developer__link {
   color: #3485a8;
-  fill: #3485a8;
 }
 .modal_form__form,
 .section_form__form {

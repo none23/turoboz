@@ -3,11 +3,6 @@ questionFormModalOpen = ->
         $('#question_modal').addClass 'is_open'
     return
 
-questionFormModalClose = ->
-    $('#question_modal__close').on 'click', ->
-        $('#question_modal').removeClass 'is_open'
-    return
-
 callBackFormModalOpen = ->
     $('#call_back_form_opener').on 'click', ->
         $('#call_back_modal').addClass 'is_open'
@@ -84,6 +79,10 @@ ifExistsEnableOrderForm = ->
   if $('#ordert_form').length > 0
     return enableOrderForm()
 
+ifExistsEnableQuestionForm = ->
+  if $('#question_form').length > 0
+    return enableQuestionForm()
+
 
 iSendAJAX = (event, form, sendButton) ->
   event.preventDefault()
@@ -122,11 +121,9 @@ $ ->
   mobileNav()
   callBackFormModalOpen()
   callBackFormModalClose()
-  questionFormModalOpen()
-  questionFormModalClose()
   enableCallBackForm()
-  enableQuestionForm()
   ifExistsEnableContactForm()
   ifExistsEnableReviewForm()
   ifExistsEnableOrderForm()
+  ifExistsEnableQuestionForm()
   return

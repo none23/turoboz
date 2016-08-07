@@ -2,51 +2,71 @@
 | layout: default
 | ---
 
-article.tour-page
+article.tour__page
 
-    header.tour-header
-        h1.tour-title
-            | {{ page.title }}
-    
-    //- introduction {{{-----------------------------------------------------
-    section.tour-introduction
-        p.intro
-            | {{ page.summary.intro }}
-        p
-            | {{ page.summary.text }}
-    //- /introduction ----------------------------------------------------}}}
-    //- details {{{----------------------------------------------------------
-    | {% if page.details %}
-    section.tour-details
-        | {% for details_p in page.details %}
-        p.details
-            | {{ details_p }}
+    | {% assign t = site.data.tours | where: "id", page.id %}
+    h1.page_title
+        | {{ t.title }}
+    //- introduction {{{
+    section.tour__intro__wrap
+        p.tour__intro
+            | {{ t.intro }}
+        p.tour__summary
+            | {{ t.summary }}
+    //- /introduction }}}
+    //- details {{{
+    | {% if t.details %}
+    section.tour__details__wrap
+        | {% for d in t.details %}
+        p.tour__details
+            | {{ d }}
         | {% endfor %}
     | {% endif %}
-    //- /details ---------------------------------------------------------}}}
-    //- will_learn {{{-------------------------------------------------------
-    | {% if page.will_learn %}
-    section.tour-will_learn
-        h2.will_learn-heading
+    //- /details }}}
+    //- will_learn {{{
+    | {% if t.will_learn %}
+    section.tour__will_learn__wrap
+        h2.section_header
             | Вы узнаете:
-        ul.will_learn-list
-        | {% for will_learn_item in page.will_learn %}
-        li.will_learn-item
-            | {{ will_learn_item }}
+        ul.tour__will_learn_list
+        | {% for item in t.will_learn %}
+        li.tour__will_learn__list__item
+            | {{ item }}
         | {% endfor %}
     | {% endif %}
-    //- /will_learn ------------------------------------------------------}}}
-    //- blueprint {{{--------------------------------------------------------
-    | {% if page.blueprint %}
-    section.blueprint
-        h2.blueprint-heading
-            | Вы узнаете:
-        ul.blueprint-list
-        | {% for blueprint_item in page.blueprint %}
-        li.blueprint-item
-            | {{ blueprint_item }}
-        | {% endfor %}
+    //- /will_learn }}}
+    //- blueprint {{{
+    | {% if t.blueprint %}
+    section.tour__blueprint__wrap
+        h2.section_header
+            | Программа:
+        ul.tour__blueprint__list
+            | {% for item in t.blueprint %}
+            li.tour__blueprint__list__item
+                | {{ item }}
+            | {% endfor %}
     | {% endif %}
-    //- /blueprint -------------------------------------------------------}}}
-    
+    //- /blueprint }}}
+    //- included {{{
+    section.tour__included__wrap
+        h2.section_header
+            | в стоимость входят:
+        ul.tour__included__list
+            | {% for item in t.blueprint %}
+            li.tour__included__list__item
+                | {{ item }}
+            | {% endfor %}
+    //- /included }}}
+    //- additional_fees {{{
+    | {% if t.additional_fees %}
+    section.tour__additional_fees__wrap
+        h2.section_header
+            | Дополнительно оплачиваемые услуги:
+        ul.tour__additional_fees__list
+            | {% for item in t.blueprint %}
+            li.tour__additional_fees__list__item
+                | {{ item }}
+            | {% endfor %}
+    | {% endif %}
+    //- /additional_fees }}}
  
