@@ -17,11 +17,11 @@ mixin SiteContacts()
         | 8 908 275 70 92
     a#call_back_form_opener.site_header__call_back(href='#call_back_modal')
         | Заказать звонок
-    a.site_header__vk_button
+    a.site_header__vk_button(href='https://{{ site.vk_group }}', target='_blank')
         +iconVK('site_header__vk_icon')
 
 header#site_header
-    a#site_logo(href='{{ site.baseurl }}')
+    a#site_logo(href='/')
         svg#site_logo__icon(viewbox='0 0 128 48')
             title
                 | {{ site.title }}

@@ -1,0 +1,16 @@
+section.guides
+    h2.section_header
+        | Наши экскурсоводы
+    | {% for g in page.guides %}
+    .guide__wrap
+        .guide__img__wrap
+            img.guide__img(src='{{ g.photo }}', alt='{{ g.name }}')
+        .guide__name
+            | {{ g.name }}
+        .guide__resume
+            | {% for paragraph in g.resume %}
+            p.guide__resume__p
+                | {{ paragraph }}
+            | {% endfor %}
+    | {% endfor %}
+
