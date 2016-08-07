@@ -190,7 +190,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: stretch;
   color: #000;
   background: #f5f5dc;
@@ -515,6 +515,69 @@ textarea {
 }
 .news__list__item__link {
   color: #452917;
+}
+.tours__wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+.tours_nav__wrap {
+  flex: 0 0 350px;
+  position: relative;
+  background: #fff;
+}
+.tours_nav {
+  position: absolute;
+  top: 5rem;
+  right: 0;
+  width: auto;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  z-index: 500;
+  transition: all 0.4s ease-in-out;
+  will-change: transform;
+  overflow: hidden;
+  transform: translateX(20%);
+  background: #fff;
+}
+.tours_nav.pushed_aside {
+  transform: translateX(-50%);
+}
+.tours_nav.hidden {
+  z-index: 600;
+  transform: translateX(-205%);
+}
+#tours_nav--primary {
+  left: 0;
+  transform: translateX(0);
+}
+.tours_nav__link {
+  text-align: right;
+  padding: 1rem 1.5rem;
+  text-transform: uppercase;
+  background: #fff;
+  color: #452917;
+}
+.tours_nav__link:hover {
+  background: #3485a8;
+  color: #fff;
+}
+.tours_nav__link:active,
+.tours_nav__link.active {
+  background: #613b23;
+  color: #fff;
+}
+.tours_nav__link--back {
+  align-self: center;
+  height: 4rem;
+  width: 4rem;
+  margin: 1rem;
 }
 section.c__phones,
 section.c__address {
