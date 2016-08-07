@@ -275,6 +275,7 @@ textarea {
 #site_header {
   height: 6rem;
   flex: 0 0 6rem;
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -330,6 +331,16 @@ textarea {
   width: 3rem;
   flex: 0 0 3rem;
   fill: #3485a8;
+}
+.header_form__wrap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
+  transition: all 0.4s ease-in-out;
+  z-index: 1003;
 }
 .site_nav__link {
   padding: 0.5rem;
@@ -639,78 +650,4 @@ section.c__address {
 }
 #f__developer__link {
   color: #3485a8;
-}
-.modal_form__form,
-.section_form__form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding-bottom: 2rem;
-}
-.section_form__field,
-.section_form__large_field,
-.modal_form__field,
-.modal_form__large_field {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-.section_form__large_field,
-.modal_form__large_field {
-  height: 5rem;
-}
-.section_form__button,
-.modal_form__button {
-  height: 3rem;
-  margin-top: 1.5rem;
-  border-radius: 4px;
-  background: #3485a8;
-  color: #fff;
-}
-.modal_form__wrap {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.5);
-  transform: translateX(-100%);
-  z-index: 2000;
-}
-.modal_form__wrap.is_open {
-  transform: translateX(0);
-}
-.modal_form__body {
-  min-width: 18rem;
-  width: 50vw;
-  margin: 2rem auto;
-  border-radius: 4px;
-  background: #f5deb3;
-}
-.modal_form__header {
-  position: relative;
-  text-align: center;
-  font-size: 1.3rem;
-  height: 3em;
-}
-.modal_form__close {
-  position: absolute;
-  right: 0;
-  top: 0;
-  font-size: 2rem;
-  line-height: 1;
-  padding: 0.5rem;
-  color: #800000;
-}
-.modal_form__input_group,
-.modal_form__button {
-  width: 90%;
-  margin: 0.5rem auto;
-}
-.section_form__input_group,
-.section_form__button {
-  width: 100%;
-  margin: 0.5rem auto;
 }

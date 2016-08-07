@@ -1,11 +1,6 @@
 callBackFormModalOpen = ->
-    $('#call_back_form_opener').on 'click', '', ->
-        $('#call_back_modal').addClass 'is_open'
-    return
-
-callBackFormModalClose = ->
-    $('#call_back_modal__close').on 'click', '', ->
-        $('#call_back_modal').removeClass 'is_open'
+    $('#call_back__toggle').on 'click', ->
+        $('#call_back__wrap').addClass 'is_open'
     return
 
 mobileNav = ->
@@ -111,7 +106,6 @@ iSendAJAX = (event, form, sendButton) ->
 $ ->
   mobileNav()
   callBackFormModalOpen()
-  callBackFormModalClose()
   enableCallBackForm()
   ifExistsEnableContactForm()
   ifExistsEnableReviewForm()
