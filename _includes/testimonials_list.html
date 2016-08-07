@@ -1,4 +1,4 @@
-<section id="testimonials_list__wrap"><ul class="testimonials__list">{% for testimonial in site.testimonials reversed %}<li class="testimonial"><blockquote class="testimonial__quote"><p class="testimonial__text">{{ testimonial.content }}</p><footer class="testimonial__quote__footer"><cite class="testimonial__name">{{ testimonial.author }}</cite><div class="testimonial__date">{% assign m = testimonial.date | date: "%-m" %}
+<section id="testimonials_list__wrap"><ul class="testimonials__list">{% for testimonial in site.data.testimonials reversed %}<li class="testimonial"><blockquote class="testimonial__quote">{% for p in testimonial.testimonial %}<p class="testimonial__text">{{ p }}</p>{% endfor %}<footer class="testimonial__quote__footer"><cite class="testimonial__name">{{ testimonial.author }}</cite><div class="testimonial__date">{% assign m = testimonial.date | date: "%-m" %}
 {{ testimonial.date | date: "%-d" }}
 {% case m %} 
 {% when '1' %}января

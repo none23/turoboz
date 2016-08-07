@@ -1,10 +1,12 @@
 section#testimonials_list__wrap
     ul.testimonials__list
-        | {% for testimonial in site.testimonials reversed %}
+        | {% for testimonial in site.data.testimonials reversed %}
         li.testimonial
             blockquote.testimonial__quote
+                | {% for p in testimonial.testimonial %}
                 p.testimonial__text
-                    | {{ testimonial.content }}
+                    | {{ p }}
+                | {% endfor %}
 
                 footer.testimonial__quote__footer
                     cite.testimonial__name

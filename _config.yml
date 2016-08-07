@@ -21,6 +21,7 @@ exclude: ["node_modules",
           "package.json",
           "README.md"]
 collections:
- - tours
- - news
- - testimonials
+  tours:
+    output: true
+  news:
+    output: true
