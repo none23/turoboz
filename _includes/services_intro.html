@@ -1,2 +1,3 @@
-<section class="services__intro"><p class="services__text">Помимо организации групповых автобусных экскурсий, Вы также
-можете заказать:</p><ul class="services__intro__ul"><li class="services__intro__li">Организацию индивидуальной экскурсионной программы;</li><li class="services__intro__li">Услуги гида;</li><li class="services__intro__li">Автобус;</li><li class="services__intro__li">Групповое бронирование Ж/Д билетов.</li></ul></section>
+<section class="s__overview"><p class="s__intro">Помимо организации групповых автобусных экскурсий, Вы также
+можете заказать:</p><ul class="s__services_list">{% for serv in page.listed_services %}<li class="s__service"> 
+{{ serv }}</li>{% endfor %}</ul></section>

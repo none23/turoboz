@@ -626,9 +626,70 @@ textarea {
   width: 4rem;
   margin: 1rem;
 }
-section.c__phones,
-section.c__address {
-  width: 50%;
+.contacts__wrap,
+.contact_form__wrap {
+  width: 85vw;
+  max-width: 800px;
+  min-width: 500px;
+}
+@media (max-width: 600px) {
+  .contacts__wrap,
+  .contact_form__wrap {
+    width: 95vw;
+    max-width: auto;
+    min-width: auto;
+  }
+}
+@media (max-width: 480px) {
+  .contacts__wrap,
+  .contact_form__wrap {
+    width: 100vw;
+  }
+}
+.contacts__wrap {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+@media (max-width: 710px) {
+  .contacts__wrap {
+    flex-direction: column;
+  }
+}
+.c__textual {
+  flex: 0 0 20rem;
+  margin: 0;
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+@media (max-width: 710px) {
+  .c__textual {
+    flex: 0 1 20rem;
+  }
+}
+.contacts__list,
+.c__address {
+  margin: 1rem 2rem;
+}
+.c__contact {
+  white-space: nowrap;
+  line-height: 2;
+}
+.c__map__link {
+  flex: 1 0 20rem;
+  order: -1;
+}
+.c__map__img {
+  width: 100%;
+  height: auto;
+}
+.contact_form__wrap {
+  margin: 2rem auto 8rem;
 }
 .testimonials__list,
 .review_form__wrap {
@@ -654,7 +715,7 @@ section.c__address {
   margin: 2rem auto -2rem;
 }
 .review_form__wrap {
-  margin: 2rem auto 40rem;
+  margin: 2rem auto 8rem;
 }
 .testimonial {
   width: 100%;
