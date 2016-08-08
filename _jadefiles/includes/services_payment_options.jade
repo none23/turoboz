@@ -1,24 +1,12 @@
 include ../mixins.jade
-section.services__payment_options
+section.s__payment_opts__wrap
     h2.section_header
         | Оплата экскурсий
-    ul.services__payment_options_ul
-        li.services__payment_option
-            h4.services__payment_option_title
-                | В офисе
-            p.services__payment_option_details
-                | Вы можете оплатить тур наличными в 
-                a(href='/contact') нашем офисе
-                | или написать нам на 
-                +mail('{{ site.email }}')
-                    | {{ site.email }}
-
-        li.services__payment_option
-            h4.services__payment_option_title
-                | Безналичная оплата
-            p.services__payment_option_details
-                | Для оплаты через любой банк скачайте квитанцию. Оплату
-                | совершайте после подтверждения брони вашего тура у
-                | менеджера по телефонам, представленным на сайте. В
-                | квитанции указывайте номер счёта, предоставленный
-                | менеджером.
+    ul.s__payment_opts
+        | {% for p_o in page.payment_opts %}
+        li.s__payment_opt
+            h4.opt_title
+                | {{ p_o.title }}
+            p.opt_details
+                | {{ p_o.details }}
+        | {% endfor %}

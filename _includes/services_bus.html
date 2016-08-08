@@ -1,2 +1,2 @@
-<section class="services__bus"><h2 class="section_header">Заказ автобуса</h2><p class="services__text">Туристические автобусы, оснащенные телевизором, микрофоном,
-откидывающимися сидениями.</p><ul class="services__bus__ul"><li class="services__bus__li">от 47 до 50 мест -  1200 руб/час;</li><li class="services__bus__li">от 30 до 33 мест -  1000 руб/час;</li><li class="services__bus__li">от 20 до 29 мест -  900 руб/час;</li><li class="services__bus__li">от 17 до 19 мест -  800 руб/час.</li></ul></section>
+<section class="s__bus__wrap"><h2 class="section_header">Заказ автобуса</h2><p class="s__intro">Туристические автобусы, оснащенные телевизором, микрофоном,
+откидывающимися сидениями.</p><h3 class="s__bus__rates__title">Стоимость аренды автобусов:</h3><dl class="s__bus__rates">{% for optn in site.data.bus_rates %}<dt>{{ optn.seats }} мест</dt><dd>{{ optn.rate }}руб/час</dd>{% endfor %}</dl></section>

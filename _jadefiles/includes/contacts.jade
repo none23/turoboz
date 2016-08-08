@@ -1,26 +1,21 @@
 include ../mixins.jade
 
-section.c__phones
-    h2.section_header
-        | Телефоны
-    ul.c__phones__ul
-        li.c__phones_li
-            +phone(908,275,70,92)
-        li.c__phones_li
-            +phone(342,281,15,25)
-        li.c__phones_li
-            +phone(342,268,03,62)
+section.contacts__wrap
+    .c__textual
+        ul.contacts__list
+            | {% for phn in page.phones %}
+            li.c__contact.c__phone
+                a.phone(href="tel:{{ phn | remove: ' ' }}")
+                    | {{ phn }}
+            | {% endfor %}
+            li.c__contact.c__mail
+                +mail('{{ site.email }}')
 
-section.c__address
-    h2.section_header
-        | Наш адрес
-    p.c__address__line.c__address__zipcode
-        | 614000
-    p.c__address__line.c__address__city
-        | Россия, г.Пермь,
-    p.c__address__line.c__address__lineone
-        | Комсомольский проспект, д.67
-    p.c__address__line.c__address__description
-        | (зеленый дом, где магазин «Летуаль»),
-    p.c__address__line.c__address__entrance
-        | вход со двора.
+        .c__address
+            | {% for line in page.address %}
+            | {{ line }}
+            br
+            | {% endfor %}
+
+    a.c__map__link(href='https://goo.gl/maps/FbLPyK1Y4sP2', target='_blank', alt='открыть на Картах Гугл')
+        img.c__map__img(src='/img/map.jpg', alt='Туробоз - Карты Гугл') 

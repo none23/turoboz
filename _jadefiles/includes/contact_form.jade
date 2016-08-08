@@ -1,29 +1,25 @@
-section#contact_form__wrap.section_form__wrap
+section#contact_form__wrap.contact_form__wrap
    h2.section_header
-       | Написать нам
-
-    form#contact_form.section_form__form(
+       | Напишите нам
+    form#contact_form(
       role='form',
       action="https://formspree.io/{{ site.email }}",
-      method='POST'
-      )
+      method='POST')
 
         input#contact_form__subject.hidden_field(
           name='_subject',
           type='hidden',
-          value='ContactQuestion'
-          )
+          value='Contact')
 
         input#contact_form__next.hidden_field(
           name='_next',
           type='hidden',
-          value='#TODO:form_submit_fallback'
-          )
+          value='#TODO:form_submit_fallback')
         
-        .section_form__input_group
+        .form__input_group
             .form__input_label
                 | Как к Вам обращаться?
-            input#contact_form__name.section_form__field(
+            input#contact_form__name.form__field(
               name='clientName',
               title='Имя',
               type='text',
@@ -32,10 +28,10 @@ section#contact_form__wrap.section_form__wrap
               required
               )
         
-        .section_form__input_group
+        .form__input_group
             .form__input_label
                 | Ваш email
-            input#contant_form__mail.section_form__field(
+            input#contant_form__mail.form__field(
               title="Электронная  почта",
               name="theEmail",
               type="email",
@@ -44,10 +40,10 @@ section#contact_form__wrap.section_form__wrap
               required
               )
 
-        .section_form__input_group
+        .form__input_group
             .form__input_label
                 | Ваш вопрос
-            input#contact_form__question.section_form__large_field(
+            textarea#contact_form__question.form__field.form__field--large(
               title="Вопрос",
               name="theQuestion",
               type="text",
@@ -55,5 +51,5 @@ section#contact_form__wrap.section_form__wrap
               required
               )
 
-        button#contact_form__button.section_form__button(type='submit')
+        button#contact_form__button.form__button(type='submit')
            | Отправить сообщение
