@@ -1,5 +1,5 @@
-<section id="testimonials_list__wrap"><ul class="testimonials__list">{% for testimonial in site.data.testimonials reversed %}<li class="testimonial"><blockquote class="testimonial__quote">{% for p in testimonial.testimonial %}<p class="testimonial__text">{{ p }}</p>{% endfor %}<footer class="testimonial__quote__footer"><cite class="testimonial__name">{{ testimonial.author }}</cite><div class="testimonial__date">{% assign m = testimonial.date | date: "%-m" %}
-{{ testimonial.date | date: "%-d" }}
+<section class="testimonials_list__wrap"><ul class="testimonials__list">{% for tstm in site.data.testimonials reversed %}<li class="testimonial__wrap"><blockquote class="testimonial"><div class="testimonial__text__wrap">{% for p in tstm.testimonial %}<p class="testimonial__text">{{ p }}</p>{% endfor %}</div><div class="testimonial__svg__wrap"><svg viewbox="0 0 32 24"><g transform="translate(0 -1028)"><path d="m25.69 1052c3.33 0 6.032-2.442 6.032-5.455 0-3.011-2.702-5.455-6.032-5.455-6.03 0-2.011-10.54 6.032-10.54v-2.546c-14.35 0-19.98 24-6.032 24zm-17.38 0c3.328 0 6.03-2.442 6.03-5.455 0-3.011-2.702-5.455-6.03-5.455-6.032 0-2.013-10.54 6.03-10.54v-2.546c-14.35 0-19.98 24-6.03 24z" class="quotemark"></path></g></svg></div><footer class="testimonial__footer"><div class="testimonial__date">{% assign m = tstm.date | date: "%-m" %}
+{{ tstm.date | date: "%-d" }}
 {% case m %} 
 {% when '1' %}января
 {% when '2' %}февраля
@@ -14,4 +14,4 @@
 {% when '11' %}ноября
 {% when '12' %}декабя
 {% endcase %} 
-{{ testimonial.date | date: "%Y" }}</div></footer></blockquote></li>{% endfor %}</ul></section>
+{{ tstm.date | date: "%Y" }}</div><cite class="testimonial__name">{{ tstm.author }}</cite></footer></blockquote></li>{% endfor %}</ul></section>

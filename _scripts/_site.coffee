@@ -1,81 +1,62 @@
-callBackFormModalOpen = ->
-    $('#call_back__toggle').on 'click', ->
-        $('#call_back__wrap').addClass 'is_open'
+callBackFormOpen = ->
+    $('.call_back_form__toggle').on 'click', '', ->
+        $('.call_back_form__toggle, .call_back_form__wrap').toggleClass 'is_open'
     return
+
 
 mobileNav = ->
     $('#mobile_nav_toggle').on 'click', '', ->
         $('#mobile_nav_toggle, #mobile_nav').toggleClass 'is_open'
     return
 
-smoothScroll = (duration) ->
-  $('a[href^="#"]').on 'click', (event) ->
-    target = $($(this).attr('href'))
-    if target.length
-      event.preventDefault()
-      $('html, body').animate { scrollTop: target.offset().top }, duration
-    return
-  return
 
 enableCallBackForm = ->
-  TheForm = document.getElementById('call_back_form')
-  sendForm = document.getElementById('call_back_form__button')
-  TheForm.addEventListener 'submit', (event) ->
-    iSendAJAX event, TheForm, sendForm
-    return
-  return
-
-enableQuestionForm = ->
-  TheForm = document.getElementById('question_form')
-  sendForm = document.getElementById('question_form__button')
-  TheForm.addEventListener 'submit', (event) ->
-    iSendAJAX event, TheForm, sendForm
-    return
-  return
+    TheForm = document.getElementById('call_back_form')
+    if TheForm
+        sendForm = document.getElementById('call_back_form__button')
+        TheForm.addEventListener 'submit', (event) ->
+            iSendAJAX event, TheForm, sendForm
+        return
+    else
+        return
 
 enableContactForm = ->
-  TheForm = document.getElementById('contact_form')
-  sendForm = document.getElementById('contact_form__button')
-  TheForm.addEventListener 'submit', (event) ->
-    iSendAJAX event, TheForm, sendForm
-    return
-  return
+    TheForm = document.getElementById('contact_form')
+    if TheForm
+        sendForm = document.getElementById('contact_form__button')
+        TheForm.addEventListener 'submit', (event) ->
+            iSendAJAX event, TheForm, sendForm
+        return
+    else
+        return
 
 enableReviewForm = ->
-  TheForm = document.getElementById('review_form')
-  sendForm = document.getElementById('review_form__button')
-  TheForm.addEventListener 'submit', (event) ->
-    iSendAJAX event, TheForm, sendForm
-    return
-  return
+    TheForm = document.getElementById('review_form')
+    if TheForm
+        sendForm = document.getElementById('review_form__button')
+        TheForm.addEventListener 'submit', (event) ->
+            iSendAJAX event, TheForm, sendForm
+        return
+    else
+        return
 
 enableOrderForm = ->
-  TheForm = document.getElementById('order_form')
-  sendForm = document.getElementById('order_form__button')
-  TheForm.addEventListener 'submit', (event) ->
-    iSendAJAX event, TheForm, sendForm
-    return
-  return
-
-ifExistsEnableContactForm = ->
-  if $('#contact_form').length > 0
-    return enableContactForm()
-
-ifExistsEnableReviewForm = ->
-  if $('#review_form').length > 0
-    return enableReviewForm()
-
-ifExistsEnableOrderForm = ->
-  if $('#ordert_form').length > 0
-    return enableOrderForm()
+    TheForm = document.getElementById('order_form')
+    if TheForm
+        sendForm = document.getElementById('order_form__button')
+        TheForm.addEventListener 'submit', (event) ->
+            iSendAJAX event, TheForm, sendForm
+        return
+    else
+        return
 
 
 iSendAJAX = (event, form, sendButton) ->
   event.preventDefault()
   message = {}
   message.loading = 'Отправка...'
-  message.success = 'Спасибо! Мы свяжемся с Вами в ближайшее время.'
-  message.failure = 'Whoops! There was a problem sending your message.'
+  message.success = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.'
+  message.failure = 'Возникла ошибка при отправке.'
   # Set up the AJAX request
   request = new XMLHttpRequest
   request.open 'POST', '//formspree.io/n.anisimov.23@gmail.com', true
@@ -90,24 +71,23 @@ iSendAJAX = (event, form, sendButton) ->
     # <4 =  waiting on response from server
     if request.readyState < 4
       sendButton.innerHTML = message.loading
-      sendButton.className = 'form-control btn btnFormLoad'
+      sendButton.className = 'form__button--loading'
     else if request.readyState == 4
       # 200 - 299 = successful
       if request.status == 200 and request.status < 300
         sendButton.innerHTML = message.success
-        sendButton.className = 'form-control btn btnFormSent'
+        sendButton.className = 'form__button--success'
       else
         form.insertAdjacentHTML 'beforeend', message.failure
     return
 
-  return
 
 
 $ ->
   mobileNav()
-  callBackFormModalOpen()
+  callBackFormOpen()
   enableCallBackForm()
-  ifExistsEnableContactForm()
-  ifExistsEnableReviewForm()
-  ifExistsEnableOrderForm()
+  enableContactForm()
+  enableReviewForm()
+  enableOrderForm()
   return
