@@ -1,35 +1,60 @@
-section#testimonials_list__wrap
-    ul.testimonials__list
-        | {% for testimonial in site.data.testimonials reversed %}
-        li.testimonial
-            blockquote.testimonial__quote
-                | {% for p in testimonial.testimonial %}
+include ../svgs/quote.jade
+
+mixin Testimonial(tAuthor, tDate, tQuote)
+    li.testimonial__wrap
+        blockquote.testimonial
+            //-- text {{{
+            //----------------------------------------------------------------
+            .testimonial__text__wrap
+                | {% for p in #{tQuote} %}
                 p.testimonial__text
                     | {{ p }}
                 | {% endfor %}
 
-                footer.testimonial__quote__footer
-                    cite.testimonial__name
-                        | {{ testimonial.author }}
+            //-- /text }}}
+            //-- quote_svg {{{
+            //----------------------------------------------------------------
+            .testimonial__svg__wrap
+                +QuoteMark()
+            //-- /quote_svg }}}
+            //-- footer {{{
+            //----------------------------------------------------------------
+            footer.testimonial__footer
+                //-- date {{{
+                //------------------------------------------------------------
+                .testimonial__date
+                    | {% assign m = #{tDate} | date: "%-m" %}
+                    | {{ #{tDate} | date: "%-d" }}
+                    | {% case m %} 
+                    | {% when '1' %}января
+                    | {% when '2' %}февраля
+                    | {% when '3' %}марта
+                    | {% when '4' %}апреля
+                    | {% when '5' %}мая
+                    | {% when '6' %}июня
+                    | {% when '7' %}июля
+                    | {% when '8' %}августа
+                    | {% when '9' %}сентября
+                    | {% when '10' %}октября
+                    | {% when '11' %}ноября
+                    | {% when '12' %}декабя
+                    | {% endcase %} 
+                    | {{ #{tDate} | date: "%Y" }}
+                //-- /date }}}
+                //-- author {{{
+                //------------------------------------------------------------
+                cite.testimonial__name
+                    | {{ #{tAuthor} }}
+                //-- /author }}}
+            //-- /footer }}}
 
-                    .testimonial__date
-                        | {% assign m = testimonial.date | date: "%-m" %}
-                        | {{ testimonial.date | date: "%-d" }}
-                        | {% case m %} 
-                        | {% when '1' %}января
-                        | {% when '2' %}февраля
-                        | {% when '3' %}марта
-                        | {% when '4' %}апреля
-                        | {% when '5' %}мая
-                        | {% when '6' %}июня
-                        | {% when '7' %}июля
-                        | {% when '8' %}августа
-                        | {% when '9' %}сентября
-                        | {% when '10' %}октября
-                        | {% when '11' %}ноября
-                        | {% when '12' %}декабя
-                        | {% endcase %} 
-                        | {{ testimonial.date | date: "%Y" }}
+section.testimonials_list__wrap
+    ul.testimonials__list
+        | {% for tstm in site.data.testimonials reversed %}
+        +Testimonial(
+            'tstm.author',
+            'tstm.date',
+            'tstm.testimonial')
         | {% endfor %}
 
             

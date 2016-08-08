@@ -4,12 +4,11 @@ $site_header_height = 6rem
 $site_header_logo_width = 14rem
 $site_header_logo_height = 5.25rem
 $site_header_contacts_width = 13rem
+$header_form_field_width = 17rem
 
 $site_footer_height = 8rem
 $site_footer_icon_width = 3rem
 
-$modal_form_body_min_width = 18rem
-$modal_form_body_width = 50vw
 
 
 $the_font = Ubuntu, Arial, Helvetica, sans-serif
@@ -20,8 +19,10 @@ $body_bg = beige
 $turbo_brown = hsl(23, 47%, 26%)
 $turbo_darkbrown = hsl(23, 50%, 18%)
 $turbo_blue = hsl(198, 53%, 43%)
+$turbo_lightblue = hsl(198, 53%, 75%)
+$turbo_verylightblue = hsl(198, 13%, 92%)
 $turbo_gray = hsl(30, 1%, 44%)
-$shadowy = hsl(0, 0, 0, 0.4)
+$shadowy = hsl(0, 0, 20%, 0.5)
 
 $section_header_fg = $turbo_brown
 
@@ -31,10 +32,11 @@ $site_nav_link_fg = $turbo_brown
 $site_nav_link_bg = white
 $site_nav_link_hover_fg = white
 $site_nav_link_hover_bg = $turbo_blue
+$header_form_bg = white
 
 $main_heading_bg = hsla(0, 0%, 100%, 0.8)
 $main_heading_fg = $turbo_darkbrown
-$news_section_bg = hsl(198, 13%, 92%)
+$news_section_bg = $turbo_verylightblue
 $news_section_fg = $turbo_darkbrown
 
 $site_contacts_phone_fg = $turbo_brown
@@ -75,6 +77,7 @@ section
 .page_heading
     flex: 0 0 100%
 
+.page_heading
 .section_header
     font-size: 1.6rem
     margin: 1rem 0
@@ -116,6 +119,7 @@ textarea
 button
     appearance none
     border none
+    border-radius: 2px
 
 // /base }}}
 // typography {{{
@@ -125,7 +129,7 @@ html
 body
     font-size: 18px
     font-family: $the_font
-    font-weight: normal
+    font-weight: 300
     line-height: 1.5 
 
 h1
@@ -162,6 +166,7 @@ textarea
     align-items: flex-start
     background: $site_nav_bg 
     box-shadow: 0 0 12px -4px $shadowy
+    border-bottom: 1px solid $turbo_lightblue
 
 // logo {{{
 // ------------------------------------------------------------------------
@@ -203,6 +208,12 @@ textarea
     margin-bottom: .4rem
     color: $site_contacts_phone_fg
 
+.site_header__vk_button
+    height: 3rem
+    width: @height
+    flex: 0 0 @height
+    fill: $turbo_blue
+
 .site_header__call_back
     font-size: 0.875rem
     line-height: 2.3
@@ -210,25 +221,52 @@ textarea
     background: $site_contacts_modal_opener_bg
     padding: 0 0.7rem
     border-radius: 2px
+    transition: all 0.2s ease-in-out
 
-.site_header__vk_button
-    height: 3rem
-    width: @height
-    flex: 0 0 @height
-    fill: $turbo_blue
+    &:hover
+    &:focus
+        color: $site_nav_link_hover_fg
+        background: $site_nav_link_hover_bg
+
+    &:active
+        color: $site_nav_link_hover_fg
+        background: $site_nav_link_fg
+
+    &.is_open
+        color: white
+        background: $site_nav_link_hover_bg
+        opacity: .4
 
 // /contacts_box }}}
 // header_form {{{
 // ------------------------------------------------------------------------
 .header_form__wrap
     position: absolute
-    top: 0
-    bottom: 0
-    left: 0
+    top: 100%
     right: 0
-    transform: translateY(-100%)
-    transition: all 0.4s ease-in-out
-    z-index: 1003
+    transform: translateX(100%)
+    transition: all 0.3s ease-in-out
+    z-index: 1000
+    background: $header_form_bg
+    box-shadow: 0 4px 12px -6px $shadowy
+    border: 1px solid $turbo_lightblue
+    border-radius: 3px
+
+    &.is_open
+        transform: translateX(0%)
+
+    #call_back_form
+        justify-content: space-around
+        flex-direction: row
+        flex-wrap: wrap
+
+    #call_back_form__name
+    #call_back_form__phone
+        flex: 1 1 $header_form_field_width
+
+    #call_back_form__button
+        flex: 2 2  $header_form_field_width * 2
+        margin: 0
 
 // /header_form }}}
 // site_nav {{{
@@ -527,23 +565,82 @@ section.c__address
 // /contact }}}
 // testimonials {{{
 // =========================================================================
-.testimonial__quote
-    margin-bottom: 2rem
+.testimonials__list
+.review_form__wrap
+    width: 85vw
+    max-width: 900px
+    min-width: 500px
 
-.testimonial__quote__footer
-    margin-top: 0.5rem
-    text-align: right
+    @media(max-width: 600px)
+        width: 95vw
+        max-width: auto
+        min-width: auto
+
+    @media(max-width: 480px)
+        width: 100vw
+
+.testimonials__list
+    margin: 2rem auto -2rem
+
+.review_form__wrap
+    margin: 2rem auto 40rem
+
+.testimonial
+    width: 100%
+    position: relative
+    margin: 0 0 2rem
+    border-radius: 2px
+    border: 1px solid $turbo_lightblue
+    background: white
+
+.testimonial__text__wrap
+    margin: 3rem 4rem
+    position: relative
+    z-index: 100
+
+    @media(max-width: 800px)
+        margin: 3rem 3rem
+
+    @media(max-width: 480px)
+        margin: 3rem 2rem 3rem 1rem
+
+.testimonial__text
+    //text-align: justify
+    font-style: italic
+    line-height: 1.7
+    color: $turbo_brown
+
+.testimonial__svg__wrap
+    position: absolute
+    top: 1rem
+    left: 1rem
+    width: 9rem
+    height: auto
+    z-index: 99
+
+.quotemark
+    fill: $turbo_lightblue
+
+.testimonial__footer
+    background: $turbo_blue
+    padding: .7rem 2rem
+    display: flex
+    justify-content: space-between
+    align-items: center
 
 .testimonial__name
     font-size: 1.2rem
-    font-style: italic
+    line-height: 1rem
+    text-align: right
 
     &:before
-        content: '— '
+        content: '—  '
 
 .testimonial__date
-    font-style: italic
-
+.testimonial__name
+    display: inline
+    white-space: nowrap
+    color: white
 
 // /testimonials }}}
 // footer {{{
@@ -591,85 +688,42 @@ section.c__address
 // /footer }}}
 // forms {{{
 // =========================================================================
-// .modal_form__form
-// .section_form__form
-//     width: 100%
-//     display: flex
-//     flex-direction: column
-//     justify-content: flex-start
-//     align-items: center
-//     padding-bottom: 2rem
-//
-// .section_form__field
-// .section_form__large_field
-// .modal_form__field
-// .modal_form__large_field
-//     width: 100%
-//     padding: 0
-//     margin: 0
-//     
-// .section_form__large_field
-// .modal_form__large_field
-//     height: 5rem
-//
-// .section_form__button
-// .modal_form__button
-//     height: 3rem
-//     margin-top: 1.5rem
-//     border-radius: 4px
-//     background: $modal_form_button_bg
-//     color: $modal_form_button_fg
-//
-// // modal_forms {{{
-// // -------------------------------------------------------------------------
-// .modal_form__wrap
-//     position: fixed
-//     top: 0
-//     right: 0
-//     bottom: 0
-//     left: 0
-//     background: hsla(0,0,0,0.5)
-//     transform: translateX(-100%)
-//     z-index: 2000
-//
-//     &.is_open
-//         transform: translateX(0)
-//
-// .modal_form__body
-//     min-width: $modal_form_body_min_width
-//     width: $modal_form_body_width
-//     margin: 2rem auto
-//     border-radius: 4px
-//     background: $modal_form_bg
-//     
-// .modal_form__header
-//     position: relative
-//     text-align: center
-//     font-size: 1.3rem
-//     height: 3em
-//
-// .modal_form__close
-//     position: absolute
-//     right: 0
-//     top: 0
-//     font-size: 2rem
-//     line-height: 1
-//     padding: 0.5rem
-//     color: $modal_form_close_fg
-//
-// .modal_form__input_group, 
-// .modal_form__button
-//     width: 90%
-//     margin: 0.5rem auto
-//
-// // /modal_forms }}}
-// // section_forms {{{
-// // -------------------------------------------------------------------------
-// .section_form__input_group, 
-// .section_form__button
-//     width: 100%
-//     margin: 0.5rem auto
-//
-//
-// // /section_forms }}}
+.form
+    width: 100%
+
+.form__field
+    outline: 1px solid $turbo_lightblue
+    border-radius: 2px
+    .form__input_group &
+        width: (100% - 2rem)
+        margin: 0.5rem 0 1rem 
+
+.hidden_field
+    display: nane
+
+.form__input_label
+    margin: 0 
+
+.form__button--success
+.form__button--loading
+.form__button--failure
+.form__button
+    width: 100%
+    margin: 1rem 0 
+    padding: 0.75rem
+    color: white
+    border-radius: 2px
+
+.form__button
+    background: $turbo_blue
+
+.form__button--success
+    background: hsl(120,90%,15%)
+
+.form__button--loading
+    background: $turbo_blue
+
+.form__button--failure
+    background: hsl(0,90%,20%)
+
 // /forms }}}
