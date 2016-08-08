@@ -1,6 +1,7 @@
 include ../mixins.jade
 mixin SiteNav()
-    | {% for p in site.pages %}
+    | {% assign navpages = site.pages | sort: 'innav' %}
+    | {% for p in navpages %}
     | {% if p.innav %}
     | {% if p.url == page.url %}
     a.site_nav__link.active(href='{{ p.url | prepend: site.baseurl }}')
