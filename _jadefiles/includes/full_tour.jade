@@ -1,67 +1,67 @@
-article.full_tour
-    | {% assign t = site.data.tours | where: "id", page.id %}
-    h1.page_title
-        | {{ t.title }}
-    //- introduction {{{
-    section.tour__intro__wrap
-        p.tour__intro
-            | {{ t.intro }}
-        p.tour__summary
-            | {{ t.summary }}
-    //- /introduction }}}
-    //- details {{{
-    | {% if t.details %}
-    section.tour__details__wrap
-        | {% for d in t.details %}
-        p.tour__details
-            | {{ d }}
-        | {% endfor %}
-    | {% endif %}
-    //- /details }}}
-    //- will_learn {{{
-    | {% if t.will_learn %}
-    section.tour__will_learn__wrap
-        h2.section_header
-            | Вы узнаете:
-        ul.tour__will_learn_list
-        | {% for item in t.will_learn %}
-        li.tour__will_learn__list__item
+| {% assign newid = page.id | remove: 'tours' | remove: '/'%}
+h1.page_title
+    | {{ site.data.tours[newid].title }}
+//-- tags {{{
+//- /tags }}}
+//- introduction {{{
+section.tour__intro__wrap
+    p.tour__intro
+        | {{ site.data.tours[newid].intro }}
+    p.tour__summary
+        | {{ site.data.tours[newid].summary }}
+//- /introduction }}}
+//- details {{{
+| {% if site.data.tours[newid].details %}
+section.tour__details__wrap
+    | {% for d in site.data.tours[newid].details %}
+    p.tour__details
+        | {{ d }}
+    | {% endfor %}
+| {% endif %}
+//- /details }}}
+//- will_learn {{{
+| {% if site.data.tours[newid].will_learn %}
+section.tour__will_learn__wrap
+    h2.section_header
+        | Вы узнаете:
+    ul.tour__will_learn_list
+        | {% for item in site.data.tours[newid].will_learn %}
+    li.tour__will_learn__list__item
+        | {{ item }}
+    | {% endfor %}
+| {% endif %}
+//- /will_learn }}}
+//- blueprint {{{
+| {% if site.data.tours[newid].blueprint %}
+section.tour__blueprint__wrap
+    h2.section_header
+        | Программа:
+    ul.tour__blueprint__list
+        | {% for item in site.data.tours[newid].blueprint %}
+        li.tour__blueprint__list__item
             | {{ item }}
         | {% endfor %}
-    | {% endif %}
-    //- /will_learn }}}
-    //- blueprint {{{
-    | {% if t.blueprint %}
-    section.tour__blueprint__wrap
-        h2.section_header
-            | Программа:
-        ul.tour__blueprint__list
-            | {% for item in t.blueprint %}
-            li.tour__blueprint__list__item
-                | {{ item }}
-            | {% endfor %}
-    | {% endif %}
-    //- /blueprint }}}
-    //- included {{{
-    section.tour__included__wrap
-        h2.section_header
-            | в стоимость входят:
-        ul.tour__included__list
-            | {% for item in t.blueprint %}
-            li.tour__included__list__item
-                | {{ item }}
-            | {% endfor %}
-    //- /included }}}
-    //- additional_fees {{{
-    | {% if t.additional_fees %}
-    section.tour__additional_fees__wrap
-        h2.section_header
-            | Дополнительно оплачиваемые услуги:
-        ul.tour__additional_fees__list
-            | {% for item in t.blueprint %}
-            li.tour__additional_fees__list__item
-                | {{ item }}
-            | {% endfor %}
-    | {% endif %}
-    //- /additional_fees }}}
- 
+| {% endif %}
+//- /blueprint }}}
+//- included {{{
+section.tour__included__wrap
+    h2.section_header
+        | в стоимость входят:
+    ul.tour__included__list
+        | {% for item in site.data.tours[newid].includes %}
+        li.tour__included__list__item
+            | {{ item }}
+        | {% endfor %}
+//- /included }}}
+//- additional_fees {{{
+| {% if site.data.tours[newid].additional_fees %}
+section.tour__additional_fees__wrap
+    h2.section_header
+        | Дополнительно оплачиваемые услуги:
+    ul.tour__additional_fees__list
+        | {% for item in site.data.tours[newid].additional_fees %}
+        li.tour__additional_fees__list__item
+            | {{ item }}
+        | {% endfor %}
+| {% endif %}
+//- /additional_fees }}}

@@ -2,8 +2,8 @@ section.coming_soon
     h2.section_header
         | Ближайшие туры
     ul.comming_soon__list
-        | {% assign trz = site.data.tours | sort: 'date' %}
-        | {% for tour in trz reversed limit: 4 %}
+        | {% assign trz = site.data.tours %}
+        | {% for tour in trz reversed %}
         li.comming_soon__list__item__wrap
             a.comming_soon__list__item(href='{{ tour.url }}')
                 img.comming_soon__list__item__image(
@@ -11,7 +11,7 @@ section.coming_soon
                   alt='{{ tour.title }}'
                   )
                 time.comming_soon__list__item__link__date
-                    | {{ tour.tourdate }}
+                    | {{ tour.date }}
                 h3.comming_soon__list__item__title
                     | {{ tour.title }}.
                     | {{ tour.subtitle }}

@@ -1,12 +1,8 @@
 section.tours_list__wrap
-    h2.section_header
-        | Подходящее экскурсии
-    span#active_tours_counter 
-        | {{ site.data.tours | size }}
     ul.tours_list
     | {% for tour in site.data.tours %}
-    li.tour_wrap.hidden(class="{% assign tgs = tour.tags | split: ' ' %}{% for tag in tgs %}{{ tag | prepend: 'tagged--' }} {% endfor %}")
-        a.tour__link(href='{{ tour.url }}')
+    li.tour_wrap(class="{% assign tgs = tour.tags | split: ' ' %}{% for tag in tgs %}{{ tag | prepend: 'tagged--' }} {% endfor %}")
+        a.tour__link(href='/tours/{{ tour.id }}')
             img.tour__image(src='{{ tour.image }}', alt='{{ tour.title }}')
             h4.tour__title
                 | {{ tour.title }} 
