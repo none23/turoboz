@@ -4,50 +4,43 @@ section.posts__wrap
     ul.posts__list
         | {% for post in site.news %}
         li.post__wrap
-            a.post(href='{{ post.url }}')
-                picture.post__picture
-                    //- TODO: mobile images
-                    //- source(srcset='{{ post.image }}', media='(max-width: 400px)')
-                    source(srcset='{{ post.image }}')
-                    img(srcset='{{ post.image }}', alt='{{ post.title }}')
+            .post__image__wrap
+                img.post__image(src='/img/{{ post.image }}', alt='{{ post.title | smartify }}')
+            .post__content__wrap
+                .post__date
+                    | {% assign m = post.date | date: "%-m" %}
+                    | {{ post.date | date: "%-d" }}
+                    | {% case m %} 
+                    | {% when '1' %}января
+                    | {% when '2' %}февраля
+                    | {% when '3' %}марта
+                    | {% when '4' %}апреля
+                    | {% when '5' %}мая
+                    | {% when '6' %}июня
+                    | {% when '7' %}июля
+                    | {% when '8' %}августа
+                    | {% when '9' %}сентября
+                    | {% when '10' %}октября
+                    | {% when '11' %}ноября
+                    | {% when '12' %}декабя
+                    | {% endcase %} 
+                    | {{ post.date | date: "%Y" }}
 
-                .post__description
-                    time.post__date
-                        | {% assign m = post.date | date: "%-m" %}
-                        | {{ post.date | date: "%-d" }}
-                        | {% case m %} 
-                        | {% when '1' %}января
-                        | {% when '2' %}февраля
-                        | {% when '3' %}марта
-                        | {% when '4' %}апреля
-                        | {% when '5' %}мая
-                        | {% when '6' %}июня
-                        | {% when '7' %}июля
-                        | {% when '8' %}августа
-                        | {% when '9' %}сентября
-                        | {% when '10' %}октября
-                        | {% when '11' %}ноября
-                        | {% when '12' %}декабя
-                        | {% endcase %} 
-                        | {{ post.date | date: "%Y" }}
-
+                a.post__link(href='{{ post.url }}')
                     h3.post__title
                         | {{ post.title }}
 
-                    p.post__summary
-                        | {{ post.summary }}
+                p.post__summary
+                    | {{ post.summary }}
 
-                    | {% if page.categories %}
-                    ul.post__categories__list
-                        | {% for category in page.categories %}
-                        li.post__category__wrap
-                            .post__category
-                                | {{ post.category }}
-                        | {% endfor %}
-                    | {% endif %}
+                .post__categories__list
+                    | {% for category in page.categories %}
+                    .post__category
+                        | {{ post.category }}
+                    | {% endfor %}
 
-                    .post__button
-                        | Читать далее
+                footer.post__footer
+                    | Читать далее
 
         | {% endfor %}
 

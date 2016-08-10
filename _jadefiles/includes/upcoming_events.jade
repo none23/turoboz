@@ -1,21 +1,18 @@
 section.upcoming_events__wrap
     h2.section_header
         | Ближайшие туры
-    ul.upcoming_events__list
+    .upcoming_events__list
         | {% for tour in site.tours | limit: 4 %}
         |   {% assign t = tour.id | remove: 'tours' | remove: '/' %}
         |       {% assign tt = site.data.tours[t] %}
-        li.event__wrap
-            a.event__link(href='/tours/{{ tt.tour }}')
-                img.event__image(src='/img/{{ tt.imgpath }}', alt='{{ tt.title }}')
-                .event__content
-                    header.event__header
-                        .event__date
-                            | {{ tt.dates[0] | round | minus:25569 | times:86400 | date: "%Y %B %-d" }}
-                    h4.event__title
-                        | {{ tt.title }}.
-                        .event__subtitle
-                            | {{ tt.subtitle }}
-                    footer.event__footer
-                        | Подробнее
+        a.event__wrap(href='/tours/{{ tt.tour }}')
+            .event__image__wrap
+                img.event__image(src='/img/{{ tt.imgpath }}', alt='{{ tt.title | smartify }}')
+            .event__date
+                | {{ tt.dates[0] | round | minus:25569 | times:86400 | date: "%Y %B %-d" }}
+            h4.event__title
+                | {{ tt.title }}.
+                | {{ tt.subtitle }}
+            footer.event__footer
+                | Подробнее
         | {% endfor %}
