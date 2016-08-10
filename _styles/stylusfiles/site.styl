@@ -583,6 +583,7 @@ textarea
 .event__wrap
     flex: 1 0 14rem
     border: 1px solid $turbo_blue
+    border-radius: 2px
     margin: 0.5rem 5px
     display: flex
     flex-direction: column
@@ -677,7 +678,18 @@ textarea
     justify-content: center
     align-items: stretch
     border: 1px solid $turbo_blue
+    border-radius: 2px
     margin: 1rem 0 1rem
+    position: relative
+    z-index: 20
+    background: white
+
+    &:hover
+    &:focus
+        z-index: 29
+
+    &:active
+        transform: scale(0.95)
 
 .post__image__wrap
     flex 1 1 350px

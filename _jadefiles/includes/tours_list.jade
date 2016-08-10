@@ -1,20 +1,54 @@
-section.tours_list__wrap
+mixin Tour()
+        li.tour_wrap
+            a.tour__link(href='/tours/{{ tour.id }}')
+                img.tour__image(src='{{ tour.image }}', alt='{{ tour.title }}')
+                h4.tour__title
+                    | {{ tour.title }} 
+                h5.tour__subtitle
+                    | {{ tour.subtitle }} 
+                p.tour__intro
+                    | {{ tour.intro }}
+                p.tour__summary
+                    | {{ tour.summary }}
+                time.tour__date
+                    | {{ tour.date }}
+                .tour__length
+                    | {{ tour.length }}
+
+mixin ToursList( activeFilter='' )
     ul.tours_list
-    | {% for tour in site.data.tours %}
-    li.tour_wrap(class="{% assign tgs = tour.tags | split: ' ' %}{% for tag in tgs %}{{ tag | prepend: 'tagged--' }} {% endfor %}")
-        a.tour__link(href='/tours/{{ tour.id }}')
-            img.tour__image(src='{{ tour.image }}', alt='{{ tour.title }}')
-            h4.tour__title
-                | {{ tour.title }} 
-            h5.tour__subtitle
-                | {{ tour.subtitle }} 
-            p.tour__intro
-                | {{ tour.intro }}
-            p.tour__summary
-                | {{ tour.summary }}
-            time.tour__date
-                | {{ tour.date }}
-            .tour__length
-                | {{ tour.length }}
-    | {% endfor %}
+        | {% for tt in site.tours %}
+        | {% assign ttt = tt.id | remove: 'tours' | remove: '/' %}
+        | {% assign tour = site.data.tours[ttt] %}
+        if activeFilter
+            | {% for x in tour.tags %}
+            |   {% if x == #{activeFilter} %}
+            +Tour()
+            |   {% endif %}
+            | {% endfor %}
+        else
+            +Tour()
+        | {% endfor %}
         
+section.tours_list__wrap
+    | {% assign purl = page.url %}
+    | {% if purl == '/tours/'%}
+    +ToursList()
+    | {% else %}
+    |  {% for tag in site.data.tags %}
+    |   {% if purl == tag.url %}
+    +ToursList('tag.tag')
+    | {% break %}
+    |   {% endif %}
+    |  {% endfor %}
+    |  {% for tag in site.data.tags %}
+    |   {% if tag.sybtags %}
+    |    {% for subtag in tag.subtags %}
+    |     {% if purl == subtag.url %}
+    +ToursList('subtag.subtag')
+    |     {% endif %}
+    |    {% endfor %}
+    |   {% endif %}
+    |  {% endfor %}
+    | {% endif %}
+
