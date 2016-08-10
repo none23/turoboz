@@ -1,3 +1,37 @@
-_site
-.sass-cache
+### Node ###
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules
+jspm_packages
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+
+### Jekyll ###
+_site/
+.sass-cache/
 .jekyll-metadata
+
+
+### Stylus ###
+*.css
+
+### CoffeeScript ###
+*.js
+
+### Python ###
+__pycache__/
