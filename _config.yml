@@ -1,7 +1,7 @@
 title: Turoboz
 description: > 
     Turoboz website
-url: localhost:3000/
+# url: localhost:3000/
 email: TODO@turobozperm.ru
 vk_group: vk.com/club33948424
 company_legal: Новикова Н.В.
@@ -14,7 +14,7 @@ markdown: kramdown
 
 # Custom settings
 exclude: ["node_modules",
-    "gh-pages",
+          "gh-pages",
           "Gemfile",
           "Gemfile.lock",
           "gulpfile.js",

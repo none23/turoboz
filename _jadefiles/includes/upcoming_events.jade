@@ -8,7 +8,7 @@ section.upcoming_events__wrap
         li.event__wrap
             a.event__link(href='/tours/{{ tt.tour }}')
                 header.event__header
-                    img.event__image(src='/img/{{ tt.length }}', alt='{{ tt.title }}')
+                    img.event__image(src='/img/{{ tt.imgpath }}', alt='{{ tt.title }}')
                     .event__date
                         | {{ tt.dates[0] | round | minus:25569 | times:86400 | date: "%Y %B %-d" }}
                 h4.event__title

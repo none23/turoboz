@@ -22,12 +22,12 @@ jspm_packages
 
 
 ### Jekyll ###
-_site/
-.sass-cache/
+_site/*
 .jekyll-metadata
 
 ### GitHubPages ###
 .gh-pages/
+.gh-pages/*
 
 ### Stylus ###
 *.css
@@ -39,7 +39,7 @@ _site/
 __pycache__/
 
 ### Mockups ###
-./_*.svg
-./_*.pdf
+./_sketch*.svg
+./_sketch*.pdf
 
 
