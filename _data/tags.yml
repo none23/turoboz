@@ -1,51 +1,51 @@
  - tag: school
    title: для школьников
-   url: /tours/school
+   url: /tours/school/
    subtags:
    - subtag: 1_3
      title: 1-3 классы
-     url: /tours/school/1_3
+     url: /tours/school/1_3/
    - subtag: 4_6
      title: 4-6 классы
-     url: /tours/school/4_6
+     url: /tours/school/4_6/
    - subtag: 7_8
      title: 7-8 классы
-     url: /tours/school/7_8
+     url: /tours/school/7_8/
    - subtag: 9_11
      title: 9-11 классы
-     url: /tours/school/9_11
+     url: /tours/school/9_11/
 
  - tag: sacred
    title: по святым местам
-   url: /tours/sacred
+   url: /tours/sacred/
 
  - tag: perm
    title: по Перми
-   url: /tours/perm
+   url: /tours/perm/
 
  - tag: cooking
    title: кулинария
-   url: /tours/cooking
+   url: /tours/cooking/
 
  - tag: russia
    title: по России
-   url: /tours/russia
+   url: /tours/russia/
 
  - tag: patriot
    title: патриотические
-   url: /tours/patriot
+   url: /tours/patriot/
 
  - tag: weekend
    title: туры выходного дня
-   url: /tours/weekend
+   url: /tours/weekend/
 
  - tag: holiday
    title: праздничные туры
-   url: /tours/holiday
+   url: /tours/holiday/
    subtags:
    - subtag: newyear
      title: Новый год
-     url: /tours/holiday/newyear
+     url: /tours/holiday/newyear/
    - subtag: maslenitsa
      title: Масленица
-     url: /tours/holiday/maslenitsa
+     url: /tours/holiday/maslenitsa/
