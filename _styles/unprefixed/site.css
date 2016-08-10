@@ -865,7 +865,7 @@ textarea {
   height: auto;
   z-index: 99;
 }
-.quotemark {
+.testimonial__svg__path {
   fill: #9dcde1;
 }
 .testimonial__footer {
