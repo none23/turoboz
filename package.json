@@ -74,7 +74,7 @@
         "broken_watch:scripts": "watch 'npm run watch:scripts:compile' _scripts",
             "watch:scripts:compile": "coffee --stdio --compile _scripts/_site.coffee > js/site.js",
 
-        "browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open"
+        "browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open --no-notify"
   },
   "author": "none23",
   "license": "MIT",

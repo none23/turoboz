@@ -1,2 +1,2 @@
-<section class="s__bus__wrap"><h2 class="section_header">Заказ автобуса</h2><p class="s__intro">Туристические автобусы, оснащенные телевизором, микрофоном,
+<section class="services__wrap s__bus__wrap"><h2 class="section_header">Заказ автобуса</h2><p class="s__intro">Туристические автобусы, оснащенные телевизором, микрофоном,
 откидывающимися сидениями.</p><h3 class="s__bus__rates__title">Стоимость аренды автобусов:</h3><dl class="s__bus__rates">{% for optn in site.data.bus_rates %}<dt>{{ optn.seats }} мест</dt><dd>{{ optn.rate }}руб/час</dd>{% endfor %}</dl></section>
