@@ -16,6 +16,7 @@ jspm_packages
 
 # Optional npm cache directory
 .npm
+.nvmrc
 
 # Optional REPL history
 .node_repl_history
