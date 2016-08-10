@@ -48,7 +48,7 @@ mixin Testimonial(tAuthor, tDate, tQuote)
                 //-- /author }}}
             //-- /footer }}}
 
-section.testimonials_list__wrap
+section.testimonials__wrap
     ul.testimonials__list
         | {% for tstm in site.data.testimonials reversed %}
         +Testimonial(

@@ -1,13 +1,4 @@
-<section class="coming_soon"><h2 class="section_header">Ближайшие туры</h2><ul class="comming_soon__list">{% for tour in site.data.tours %}
-{{ tour.tour }}<!--li.comming_soon__list__item__wrapa.comming_soon__list__item(href='{{ tour.permalink }}')
-    img.comming_soon__list__item__image(
-      src='{{ tour.image }}',
-      alt='{{ tour.title }}'
-      )
-    time.comming_soon__list__item__link__date
-        | {{ tour.date }}
-    h3.comming_soon__list__item__title
-        | {{ tour.title }}.
-        | {{ tour.subtitle }}
-    .comming_soon__list__item__button
-        | Подробнее-->{% endfor %}</ul></section>
+<section class="coming_soon"><h2 class="section_header">Ближайшие туры</h2><ul class="coming_soon__list">{% for tour in site.tours %}
+{% assign t = tour.id | remove: 'tours' | remove: '/' %}
+{% assign tt = site.data.tours[t] %}<li class="coming_soon__list__item__wrap"><a href="/tours/{{ tt.tour }}" class="coming_soon__list__item"><img src="{{ tt.image }}" alt="{{ tt.title }}" class="coming_soon__list__item__image"/><time class="coming_soon__list__item__link__date">{{ tt.dates[0] | minus:25569 | times:86400 | round | date: "%Y %B %-d" }}</time><h3 class="coming_soon__list__item__title">{{ tt.title }}.
+{{ tt.subtitle }}</h3><div class="coming_soon__list__item__button">Подробнее</div></a></li>{% endfor %}</ul></section>
