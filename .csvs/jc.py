@@ -19,8 +19,8 @@ def createKeyValuePair(a_list):
     subtitle  = a_list[2]
     intro     = a_list[3]
     summary   = a_list[4]
-    length    = a_list[5]
-    imgpath   = a_list[6]
+    imgpath   = a_list[5]
+    length    = a_list[6]
 
     strVals['title']     = title
     strVals['subtitle']  = subtitle

@@ -1,26 +1,25 @@
 {
   "name": "turoboz",
   "version": "0.0.1",
-  "description": "Turoboz website",
+  "description": "Garmoniya Uyuta website",
   "dependencies": {
     "autoprefixer": "latest",
     "coffee-script": "latest",
-    "csso": "^2.1.1",
     "jade": "latest",
     "jade-cli": "latest",
-    "normalize.css": "^4.1.1",
     "postcss-cli": "latest",
-    "stylus": "^0.54.5",
     "uglify-js": "latest",
-    "webfontloader": "^1.6.24"
+    "webfontloader": "^1.6.24",
+    "csso": "^2.1.1",
+    "normalize.css": "^4.1.1",
+    "stylus": "^0.54.5",
+    "watch": "latest"
   },
   "devDependencies": {
-    "browser-sync": "^2.14.0",
-    "caniuse-db": "^1.0.30000466",
+    "jshint": "latest",
     "gulp": "^3.9.1",
     "gulp-imagemin": "^3.0.1",
-    "jshint": "latest",
-    "watch": "latest"
+    "caniuse-db": "^1.0.30000466"
   },
   "scripts": {
     "build": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
