@@ -511,18 +511,25 @@ textarea
     background-image: url(/img/main_bg.jpg)
     //background-size: 100% 100%
     background-size: cover
-    background-position: top right
+    background-position: 80% 0%
     background-repeat: no-repeat
 
+    @media(max-width: 739px)
+        flex-shrink: 1
+
 .main__heading__wrap
-    flex: 0 1 38rem 
+    flex: 0 2 38rem 
     background: $main_heading_bg
     margin: 2rem
 
 .main__heading
     color: $main_heading_fg
-    font-size: 1.6rem
+    font-size: 1.55rem
     padding: 2rem 3rem 3rem
+
+    @media(max-width: 739px)
+        flex-shrink: 1
+        font-size: 1.35rem
     
 
 // /heading }}}
@@ -546,14 +553,34 @@ textarea
 // /news }}}
 
 // /first_glance }}}
+.posts__wrap
+.upcoming_events__wrap
+    width: 95vw
+    max-width: 1100px
+    margin: 1rem auto
+
+    @media(max-width: 1079px)
+        width: 75vw
+
+    @media(max-width: 549px)
+        width: 90vw
+        max-width: 400px
+
 // upcoming_events {{{
 // ------------------------------------------------------------------------
 .posts__wrap
 .upcoming_events__wrap
-    width: 90vw
+    width: 95vw
     max-width: 1100px
-    min-width: 500px
     margin: 1rem auto
+
+    @media(max-width: 1079px)
+        width: 75vw
+        min-width: 540px
+
+    @media(max-width: 549px)
+        width: 90vw
+        max-width: 400px
 
 .upcoming_events__list
     display: flex
@@ -562,6 +589,9 @@ textarea
     justify-content: center
     align-items: stretch
 
+    @media(max-width: 1079px)
+        flex-wrap: wrap
+
 .event__wrap
     flex: 1 0 14rem
     border: 1px solid $turbo_blue
@@ -569,12 +599,21 @@ textarea
     position: relative
     z-index: 20
     background: white
-    will-change: transform
-    transition: all 0.2s ease
 
     &:active
         transform: scale(0.95)
         z-index: 30
+
+    &:hover 
+    &:focus
+        z-index: 29
+
+    @media(max-width: 1079px)
+        flex: 1 0 34%
+
+    @media(max-width: 549px)
+        flex: 1 1 15rem
+
 
 .event__link
     width: 100%
@@ -584,27 +623,18 @@ textarea
     justify-content: space-between
     align-items: stretch
 
-.event__header
-.event__title
+.event__image
+.event__content
     flex: 1 1 50%
     
-.event__subtitle
-    display: inline
-
-.event__title
-    padding: 0.8rem 0.8rem 1.6rem
-    color: $turbo_darkbrown
-
-.event__date
-.event__title
-.event__footer
-    padding-left: 0.8rem
-
 .event__image
     width: 100%
     height: auto
     filter: grayscale(40%) contrast(80%)
-    transition: all 0.1s linear
+    transition: all 0.2s ease
+    position: relative
+    z-index: -1
+    will-change: transform
 
     .event__wrap:hover &
     .event__wrap:focus &
@@ -613,7 +643,39 @@ textarea
     .event__wrap:active &
         filter: invert(80%)
 
-.event__date
+    @media(max-width: 1079px)
+        outline: 1px solid $turbo_blue
+        margin-bottom: -6rem
+
+        .event__wrap:hover &
+        .event__wrap:focus &
+            transform: translateY(-6rem)
+
+.event__content
+    background: white
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: stretch
+
+    @media(max-width: 1079px)
+        border-top: 1px solid $turbo_blue
+
+.event__title
+    flex 1 1 50%
+    padding: 0.8rem 0.8rem 1.6rem
+    color: $turbo_darkbrown
+
+.event__subtitle
+    display: inline
+
+.event__header
+.event__title
+.event__footer
+    padding-left: 0.8rem
+
+.event__header
+    flex: 0 0 1.6rem
     padding-top: 0.8rem
     line-height: 1
     font-size: 0.8rem
@@ -630,6 +692,45 @@ textarea
 // /upcoming_events }}}
 // blog {{{
 // ------------------------------------------------------------------------
+.posts__list
+.post__wrap
+    width: 100%
+
+.event__image
+    width: 100%
+    height: auto
+    filter: grayscale(40%) contrast(80%)
+    transition: all 0.2s ease
+    position: relative
+    z-index: -1
+    will-change: transform
+
+    .event__wrap:hover &
+    .event__wrap:focus &
+        filter: none
+
+    .event__wrap:active &
+        filter: invert(80%)
+
+    @media(max-width: 1079px)
+        outline: 1px solid $turbo_blue
+        margin-bottom: -6rem
+
+        .event__wrap:hover &
+        .event__wrap:focus &
+            transform: translateY(-6rem)
+
+.event__content
+    background: white
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: stretch
+
+    @media(max-width: 1079px)
+        border-top: 1px solid $turbo_blue
+
+
 
 // /blog }}}
 // /main }}}

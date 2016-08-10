@@ -7,14 +7,15 @@ section.upcoming_events__wrap
         |       {% assign tt = site.data.tours[t] %}
         li.event__wrap
             a.event__link(href='/tours/{{ tt.tour }}')
-                header.event__header
-                    img.event__image(src='/img/{{ tt.imgpath }}', alt='{{ tt.title }}')
-                    .event__date
-                        | {{ tt.dates[0] | round | minus:25569 | times:86400 | date: "%Y %B %-d" }}
-                h4.event__title
-                    | {{ tt.title }}.
-                    .event__subtitle
-                        | {{ tt.subtitle }}
-                footer.event__footer
-                    | Подробнее
+                img.event__image(src='/img/{{ tt.imgpath }}', alt='{{ tt.title }}')
+                .event__content
+                    header.event__header
+                        .event__date
+                            | {{ tt.dates[0] | round | minus:25569 | times:86400 | date: "%Y %B %-d" }}
+                    h4.event__title
+                        | {{ tt.title }}.
+                        .event__subtitle
+                            | {{ tt.subtitle }}
+                    footer.event__footer
+                        | Подробнее
         | {% endfor %}

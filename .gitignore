@@ -43,4 +43,6 @@ __pycache__/
 ./_sketch*.svg
 ./_sketch*.pdf
 
+_importdata.py
+_oauth
 
