@@ -232,7 +232,7 @@ button {
 }
 html,
 body {
-  font-size: 18px;
+  font-size: 16px;
   font-family: Ubuntu, Arial, Helvetica, sans-serif;
   font-weight: 300;
   line-height: 1.5;
@@ -856,7 +856,7 @@ textarea {
   flex-wrap: nowrap;
 }
 .tours_nav__wrap {
-  flex: 0 0 350px;
+  flex: 0 0 18rem;
   position: relative;
   background: #fff;
 }
@@ -871,18 +871,19 @@ textarea {
   justify-content: flex-start;
   align-items: stretch;
   z-index: 500;
+  overflow: hidden;
   transition: all 0.4s ease-in-out;
   will-change: transform;
-  overflow: hidden;
   transform: translateX(20%);
   background: #fff;
 }
-.tours_nav.pushed_aside {
+.tours_nav.minified {
+  z-index: 400;
   transform: translateX(-50%);
 }
 .tours_nav.hidden {
-  z-index: 600;
-  transform: translateX(-205%);
+  z-index: 300;
+  transform: translateX(-200%);
 }
 #tours_nav--primary {
   left: 0;
@@ -909,6 +910,85 @@ textarea {
   height: 4rem;
   width: 4rem;
   margin: 1rem;
+}
+.tours__list__wrap {
+  flex: 1 0 20rem;
+}
+.tours__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin: 0 8rem 0 0;
+}
+.tour__wrap {
+  flex: 0 0 16rem;
+  height: 20rem;
+  margin: 0.5rem;
+  position: relative;
+}
+.tour__link {
+  width: 100%;
+  height: 100%;
+}
+.tour__fixed,
+.tour__moving {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  border: 1px solid #9dcde1;
+  border-radius: 2px;
+  transition: all 0.4s ease-in-out;
+  will-change: transform;
+  background: #fff;
+}
+.tour__link:hover .tour__fixed,
+.tour__link:hover .tour__moving,
+.tour__link:focus .tour__fixed,
+.tour__link:focus .tour__moving,
+.tour__link:active .tour__fixed,
+.tour__link:active .tour__moving {
+  border-color: #3485a8;
+}
+.tour__moving {
+  z-index: 10;
+  border-left: none;
+  overflow-y: scroll;
+  background: #e8eced;
+}
+.tour__link:hover .tour__moving,
+.tour__link:focus .tour__moving,
+.tour__link:active .tour__moving {
+  z-index: 1010;
+  transform: translateX(50%);
+}
+.tour__fixed {
+  z-index: 20;
+}
+.tour__link:hover .tour__fixed,
+.tour__link:focus .tour__fixed,
+.tour__link:active .tour__fixed {
+  z-index: 1020;
+  transform: translateX(-50%);
+}
+.tour__image__wrap {
+  flex: 0 0 50%;
+  overflow: hidden;
+}
+.tour__image {
+  width: 100%;
+  height: 100%;
+}
+.tour__button {
+  flex: 0 0 2.5rem;
 }
 .contacts__wrap {
   display: flex;
