@@ -1,22 +1,31 @@
+//-- tour {{{
 mixin Tour()
-        li.tour_wrap
+        li.tour__wrap
             a.tour__link(href='/tours/{{ tour.id }}')
-                img.tour__image(src='{{ tour.image }}', alt='{{ tour.title }}')
-                h4.tour__title
-                    | {{ tour.title }} 
-                h5.tour__subtitle
-                    | {{ tour.subtitle }} 
-                p.tour__intro
-                    | {{ tour.intro }}
-                p.tour__summary
-                    | {{ tour.summary }}
-                time.tour__date
-                    | {{ tour.date }}
-                .tour__length
-                    | {{ tour.length }}
+                .tour__fixed
+                    .tour__image__wrap
+                        img.tour__image(src='/img/{{ tour.imgpath }}', alt='{{ tour.title }}')
+                    h3.tour__title
+                        | {{ tour.title }} 
+                        br
+                        | {{ tour.subtitle }} 
+                    .tour__button
+                        | Подробнее
 
+                .tour__moving
+                    p.tour__intro
+                        | {{ tour.intro }}
+                    p.tour__summary
+                        | {{ tour.summary }}
+                    .tour__date
+                        | {{ tour.date }}
+                    .tour__length
+                        | {{ tour.length }}
+
+//--/tour }}}
+//-- tours__list {{{
 mixin ToursList( activeFilter='' )
-    ul.tours_list
+    ul.tours__list
         | {% for tt in site.tours %}
         | {% assign ttt = tt.id | remove: 'tours' | remove: '/' %}
         | {% assign tour = site.data.tours[ttt] %}
@@ -29,7 +38,9 @@ mixin ToursList( activeFilter='' )
         else
             +Tour()
         | {% endfor %}
-        
+
+//--/tours__list }}}
+//-- PageLogic {{{
 section.tours_list__wrap
     | {% assign purl = page.url %}
     | {% if purl == '/tours/'%}
@@ -52,3 +63,4 @@ section.tours_list__wrap
     |  {% endfor %}
     | {% endif %}
 
+//-- /PageLogic }}}

@@ -1,22 +1,22 @@
 <section class="tours_list__wrap">{% assign purl = page.url %}
-{% if purl == '/tours/'%}<ul class="tours_list">{% for tt in site.tours %}
+{% if purl == '/tours/'%}<ul class="tours__list">{% for tt in site.tours %}
 {% assign ttt = tt.id | remove: 'tours' | remove: '/' %}
-{% assign tour = site.data.tours[ttt] %}<li class="tour_wrap"><a href="/tours/{{ tour.id }}" class="tour__link"><img src="{{ tour.image }}" alt="{{ tour.title }}" class="tour__image"/><h4 class="tour__title">{{ tour.title }} </h4><h5 class="tour__subtitle">{{ tour.subtitle }} </h5><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p><time class="tour__date">{{ tour.date }}</time><div class="tour__length">{{ tour.length }}</div></a></li>{% endfor %}</ul>{% else %}
+{% assign tour = site.data.tours[ttt] %}<li class="tour__wrap"><a href="/tours/{{ tour.id }}" class="tour__link"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><h3 class="tour__title">{{ tour.title }} <br/>{{ tour.subtitle }} </h3><div class="tour__button">Подробнее</div></div><div class="tour__moving"><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p><div class="tour__date">{{ tour.date }}</div><div class="tour__length">{{ tour.length }}</div></div></a></li>{% endfor %}</ul>{% else %}
  {% for tag in site.data.tags %}
-  {% if purl == tag.url %}<ul class="tours_list">{% for tt in site.tours %}
+  {% if purl == tag.url %}<ul class="tours__list">{% for tt in site.tours %}
 {% assign ttt = tt.id | remove: 'tours' | remove: '/' %}
 {% assign tour = site.data.tours[ttt] %}{% for x in tour.tags %}
-  {% if x == tag.tag %}<li class="tour_wrap"><a href="/tours/{{ tour.id }}" class="tour__link"><img src="{{ tour.image }}" alt="{{ tour.title }}" class="tour__image"/><h4 class="tour__title">{{ tour.title }} </h4><h5 class="tour__subtitle">{{ tour.subtitle }} </h5><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p><time class="tour__date">{{ tour.date }}</time><div class="tour__length">{{ tour.length }}</div></a></li>  {% endif %}
+  {% if x == tag.tag %}<li class="tour__wrap"><a href="/tours/{{ tour.id }}" class="tour__link"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><h3 class="tour__title">{{ tour.title }} <br/>{{ tour.subtitle }} </h3><div class="tour__button">Подробнее</div></div><div class="tour__moving"><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p><div class="tour__date">{{ tour.date }}</div><div class="tour__length">{{ tour.length }}</div></div></a></li>  {% endif %}
 {% endfor %}{% endfor %}</ul>{% break %}
   {% endif %}
  {% endfor %}
  {% for tag in site.data.tags %}
   {% if tag.sybtags %}
    {% for subtag in tag.subtags %}
-    {% if purl == subtag.url %}<ul class="tours_list">{% for tt in site.tours %}
+    {% if purl == subtag.url %}<ul class="tours__list">{% for tt in site.tours %}
 {% assign ttt = tt.id | remove: 'tours' | remove: '/' %}
 {% assign tour = site.data.tours[ttt] %}{% for x in tour.tags %}
-  {% if x == subtag.subtag %}<li class="tour_wrap"><a href="/tours/{{ tour.id }}" class="tour__link"><img src="{{ tour.image }}" alt="{{ tour.title }}" class="tour__image"/><h4 class="tour__title">{{ tour.title }} </h4><h5 class="tour__subtitle">{{ tour.subtitle }} </h5><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p><time class="tour__date">{{ tour.date }}</time><div class="tour__length">{{ tour.length }}</div></a></li>  {% endif %}
+  {% if x == subtag.subtag %}<li class="tour__wrap"><a href="/tours/{{ tour.id }}" class="tour__link"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><h3 class="tour__title">{{ tour.title }} <br/>{{ tour.subtitle }} </h3><div class="tour__button">Подробнее</div></div><div class="tour__moving"><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p><div class="tour__date">{{ tour.date }}</div><div class="tour__length">{{ tour.length }}</div></div></a></li>  {% endif %}
 {% endfor %}{% endfor %}</ul>    {% endif %}
    {% endfor %}
   {% endif %}
