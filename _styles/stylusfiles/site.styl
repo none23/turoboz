@@ -899,7 +899,12 @@ textarea
 .tour__image
     width: 100%
     height: 100%
+    filter: grayscale(0.5) contrast(75%) opacity(.9)
 
+    .tour__link:hover &
+    .tour__link:focus &
+    .tour__link:active &
+        filter: none
 
 
 
