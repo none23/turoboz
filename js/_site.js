@@ -2,15 +2,15 @@
 (function() {
   var callBackFormOpen, enableCallBackForm, enableContactForm, enableOrderForm, enableReviewForm, iSendAJAX, mobileNav;
 
-  callBackFormOpen = function() {
-    $('.call_back_form__toggle').on('click', '', function() {
-      return $('.call_back_form__toggle, .call_back_form__wrap').toggleClass('is_open');
-    });
-  };
-
   mobileNav = function() {
     $('#mobile_nav_toggle').on('click', '', function() {
       return $('#mobile_nav_toggle, #mobile_nav').toggleClass('is_open');
+    });
+  };
+
+  callBackFormOpen = function() {
+    $('.call_back_form__toggle').on('click', '', function() {
+      return $('.call_back_form__toggle, .call_back_form__wrap').toggleClass('is_open');
     });
   };
 

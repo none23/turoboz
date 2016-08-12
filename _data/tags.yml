@@ -2,18 +2,18 @@
    title: для школьников
    url: /tours/school/
    subtags:
-   - subtag: 1_3
+   - subtag: 1to3
      title: 1-3 классы
-     url: /tours/school/1_3/
-   - subtag: 4_6
+     url: /tours/school/1to3/
+   - subtag: 4to6
      title: 4-6 классы
-     url: /tours/school/4_6/
-   - subtag: 7_8
+     url: /tours/school/4to6/
+   - subtag: 7to8
      title: 7-8 классы
-     url: /tours/school/7_8/
-   - subtag: 9_11
+     url: /tours/school/7to8/
+   - subtag: 9to11
      title: 9-11 классы
-     url: /tours/school/9_11/
+     url: /tours/school/9to11/
 
  - tag: sacred
    title: по святым местам

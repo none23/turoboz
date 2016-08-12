@@ -22,7 +22,7 @@ mixin Tour()
                 p.tour__summary
                     | {{ tour.summary }}
 
-//--/tour }}}z
+//--/tour }}}
 //-- tours__list {{{
 mixin ToursList( activeFilter='' )
     ul.tours__list
@@ -49,11 +49,8 @@ section.tours_list__wrap
     |  {% for tag in site.data.tags %}
     |   {% if purl == tag.url %}
     +ToursList('tag.tag')
-    | {% break %}
     |   {% endif %}
-    |  {% endfor %}
-    |  {% for tag in site.data.tags %}
-    |   {% if tag.sybtags %}
+    |   {% if tag.subtags %}
     |    {% for subtag in tag.subtags %}
     |     {% if purl == subtag.url %}
     +ToursList('subtag.subtag')

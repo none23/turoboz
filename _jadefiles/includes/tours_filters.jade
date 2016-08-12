@@ -1,16 +1,16 @@
 mixin ToursNavPrimary()
     | {% for nptag in site.data.tags %}
-    a(href='{{ nptag.url }}', class='tours_nav__link {% if page.url contains nptag.url %}active{% endif %}', id='tag_toggle--{{ nptag.tag }}')
+    a(href='{{ nptag.url }}', class='tours_nav__link {% if page.url contains nptag.url %}active{% endif %}', id='{% if nptag.subtags %}opens--{{ nptag.tag }}{% endif %}')
         | {{ nptag.title }}
     | {% endfor %}
 
-mixin ToursNavSecondary()
-    a.tours_nav__link--back(href='{{ tag.url }}') 
+mixin ToursNavSecondary(tAgg)
+    a.tours_nav__link--back(href='../') 
         svg(viewbox='0 0 20 20')
             title назад
             path.tours_nav__link--back__svg(d='M2.5,10L9,3.5V7h8v6H9v3.5L2.5,10z')
-    | {% for nssubtag in tag.subtags %}
-    a(href='{{ nssubtag.url }}', class='tours_nav__link {% if page.url contains nssubtag.url %}active{% endif %}', id='tag_toggle--{{ nssubtag.subtag }}')
+    | {% for nssubtag in #{tAgg}.subtags %}
+    a(href='{{ nssubtag.url }}', class='tours_nav__link {% if page.url contains nssubtag.url %}active{% endif %}')
         | {{ nssubtag.title }}
     | {% endfor %}
 
@@ -18,22 +18,34 @@ section.tours_nav__wrap
     h2.section_header
         | Категории
     | {% if page.url == '/tours/' %}
-    //-- no tag selected => show only primary, TODO: hide all secondary (for animations)
+    //-- case 1:
+    //-- {{{
+    //-- no tag selected => show only primary
     nav#tours_nav--primary.tours_nav
         +ToursNavPrimary()
+    //-- }}}
+
     | {% else %}
     | {% for tatag in site.data.tags %}
     | {% if page.url contains tatag.url %}
     | {% if tatag.subtags %}
+    //-- case 2:
+    //-- {{{
     //-- a tag containing subtags selected => show secondary and (minimized) primary 
-    nav#tours_nav--primary.tours_nav--minified
+    nav#tours_nav--primary.tours_nav.minified
         +ToursNavPrimary()
-    nav.tours_nav(id='tours_nav--{{ tatag.tag }}', class='tours_nav--{{ tatag.tag }}')
-        +ToursNavSecondary()
+    nav(id='tours_nav--{{ tatag.tag }}', class='tours_nav tours_nav--{{ tatag.tag }}')
+        +ToursNavSecondary('tatag')
+    //-- }}}
+
     | {% else %}
-    //-- a tag containing no subtags selected =>  show only primary, TODO: hide all secondary (for animations)
+    //-- case 3:
+    //-- {{{
+    //-- a tag containing no subtags selected =>  show only primary
     nav#tours_nav--primary.tours_nav
         +ToursNavPrimary()
+    //-- }}}
+
     | {% endif %}
     | {% endif %}
     | {% endfor %}
