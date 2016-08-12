@@ -1,3 +1,4 @@
+include ../mixins.jade
 section.posts__wrap
     h2.section_header
         | Новости и спецпредложения
@@ -8,23 +9,7 @@ section.posts__wrap
                 img.post__image(src='/img/{{ post.image }}', alt='{{ post.title | smartify }}')
             .post__content__wrap
                 .post__date
-                    | {% assign m = post.date | date: "%-m" %}
-                    | {{ post.date | date: "%-d" }}
-                    | {% case m %} 
-                    | {% when '1' %}января
-                    | {% when '2' %}февраля
-                    | {% when '3' %}марта
-                    | {% when '4' %}апреля
-                    | {% when '5' %}мая
-                    | {% when '6' %}июня
-                    | {% when '7' %}июля
-                    | {% when '8' %}августа
-                    | {% when '9' %}сентября
-                    | {% when '10' %}октября
-                    | {% when '11' %}ноября
-                    | {% when '12' %}декабя
-                    | {% endcase %} 
-                    | {{ post.date | date: "%Y" }}
+                    +LiquidRussianDate('post.date')
 
                 a.post__link(href='{{ post.url }}')
                     h3.post__title

@@ -1,18 +1,17 @@
-<h1 class="page_heading">{% if page.url contains '/tours/' %}
+<h1 class="page_heading">{{ page.title }}
+{% if page.url contains '/tours/' %}
 Экскурсии
-{% if page.url != '/tours/' %}
+{% if page.url > '/tours/' %}
 {% for tag in site.data.tags %}
 {% if tag.url == page.url %}
-{{ tag.title }}
-{% elsif page.url contains tag.url %}
+{{ tag.tag }}
+{% elsif tag.subtags %}
 {% for subtag in tag.subtags %}
 {% if subtag.url == page.url %}
-{{ subtag.title }}
+{{ subtag.subtag }}
 {% endif %}
 {% endfor %}
 {% endif %}
 {% endfor %}
 {% endif %}
-{% else %}
-{{ page.title }}
 {% endif %}</h1>

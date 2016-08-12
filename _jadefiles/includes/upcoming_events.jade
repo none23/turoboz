@@ -1,3 +1,4 @@
+include ../mixins.jade
 section.upcoming_events__wrap
     h2.section_header
         | Ближайшие туры
@@ -9,24 +10,7 @@ section.upcoming_events__wrap
             .event__image__wrap
                 img.event__image(src='/img/{{ tt.imgpath }}', alt='{{ tt.title | smartify }}')
             .event__date
-                    | {% assign unixdate = tt.dates[0] | round | minus:25569 | times:86400 %}
-                    | {% assign m = unixdate | date: "%-m" %}
-                    | {{ unixdate | date: "%-d" }}
-                    | {% case m %} 
-                    | {% when '1' %}января
-                    | {% when '2' %}февраля
-                    | {% when '3' %}марта
-                    | {% when '4' %}апреля
-                    | {% when '5' %}мая
-                    | {% when '6' %}июня
-                    | {% when '7' %}июля
-                    | {% when '8' %}августа
-                    | {% when '9' %}сентября
-                    | {% when '10' %}октября
-                    | {% when '11' %}ноября
-                    | {% when '12' %}декабя
-                    | {% endcase %} 
-                    | {{ unixdate | date: "%Y" }}
+                +LiquidRussianDate('tt.dates[0]')
             h4.event__title
                 | {{ tt.title }}.
                 | {{ tt.subtitle }}

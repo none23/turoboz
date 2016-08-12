@@ -6,8 +6,8 @@ $site_header_logo_height = 5.25rem
 $site_header_contacts_width = 13rem
 $header_form_field_width = 17rem
 
-$tour_card_width = 16rem
-$tour_card_height = 20rem
+$tour_card_width = 16.8rem
+$tour_card_height = 23rem
 
 $site_footer_height = 8rem
 $site_footer_icon_width = 3rem
@@ -98,7 +98,7 @@ ul
 input
 select
 textarea
-    border-radius: 2px
+    border-radius: 0.125rem
     margin: 1rem
     padding-right: 0
     padding-left: 1rem
@@ -107,7 +107,7 @@ textarea
 button
     appearance none
     border none
-    border-radius: 2px
+    border-radius: 0.125rem
 
 // typography {{{
 // ------------------------------------------------------------------------
@@ -207,7 +207,7 @@ textarea
     color: $site_contacts_modal_opener_fg
     background: $site_contacts_modal_opener_bg
     padding: 0 0.7rem
-    border-radius: 2px
+    border-radius: 0.125rem
     transition: all 0.2s ease-in-out
 
     &:hover
@@ -237,7 +237,7 @@ textarea
     background: $header_form_bg
     box-shadow: 0 4px 12px -6px $shadowy
     border: 1px solid $turbo_lightblue
-    border-radius: 3px
+    border-radius: 0.1875rem
 
     &.is_open
         transform: translateX(0%)
@@ -302,7 +302,7 @@ textarea
     right: 0
     left: calc(100% - 300px)
     top: $site_header_height
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 0.125rem 0.125rem
     z-index: 999
     flex-direction: column
     justify-content: space-around
@@ -379,7 +379,7 @@ textarea
             transform: translateX(10%) rotate(-45deg)
 
 // /mobile_nav_toggle }}}
-@media(max-width: 1090px)
+@media(max-width: 964px)
     #desktop_nav
         display: none
 
@@ -390,7 +390,7 @@ textarea
         display: flex
 
 
-@media(max-width: 790px)
+@media(max-width: 600px)
     #site_contacts_wrap
         display: none
 
@@ -400,7 +400,7 @@ textarea
         .site_header__vk_button
             display: block
 
-@media(max-width: 410px)
+@media(max-width: 349px)
     #site_logo
         flex 0 0 60vw
         
@@ -439,13 +439,14 @@ textarea
     min-width: 500px
     margin: 1rem auto
 
-    @media(max-width: 600px)
-        width: 95vw
-        max-width: auto
+    @media(max-width: 660px)
+        width: 90vw
+        max-width: @width
         min-width: auto
 
     @media(max-width: 480px)
-        width: 100vw
+        width: 96vw
+        max-width: @width
 
 // forms {{{
 // ------------------------------------------------------------------------
@@ -454,7 +455,7 @@ textarea
 
 .form__field
     outline: 1px solid $turbo_lightblue
-    border-radius: 2px
+    border-radius: 0.125rem
     .form__input_group &
         width: (100% - 2rem)
         margin: 0.5rem 0 1rem 
@@ -504,7 +505,7 @@ textarea
 
 // heading {{{
 .main__heading__section
-    flex: 3 0 40rem
+    flex: 5 1 36rem
     min-height: 420px
     display: flex
     flex-direction: row
@@ -517,9 +518,6 @@ textarea
     background-position: 80% 0%
     background-repeat: no-repeat
 
-    @media(max-width: 739px)
-        flex-shrink: 1
-
 .main__heading__wrap
     flex: 0 2 38rem 
     background: $main_heading_bg
@@ -531,7 +529,6 @@ textarea
     padding: 2rem 3rem 3rem
 
     @media(max-width: 739px)
-        flex-shrink: 1
         font-size: 1.35rem
     
 
@@ -563,15 +560,6 @@ textarea
     max-width: 1100px
     margin: 1rem auto
 
-    @media(max-width: 1079px)
-        width: 75vw
-        min-width: 540px
-
-    @media(max-width: 549px)
-        width: 80vw
-        max-width: 400px
-        min-width: auto
-
 .upcoming_events__list
     width: 100%
     display: flex
@@ -580,13 +568,10 @@ textarea
     justify-content: center
     align-items: stretch
 
-    @media(max-width: 1079px)
-        flex-wrap: wrap
-
 .event__wrap
     flex: 1 0 14rem
     border: 1px solid $turbo_blue
-    border-radius: 2px
+    border-radius: 0.125rem
     margin: 0.5rem 5px
     display: flex
     flex-direction: column
@@ -603,12 +588,6 @@ textarea
     &:hover 
     &:focus
         z-index: 29
-
-    @media(max-width: 1079px)
-        flex: 1 0 34%
-
-    @media(max-width: 549px)
-        flex: 1 1 15rem
 
 .event__image__wrap
     flex: 1 0 12rem
@@ -629,12 +608,16 @@ textarea
         filter: none
 
 .event__date
+.tour__date
     flex: 0 0 2rem
     font-size: 0.9rem
+    padding-top: 1em
+    line-height: 1
 
 .event__title
-    flex: 1 1 7rem
-    padding: 0 0.7rem 1rem 
+.tour__title
+    flex: 1 1 6.6rem
+    padding: 0 0.7rem .8rem 
     font-size: 1.1rem
     color: $turbo_darkbrown
 
@@ -646,13 +629,17 @@ textarea
 
     .event__wrap:hover &
     .event__wrap:focus &
-    .event__wrap:active &
         color: white
         background: $turbo_blue
+    .event__wrap:active &
+        color: white
+        background: $turbo_brown
 
 .event__date
+.tour__link
 .event__footer
 .post__footer
+.tour__date
     padding-left: 1rem
     color: $turbo_darkblue
 
@@ -661,6 +648,27 @@ textarea
 .post__footer
 .post__image
     transition: all 0.2s ease
+
+@media(max-width: 1079px)
+    .upcoming_events__wrap
+        width: 75vw
+        min-width: 540px
+
+    .upcoming_events__list
+        flex-wrap: wrap
+
+    .event__wrap
+        flex: 1 0 34%
+
+@media(max-width: 549px)
+    .upcoming_events__wrap
+        width: 80vw
+        max-width: 400px
+        min-width: auto
+
+    .event__wrap
+        flex: 1 1 15rem
+
 
 // /upcoming_events }}}
 // blog {{{
@@ -728,8 +736,8 @@ textarea
     flex: 0 0 2.5rem
     line-height: 2.5rem
     font-size: 0.9rem
-    color: $turbo_blue
     text-align: right
+    color: $turbo_blue
     padding: 0 1rem
 
 .post__footer
@@ -766,13 +774,22 @@ textarea
 // tours_nav {{{
 // ------------------------------------------------------------------------
 .tours_nav__wrap
-    flex: 0 0 18rem
+    flex: 0 0 16rem
     position: relative
-    background: white
+    margin-top: -4.4rem
+    //--to offset site_footer margin--//
+    margin-bottom: -2rem 
+    min-height: calc(100vh - 10rem)
+    background: $turbo_verylightblue
+    box-shadow: 6px -3px 12px -10px $shadowy, inset 0px 6px 12px -10px $shadowy
+
+.tours_nav__wrap
+    .section_header
+        font-size: 1.4rem
 
 .tours_nav
     position: absolute
-    top: 5rem
+    top: 4.4rem
     right: 0
     width: auto
     bottom: 0
@@ -785,9 +802,9 @@ textarea
     transition: all 0.4s ease-in-out
     will-change: transform
     transform: translateX(20%)
-    background: white
+    background: $turbo_verylightblue
 
-    &.minified
+    &--minified
         z-index: 400
         transform: translateX(-50%)
 
@@ -803,7 +820,6 @@ textarea
     text-align: right
     padding: 1rem 1.5rem
     text-transform: uppercase
-    background: white
     color: $turbo_darkbrown
 
     &:hover
@@ -813,7 +829,6 @@ textarea
     &:active
     &.active
         background: $turbo_brown
-        color: white
 
 .tours_nav__link--back
     align-self: center
@@ -839,58 +854,68 @@ textarea
 .tour__wrap
     flex 0 0 $tour_card_width
     height: $tour_card_height
-    margin: 0.5rem
     position: relative
+    z-index: 5
+    margin: 0.1rem
+    transition: all 0.3s ease-in-out
+    will-change: transform
+    transform: scale(0.963)
 
-.tour__link
-    width: 100%
-    height: 100%
+    &:hover
+    &:focus
+    &:active
+        z-index: 1001
+        transform: scale(1)
 
 .tour__fixed
 .tour__moving
     position: absolute
     top: 0
-    right: 0
-    bottom: 0 
     left: 0
+    bottom: 0 
     display: flex
     flex-direction: column
     justify-content: space-between
     align-items: stretch
     flex-wrap: nowrap
-    border: 1px solid $turbo_lightblue
-    border-radius: 2px
-    transition: all 0.4s ease-in-out
+    border: 0.063rem solid $turbo_lightblue
+    border-radius: 0.125rem
+    transition: all 0.3s ease-in-out
     will-change: transform
     background: white
 
-    .tour__link:hover &
-    .tour__link:focus &
-    .tour__link:active &
+    .tour__wrap:hover &
+    .tour__wrap:focus &
+    .tour__wrap:active &
+        border-width: 0.08rem
         border-color: $turbo_blue
 
 .tour__moving
+    right: -25%
     z-index: 10
     border-left: none
     overflow-y: scroll
     //box-shadow: inset 0 -10px 20px -10px $shadowy 
-
-    .tour__link:hover &
-    .tour__link:focus &
-    .tour__link:active &
-        z-index: 1010
-        transform: translateX(50%)
-
     background: $turbo_verylightblue
+    transform-origin: 0% 0%
+    transform: scaleX(0.8)
+
+    .tour__wrap:hover &
+    .tour__wrap:focus &
+    .tour__wrap:active &
+        z-index: 1010
+        transform: scaleX(1) translateX(20%)
+
 
 .tour__fixed
+    right: 0
     z-index: 20
 
-    .tour__link:hover &
-    .tour__link:focus &
-    .tour__link:active &
+    .tour__wrap:hover &
+    .tour__wrap:focus &
+    .tour__wrap:active &
         z-index: 1020
-        transform: translateX(-50%)
+        transform: translateX(-75%)
 
 .tour__image__wrap
     flex: 0 0 50% 
@@ -901,18 +926,94 @@ textarea
     height: 100%
     filter: grayscale(0.5) contrast(75%) opacity(.9)
 
-    .tour__link:hover &
-    .tour__link:focus &
-    .tour__link:active &
+    .tour__wrap:hover &
+    .tour__wrap:focus &
+    .tour__wrap:active &
         filter: none
 
-
-
-
-.tour__button
+.tour__link
     flex 0 0 2.5rem
+    line-height: 2.5rem
+    border-top: 0.060rem solid $turbo_lightblue
+    background: white
+    border-radius: 0
+
+    .tour__wrap:hover &
+    .tour__wrap:focus &
+        background: $turbo_blue
+        color: white
+
+        &:hover
+        &:focus
+            background: $turbo_darkblue
+        &:active
+            background: $turbo_brown
+
+.tour__length
+    color: $turbo_darkblue
+    margin-bottom: 1rem
+
+.tour__intro
+.tour__summary
+.tour__length
+    padding: 0 1.0rem 
+    margin-top: 1rem
 
 // /tours_list }}}
+
+@media(max-width: 1210px) and (min-width: 880px)
+    .tours__list
+        justify-content: space-around
+        margin: 0 $tour_card_width * 0.3 0 0
+
+    .tour__fixed
+    .tour__moving
+        top: 0
+        left: 0
+        bottom: 0 
+        right: 0
+
+    .tour__moving
+        left: -25%
+        transform-origin: 100% 100%
+        transform: scaleX(0.8)
+
+
+    .tour__wrap:hover
+    .tour__wrap:focus
+    .tour__wrap:active
+        transform: scale(1) translateY(10%)
+
+        .tour__fixed
+                transform: translateX(-100%)
+        .tour__moving
+                transform: scaleX(1) translateX(20%)
+
+@media(max-width: 879px)
+    .tours__list
+        margin: 0 0.5rem 0 0
+    .tour__wrap
+        height: auto
+        flex: 1 1 60%
+        display: flex
+        flex-direction: row
+    .tour__fixed
+    .tour__moving
+        position: static
+        transform: none !important
+    .tour__fixed
+        flex: 0 0 $tour_card_width
+    .tour__moving
+        flex: 1 1 1.1 * $tour_card_width
+
+    .tours_nav--minified
+    .tours_nav--hidden
+        display: none
+    .tours_nav__wrap
+        flex: 0 1 12rem
+        
+
+
 // /tours }}}
 // services {{{
 // =========================================================================
@@ -927,9 +1028,6 @@ textarea
     flex-wrap: nowrap
     justify-content: center
 
-    @media(max-width: 710px)
-        flex-direction: column
-
 .c__textual
     flex: 0 0 20rem
     margin: 0
@@ -939,8 +1037,18 @@ textarea
     flex-wrap: nowrap
     justify-content: space-around
 
-    @media(max-width: 710px)
+@media(max-width: 710px)
+    .contacts__wrap
+        flex-direction: column
+
+    .c__textual
+        order: -1
         flex: 0 1 20rem
+        flex-direction: row
+@media(max-width: 564px)
+    .c__textual
+        display: block
+        text-align: center
 
 
 .contacts__list
@@ -965,11 +1073,13 @@ textarea
 .testimonial
     width: 100%
     position: relative
-    margin: 0 0 2rem
-    border-radius: 2px
+    border-radius: 0.125rem
     border: 1px solid $turbo_lightblue
     background: white
+    margin 0
 
+.testimonial__wrap
+    margin: 0 0 2rem
     &:last-child
         margin-bottom: 0
 

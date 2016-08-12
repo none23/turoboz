@@ -3,12 +3,22 @@ mixin SiteNav()
     | {% assign navpages = site.pages | sort: 'innav' %}
     | {% for p in navpages %}
     | {% if p.innav %}
+    | {% if p.url > '/' %}
+    | {% if page.url contains p.url %}
+    a.site_nav__link.active(href='{{ p.url | prepend: site.baseurl }}')
+        | {{ p.title }}
+    | {% else %}
+    a.site_nav__link(href='{{ p.url | prepend: site.baseurl }}')
+        | {{ p.title }}
+    | {% endif %}
+    | {% else %}
     | {% if p.url == page.url %}
     a.site_nav__link.active(href='{{ p.url | prepend: site.baseurl }}')
         | {{ p.title }}
     | {% else %}
     a.site_nav__link(href='{{ p.url | prepend: site.baseurl }}')
         | {{ p.title }}
+    | {% endif %}
     | {% endif %}
     | {% endif %}
     | {% endfor %}
