@@ -1,17 +1,15 @@
-section.services__wrap.s__bus__wrap
+section.services__wrap.bus__wrap
     h2.section_header
         | Заказ автобуса
-    p.s__intro
+    table.bus__rates__table
+        caption.bus__rates__table__caption Стоимость аренды автобусов:
+        | {% for optn in site.data.bus_rates %}
+        tr.bus__rates__row
+            td {{ optn.seats }} мест
+            td {{ optn.rate }}руб/час
+        | {% endfor %}
+    p.bus__info
         | Туристические автобусы, оснащенные телевизором, микрофоном,
         | откидывающимися сидениями.
-    h3.s__bus__rates__title
-        | Стоимость аренды автобусов:
-    dl.s__bus__rates
-        | {% for optn in site.data.bus_rates %}
-        dt
-            | {{ optn.seats }} мест
-        dd
-            | {{ optn.rate }}руб/час
-        | {% endfor %}
 
 
