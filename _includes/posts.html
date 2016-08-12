@@ -1,5 +1,6 @@
-<section class="posts__wrap"><h2 class="section_header">Новости и спецпредложения</h2><ul class="posts__list">{% for post in site.news %}<li class="post__wrap"><div class="post__image__wrap"><img src="/img/{{ post.image }}" alt="{{ post.title | smartify }}" class="post__image"/></div><div class="post__content__wrap"><div class="post__date">{% assign m = post.date | date: "%-m" %}
-{{ post.date | date: "%-d" }}
+<section class="posts__wrap"><h2 class="section_header">Новости и спецпредложения</h2><ul class="posts__list">{% for post in site.news %}<li class="post__wrap"><div class="post__image__wrap"><img src="/img/{{ post.image }}" alt="{{ post.title | smartify }}" class="post__image"/></div><div class="post__content__wrap"><div class="post__date">{% assign unixdate = post.date | round | minus:25569 | times:86400 %}
+{% assign m = unixdate | date: "%-m" %}
+{{ unixdate | date: "%-d" }}
 {% case m %} 
 {% when '1' %}января
 {% when '2' %}февраля
@@ -14,4 +15,4 @@
 {% when '11' %}ноября
 {% when '12' %}декабя
 {% endcase %} 
-{{ post.date | date: "%Y" }}</div><a href="{{ post.url }}" class="post__link"><h3 class="post__title">{{ post.title }}</h3></a><p class="post__summary">{{ post.summary }}</p><div class="post__categories__list">{% for category in page.categories %}<div class="post__category">{{ post.category }}</div>{% endfor %}</div><footer class="post__footer">Читать далее</footer></div></li>{% endfor %}</ul></section>
+{{ unixdate | date: "%Y" }}</div><a href="{{ post.url }}" class="post__link"><h3 class="post__title">{{ post.title }}</h3></a><p class="post__summary">{{ post.summary }}</p><div class="post__categories__list">{% for category in page.categories %}<div class="post__category">{{ post.category }}</div>{% endfor %}</div><footer class="post__footer">Читать далее</footer></div></li>{% endfor %}</ul></section>

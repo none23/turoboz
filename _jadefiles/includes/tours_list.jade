@@ -1,28 +1,28 @@
+include ../mixins.jade
 //-- tour {{{
 mixin Tour()
         li.tour__wrap
-            a.tour__link(href='/tours/{{ tour.id }}')
-                .tour__fixed
-                    .tour__image__wrap
-                        img.tour__image(src='/img/{{ tour.imgpath }}', alt='{{ tour.title }}')
-                    h3.tour__title
-                        | {{ tour.title }} 
-                        br
-                        | {{ tour.subtitle }} 
-                    .tour__button
-                        | Подробнее
+            .tour__fixed
+                .tour__image__wrap
+                    img.tour__image(src='/img/{{ tour.imgpath }}', alt='{{ tour.title }}')
+                .tour__date
+                    +LiquidRussianDate('tour.dates[0]')
+                h3.tour__title
+                    | {{ tour.title }} 
+                    | {{ tour.subtitle }} 
+                a.tour__link(href='/tours/{{ tour.id }}')
+                    | Подробнее
 
-                .tour__moving
-                    p.tour__intro
-                        | {{ tour.intro }}
-                    p.tour__summary
-                        | {{ tour.summary }}
-                    .tour__date
-                        | {{ tour.date }}
-                    .tour__length
-                        | {{ tour.length }}
+            .tour__moving
+                .tour__length
+                    | Продолжительность:
+                    | {{ tour.length }}
+                p.tour__intro
+                    | {{ tour.intro }}
+                p.tour__summary
+                    | {{ tour.summary }}
 
-//--/tour }}}
+//--/tour }}}z
 //-- tours__list {{{
 mixin ToursList( activeFilter='' )
     ul.tours__list

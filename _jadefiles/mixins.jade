@@ -9,6 +9,25 @@ mixin phone(number1,number2,number3,number4='')
 mixin mail(address)
     a.mail(href="mailto:#{address}") #{address}
 
+mixin LiquidRussianDate(dateVariable)
+    | {% assign unixdate = #{dateVariable} | round | minus:25569 | times:86400 %}
+    | {% assign m = unixdate | date: "%-m" %}
+    | {{ unixdate | date: "%-d" }}
+    | {% case m %} 
+    | {% when '1' %}января
+    | {% when '2' %}февраля
+    | {% when '3' %}марта
+    | {% when '4' %}апреля
+    | {% when '5' %}мая
+    | {% when '6' %}июня
+    | {% when '7' %}июля
+    | {% when '8' %}августа
+    | {% when '9' %}сентября
+    | {% when '10' %}октября
+    | {% when '11' %}ноября
+    | {% when '12' %}декабя
+    | {% endcase %} 
+    | {{ unixdate | date: "%Y" }}
 
 mixin iconSiteMenu()
     svg(viewbox='0 0 18 15')
