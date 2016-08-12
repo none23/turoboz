@@ -1,0 +1,4 @@
+---
+layout: tours
+title: Экскурсии
+---

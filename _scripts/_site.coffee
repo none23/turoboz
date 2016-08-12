@@ -1,14 +1,15 @@
-callBackFormOpen = ->
-    $('.call_back_form__toggle').on 'click', '', ->
-        $('.call_back_form__toggle, .call_back_form__wrap').toggleClass 'is_open'
-    return
-
+# mobile_nav {{{#####################################################
 
 mobileNav = ->
     $('#mobile_nav_toggle').on 'click', '', ->
         $('#mobile_nav_toggle, #mobile_nav').toggleClass 'is_open'
     return
-
+# /mobile_nav }}}####################################################
+# forms {{{##########################################################
+callBackFormOpen = ->
+    $('.call_back_form__toggle').on 'click', '', ->
+        $('.call_back_form__toggle, .call_back_form__wrap').toggleClass 'is_open'
+    return
 
 enableCallBackForm = ->
     TheForm = document.getElementById('call_back_form')
@@ -80,8 +81,7 @@ iSendAJAX = (event, form, sendButton) ->
       else
         form.insertAdjacentHTML 'beforeend', message.failure
     return
-
-
+# /forms }}}#########################################################
 
 $ ->
   mobileNav()

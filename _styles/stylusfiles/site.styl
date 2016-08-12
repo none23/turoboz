@@ -549,6 +549,20 @@ textarea
 
 .news__list__item__link
     color: $news_section_fg
+    position: relative
+
+    &:before
+        content: ''
+        display: block
+        position: absolute
+        left: -1.3rem
+        top: 25%
+        bottom: 75%
+        right: calc(100% + 0.6rem)
+        background: transparent
+        border-top: 0.32rem solid transparent 
+        border-bottom: 0.32rem solid transparent 
+        border-left: 0.5rem solid $turbo_lightblue 
 
 // /news }}}
 
@@ -759,6 +773,8 @@ textarea
 // =========================================================================
 .about_info
     margin-top: 0
+    columns: 2 16rem
+
 
 // /about }}}
 // tours {{{
@@ -777,6 +793,7 @@ textarea
     flex: 0 0 16rem
     position: relative
     margin-top: -4.4rem
+    overflow: hidden
     //--to offset site_footer margin--//
     margin-bottom: -2rem 
     min-height: calc(100vh - 10rem)
@@ -785,12 +802,13 @@ textarea
 
 .tours_nav__wrap
     .section_header
-        font-size: 1.4rem
+        font-size: 1.3rem
 
 .tours_nav
     position: absolute
-    top: 4.4rem
+    top: 4.4rem + 3.3rem
     right: 0
+    left: 0
     width: auto
     bottom: 0
     display: flex
@@ -798,23 +816,19 @@ textarea
     justify-content: flex-start
     align-items: stretch
     z-index: 500
-    overflow: hidden
     transition: all 0.4s ease-in-out
     will-change: transform
-    transform: translateX(20%)
+    //transform: translateX(20%)
     background: $turbo_verylightblue
 
-    &--minified
-        z-index: 400
-        transform: translateX(-50%)
+    &.minified
+        .tours_nav__link
+            z-index: 400
 
-    &.hidden 
-        z-index: 300
-        transform: translateX(-200%)
 
 #tours_nav--primary
-    left: 0
-    transform: translateX(0)
+    top: 4.4rem
+
 
 .tours_nav__link
     text-align: right
@@ -823,19 +837,42 @@ textarea
     color: $turbo_darkbrown
 
     &:hover
+    &:focus
         background: $turbo_blue
-        color: white
 
     &:active
     &.active
         background: $turbo_brown
 
+    &:hover
+    &:focus
+    &:active
+    &.active
+        color: white
+
+    &.active
+        order: -1
+        z-index: 500
+
 .tours_nav__link--back
     align-self: center
     height: 4rem
     width: @height
-    margin: 1rem
+    margin: 0
+    padding: 0.51rem 50%
+    margin:  0 auto
+    fill: white
+    background-color: $turbo_brown
+    transition: all 0.3s ease-in-out
 
+    &:hover
+    &:focus
+        transform: translateX(-7%)
+        fill: $turbo_blue
+
+    &:active
+        transform: translateX(-20%)
+        fill: $turbo_darkblue
 
 // /tours_nav }}}
 // tours_list {{{
@@ -1006,8 +1043,8 @@ textarea
     .tour__moving
         flex: 1 1 1.1 * $tour_card_width
 
-    .tours_nav--minified
-    .tours_nav--hidden
+    .tours_nav.minified
+    .tours_nav.hidden
         display: none
     .tours_nav__wrap
         flex: 0 1 12rem
@@ -1017,7 +1054,29 @@ textarea
 // /tours }}}
 // services {{{
 // =========================================================================
+.services__wrap
+    background: white
+    color: $turbo_darkbrown
+    border: 1px solid $turbo_lightblue
+    border-radius: 0.125rem
+    padding: 0 0.5rem 1rem
 
+
+.s__service
+    margin-left: 2rem
+    position: relative
+    &:before
+        content: ''
+        display: block
+        position: absolute
+        left: -1.3rem
+        top: 25%
+        bottom: 75%
+        right: calc(100% + 0.6rem)
+        background: transparent
+        border-top: 0.32rem solid transparent 
+        border-bottom: 0.32rem solid transparent 
+        border-left: 0.5rem solid $turbo_lightblue 
 // /services }}}
 // contact {{{
 // =========================================================================

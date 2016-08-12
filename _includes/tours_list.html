@@ -45,11 +45,8 @@
 {{ unixdate | date: "%Y" }}</div><h3 class="tour__title">{{ tour.title }} 
 {{ tour.subtitle }} </h3><a href="/tours/{{ tour.id }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
 {{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div></li>  {% endif %}
-{% endfor %}{% endfor %}</ul>{% break %}
-  {% endif %}
- {% endfor %}
- {% for tag in site.data.tags %}
-  {% if tag.sybtags %}
+{% endfor %}{% endfor %}</ul>  {% endif %}
+  {% if tag.subtags %}
    {% for subtag in tag.subtags %}
     {% if purl == subtag.url %}<ul class="tours__list">{% for tt in site.tours %}
 {% assign ttt = tt.id | remove: 'tours' | remove: '/' %}
