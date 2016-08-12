@@ -126,6 +126,9 @@ h5
 h6
     font-weight: 100
 
+th
+    font-weight: 300
+
 p
 li
 a 
@@ -428,12 +431,15 @@ textarea
     text-transform: uppercase
     color: $section_header_fg
 
-.services__wrap
+.s__services__sections_group
+.s__payment_opts__wrap
+.s__overview
 .testimonials__wrap
 .about__wrap
 .contacts__wrap
 .contact_form__wrap
 .review_form__wrap
+.guide__wrap
     width: 85vw
     max-width: 900px
     min-width: 500px
@@ -774,6 +780,43 @@ textarea
     margin-top: 0
     columns: 2 16rem
 
+.guide__wrap
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: stretch
+
+.guide__wrap:nth-child(2n)
+    .guide__info
+        order: -1
+
+.guide__img__wrap
+.guide__info
+    flex: 0 0 50%
+
+.guide__img__wrap
+    overflow: hidden
+
+.guide__img
+    width: 100%
+    height: 100%
+
+.advantage
+    margin-left: 2rem
+    position: relative
+    &:before
+        content: ''
+        display: block
+        position: absolute
+        left: -1.3rem
+        top: 25%
+        bottom: 75%
+        right: calc(100% + 0.6rem)
+        background: transparent
+        border-top: 0.32rem solid transparent 
+        border-bottom: 0.32rem solid transparent 
+        border-left: 0.5rem solid $turbo_lightblue 
+
 // /about }}}
 // tours {{{
 // =========================================================================
@@ -1059,6 +1102,34 @@ textarea
     border-radius: 0.125rem
     padding: 0 0.5rem 1rem
 
+.s__services__sections_group
+    display: flex
+    justify-content: space-between
+    padding: 0 0.5rem 0
+    margin-bottom: -0.25rem
+
+.bus__wrap
+.guide__wrap
+    flex 0 0 48%
+    margin: 0 -0.5rem
+
+.bus__rates__table
+    width: 20rem
+    text-align: center
+    margin: 1rem auto
+
+.bus__rates__table__caption
+    background: $turbo_verylightblue
+    padding: 0.5rem
+
+.bus__rates__row
+    td
+        padding: 0.5rem
+
+.s__intro
+.s__services__list
+.bus__info
+    padding: 0.5rem 2rem 0
 
 .s__service
     margin-left: 2rem

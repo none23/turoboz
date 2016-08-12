@@ -5,12 +5,13 @@ section.about__wrap.guides
     .guide__wrap
         .guide__img__wrap
             img.guide__img(src='/img/{{ g.photo }}', alt='{{ g.name }}')
-        .guide__name
-            | {{ g.name }}
-        .guide__resume
-            | {% for paragraph in g.resume %}
-            p.guide__resume__p
-                | {{ paragraph }}
-            | {% endfor %}
+        .guide__info
+            .guide__name
+                | {{ g.name }}
+            .guide__resume
+                | {% for paragraph in g.resume %}
+                p.guide__resume__p
+                    | {{ paragraph }}
+                | {% endfor %}
     | {% endfor %}
 
