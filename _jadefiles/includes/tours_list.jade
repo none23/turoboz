@@ -10,7 +10,7 @@ mixin Tour()
                 h3.tour__title
                     | {{ tour.title }} 
                     | {{ tour.subtitle }} 
-                a.tour__link(href='/tours/{{ tour.id }}')
+                a.tour__link(href='/tours/{{ tour.tour }}')
                     | Подробнее
 
             .tour__moving

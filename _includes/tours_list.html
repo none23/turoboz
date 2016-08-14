@@ -19,7 +19,7 @@
 {% when '12' %}декабя
 {% endcase %} 
 {{ unixdate | date: "%Y" }}</div><h3 class="tour__title">{{ tour.title }} 
-{{ tour.subtitle }} </h3><a href="/tours/{{ tour.id }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
+{{ tour.subtitle }} </h3><a href="/tours/{{ tour.tour }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
 {{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div></li>{% endfor %}</ul>{% else %}
  {% for tag in site.data.tags %}
   {% if purl == tag.url %}<ul class="tours__list">{% for tt in site.tours %}
@@ -43,7 +43,7 @@
 {% when '12' %}декабя
 {% endcase %} 
 {{ unixdate | date: "%Y" }}</div><h3 class="tour__title">{{ tour.title }} 
-{{ tour.subtitle }} </h3><a href="/tours/{{ tour.id }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
+{{ tour.subtitle }} </h3><a href="/tours/{{ tour.tour }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
 {{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div></li>  {% endif %}
 {% endfor %}{% endfor %}</ul>  {% endif %}
   {% if tag.subtags %}
@@ -69,7 +69,7 @@
 {% when '12' %}декабя
 {% endcase %} 
 {{ unixdate | date: "%Y" }}</div><h3 class="tour__title">{{ tour.title }} 
-{{ tour.subtitle }} </h3><a href="/tours/{{ tour.id }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
+{{ tour.subtitle }} </h3><a href="/tours/{{ tour.tour }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
 {{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div></li>  {% endif %}
 {% endfor %}{% endfor %}</ul>    {% endif %}
    {% endfor %}

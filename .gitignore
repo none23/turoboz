@@ -21,7 +21,6 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-
 ### Jekyll ###
 _site/*
 .jekyll-metadata
@@ -30,18 +29,8 @@ _site/*
 .gh-pages/
 .gh-pages/*
 
-### Stylus ###
-*.css
-
-### CoffeeScript ###
-*.js
-
 ### Python ###
 __pycache__/
-
-### Mockups ###
-./_sketch*.svg
-./_sketch*.pdf
 
 _importdata.py
 _oauth
