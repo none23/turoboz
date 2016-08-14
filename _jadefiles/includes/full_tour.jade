@@ -1,67 +1,97 @@
+include ../mixins.jade
 | {% assign newid = page.id | remove: 'tours' | remove: '/'%}
-h1.page_title
-    | {{ site.data.tours[newid].title }}
-//-- tags {{{
-//- /tags }}}
-//- introduction {{{
-section.tour__intro__wrap
-    p.tour__intro
-        | {{ site.data.tours[newid].intro }}
-    p.tour__summary
-        | {{ site.data.tours[newid].summary }}
-//- /introduction }}}
-//- details {{{
-| {% if site.data.tours[newid].details %}
-section.tour__details__wrap
-    | {% for d in site.data.tours[newid].details %}
-    p.tour__details
-        | {{ d }}
-    | {% endfor %}
-| {% endif %}
-//- /details }}}
-//- will_learn {{{
-| {% if site.data.tours[newid].will_learn %}
-section.tour__will_learn__wrap
-    h2.section_header
-        | Вы узнаете:
-    ul.tour__will_learn_list
-        | {% for item in site.data.tours[newid].will_learn %}
-    li.tour__will_learn__list__item
-        | {{ item }}
-    | {% endfor %}
-| {% endif %}
-//- /will_learn }}}
-//- blueprint {{{
-| {% if site.data.tours[newid].blueprint %}
-section.tour__blueprint__wrap
-    h2.section_header
-        | Программа:
-    ul.tour__blueprint__list
-        | {% for item in site.data.tours[newid].blueprint %}
-        li.tour__blueprint__list__item
+| {% assign tttr = site.data.tours[newid] %}
+.full_tour__heading
+    .full_tour__heading__left
+        .full_tour__date
+            +LiquidRussianDate('tttr.dates[0]')
+        h1.full_tour__title
+            | {{ tttr.title }}
+        .full_tour__subtitle
+            | {{ tttr.subtitle }}
+    .full_tour__heading__right
+        .full_tour__len
+            | {{ tttr.length }}
+        .full_tour__prices
+            | {% for item in tttr.prices %}
+            | {{ item }}
+            | {% endfor %}
+
+.full_tour__content__wrap
+    //- introduction {{{
+    section.full_tour__intro__wrap
+        p.full_tour__intro
+            | {{ tttr.intro }}
+        p.full_tour__summary
+            | {{ tttr.summary }}
+    //- /introduction }}}
+    //- blueprint {{{
+    | {% if tttr.blueprint[0] > '' %}
+    section.full_tour__blueprint__wrap
+        h2.section_header
+            | Программа:
+        ul.full_tour__blueprint__list
+            | {% for item in tttr.blueprint %}
+            li.full_tour__blueprint__list__item
+                | {{ item }}
+            | {% endfor %}
+    | {% endif %}
+    //- /blueprint }}}
+    //- includes {{{
+    section.full_tour__includes__wrap
+        h2.section_header
+            | в стоимость входят:
+        ul.full_tour__includes__list
+            | {% for item in tttr.includes %}
+            li.full_tour__includes__list__item
+                | {{ item }}
+            | {% endfor %}
+    //- /includes }}}
+    //- details {{{
+    | {% if tttr.details[0] > '' %}
+    section.full_tour__details__wrap
+        | {% for d in tttr.details %}
+        p.full_tour__details
+            | {{ d }}
+        | {% endfor %}
+    | {% endif %}
+    //- /details }}}
+    //- additional_fees {{{
+    | {% if tttr.additional_fees[0] > '' %}
+    section.full_tour__additional_fees__wrap
+        h2.section_header
+            | Дополнительно оплачиваемые услуги:
+        ul.full_tour__additional_fees__list
+            | {% for item in tttr.additional_fees %}
+            li.full_tour__additional_fee
+                | {{ item }}
+            | {% endfor %}
+    | {% endif %}
+    //- /additional_fees }}}
+    //- will_learn {{{
+    | {% if tttr.will_learn[0] > '' %}
+    section.full_tour__will_learn__wrap
+        h2.section_header
+            | Вы узнаете:
+        ul.full_tour__will_learn_list
+            | {% for item in tttr.will_learn %}
+        li.full_tour__will_learn__list__item
             | {{ item }}
         | {% endfor %}
-| {% endif %}
-//- /blueprint }}}
-//- included {{{
-section.tour__included__wrap
-    h2.section_header
-        | в стоимость входят:
-    ul.tour__included__list
-        | {% for item in site.data.tours[newid].includes %}
-        li.tour__included__list__item
-            | {{ item }}
+    | {% endif %}
+    //- /will_learn }}}
+    footer.full_tour__tags
+        | {% for item in tttr.tags %}
+        span.full_tour__tag
+            | {% for tag in site.data.tags %}
+            | {% if tag.tag == item %}
+            | {{ tag.title }}
+            | {% elsif tag.subtags%}
+            | {% for subtag in tag.subtags %}
+            | {% if subtag.subtag == item %}
+            | {{ subtag.title }}
+            | {% endif %}
+            | {% endfor %}
+            | {% endif %}
+            | {% endfor %}
         | {% endfor %}
-//- /included }}}
-//- additional_fees {{{
-| {% if site.data.tours[newid].additional_fees %}
-section.tour__additional_fees__wrap
-    h2.section_header
-        | Дополнительно оплачиваемые услуги:
-    ul.tour__additional_fees__list
-        | {% for item in site.data.tours[newid].additional_fees %}
-        li.tour__additional_fees__list__item
-            | {{ item }}
-        | {% endfor %}
-| {% endif %}
-//- /additional_fees }}}

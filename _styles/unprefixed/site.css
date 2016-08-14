@@ -531,7 +531,8 @@ textarea {
 .contacts__wrap,
 .contact_form__wrap,
 .review_form__wrap,
-.guide__wrap {
+.guide__wrap,
+.full_tour__content__wrap {
   width: 85vw;
   max-width: 900px;
   min-width: 500px;
@@ -546,7 +547,8 @@ textarea {
   .contacts__wrap,
   .contact_form__wrap,
   .review_form__wrap,
-  .guide__wrap {
+  .guide__wrap,
+  .full_tour__content__wrap {
     width: 90vw;
     max-width: 90vw;
     min-width: auto;
@@ -561,7 +563,8 @@ textarea {
   .contacts__wrap,
   .contact_form__wrap,
   .review_form__wrap,
-  .guide__wrap {
+  .guide__wrap,
+  .full_tour__content__wrap {
     width: 96vw;
     max-width: 96vw;
   }
@@ -917,6 +920,63 @@ textarea {
   border-bottom: 0.32rem solid transparent;
   border-left: 0.5rem solid #9dcde1;
 }
+.full_tour__heading {
+  padding: 1.64rem 10% 6rem;
+  background: #e8eced;
+  margin-bottom: -5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.full_tour__date {
+  color: #26637d;
+}
+.full_tour__title {
+  color: #452917;
+  font-size: 2.82rem;
+  line-height: 1.2;
+}
+.full_tour__subtitle {
+  color: #452917;
+  font-size: 1.65rem;
+}
+.full_tour__subtitle,
+.full_tour__date {
+  margin-left: 1rem;
+}
+.full_tour__len {
+  font-size: 1.64rem;
+}
+.full_tour__len:before {
+  content: "Продолжительность:";
+  color: #26637d;
+  font-size: 1rem;
+  display: block;
+}
+.full_tour__prices {
+  font-size: 1.28rem;
+  align-self: flex-end;
+}
+.full_tour__prices:before {
+  content: "Стоимость:";
+  color: #26637d;
+  font-size: 1rem;
+  display: block;
+}
+.full_tour__prices,
+.full_tour__len {
+  text-align: right;
+  margin-right: 1rem;
+  color: #452917;
+}
+.full_tour__content__wrap {
+  background: #fff;
+  border: 0.063rem solid #9dcde1;
+}
+.full_tour__intro__wrap {
+  padding: 1.7rem 2.8rem;
+  width: auto;
+}
 .tours__wrap {
   width: 100%;
   display: flex;
@@ -1225,7 +1285,7 @@ textarea {
   margin-bottom: -0.25rem;
 }
 .bus__wrap,
-.guide__wrap {
+.private__wrap {
   flex: 0 0 48%;
   margin: 0 -0.5rem;
 }

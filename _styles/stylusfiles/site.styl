@@ -442,6 +442,7 @@ textarea
 .contact_form__wrap
 .review_form__wrap
 .guide__wrap
+.full_tour__content__wrap
     width: 85vw
     max-width: 900px
     min-width: 500px
@@ -826,6 +827,68 @@ textarea
         border-left: 0.5rem solid $turbo_lightblue 
 
 // /about }}}
+// full_tour {{{
+// =========================================================================
+.full_tour__heading
+    padding: 1.64rem 10% 6rem
+    background: $turbo_verylightblue
+    margin-bottom: -5rem
+    display: flex
+    justify-content: space-between
+    align-items: baseline
+
+.full_tour__date
+    color: $turbo_darkblue
+
+.full_tour__title
+    color: $turbo_darkbrown
+    font-size: 2.82rem
+    line-height: 1.2
+
+.full_tour__subtitle
+    color: $turbo_darkbrown
+    font-size: 1.65rem
+
+.full_tour__subtitle
+.full_tour__date
+    margin-left: 1rem
+
+.full_tour__len
+    font-size: 1.64rem
+
+    &:before
+        content:"Продолжительность:"
+        color: $turbo_darkblue
+        font-size: 1rem
+        display: block
+
+.full_tour__prices
+    font-size: 1.28rem
+    align-self: flex-end
+
+.full_tour__prices
+    &:before
+        content:"Стоимость:"
+        color: $turbo_darkblue
+        font-size: 1rem
+        display: block
+
+.full_tour__prices
+.full_tour__len
+    text-align: right
+    margin-right: 1rem
+    color: $turbo_darkbrown
+
+.full_tour__content__wrap
+    background: white
+    border: 0.063rem solid $turbo_lightblue
+
+.full_tour__intro__wrap
+    padding 1.7rem 2.8rem
+    width: auto
+
+
+// /full_tour }}}
 // tours {{{
 // =========================================================================
 .tours__wrap
@@ -1138,7 +1201,7 @@ textarea
     margin-bottom: -0.25rem
 
 .bus__wrap
-.guide__wrap
+.private__wrap
     flex 0 0 48%
     margin: 0 -0.5rem
 
