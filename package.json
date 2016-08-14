@@ -60,6 +60,7 @@
         "broken_watch:scripts": "watch 'npm run watch:scripts:compile' _scripts",
             "watch:scripts:compile": "coffee --stdio --compile _scripts/_site.coffee > js/site.js",
 
+    "justbuild": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
     "data-update": "node _importdata.js",
     "browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open --no-notify",
     "deploy": "netlify deploy",
