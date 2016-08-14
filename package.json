@@ -6,6 +6,8 @@
     "autoprefixer": "latest",
     "coffee-script": "latest",
     "csso": "^2.1.1",
+    "google-auth-library": "^0.9.8",
+    "googleapis": "^12.2.0",
     "jade": "latest",
     "jade-cli": "latest",
     "normalize.css": "^4.1.1",
@@ -24,7 +26,7 @@
   },
   "scripts": {
     "build": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
-        "prebuild": "python _importdata.py",
+        "prebuild": "npm run data-update",
         "build:jade": "npm run build:jade:includes && npm run build:jade:layouts",
             "build:jade:layouts": "jade -o _layouts/  _jadefiles/layouts/*.jade",
             "build:jade:includes": "jade -o _includes/  _jadefiles/includes/*.jade",
@@ -58,7 +60,11 @@
         "broken_watch:scripts": "watch 'npm run watch:scripts:compile' _scripts",
             "watch:scripts:compile": "coffee --stdio --compile _scripts/_site.coffee > js/site.js",
 
-        "browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open --no-notify"
+    "data-update": "node _importdata.js",
+    "browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open --no-notify",
+    "deploy": "netlify deploy",
+        "predeploy": "npm run build"
+
   },
   "author": "none23",
   "license": "MIT",
