@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "Turoboz website",
   "dependencies": {
-    "autoprefixer": "latest",
+    "autoprefixer": "^6.4.0",
+    "autoprefixer-cli": "^1.0.0",
     "coffee-script": "latest",
     "csso": "^2.1.1",
     "google-auth-library": "^0.9.8",
@@ -11,7 +12,7 @@
     "jade": "latest",
     "jade-cli": "latest",
     "normalize.css": "^4.1.1",
-    "postcss-cli": "latest",
+    "postcss": "^5.1.2",
     "stylus": "^0.54.5",
     "uglify-js": "latest",
     "webfontloader": "^1.6.24"
@@ -26,14 +27,13 @@
   },
   "scripts": {
     "build": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
-        "prebuild": "npm run data-update",
         "build:jade": "npm run build:jade:includes && npm run build:jade:layouts",
             "build:jade:layouts": "jade -o _layouts/  _jadefiles/layouts/*.jade",
             "build:jade:includes": "jade -o _includes/  _jadefiles/includes/*.jade",
 
         "build:styles": "npm run build:styles:compile && npm run build:styles:prefix",
             "build:styles:compile": "stylus _styles/styles --out _styles/unprefixed",
-            "build:styles:prefix": "(cd _styles/unprefixed && for file in *.css; do (postcss --use autoprefixer -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < $file   | csso > ../../css/$file); done)", 
+            "build:styles:prefix": "(cd _styles/unprefixed && for file in *.css; do (autoprefixer-cli -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < $file   | csso > ../../css/$file); done)", 
 
         "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify",
             "build:scripts:compile": "coffee -c -o js _scripts/_site.coffee",
@@ -64,7 +64,7 @@
     "data-update": "node _importdata.js",
     "browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open --no-notify",
     "deploy": "netlify deploy",
-        "predeploy": "npm run build"
+        "predeploy": "npm run data-update && npm run build"
 
   },
   "author": "none23",

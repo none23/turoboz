@@ -1,6 +1,5 @@
 html {
   -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
 }
 body {
   margin: 0;
@@ -38,7 +37,6 @@ template,
 }
 a {
   background-color: transparent;
-  -webkit-text-decoration-skip: objects;
 }
 a:active,
 a:hover {
@@ -184,6 +182,7 @@ html,
 body {
   width: 100vw;
   max-width: 100vw;
+  overflow-x: hidden;
 }
 body {
   overflow-y: visible;
@@ -341,16 +340,17 @@ textarea {
   position: absolute;
   top: 100%;
   right: 0;
-  transform: translateX(100%);
-  transition: all 0.3s ease-in-out;
-  z-index: 1000;
+  transform: translateX(100%) scale(0);
+  transform-origin: 100% 0;
+  transition: transform 0.2s ease-in-out;
+  z-index: 998;
   background: #fff;
   box-shadow: 0 4px 12px -6px #333;
   border: 1px solid #9dcde1;
   border-radius: 0.1875rem;
 }
 .header_form__wrap.is_open {
-  transform: translateX(0%);
+  transform: translateX(0%) scale(1);
 }
 .header_form__wrap #call_back_form {
   justify-content: space-around;
@@ -708,7 +708,6 @@ textarea {
 }
 .event__image__wrap {
   flex: 1 0 12rem;
-  min-width: 12rem;
 }
 .event__image,
 .post__image {
@@ -766,28 +765,6 @@ textarea {
 .post__footer,
 .post__image {
   transition: all 0.2s ease;
-}
-@media (max-width: 1079px) {
-  .upcoming_events__wrap {
-    width: 75vw;
-    min-width: 540px;
-  }
-  .upcoming_events__list {
-    flex-wrap: wrap;
-  }
-  .event__wrap {
-    flex: 1 0 34%;
-  }
-}
-@media (max-width: 549px) {
-  .upcoming_events__wrap {
-    width: 80vw;
-    max-width: 400px;
-    min-width: auto;
-  }
-  .event__wrap {
-    flex: 1 1 15rem;
-  }
 }
 .posts__wrap {
   width: 95vw;
@@ -867,6 +844,37 @@ textarea {
 .post__wrap:active .post__footer {
   color: #fff;
   background: #3485a8;
+}
+@media (max-width: 1079px) {
+  .upcoming_events__wrap {
+    width: 75vw;
+    min-width: 540px;
+  }
+  .upcoming_events__list {
+    flex-wrap: wrap;
+  }
+  .event__wrap {
+    flex: 1 0 34%;
+  }
+}
+@media (max-width: 619px) {
+  .upcoming_events__wrap {
+    width: 95vw;
+    max-width: 600px;
+    min-width: 200px;
+  }
+  .event__wrap {
+    flex: 1 0 45%;
+  }
+  .event__image__wrap,
+  .post__image__wrap {
+    display: none;
+  }
+}
+@media (max-width: 419px) {
+  .event__wrap {
+    flex: 1 0 85%;
+  }
 }
 .about_info {
   margin-top: 0;
@@ -1120,7 +1128,7 @@ textarea {
   padding: 0 1rem;
   margin-top: 1rem;
 }
-@media (max-width: 1210px) and (min-width: 880px) {
+@media (max-width: 1210px) and (min-width: 900px) {
   .tours__list {
     justify-content: space-around;
     margin: 0 5.04rem 0 0;
@@ -1152,34 +1160,55 @@ textarea {
   .tour__wrap:active .tour__moving {
     transform: scaleX(1) translateX(20%);
   }
+  .tours_nav__wrap {
+    flex: 1 0 16rem;
+  }
 }
-@media (max-width: 879px) {
+@media (max-width: 899px) {
   .tours__list {
     margin: 0 0.5rem 0 0;
+    display: block;
   }
   .tour__wrap {
     height: auto;
-    flex: 1 1 60%;
-    display: flex;
-    flex-direction: row;
+    flex: 1 1 12rem;
   }
-  .tour__fixed,
-  .tour__moving {
-    position: static;
+  .tour__wrap,
+  .tour__fixed {
     transform: none !important;
+    height: auto;
+  }
+  .tour__title {
+    flex: 1 0 1rem;
   }
   .tour__fixed {
-    flex: 0 0 16.8rem;
-  }
-  .tour__moving {
-    flex: 1 1 18.480000000000004rem;
+    position: static;
+    flex: 1 1 16.8rem;
   }
   .tours_nav.minified,
   .tours_nav.hidden {
     display: none;
   }
   .tours_nav__wrap {
-    flex: 0 1 12rem;
+    flex: 0 1 20rem;
+  }
+  .tours_nav__link {
+    padding: 0.75rem 0.5rem;
+  }
+  .tour__image__wrap,
+  .tour__moving {
+    display: none;
+  }
+}
+@media (max-width: 619px) {
+  .tours__wrap {
+    display: block;
+  }
+  .tours_nav {
+    position: static;
+  }
+  .tours_nav .tours_nav__link {
+    text-align: center;
   }
 }
 .services__wrap {
