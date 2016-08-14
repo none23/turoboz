@@ -5,6 +5,7 @@ logs
 npm-debug.log*
 client_secret.json
 _client_secret.json
+node_modules
 
 # Runtime data
 pids
