@@ -63,6 +63,7 @@ html
 body
     width: 100vw
     max-width: 100vw
+    overflow-x: hidden
 
 body
     overflow-y: visible
@@ -234,16 +235,17 @@ textarea
     position: absolute
     top: 100%
     right: 0
-    transform: translateX(100%)
-    transition: all 0.3s ease-in-out
-    z-index: 1000
+    transform: translateX(100%) scale(0)
+    transform-origin: 100% 0
+    transition: transform 0.2s ease-in-out
+    z-index: 998
     background: $header_form_bg
     box-shadow: 0 4px 12px -6px $shadowy
     border: 1px solid $turbo_lightblue
     border-radius: 0.1875rem
 
     &.is_open
-        transform: translateX(0%)
+        transform: translateX(0%) scale(1)
 
     #call_back_form
         justify-content: space-around
@@ -611,7 +613,6 @@ textarea
 
 .event__image__wrap
     flex: 1 0 12rem
-    min-width: 12rem
 
 .event__image
 .post__image
@@ -668,26 +669,6 @@ textarea
 .post__footer
 .post__image
     transition: all 0.2s ease
-
-@media(max-width: 1079px)
-    .upcoming_events__wrap
-        width: 75vw
-        min-width: 540px
-
-    .upcoming_events__list
-        flex-wrap: wrap
-
-    .event__wrap
-        flex: 1 0 34%
-
-@media(max-width: 549px)
-    .upcoming_events__wrap
-        width: 80vw
-        max-width: 400px
-        min-width: auto
-
-    .event__wrap
-        flex: 1 1 15rem
 
 // /upcoming_events }}}
 // blog {{{
@@ -771,8 +752,35 @@ textarea
         color: white
         background: $turbo_blue
 
-
 // /blog }}}
+@media(max-width: 1079px)
+    .upcoming_events__wrap
+        width: 75vw
+        min-width: 540px
+
+    .upcoming_events__list
+        flex-wrap: wrap
+
+    .event__wrap
+        flex: 1 0 34%
+
+@media(max-width: 619px)
+    .upcoming_events__wrap
+        width: 95vw
+        max-width: 600px
+        min-width: 200px
+
+    .event__wrap
+        flex: 1 0 45%
+
+    .event__image__wrap
+    .post__image__wrap
+        display: none
+
+@media(max-width: 419px)
+    .event__wrap
+        flex: 1 0 85%
+
 // /main }}}
 // about {{{
 // =========================================================================
@@ -1039,7 +1047,7 @@ textarea
 
 // /tours_list }}}
 
-@media(max-width: 1210px) and (min-width: 880px)
+@media(max-width: 1210px) and (min-width: 900px)
     .tours__list
         justify-content: space-around
         margin: 0 $tour_card_width * 0.3 0 0
@@ -1056,7 +1064,6 @@ textarea
         transform-origin: 100% 100%
         transform: scaleX(0.8)
 
-
     .tour__wrap:hover
     .tour__wrap:focus
     .tour__wrap:active
@@ -1067,29 +1074,51 @@ textarea
         .tour__moving
                 transform: scaleX(1) translateX(20%)
 
-@media(max-width: 879px)
+    .tours_nav__wrap
+        flex: 1 0 16rem
+
+@media(max-width: 899px)
     .tours__list
         margin: 0 0.5rem 0 0
+        display: block
+
     .tour__wrap
         height: auto
-        flex: 1 1 60%
-        display: flex
-        flex-direction: row
+        flex: 1 1 12rem
+
+    .tour__wrap
     .tour__fixed
-    .tour__moving
-        position: static
         transform: none !important
+        height: auto
+
+    .tour__title
+        flex: 1 0 1rem
+
     .tour__fixed
-        flex: 0 0 $tour_card_width
-    .tour__moving
-        flex: 1 1 1.1 * $tour_card_width
+        position: static
+        flex: 1 1 $tour_card_width
 
     .tours_nav.minified
     .tours_nav.hidden
         display: none
+
     .tours_nav__wrap
-        flex: 0 1 12rem
+        flex: 0 1 20rem
+
+    .tours_nav__link
+        padding: 0.75rem 0.5rem
         
+    .tour__image__wrap
+    .tour__moving
+        display: none
+
+@media(max-width: 619px)
+    .tours__wrap
+        display: block
+    .tours_nav
+        position: static
+        .tours_nav__link
+            text-align: center
 
 
 // /tours }}}

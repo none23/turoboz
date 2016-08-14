@@ -1,6 +1,3 @@
-// npm install googleapis --save
-// npm install google-auth-library --save
-
 var fs = require('fs');
 var readline = require('readline');
 var google = require('googleapis');
@@ -436,6 +433,7 @@ function saveJSON() {
         var finalObj = {};
         for (var i = 0; i < all_tours.length; ++i ){
             finalObj[all_tours[i].tour] = all_tours[i];
+            toursFiles(all_tours[i].tour);
         }
         var finalJSON = JSON.stringify(finalObj);
         console.log("printing!");
@@ -448,5 +446,16 @@ function saveJSON() {
         console.log("not printing yet");
         setTimeout(saveJSON, 1000);
     }
+}
+// }}}
+// Create index files for each tour {{{
+function toursFiles (x) {
+    content="---\nid: " + x + "\nlayout: tour\npermalink: /tours/" + x + "/\n---";
+    filename = "_tours/" + x + ".html";
+    fs.writeFile(filename, content, 'utf8', function (err){
+        if (err) {
+            return console.log(err);
+        }
+    });
 }
 // }}}
