@@ -1,17 +1,18 @@
-section.about__wrap.guides
+section.about__wrap.guides__wrap
     h2.section_header
         | Наши экскурсоводы
-    | {% for g in page.guides %}
-    .guide__wrap
-        .guide__img__wrap
-            img.guide__img(src='/img/{{ g.photo }}', alt='{{ g.name }}')
-        .guide__info
-            .guide__name
-                | {{ g.name }}
-            .guide__resume
-                | {% for paragraph in g.resume %}
-                p.guide__resume__p
-                    | {{ paragraph }}
-                | {% endfor %}
-    | {% endfor %}
+    .guides
+        | {% for g in page.guides %}
+        .guide__wrap
+            .guide__img__wrap
+                img.guide__img(src='/img/{{ g.photo }}', alt='{{ g.name }}')
+            .guide__info
+                .guide__name
+                    | {{ g.name }}
+                .guide__resume
+                    | {% for paragraph in g.resume %}
+                    p.guide__resume__p
+                        | {{ paragraph }}
+                    | {% endfor %}
+        | {% endfor %}
 
