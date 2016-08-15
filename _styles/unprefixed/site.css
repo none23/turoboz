@@ -383,7 +383,7 @@ textarea {
   transform: translateX(100%) scale(0);
   transform-origin: 100% 0;
   transition: transform 0.2s ease-in-out;
-  z-index: 998;
+  z-index: 1002;
   background: #fff;
   box-shadow: 0 4px 12px -6px #333;
   border: 0.063rem solid #9dcde1;
