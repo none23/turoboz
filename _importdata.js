@@ -4,7 +4,9 @@ var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
 var all_tours = [];
+var upcoming_tours = [];
 var data_file = "_data/tours.json";
+var upcoming_file = "_data/upcoming.json";
 var compl = 0;
 
 
@@ -24,7 +26,7 @@ fs.readFile('_client_secret.json', function processClientSecrets(err, content) {
   }
   // Authorize a client with the loaded credentials, then call the
   // Google Sheets API.
-  authorize(JSON.parse(content), updateData);
+  authorize(JSON.parse(content), getStrs);
 });
 // }}}
 
@@ -211,10 +213,19 @@ function getDates(auth) {
       console.log('dat');
       for (var i = 0; i < rows.length; i++) {
         var row = rows[i];
+        var rowId = row[0];
+        var unixTimeNow = Math.floor(Date.now() / 1000);
+        var excelTimeNow = Math.floor(unixTimeNow / 86400 + 25569);
         var items = [];
         for (var k = 1; k < row.length; k++) {
-            items.push(row[k]);
+            if(row[k] >= excelTimeNow){
+                items.push(row[k]);
+            }
         }
+        upcoming_tours.push({
+            "key": rowId,
+            "val": items[0]
+        });
         all_tours[i].dates = items;
       }
       //console.log(all_tours);
@@ -410,23 +421,8 @@ function getBlueprint(auth) {
   });
 }
 // }}}
-// Connect All Fields {{{
-function updateData(auth) {
-    getStrs(auth);
-    //setTimeout(function sv(data_file) {
-    //    saveJSON(data_file);
-    //} , 3000);
-    //getTags(auth);
-    //getDates(auth);
-    //getPrices(auth);
-    //getIncludes(auth);
-    //getAdditionalFees(auth);
-    //getWillLearn(auth);
-    //getDetails(auth);
-    //getBlueprint(auth);
-    //saveJSON(data_file);
-}
-// }}}
+ 
+
 // Save data to file {{{
 function saveJSON() {
     if (compl == 8) {
@@ -435,9 +431,19 @@ function saveJSON() {
             finalObj[all_tours[i].tour] = all_tours[i];
             toursFiles(all_tours[i].tour);
         }
+        upcoming_tours.sort(function(a, b){
+            return a.date - b.date;
+        });
+        var upcoming_four = upcoming_tours.slice(0,4);
+        var upcomingJSON = JSON.stringify(upcoming_four);
         var finalJSON = JSON.stringify(finalObj);
         console.log("printing!");
         fs.writeFile(data_file, finalJSON, 'utf8', function (err){
+            if (err) {
+                return console.log(err);
+            }
+        });
+        fs.writeFile(upcoming_file, upcomingJSON, 'utf8', function (err){
             if (err) {
                 return console.log(err);
             }

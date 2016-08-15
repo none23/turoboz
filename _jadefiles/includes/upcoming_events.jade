@@ -3,8 +3,8 @@ section.upcoming_events__wrap
     h2.section_header
         | Ближайшие туры
     .upcoming_events__list
-        | {% for tour in site.tours | limit: 4 %}
-        |   {% assign t = tour.id | remove: 'tours' | remove: '/' %}
+        | {% for x in site.data.upcoming %}
+        |   {% assign t = x.key %}
         |       {% assign tt = site.data.tours[t] %}
         a.event__wrap(href='/tours/{{ tt.tour }}')
             .event__image__wrap

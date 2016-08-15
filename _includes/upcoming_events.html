@@ -1,5 +1,5 @@
-<section class="upcoming_events__wrap"><h2 class="section_header">Ближайшие туры</h2><div class="upcoming_events__list">{% for tour in site.tours | limit: 4 %}
-  {% assign t = tour.id | remove: 'tours' | remove: '/' %}
+<section class="upcoming_events__wrap"><h2 class="section_header">Ближайшие туры</h2><div class="upcoming_events__list">{% for x in site.data.upcoming %}
+  {% assign t = x.key %}
       {% assign tt = site.data.tours[t] %}<a href="/tours/{{ tt.tour }}" class="event__wrap"><div class="event__image__wrap"><img src="/img/{{ tt.imgpath }}" alt="{{ tt.title | smartify }}" class="event__image"/></div><div class="event__date">{% assign unixdate = tt.dates[0] | round | minus:25569 | times:86400 %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
