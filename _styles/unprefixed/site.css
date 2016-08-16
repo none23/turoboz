@@ -288,12 +288,6 @@ textarea {
   z-index: 1001;
   color: transparent;
 }
-#site_logo .logo_gray,
-#site_logo .logo_brown,
-#site_logo .logo_blue {
-  transition: all 0.2s ease-in-out;
-  transform-origin: 19% 50%;
-}
 #site_logo .logo_gray {
   fill: #71706f;
 }
@@ -305,15 +299,11 @@ textarea {
 }
 #site_logo:hover .logo_gray,
 #site_logo:focus .logo_gray {
-  fill: #242423;
-  transition: all 0.25s ease-in-out;
-  transform: rotate(-360deg);
+  fill: #5b5a59;
 }
 #site_logo:hover .logo_brown,
 #site_logo:focus .logo_brown {
-  transition: all 0.25s ease-in-out;
   fill: #26637d;
-  transform: rotateX(360deg);
 }
 #site_logo:hover .logo_blue,
 #site_logo:focus .logo_blue {
@@ -394,17 +384,41 @@ textarea {
   transform: translateX(0%) scale(1);
 }
 .header_form__wrap #call_back_form {
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
+  max-width: 42rem;
 }
 .header_form__wrap #call_back_form__name,
 .header_form__wrap #call_back_form__phone {
-  flex: 1 1 17rem;
+  order: 0;
+  flex: 2 2 17rem;
 }
 .header_form__wrap #call_back_form__button {
-  flex: 2 2 34rem;
+  order: 2;
+  flex: 4 4 34rem;
   margin: 0;
+}
+.header_form__wrap #call_back_form__cancel_button {
+  order: 1;
+  flex: 1 0 3rem;
+  background: #fff;
+  color: #3485a8;
+  border-left: 0.063rem solid #9dcde1;
+  border-right: 0.063rem solid #9dcde1;
+  border-radius: 0;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 1.1rem 2rem 1.1rem 1rem;
+}
+.header_form__wrap #call_back_form__cancel_button:hover,
+.header_form__wrap #call_back_form__cancel_button:focus {
+  color: #fff;
+  background: #a43232;
+}
+.header_form__wrap #call_back_form__cancel_button:active {
+  color: #fff;
+  background: #812828;
 }
 .site_nav__link {
   padding: 0.5rem;
@@ -450,9 +464,10 @@ textarea {
   justify-content: space-around;
   align-items: flex-start;
   background: #fff;
-  transform: translateY(-200%);
+  transform: translateX(100%) scale(0);
+  transform-origin: 100% 0;
   will-change: transform;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   box-shadow: 0 1px 14px -4px #333;
 }
 #mobile_nav .site_header__phone,
@@ -485,10 +500,10 @@ textarea {
   width: 100%;
 }
 #mobile_nav.is_open {
-  transform: translateY(0);
+  transform: translateX(0) scale(1);
 }
 .mobile_nav_toggle__svg {
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   fill: #613b23;
 }
 .mobile_nav_toggle__svg__top_bar {
@@ -695,7 +710,7 @@ textarea {
 .form__button--loading,
 .form__button--failure,
 .form__button {
-  appearance: none;
+  -webkit-appearance: none;
   width: 111%;
   margin: 2rem -5.5% 0;
   padding: 1rem;
@@ -1131,17 +1146,16 @@ form:focus .form__button {
   margin-bottom: -2rem;
   min-height: calc(100vh - 10rem);
   background-image: url("/img/card.png");
-  background-color: #26637d;
-  background-blend-mode: hard-light;
   background-repeat: repeat;
+  background-blend-mode: hard-light;
+  background-color: #26637d;
   box-shadow: 6px -3px 12px -10px #333, inset 0px 6px 12px -10px #333;
 }
-.tours_nav__wrap .section_header {
+.tours_nav__section_header {
   font-size: 1.1rem;
   line-height: 4.2rem;
   padding: 1rem;
   margin: -1rem;
-  box-shadow: inset 0px -12px 12px -4px #333;
 }
 .tours_nav {
   position: absolute;
@@ -1251,7 +1265,7 @@ form:focus .form__button {
   flex-wrap: nowrap;
   border: 0.063rem solid #9dcde1;
   border-radius: 0.125rem;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   will-change: transform;
   background: #fff;
 }
@@ -1364,7 +1378,7 @@ form:focus .form__button {
     height: auto;
   }
   .tour__title {
-    flex: 1 0 1rem;
+    flex: 1 0 4rem;
   }
   .tour__fixed {
     position: static;
@@ -1389,8 +1403,12 @@ form:focus .form__button {
   .tours__wrap {
     display: block;
   }
+  .tours_nav__section_header {
+    color: transparent;
+  }
   .tours_nav {
     position: static;
+    margin-bottom: 3rem;
   }
   .tours_nav .tours_nav__link {
     text-align: center;
