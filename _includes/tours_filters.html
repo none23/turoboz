@@ -1,4 +1,4 @@
-<section class="tours_nav__wrap"><h2 class="section_header">Категории</h2>{% if page.url == '/tours/' %}<nav id="tours_nav--primary" class="tours_nav">{% for nptag in site.data.tags %}<a href="{{ nptag.url }}" id="{% if nptag.subtags %}opens--{{ nptag.tag }}{% endif %}" class="tours_nav__link {% if page.url contains nptag.url %}active{% endif %}">{{ nptag.title }}</a>{% endfor %}</nav>
+<section class="tours_nav__wrap"><h2 class="section_header tours_nav__section_header">Категории</h2>{% if page.url == '/tours/' %}<nav id="tours_nav--primary" class="tours_nav">{% for nptag in site.data.tags %}<a href="{{ nptag.url }}" id="{% if nptag.subtags %}opens--{{ nptag.tag }}{% endif %}" class="tours_nav__link {% if page.url contains nptag.url %}active{% endif %}">{{ nptag.title }}</a>{% endfor %}</nav>
 {% else %}
 {% for tatag in site.data.tags %}
 {% if page.url contains tatag.url %}

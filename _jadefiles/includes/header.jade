@@ -62,8 +62,11 @@ mixin CallBackForm()
           placeholder='Ваш номер телефона',
           required)
 
+        button#call_back_form__cancel_button.call_back_form__toggle(type='button')
+            | Отмена
+
         button#call_back_form__button.form__button(type='submit')
-           | Заказать звонок
+            | Заказать звонок
 
 header#site_header
     a#site_logo(href='/')

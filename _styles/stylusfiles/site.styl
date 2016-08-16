@@ -51,6 +51,8 @@ $border = 0.063rem solid $turbo_lightblue
 $the_font = Ubuntu, Arial, Helvetica, sans-serif
 
 
+$turbo_cancel = hsl(0, 53%, 42%)
+$turbo_cancel_active = hsl(0, 53%, 33%)
 $turbo_brown = hsl(23, 47%, 26%)
 $turbo_darkbrown = hsl(23, 50%, 18%)
 $turbo_darkblue = hsl(198, 53%, 32%)
@@ -206,30 +208,19 @@ textarea
     color: transparent
 
     .logo_gray
-    .logo_brown
-    .logo_blue
-        transition: all 0.2s ease-in-out
-        transform-origin: 19% 50%
-
-    .logo_gray
         fill: $turbo_gray
     .logo_brown
         fill: $turbo_brown
     .logo_blue
         fill: $turbo_blue
-    &:hover .logo_gray
-    &:focus .logo_gray
-        fill: hsl(30, 1%, 14%)
-        transition: all 0.25s ease-in-out
-        transform: rotate(-360deg)
-    &:hover .logo_brown
-    &:focus .logo_brown
-        transition: all 0.25s ease-in-out
-        fill: $turbo_darkblue
-        transform: rotateX(360deg)
-    &:hover .logo_blue
-    &:focus .logo_blue
-        fill: $turbo_darkbrown
+    &:hover
+    &:focus
+        .logo_gray
+            fill: darken($turbo_gray, 20%)
+        .logo_brown
+            fill: $turbo_darkblue
+        .logo_blue
+            fill: $turbo_darkbrown
 
 #site_logo__icon
     position: absolute
@@ -312,17 +303,41 @@ textarea
         transform: translateX(0%) scale(1)
 
     #call_back_form
-        justify-content: space-around
+        justify-content: flex-start
         flex-direction: row
         flex-wrap: wrap
+        max-width: $header_form_field_width * 2 + 2rem + 6rem
 
     #call_back_form__name
     #call_back_form__phone
-        flex: 1 1 $header_form_field_width
+        order: 0
+        flex: 2 2 $header_form_field_width
 
     #call_back_form__button
-        flex: 2 2  $header_form_field_width * 2
+        order: 2
+        flex: 4 4  $header_form_field_width * 2
         margin: 0
+
+    #call_back_form__cancel_button
+        order: 1
+        flex: 1 0 3rem
+        background: white
+        color: $turbo_blue
+        border-left: $border
+        border-right: $border
+        border-radius: 0
+        -webkit-appearance: none
+        margin: 0 
+        padding: 1.1rem 2rem 1.1rem 1rem
+
+        &:hover
+        &:focus
+            color: @background
+            background: $turbo_cancel
+        &:active
+            color: @background
+            background: $turbo_cancel_active
+
 
 // /header_form }}}
 // site_nav {{{
@@ -376,9 +391,10 @@ textarea
     justify-content: space-around
     align-items: flex-start
     background: $mobile_nav_bg
-    transform: translateY(-200%)
+    transform: translateX(100%) scale(0)
+    transform-origin: 100% 0
     will-change: transform
-    transition: transform 0.5s ease-in-out
+    transition: transform 0.3s ease-in-out
     box-shadow: 0 1px 14px -4px $shadowy
 
     .site_header__phone,
@@ -411,12 +427,12 @@ textarea
             width: 100%
 
     &.is_open
-        transform: translateY(0)
+        transform: translateX(0) scale(1)
 
 // /mobile_nav }}}
 // mobile_nav_toggle {{{
 .mobile_nav_toggle__svg
-    transition: all 0.5s ease-in-out
+    transition: all 0.3s ease-in-out
     fill: $turbo_brown
 
 .mobile_nav_toggle__svg__top_bar
@@ -604,7 +620,7 @@ textarea
 .form__button--loading
 .form__button--failure
 .form__button
-    appearance: none
+    -webkit-appearance: none
     width: 111%
     margin: 2rem -5.5% 0
     padding: 1rem
@@ -1037,18 +1053,16 @@ textarea
     margin-bottom: -2rem 
     min-height: calc(100vh - 10rem)
     background-image: url(/img/card.png)
-    background-color: $turbo_darkblue
-    background-blend-mode: hard-light
     background-repeat: repeat
+    background-blend-mode: hard-light
+    background-color: $turbo_darkblue
     box-shadow: 6px -3px 12px -10px $shadowy, inset 0px 6px 12px -10px $shadowy
 
-.tours_nav__wrap
-    .section_header
-        font-size: 1.1rem
-        line-height: 4.2rem
-        padding: 1rem
-        margin: -1rem
-        box-shadow: inset 0px -12px 12px -4px $shadowy
+.tours_nav__section_header
+    font-size: 1.1rem
+    line-height: 4.2rem
+    padding: 1rem
+    margin: -1rem
 
 .tours_nav
     position: absolute
@@ -1165,7 +1179,7 @@ textarea
     flex-wrap: nowrap
     border: $border
     border-radius: $border-radius
-    transition: all 0.3s ease-in-out
+    transition: all 0.2s ease-in-out
     will-change: transform
     background: white
 
@@ -1272,7 +1286,7 @@ textarea
         height: auto
 
     .tour__title
-        flex: 1 0 1rem
+        flex: 1 0 4rem
 
     .tour__fixed
         position: static
@@ -1295,11 +1309,15 @@ textarea
 @media(max-width: 619px)
     .tours__wrap
         display: block
+
+    .tours_nav__section_header
+        color: transparent
+
     .tours_nav
         position: static
+        margin-bottom: 3rem
         .tours_nav__link
             text-align: center
-
 
 // /tours }}}
 // services {{{

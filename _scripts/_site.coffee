@@ -6,9 +6,11 @@ mobileNav = ->
     return
 # /mobile_nav }}}####################################################
 # forms {{{##########################################################
-callBackFormOpen = ->
+
+callBackFormToggle = ->
     $('.call_back_form__toggle').on 'click', '', ->
         $('.call_back_form__toggle, .call_back_form__wrap').toggleClass 'is_open'
+        false
     return
 
 enableCallBackForm = ->
@@ -84,10 +86,10 @@ iSendAJAX = (event, form, sendButton) ->
 # /forms }}}#########################################################
 
 $ ->
-  mobileNav()
-  callBackFormOpen()
-  enableCallBackForm()
-  enableContactForm()
-  enableReviewForm()
-  enableOrderForm()
-  return
+    mobileNav()
+    callBackFormToggle()
+    enableCallBackForm()
+    enableContactForm()
+    enableReviewForm()
+    enableOrderForm()
+    return
