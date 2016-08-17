@@ -16,9 +16,10 @@ callBackFormToggle = ->
 enableCallBackForm = ->
     TheForm = document.getElementById('call_back_form')
     if TheForm
+        successCallBack = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.'
         sendForm = document.getElementById('call_back_form__button')
         TheForm.addEventListener 'submit', (event) ->
-            iSendAJAX event, TheForm, sendForm
+            iSendAJAX event, TheForm, sendForm, successCallBack
         return
     else
         return
@@ -26,9 +27,10 @@ enableCallBackForm = ->
 enableContactForm = ->
     TheForm = document.getElementById('contact_form')
     if TheForm
+        successContact = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.'
         sendForm = document.getElementById('contact_form__button')
         TheForm.addEventListener 'submit', (event) ->
-            iSendAJAX event, TheForm, sendForm
+            iSendAJAX event, TheForm, sendForm, successContact
         return
     else
         return
@@ -36,9 +38,10 @@ enableContactForm = ->
 enableReviewForm = ->
     TheForm = document.getElementById('review_form')
     if TheForm
+        successReview = 'Спасибо! Отзыв принят и будет опубликован после проверки.'
         sendForm = document.getElementById('review_form__button')
         TheForm.addEventListener 'submit', (event) ->
-            iSendAJAX event, TheForm, sendForm
+            iSendAJAX event, TheForm, sendForm, successReview
         return
     else
         return
@@ -46,19 +49,20 @@ enableReviewForm = ->
 enableOrderForm = ->
     TheForm = document.getElementById('order_form')
     if TheForm
+        successOrder = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.'
         sendForm = document.getElementById('order_form__button')
         TheForm.addEventListener 'submit', (event) ->
-            iSendAJAX event, TheForm, sendForm
+            iSendAJAX event, TheForm, sendForm, successOrder
         return
     else
         return
 
 
-iSendAJAX = (event, form, sendButton) ->
+iSendAJAX = (event, form, sendButton, successMsg) ->
   event.preventDefault()
   message = {}
   message.loading = 'Отправка...'
-  message.success = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.'
+  message.success = successMsg
   message.failure = 'Возникла ошибка при отправке.'
   # Set up the AJAX request
   request = new XMLHttpRequest

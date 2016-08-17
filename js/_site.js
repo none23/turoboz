@@ -16,12 +16,13 @@
   };
 
   enableCallBackForm = function() {
-    var TheForm, sendForm;
+    var TheForm, sendForm, successCallBack;
     TheForm = document.getElementById('call_back_form');
     if (TheForm) {
+      successCallBack = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.';
       sendForm = document.getElementById('call_back_form__button');
       TheForm.addEventListener('submit', function(event) {
-        return iSendAJAX(event, TheForm, sendForm);
+        return iSendAJAX(event, TheForm, sendForm, successCallBack);
       });
     } else {
 
@@ -29,12 +30,13 @@
   };
 
   enableContactForm = function() {
-    var TheForm, sendForm;
+    var TheForm, sendForm, successContact;
     TheForm = document.getElementById('contact_form');
     if (TheForm) {
+      successContact = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.';
       sendForm = document.getElementById('contact_form__button');
       TheForm.addEventListener('submit', function(event) {
-        return iSendAJAX(event, TheForm, sendForm);
+        return iSendAJAX(event, TheForm, sendForm, successContact);
       });
     } else {
 
@@ -42,12 +44,13 @@
   };
 
   enableReviewForm = function() {
-    var TheForm, sendForm;
+    var TheForm, sendForm, successReview;
     TheForm = document.getElementById('review_form');
     if (TheForm) {
+      successReview = 'Спасибо! Отзыв принят и будет опубликован после проверки.';
       sendForm = document.getElementById('review_form__button');
       TheForm.addEventListener('submit', function(event) {
-        return iSendAJAX(event, TheForm, sendForm);
+        return iSendAJAX(event, TheForm, sendForm, successReview);
       });
     } else {
 
@@ -55,24 +58,25 @@
   };
 
   enableOrderForm = function() {
-    var TheForm, sendForm;
+    var TheForm, sendForm, successOrder;
     TheForm = document.getElementById('order_form');
     if (TheForm) {
+      successOrder = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.';
       sendForm = document.getElementById('order_form__button');
       TheForm.addEventListener('submit', function(event) {
-        return iSendAJAX(event, TheForm, sendForm);
+        return iSendAJAX(event, TheForm, sendForm, successOrder);
       });
     } else {
 
     }
   };
 
-  iSendAJAX = function(event, form, sendButton) {
+  iSendAJAX = function(event, form, sendButton, successMsg) {
     var formData, message, request;
     event.preventDefault();
     message = {};
     message.loading = 'Отправка...';
-    message.success = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.';
+    message.success = successMsg;
     message.failure = 'Возникла ошибка при отправке.';
     request = new XMLHttpRequest;
     request.open('POST', '//formspree.io/n.anisimov.23@gmail.com', true);
