@@ -1,13 +1,55 @@
-head
-	meta(charset='utf-8')
-	meta(http-equiv='X-UA-Compatible', content='IE=edge')
-	meta(name='viewport', content='width=device-width, initial-scale=1')
-	title
-		| {% if page.title %}{{ page.title | escape }} - {% endif %} {{ site.title }}
-	meta(name='viewport', content='width=device-width,initial-scale=1')
-	meta(name='robots', content='none')
-	meta(name='description', content='{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}')
-	link(rel='stylesheet', href='/css/site.css')
-	link(rel='icon', href='favicon.ico')
-	link(rel='canonical', href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}")
-
+meta(charset='utf-8')
+meta(http-equiv='X-UA-Compatible', content='IE=edge')
+meta(name='viewport', content='width=device-width, initial-scale=1')
+title
+    | {% if page.title %}{{ page.title | escape }} - {% endif %} {{ site.title }}
+meta(name='viewport', content='width=device-width,initial-scale=1')
+meta(name='robots', content='none')
+meta(name='description', content='{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}')
+link(rel='stylesheet', href='/css/site.css')
+link(rel='icon', href='favicon.ico')
+link(rel='canonical', href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}")
+//-- prerender_tours_pages -----------------------------------------------{{{
+| {% if page.url contains '/tours/' %}
+| {%     if page.url == '/tours/' %}
+//-- all tours page {{{
+| {%         for tag in site.data.tags %}
+link(rel='prerender prefetch', href='{{ tag.url }}')
+| {%         endfor %}
+//-- /all tours page }}}
+| {%     else %}
+| {%         for tag in site.data.tags %}
+| {%             if tag.url == page.url %}
+| {%                 if tag.subtags %}
+//-- tours tag page that has subtags {{{
+| {%                     for subtag in tag.subtags %}
+| {%                             if subtag.url != page.url %}
+link(rel='prerender prefetch', href='{{ subtag.url }}')
+| {%                             endif %}
+| {%                     endfor %}
+//-- /tours tag page that has subtags }}}
+| {%                 endif %}
+//-- tours tag page that has no subtags {{{
+| {%                     for tata in site.data.tags %}
+| {%                         if tata.url != page.url %}
+link(rel='prerender prefetch', href='{{ tata.url }}')
+| {%                         endif %}
+| {%                     endfor %}
+//-- /tours tag page that has no subtags }}}
+| {%             elsif page.url contains tag.url %}
+//-- tours subtag page {{{
+| {%                 for subtag in tag.subtags %}
+| {%                     if subtag.url != page.url %}
+link(rel='prerender prefetch', href='{{ subtag.url }}')
+| {%                     endif %}
+| {%                 endfor %}
+//-- /tours subtag page }}}
+| {%             endif %}
+| {%         endfor %}
+| {%     endif %}
+| {% else %}
+//-- not in tours {{{
+link(rel='prerender prefetch', href='/tours')
+//-- /not in tours }}}
+| {% endif %}
+//-- /prerender_tours_pages -----------------------------------------------}}}

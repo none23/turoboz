@@ -288,8 +288,15 @@ textarea {
   z-index: 1001;
   color: transparent;
 }
+#site_logo .logo_gray,
+#site_logo .logo_blue,
+#site_logo .logo_brown {
+  transition: all 0.5s ease-in-out;
+}
 #site_logo .logo_gray {
   fill: #71706f;
+  transform-origin: 1.5rem 1.48rem;
+  transform: rotate(360deg) scale(1.01);
 }
 #site_logo .logo_brown {
   fill: #613b23;
@@ -299,15 +306,16 @@ textarea {
 }
 #site_logo:hover .logo_gray,
 #site_logo:focus .logo_gray {
-  fill: #5b5a59;
+  fill: #4f4f4e;
+  transform: rotate(0deg) scale(0.98);
 }
 #site_logo:hover .logo_brown,
 #site_logo:focus .logo_brown {
-  fill: #26637d;
+  fill: #3485a8;
 }
 #site_logo:hover .logo_blue,
 #site_logo:focus .logo_blue {
-  fill: #452917;
+  fill: #613b23;
 }
 #site_logo__icon {
   position: absolute;
@@ -636,7 +644,8 @@ textarea {
 .contact_form__wrap,
 .review_form__wrap,
 .guide__wrap,
-.full_tour__content__wrap {
+.full_tour__content__wrap,
+.full_tour__form__wrap {
   width: 85vw;
   max-width: 900px;
   min-width: 500px;
@@ -651,10 +660,11 @@ textarea {
   .contact_form__wrap,
   .review_form__wrap,
   .guide__wrap,
-  .full_tour__content__wrap {
-    width: 90vw;
-    max-width: 90vw;
-    min-width: auto;
+  .full_tour__content__wrap,
+  .full_tour__form__wrap {
+    width: 96vw;
+    max-width: 96vw;
+    min-width: 0;
   }
 }
 @media (max-width: 480px) {
@@ -666,9 +676,9 @@ textarea {
   .contact_form__wrap,
   .review_form__wrap,
   .guide__wrap,
-  .full_tour__content__wrap {
-    width: 96vw;
-    max-width: 96vw;
+  .full_tour__content__wrap,
+  .full_tour__form__wrap {
+    max-width: 85vw;
   }
 }
 .form {
@@ -680,7 +690,7 @@ textarea {
   width: 90%;
   padding: 2% 5% 0;
 }
-#contact_form {
+.contact_form {
   border: 0.063rem solid #9dcde1;
   border-radius: 0.125rem;
   margin: 1rem 0;
@@ -721,8 +731,8 @@ textarea {
 .form__button {
   background: #fff;
 }
-form:hover .form__button,
-form:focus .form__button {
+.form:hover .form__button,
+.form:focus .form__button {
   background: #3485a8;
   color: #fff;
 }
@@ -776,6 +786,7 @@ form:focus .form__button {
   box-shadow: inset 0 -3px 12px -6px #333;
   background-image: url("/img/card.png");
   background-color: #26637d;
+  background-repeat: repeat;
   background-blend-mode: hard-light;
 }
 .news__section .section_header {
@@ -1078,11 +1089,14 @@ form:focus .form__button {
 }
 .full_tour__heading {
   padding: 1.64rem 10% 6rem;
-  background: #e8eced;
   margin-bottom: -5rem;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  background-image: url("/img/card.png");
+  background-color: #26637d;
+  background-repeat: repeat;
+  background-blend-mode: hard-light;
 }
 .full_tour__date {
   color: #26637d;
@@ -1125,10 +1139,66 @@ form:focus .form__button {
 .full_tour__content__wrap {
   background: #fff;
   border: 0.063rem solid #9dcde1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+.full_tour__intro__wrap,
+.full_tour__blueprint__wrap,
+.full_tour__includes__wrap,
+.full_tour__additional_fees__wrap,
+.full_tour__will_learn__wrap,
+.full_tour__details__wrap {
+  margin-top: -3rem;
+  padding: 1.75rem 2.75rem;
+  width: auto;
+}
+@media (max-width: 660px) {
+  .full_tour__intro__wrap,
+  .full_tour__blueprint__wrap,
+  .full_tour__includes__wrap,
+  .full_tour__additional_fees__wrap,
+  .full_tour__will_learn__wrap,
+  .full_tour__details__wrap {
+    padding: 0.75rem 1.75rem;
+  }
+}
+.full_tour__intro__wrap,
+.full_tour__details__wrap,
+.full_tour__blueprint__wrap {
+  flex: 1 1 100%;
+}
+.full_tour__includes__wrap,
+.full_tour__additional_fees__wrap,
+.full_tour__will_learn__wrap {
+  flex: 1 1 35%;
 }
 .full_tour__intro__wrap {
-  padding: 1.7rem 2.8rem;
-  width: auto;
+  margin-top: 0;
+}
+.full_tour__blueprint__list__item,
+.full_tour__includes__list__item,
+.full_tour__additional_fees__list__item,
+.full_tour__will_learn__list__item {
+  margin: 0 1rem 1rem 2rem;
+  position: relative;
+}
+.full_tour__blueprint__list__item:before,
+.full_tour__includes__list__item:before,
+.full_tour__additional_fees__list__item:before,
+.full_tour__will_learn__list__item:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -1.3rem;
+  top: 25%;
+  bottom: 75%;
+  right: calc(100% + 0.6rem);
+  background: transparent;
+  border-top: 0.32rem solid transparent;
+  border-bottom: 0.32rem solid transparent;
+  border-left: 0.5rem solid #68a9c4;
 }
 .tours__wrap {
   width: 100%;
@@ -1145,11 +1215,11 @@ form:focus .form__button {
   overflow: hidden;
   margin-bottom: -2rem;
   min-height: calc(100vh - 10rem);
+  box-shadow: 6px -3px 12px -10px #333, inset 0px 6px 12px -10px #333;
   background-image: url("/img/card.png");
+  background-color: #26637d;
   background-repeat: repeat;
   background-blend-mode: hard-light;
-  background-color: #26637d;
-  box-shadow: 6px -3px 12px -10px #333, inset 0px 6px 12px -10px #333;
 }
 .tours_nav__section_header {
   font-size: 1.1rem;
@@ -1173,8 +1243,8 @@ form:focus .form__button {
   will-change: transform;
   background-image: url("/img/card.png");
   background-color: #26637d;
-  background-blend-mode: hard-light;
   background-repeat: repeat;
+  background-blend-mode: hard-light;
 }
 .tours_nav.minified .tours_nav__link {
   z-index: 400;
@@ -1210,7 +1280,7 @@ form:focus .form__button {
   height: 4rem;
   width: 4rem;
   margin: 0;
-  padding: 0.51rem 50%;
+  padding: 0.51rem 70% 0.51rem 50%;
   margin: 0 auto;
   fill: #fff;
   background-color: #613b23;
@@ -1384,6 +1454,9 @@ form:focus .form__button {
     position: static;
     flex: 1 1 16.8rem;
   }
+  .tours_nav {
+    top: 0;
+  }
   .tours_nav.minified,
   .tours_nav.hidden {
     display: none;
@@ -1404,7 +1477,10 @@ form:focus .form__button {
     display: block;
   }
   .tours_nav__section_header {
-    color: transparent;
+    display: none;
+  }
+  .tours_nav__wrap {
+    margin-top: 1rem;
   }
   .tours_nav {
     position: static;
@@ -1421,10 +1497,11 @@ form:focus .form__button {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  background-image: url("/img/card.png");
-  background-color: #9dcde1;
-  background-blend-mode: multiply;
   box-shadow: inset 0 -3px 12px -6px #333;
+  background-image: url("/img/card.png");
+  background-color: #26637d;
+  background-repeat: repeat;
+  background-blend-mode: hard-light;
 }
 .services__summary {
   margin: 0 4rem;
@@ -1465,15 +1542,14 @@ form:focus .form__button {
 }
 @media (max-width: 660px) {
   .services__sections_group {
-    width: 90vw;
-    max-width: 90vw;
-    min-width: auto;
+    width: 96vw;
+    max-width: 96vw;
+    min-width: 0;
   }
 }
 @media (max-width: 480px) {
   .services__sections_group {
-    width: 96vw;
-    max-width: 96vw;
+    max-width: 85vw;
   }
 }
 .bespoke__wrap,
@@ -1514,15 +1590,14 @@ form:focus .form__button {
 }
 @media (max-width: 660px) {
   .services__payments__wrap {
-    width: 90vw;
-    max-width: 90vw;
-    min-width: auto;
+    width: 96vw;
+    max-width: 96vw;
+    min-width: 0;
   }
 }
 @media (max-width: 480px) {
   .services__payments__wrap {
-    width: 96vw;
-    max-width: 96vw;
+    max-width: 85vw;
   }
 }
 .services__payments {

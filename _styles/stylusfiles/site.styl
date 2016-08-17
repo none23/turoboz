@@ -1,4 +1,10 @@
 // mixins {{{
+AltBG()
+    background-image: url(/img/card.png) 
+    background-color: $turbo_darkblue
+    background-repeat: repeat 
+    background-blend-mode: hard-light
+
 SectionWidth()
     width: 85vw
     max-width: 900px
@@ -6,12 +12,11 @@ SectionWidth()
     margin: 1rem auto
 
     @media(max-width: 660px)
-        width: 90vw
+        width: 96vw
         max-width: @width
-        min-width: auto
+        min-width: 0
 
     @media(max-width: 480px)
-        width: 96vw
         max-width: @width
 
 Bullets()
@@ -208,19 +213,32 @@ textarea
     color: transparent
 
     .logo_gray
+    .logo_blue
+    .logo_brown
+        transition: all 0.5s ease-in-out
+
+    .logo_gray
         fill: $turbo_gray
+        transform-origin: 1.50rem 1.48rem
+        transform: rotate(360deg) scale(1.01)
+
     .logo_brown
         fill: $turbo_brown
+
     .logo_blue
         fill: $turbo_blue
+
     &:hover
     &:focus
         .logo_gray
-            fill: darken($turbo_gray, 20%)
+            fill: darken($turbo_gray, 30%)
+            transform: rotate(0deg) scale(0.98)
+
         .logo_brown
-            fill: $turbo_darkblue
+            fill: $turbo_blue
+
         .logo_blue
-            fill: $turbo_darkbrown
+            fill: $turbo_brown
 
 #site_logo__icon
     position: absolute
@@ -575,6 +593,7 @@ textarea
 .review_form__wrap
 .guide__wrap
 .full_tour__content__wrap
+.full_tour__form__wrap
     SectionWidth()
 
 // forms {{{
@@ -588,15 +607,13 @@ textarea
     width: 90%
     padding: 2% 5% 0
 
-
-#contact_form
+.contact_form
     border: $border
     border-radius: $border-radius
     margin: 1rem 0 
     background: white
     width: 90%
     padding: 2% 5% 0
-
 
 .form__field
     outline: $border
@@ -631,8 +648,8 @@ textarea
 .form__button
     background: white
 
-    form:hover &
-    form:focus &
+    .form:hover &
+    .form:focus &
         background: $turbo_blue
         color: white
 
@@ -692,9 +709,7 @@ textarea
 .news__section
     flex: 1 0 20rem
     box-shadow: inset 0 -3px 12px -6px $shadowy
-    background-image: url(/img/card.png)
-    background-color: $turbo_darkblue
-    background-blend-mode: hard-light
+    AltBG()
 
     .section_header
         font-size: 1.4rem
@@ -978,11 +993,11 @@ textarea
 // =========================================================================
 .full_tour__heading
     padding: 1.64rem 10% 6rem
-    background: $turbo_verylightblue
     margin-bottom: -5rem
     display: flex
     justify-content: space-between
     align-items: baseline
+    AltBG()
 
 .full_tour__date
     color: $turbo_darkblue
@@ -1026,10 +1041,42 @@ textarea
 .full_tour__content__wrap
     background: white
     border: $border
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    align-items: stretch
 
 .full_tour__intro__wrap
-    padding 1.7rem 2.8rem
+.full_tour__blueprint__wrap
+.full_tour__includes__wrap
+.full_tour__additional_fees__wrap
+.full_tour__will_learn__wrap
+.full_tour__details__wrap
+    margin-top: -3rem
+    padding: 1.75rem 2.75rem
     width: auto
+
+    @media(max-width: 660px)
+        padding 0.75rem 1.75rem
+
+.full_tour__intro__wrap
+.full_tour__details__wrap
+.full_tour__blueprint__wrap
+    flex: 1 1 100%
+
+.full_tour__includes__wrap
+.full_tour__additional_fees__wrap
+.full_tour__will_learn__wrap
+    flex: 1 1 35%
+
+.full_tour__intro__wrap
+    margin-top: 0
+
+.full_tour__blueprint__list__item
+.full_tour__includes__list__item
+.full_tour__additional_fees__list__item
+.full_tour__will_learn__list__item
+    Bullets()
 
 
 // /full_tour }}}
@@ -1052,11 +1099,8 @@ textarea
     overflow: hidden
     margin-bottom: -2rem 
     min-height: calc(100vh - 10rem)
-    background-image: url(/img/card.png)
-    background-repeat: repeat
-    background-blend-mode: hard-light
-    background-color: $turbo_darkblue
     box-shadow: 6px -3px 12px -10px $shadowy, inset 0px 6px 12px -10px $shadowy
+    AltBG()
 
 .tours_nav__section_header
     font-size: 1.1rem
@@ -1079,10 +1123,7 @@ textarea
     transition: all 0.4s ease-in-out
     will-change: transform
     //transform: translateX(20%)
-    background-image: url(/img/card.png)
-    background-color: $turbo_darkblue
-    background-blend-mode: hard-light
-    background-repeat: repeat
+    AltBG()
 
     &.minified
         .tours_nav__link
@@ -1121,7 +1162,7 @@ textarea
     height: 4rem
     width: @height
     margin: 0
-    padding: 0.51rem 50%
+    padding: 0.51rem 70% 0.51rem 50%
     margin:  0 auto
     fill: white
     background-color: $turbo_brown
@@ -1292,6 +1333,9 @@ textarea
         position: static
         flex: 1 1 $tour_card_width
 
+    .tours_nav
+        top 0
+
     .tours_nav.minified
     .tours_nav.hidden
         display: none
@@ -1311,7 +1355,10 @@ textarea
         display: block
 
     .tours_nav__section_header
-        color: transparent
+        display: none
+
+    .tours_nav__wrap
+        margin-top: 1rem
 
     .tours_nav
         position: static
@@ -1329,10 +1376,8 @@ textarea
     flex-direction: row
     justify-content: flex-end
     align-items: center
-    background-image: url(/img/card.png)
-    background-color: $turbo_lightblue
-    background-blend-mode: multiply
     box-shadow: inset 0 -3px 12px -6px $shadowy
+    AltBG()
 
 .services__summary
     margin 0 4rem
