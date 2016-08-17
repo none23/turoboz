@@ -3,16 +3,15 @@ section.about__wrap.guides__wrap
         | Наши экскурсоводы
     .guides
         | {% for g in page.guides %}
-        .guide__wrap
+        .guide
             .guide__img__wrap
                 img.guide__img(src='/img/{{ g.photo }}', alt='{{ g.name }}')
-            .guide__info
-                .guide__name
-                    | {{ g.name }}
-                .guide__resume
-                    | {% for paragraph in g.resume %}
-                    p.guide__resume__p
-                        | {{ paragraph }}
-                    | {% endfor %}
+            .guide__name
+                | {{ g.name }}
+            .guide__resume
+                | {% for paragraph in g.resume %}
+                p.guide__resume__p
+                    | {{ paragraph }}
+                | {% endfor %}
         | {% endfor %}
 
