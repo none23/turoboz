@@ -41,7 +41,17 @@ section.order_form__wrap
               name="theEmail",
               type="email",
               pattern=".*",
-              placeholder="your@mail.com",
+              placeholder="your@mail.com")
+
+        .form__input_group
+            .form__input_label
+                | Ваш номер телефона
+            input#call_back_form__phone.form__field(
+              name='thePhoneNumber',
+              title='Телефонный номер',
+              type='tel',
+              pattern='[0-9+-/s)(]{5,}',
+              placeholder='89876543210',
               required)
 
         button#order_form__button.form__button(type='submit')
