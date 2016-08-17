@@ -1,26 +1,31 @@
-section.review_form__wrap
+section.order_form__wrap
     h2.section_header
-       | Оставить отзыв
+       | Заказать тур
 
-    form#review_form.review_form.form(
+    form#order_form.order_form.form(
       role='form',
       action="https://formspree.io/{{ site.email }}",
       method='POST')
 
-        input#review_form__subject.hidden_field(
+        input#order_form__subject.hidden_field(
           name='_subject',
           type='hidden',
           value='Testimonial')
 
-        input#review_form__next.hidden_field(
+        input#order_form__next.hidden_field(
           name='_next',
           type='hidden',
           value='#TODO:form_submit_fallback')
         
+        input#order_form__next.hidden_field(
+          name='tour_title',
+          type='hidden',
+          value='{{ tttr.title }}')
+
         .form__input_group
             .form__input_label
                 | Ваше имя
-            input#review_form__name.form__field(
+            input#order_form__name.form__field(
               name='clientName',
               title='Имя',
               type='text',
@@ -31,7 +36,7 @@ section.review_form__wrap
         .form__input_group
             .form__input_label
                 | Ваш email
-            input#review_form__mail.form__field(
+            input#order_form__mail.form__field(
               title="Электронная  почта",
               name="theEmail",
               type="email",
@@ -39,17 +44,7 @@ section.review_form__wrap
               placeholder="your@mail.com",
               required)
 
-        .form__input_group
-            .form__input_label
-                | Ваш отзыв
-            textarea#review_form__question.form__field.form__field--large(
-              title="Вопрос",
-              name="theQuestion",
-              type="text",
-              pattern=".{8,}",
-              required)
-
-        button#review_form__button.form__button(type='submit')
-           | Отправить отзыв
+        button#order_form__button.form__button(type='submit')
+           | Заказать
 
 

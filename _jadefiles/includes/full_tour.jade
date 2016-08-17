@@ -63,7 +63,7 @@ include ../mixins.jade
             | Дополнительно оплачиваемые услуги:
         ul.full_tour__additional_fees__list
             | {% for item in tttr.additional_fees %}
-            li.full_tour__additional_fee
+            li.full_tour__additional_fees__list__item
                 | {{ item }}
             | {% endfor %}
     | {% endif %}
@@ -80,7 +80,8 @@ include ../mixins.jade
         | {% endfor %}
     | {% endif %}
     //- /will_learn }}}
-    footer.full_tour__tags
+    //- tags {{{
+    .full_tour__tags
         | {% for item in tttr.tags %}
         span.full_tour__tag
             | {% for tag in site.data.tags %}
@@ -95,3 +96,8 @@ include ../mixins.jade
             | {% endif %}
             | {% endfor %}
         | {% endfor %}
+    //- /tags }}}
+//- form {{{
+.full_tour__form__wrap.order_form__wrap
+    include order_form.jade
+//- /form }}}
