@@ -645,6 +645,7 @@ textarea {
 .review_form__wrap,
 .guides__wrap,
 .full_tour__content__wrap,
+.full_post__content__wrap,
 .full_tour__form__wrap {
   width: 85vw;
   max-width: 900px;
@@ -661,6 +662,7 @@ textarea {
   .review_form__wrap,
   .guides__wrap,
   .full_tour__content__wrap,
+  .full_post__content__wrap,
   .full_tour__form__wrap {
     width: 96vw;
     max-width: 96vw;
@@ -677,6 +679,7 @@ textarea {
   .review_form__wrap,
   .guides__wrap,
   .full_tour__content__wrap,
+  .full_post__content__wrap,
   .full_tour__form__wrap {
     max-width: 85vw;
   }
@@ -687,15 +690,6 @@ textarea {
   border-radius: 0.125rem;
   margin: 1rem 0;
   background: #fff;
-  width: 90%;
-  padding: 2% 5% 0;
-}
-.contact_form {
-  border: 0.063rem solid #9dcde1;
-  border-radius: 0.125rem;
-  margin: 1rem 0;
-  background: #fff;
-  width: 90%;
   padding: 2% 5% 0;
 }
 .form__field {
@@ -1099,9 +1093,10 @@ textarea {
   border-bottom: 0.32rem solid transparent;
   border-left: 0.5rem solid #68a9c4;
 }
-.full_tour__heading {
-  padding: 1.64rem 10% 6rem;
-  margin-bottom: -5rem;
+.full_tour__heading,
+.full_post__heading {
+  padding: 1.64rem 10% 40vh;
+  margin-bottom: -35vh;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -1110,10 +1105,12 @@ textarea {
   background-repeat: repeat;
   background-blend-mode: hard-light;
 }
-.full_tour__date {
+.full_tour__date,
+.full_post__date {
   color: #26637d;
 }
-.full_tour__title {
+.full_tour__title,
+.full_post__title {
   font-size: 2rem;
   line-height: 1.2;
 }
@@ -1121,7 +1118,8 @@ textarea {
   font-size: 1.6rem;
 }
 .full_tour__subtitle,
-.full_tour__date {
+.full_tour__date,
+.full_post__date {
   margin-left: 1rem;
 }
 .full_tour__len {
@@ -1148,7 +1146,8 @@ textarea {
   text-align: right;
   margin-right: 1rem;
 }
-.full_tour__content__wrap {
+.full_tour__content__wrap,
+.full_post__content__wrap {
   background: #fff;
   border: 0.063rem solid #9dcde1;
   display: flex;
@@ -1161,7 +1160,9 @@ textarea {
 .full_tour__includes__wrap,
 .full_tour__additional_fees__wrap,
 .full_tour__will_learn__wrap,
-.full_tour__details__wrap {
+.full_tour__details__wrap,
+.full_post__summary,
+.full_post__body {
   margin-top: -3rem;
   padding: 1.75rem 2.75rem;
   width: auto;
@@ -1172,9 +1173,24 @@ textarea {
   .full_tour__includes__wrap,
   .full_tour__additional_fees__wrap,
   .full_tour__will_learn__wrap,
-  .full_tour__details__wrap {
+  .full_tour__details__wrap,
+  .full_post__summary,
+  .full_post__body {
     padding: 0.75rem 1.75rem;
   }
+}
+.full_post__summary {
+  margin-top: 0;
+}
+.full_post__img__wrap {
+  overflow: hidden;
+  max-width: 25rem;
+  max-height: 25rem;
+}
+.full_post__img__wrap,
+.full_post__summary,
+.full_post__body {
+  float: left;
 }
 .full_tour__intro__wrap,
 .full_tour__details__wrap,

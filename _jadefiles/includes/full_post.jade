@@ -1,0 +1,16 @@
+include ../mixins.jade
+
+.full_post__heading
+    .full_post__heading__left
+        .full_post__date
+              +LiquidRussianDateLite('{{page.date}}')
+          h1.full_post__title
+              | {{ page.title }}
+.full_post__content__wrap
+    .full_post__summary
+        | {{ page.summary }}
+    .full_post__img__wrap
+        img.full_post__image(src='/img/{{ page.image }}', alt='{{ page.title }}')
+    .full_post__body
+        | {{ content }}
+

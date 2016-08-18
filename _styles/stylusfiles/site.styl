@@ -593,6 +593,7 @@ textarea
 .review_form__wrap
 .guides__wrap
 .full_tour__content__wrap
+.full_post__content__wrap
 .full_tour__form__wrap
     SectionWidth()
 
@@ -604,16 +605,8 @@ textarea
     border-radius: $border-radius
     margin: 1rem 0 
     background: white
-    width: 90%
     padding: 2% 5% 0
 
-.contact_form
-    border: $border
-    border-radius: $border-radius
-    margin: 1rem 0 
-    background: white
-    width: 90%
-    padding: 2% 5% 0
 
 .form__field
     outline: $border
@@ -1001,17 +994,20 @@ textarea
 // full_tour {{{
 // =========================================================================
 .full_tour__heading
-    padding: 1.64rem 10% 6rem
-    margin-bottom: -5rem
+.full_post__heading
+    padding: 1.64rem 10% 40vh
+    margin-bottom: -35vh
     display: flex
     justify-content: space-between
     align-items: baseline
     AltBG()
 
 .full_tour__date
+.full_post__date
     color: $turbo_darkblue
 
 .full_tour__title
+.full_post__title
     font-size: 2rem
     line-height: 1.2
 
@@ -1020,6 +1016,7 @@ textarea
 
 .full_tour__subtitle
 .full_tour__date
+.full_post__date
     margin-left: 1rem
 
 .full_tour__len
@@ -1048,6 +1045,7 @@ textarea
     margin-right: 1rem
 
 .full_tour__content__wrap
+.full_post__content__wrap
     background: white
     border: $border
     display: flex
@@ -1061,12 +1059,27 @@ textarea
 .full_tour__additional_fees__wrap
 .full_tour__will_learn__wrap
 .full_tour__details__wrap
+.full_post__summary
+.full_post__body
     margin-top: -3rem
     padding: 1.75rem 2.75rem
     width: auto
 
     @media(max-width: 660px)
         padding 0.75rem 1.75rem
+
+.full_post__summary
+    margin-top: 0
+
+.full_post__img__wrap
+    overflow: hidden
+    max-width: 25rem
+    max-height: @max-width
+
+.full_post__img__wrap
+.full_post__summary
+.full_post__body
+    float left
 
 .full_tour__intro__wrap
 .full_tour__details__wrap

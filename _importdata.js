@@ -218,15 +218,18 @@ function getDates(auth) {
         var excelTimeNow = Math.floor(unixTimeNow / 86400 + 25569);
         var items = [];
         for (var k = 1; k < row.length; k++) {
-            if(row[k] >= excelTimeNow){
+            if(row[k] > excelTimeNow){
                 items.push(row[k]);
-            }
+            } else {
+                 console.log(row[k]);
+                 console.log(excelTimeNow);
+             }
         }
+        all_tours[i].dates = items;
         upcoming_tours.push({
             "key": rowId,
             "val": items[0]
         });
-        all_tours[i].dates = items;
       }
       //console.log(all_tours);
       console.log('/dat');
@@ -421,7 +424,7 @@ function getBlueprint(auth) {
   });
 }
 // }}}
- 
+
 
 // Save data to file {{{
 function saveJSON() {

@@ -9,7 +9,7 @@ section.posts__wrap
                 img.post__image(src='/img/{{ post.image }}', alt='{{ post.title | smartify }}')
             .post__content__wrap
                 .post__date
-                    +LiquidRussianDate('post.date')
+                    +LiquidRussianDateLite('post.date')
 
                 a.post__link(href='{{ post.url }}')
                     h3.post__title
