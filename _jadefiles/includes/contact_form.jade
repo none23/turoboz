@@ -17,7 +17,7 @@ section#contact_form__wrap.contact_form__wrap
           value='#TODO:form_submit_fallback')
         
         .form__input_group
-            .form__input_label
+            label.form__input_label(for='clientName')
                 | Как к Вам обращаться?
             input#contact_form__name.form__field(
               name='clientName',
@@ -29,7 +29,7 @@ section#contact_form__wrap.contact_form__wrap
               )
         
         .form__input_group
-            .form__input_label
+            label.form__input_label(for='theEmail')
                 | Ваш email
             input#contant_form__mail.form__field(
               title="Электронная  почта",
@@ -41,7 +41,7 @@ section#contact_form__wrap.contact_form__wrap
               )
 
         .form__input_group
-            .form__input_label
+            label.form__input_label(for='theQuestion)
                 | Ваш вопрос
             textarea#contact_form__question.form__field.form__field--large(
               title="Вопрос",
