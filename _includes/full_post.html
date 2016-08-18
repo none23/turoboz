@@ -1,0 +1,18 @@
+<div class="full_post__heading"><div class="full_post__heading__left"><div class="full_post__date">{% assign unixdate = {{page.date}} %}
+{% assign m = unixdate | date: "%-m" %}
+{{ unixdate | date: "%-d" }}
+{% case m %} 
+{% when '1' %}января
+{% when '2' %}февраля
+{% when '3' %}марта
+{% when '4' %}апреля
+{% when '5' %}мая
+{% when '6' %}июня
+{% when '7' %}июля
+{% when '8' %}августа
+{% when '9' %}сентября
+{% when '10' %}октября
+{% when '11' %}ноября
+{% when '12' %}декабя
+{% endcase %} 
+{{ unixdate | date: "%Y" }}</div><h1 class="full_post__title">{{ page.title }}</h1></div></div><div class="full_post__content__wrap"><div class="full_post__summary">{{ page.summary }}</div><div class="full_post__img__wrap"><img src="/img/{{ page.image }}" alt="{{ page.title }}" class="full_post__image"/></div><div class="full_post__body">{{ content }}</div></div>

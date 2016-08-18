@@ -1,4 +1,4 @@
-<section class="posts__wrap"><h2 class="section_header">Новости и спецпредложения</h2><ul class="posts__list">{% for post in site.news %}<li class="post__wrap"><div class="post__image__wrap"><img src="/img/{{ post.image }}" alt="{{ post.title | smartify }}" class="post__image"/></div><div class="post__content__wrap"><div class="post__date">{% assign unixdate = post.date | round | minus:25569 | times:86400 %}
+<section class="posts__wrap"><h2 class="section_header">Новости и спецпредложения</h2><ul class="posts__list">{% for post in site.news %}<li class="post__wrap"><div class="post__image__wrap"><img src="/img/{{ post.image }}" alt="{{ post.title | smartify }}" class="post__image"/></div><div class="post__content__wrap"><div class="post__date">{% assign unixdate = post.date %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %} 
