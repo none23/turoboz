@@ -20,7 +20,7 @@ section.order_form__wrap
         input#order_form__next.hidden_field(
           name='tour_title',
           type='hidden',
-          value='{{ tttr.title }}')
+          value='{{ currentTour.title }}')
 
         .form__input_group
             label.form__input_label(for='clientName')

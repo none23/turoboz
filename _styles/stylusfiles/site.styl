@@ -1,14 +1,17 @@
 // mixins {{{
 AltBG()
+    //--{{{
     background-image: url(/img/card.png) 
     background-color: $turbo_darkblue
     background-repeat: repeat 
     background-blend-mode: hard-light
+    //--}}}
 
 SectionWidth()
+    //--{{{
     width: 85vw
-    max-width: 900px
-    min-width: 500px
+    max-width: 56.25rem
+    min-width: 31.25rem
     margin: 1rem auto
 
     @media(max-width: 660px)
@@ -18,8 +21,10 @@ SectionWidth()
 
     @media(max-width: 480px)
         max-width: @width
+    //--}}}
 
 Bullets()
+    //--{{{
     margin: 0 1rem 1rem 2rem
     position: relative
     &:before
@@ -33,7 +38,28 @@ Bullets()
         background: transparent
         border-top: 0.32rem solid transparent 
         border-bottom: 0.32rem solid transparent 
-        border-left: 0.5rem solid mix($turbo_lightblue,$turbo_blue)
+        border-left: 0.5rem solid $turbo_mixblue
+        transition: all 0.2s ease-in-out
+        transform: translateX(10%)
+    &:hover:before
+    &:focus:before
+        border-left: 0.5rem solid $turbo_darkblue
+        transform: translateX(0%)
+    //--}}}
+
+textLink(Color=$turbo_blue, ColorUnderline=$turbo_mixblue, Flag=false) 
+    //--{{{
+    color: Color
+    line-height: 1
+    border-bottom: solid 0.063rem ColorUnderline
+
+    unless Flag==nohover
+        &:hover
+        &:focus
+            color: $turbo_brown
+            border-bottom: 0.063rem solid $turbo_brown
+    //--}}}
+
 // /mixins }}}
 // vars {{{
 // =========================================================================
@@ -64,6 +90,7 @@ $turbo_darkblue = hsl(198, 53%, 32%)
 $turbo_blue = hsl(198, 53%, 43%)
 $turbo_lightblue = hsl(198, 53%, 75%)
 $turbo_verylightblue = hsl(198, 13%, 92%)
+$turbo_mixblue = mix($turbo_lightblue, $turbo_blue) 
 $turbo_gray = hsl(30, 1%, 44%)
 $shadowy = hsl(0, 0, 20%, 0.4)
 $body_fg = $turbo_darkbrown
@@ -91,6 +118,52 @@ $modal_form_close_fg = maroon
 $modal_form_button_bg = $turbo_blue
 $modal_form_button_fg = white
 
+// keyframes {{{
+@keyframes logo_animate_gray
+    0%
+        transform: rotate(0deg) scale(1)
+    25%
+        transform: rotate(180deg) scale(1.01)
+    50%
+        transform: rotate(359deg) scale(1.02)
+    75%
+        transform: rotate(540deg) scale(1.01)
+    100%
+        transform: rotate(720deg) scale(1)
+        fill: darken($turbo_gray, 30%)
+
+@keyframes logo_animate_blue
+    0%
+        fill: $turbo_blue
+    17%
+        fill: $turbo_darkblue
+    33%
+        fill: $turbo_darkbrown
+    50%
+        fill: $turbo_brown
+    67%
+        fill: $turbo_darkbrown
+    84%
+        fill: $turbo_darkblue
+    100%
+        fill: $turbo_blue
+
+@keyframes logo_animate_brown
+    0%
+        fill: $turbo_brown
+    17%
+        fill: $turbo_darkbrown
+    33%
+        fill: $turbo_darkblue
+    50%
+        fill: $turbo_blue
+    67%
+        fill: $turbo_darkblue
+    84%
+        fill: $turbo_darkbrown
+    100%
+        fill: $turbo_brown
+// /keyframes }}}
 // /vars }}}
 // base {{{
 // =========================================================================
@@ -199,8 +272,8 @@ textarea
     background-blend-mode: lighten
     background-image: url(/img/noise.png) 
     background-repeat: repeat
-    box-shadow: 0 0 12px -4px $shadowy
-    border-bottom: 1px solid $turbo_lightblue
+    box-shadow: 0 0 0.75rem -0.25rem $shadowy
+    border-bottom: 0.063rem solid $turbo_lightblue
 
 // logo {{{
 // ------------------------------------------------------------------------
@@ -213,14 +286,7 @@ textarea
     color: transparent
 
     .logo_gray
-    .logo_blue
-    .logo_brown
-        transition: all 0.5s ease-in-out
-
-    .logo_gray
         fill: $turbo_gray
-        transform-origin: 1.50rem 1.48rem
-        transform: rotate(360deg) scale(1.01)
 
     .logo_brown
         fill: $turbo_brown
@@ -228,17 +294,16 @@ textarea
     .logo_blue
         fill: $turbo_blue
 
-    &:hover
-    &:focus
-        .logo_gray
-            fill: darken($turbo_gray, 30%)
-            transform: rotate(0deg) scale(0.98)
-
-        .logo_brown
-            fill: $turbo_blue
-
-        .logo_blue
-            fill: $turbo_brown
+    #site_logo__icon
+        &:hover
+        &:focus
+            .logo_gray
+                transform-origin: 1.50rem 1.48rem
+                animation: logo_animate_gray linear 2s infinite
+            .logo_brown
+                animation: logo_animate_brown linear 2s infinite
+            .logo_blue
+                animation: logo_animate_blue linear 2s infinite
 
 #site_logo__icon
     position: absolute
@@ -312,7 +377,7 @@ textarea
     transition: transform 0.2s ease-in-out
     z-index: 1002
     background: $header_form_bg
-    box-shadow: 0 4px 12px -6px $shadowy
+    box-shadow: 0 0.25rem 0.75rem -0.325rem $shadowy
     border: $border
     border-radius: 0.1875rem
     border-radius: $border-radius * 1.5
@@ -378,7 +443,7 @@ textarea
     &:hover
     &:focus
     &.active
-        box-shadow: 0 1px 3px -1px $shadowy
+        box-shadow: 0 0.063rem 0.188rem -0.063rem $shadowy
         
 
 // desktop_nav {{{
@@ -401,7 +466,7 @@ textarea
     display: none
     position: absolute
     right: 0
-    left: calc(100% - 300px)
+    left: calc(100% - 18.75rem)
     top: $site_header_height
     border-radius: 0 0 $border-radius $border-radius
     z-index: 999
@@ -413,7 +478,7 @@ textarea
     transform-origin: 100% 0
     will-change: transform
     transition: transform 0.3s ease-in-out
-    box-shadow: 0 1px 14px -4px $shadowy
+    box-shadow: 0 0.063rem 0.875rem -0.25rem $shadowy
 
     .site_header__phone,
     .site_header__call_back
@@ -425,13 +490,13 @@ textarea
 
     .site_header__phone
         margin-top: 2rem
-        border-top: 1px solid $site_contacts_phone_fg
+        border-top: 0.063rem solid $site_contacts_phone_fg
 
     .site_header__vk_button
         height: 2.8rem
         fill: white
         background: $turbo_blue
-        padding: 0.1rem calc((300px - 2.8rem) * 0.5)
+        padding: 0.1rem 7.975rem
 
     .site_header__phone,
     .site_header__call_back,
@@ -522,7 +587,7 @@ textarea
     background-blend-mode: color-dodge
     color: $site_footer_fg 
     margin-top: 2rem
-    box-shadow: 0px 0px 12px -1px $shadowy 
+    box-shadow: 0 0 0.75rem -0.063rem $shadowy 
 
 .f__contact,
 .f__corner_box
@@ -673,7 +738,7 @@ textarea
 // heading {{{
 .main__heading__section
     flex: 5 1 36rem
-    min-height: 420px
+    min-height: 26.25rem
     display: flex
     flex-direction: row
     justify-content: center
@@ -701,7 +766,7 @@ textarea
 // news {{{
 .news__section
     flex: 1 0 20rem
-    box-shadow: inset 0 -3px 12px -6px $shadowy
+    box-shadow: inset 0 -0.188rem 0.75rem -0.375rem $shadowy
     AltBG()
 
     .section_header
@@ -722,7 +787,7 @@ textarea
 // ------------------------------------------------------------------------
 .upcoming_events__wrap
     width: 95vw
-    max-width: 1100px
+    max-width: 68.75rem
     margin: 1rem auto
 
 .upcoming_events__list
@@ -737,7 +802,7 @@ textarea
     flex: 1 0 14rem
     border: $border
     border-radius: $border-radius
-    margin: 0.5rem 5px
+    margin: 0.5rem 0.313rem
     display: flex
     flex-direction: column
     justify-content: space-between
@@ -877,7 +942,7 @@ textarea
         transform: scale(0.95)
 
 .post__image__wrap
-    flex 1 1 350px
+    flex 1 1 21.875rem
     line-height: 0
 
 .post__image
@@ -908,7 +973,7 @@ textarea
 @media(max-width: 1079px)
     .upcoming_events__wrap
         width: 75vw
-        min-width: 540px
+        min-width: 33.75rem
 
     .upcoming_events__list
         flex-wrap: wrap
@@ -919,8 +984,8 @@ textarea
 @media(max-width: 619px)
     .upcoming_events__wrap
         width: 95vw
-        max-width: 600px
-        min-width: 200px
+        max-width: 37.5rem
+        min-width: 12.5rem
 
     .event__wrap
         flex: 1 0 45%
@@ -997,7 +1062,7 @@ textarea
     Bullets()
 
 // /about }}}
-// full_tour {{{
+// full_tour/post {{{
 // =========================================================================
 .full_tour__heading
 .full_post__heading
@@ -1008,6 +1073,59 @@ textarea
     flex-wrap: nowrap
     align-items: baseline
     AltBG()
+
+.full_tour__breadcrumbs
+    flex: 0 0 3rem
+    margin: -1rem 0 0 -5rem
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+
+.full_tour__breadcrumb
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: center
+    margin: 0 0.5rem
+
+.full_tour__breadcrumb__label
+    textLink($turbo_blue, $turbo_mixblue, nohover)
+
+.full_tour__breadcrumb--top
+    order:-1
+    margin-right: 1.5rem
+
+.full_tour__breadcrumb--subtag
+    order:2
+    margin-left: 1.5rem
+    margin-right: -1rem
+
+    .full_tour__breadcrumb__label
+        textLink($turbo_mixblue, $turbo_mixblue, nohover)
+
+    &:first-of-type
+        background-color: red
+        &:before
+            content: '<<'
+
+.full_tour__breadcrumb__icon
+    flex: 0 0 3rem
+    display: block
+    width: 3rem
+    height: @width
+
+.full_tour__breadcrumb__icon__svg
+    fill: $turbo_blue
+
+.full_tour__breadcrumb
+    transition: all 0.3s ease-in-out
+    &:hover
+    &:focus 
+        .full_tour__breadcrumb__icon__svg
+            fill: $turbo_brown
+
+        .full_tour__breadcrumb__label
+            textLink($turbo_brown, $turbo_brown, nohover)
 
 .full_tour__date
 .full_post__date
@@ -1113,9 +1231,11 @@ textarea
     max-width: 25rem
     overflow: hidden
 
+.full_post__content__wrap
+    li 
+        Bullets()
 
-
-// /full_tour }}}
+// /full_tour/post }}}
 // tours {{{
 // =========================================================================
 .tours__wrap
@@ -1135,7 +1255,7 @@ textarea
     overflow: hidden
     margin-bottom: -2rem 
     min-height: calc(100vh - 10rem)
-    box-shadow: 6px -3px 12px -10px $shadowy, inset 0px 6px 12px -10px $shadowy
+    box-shadow: 0.325rem -0.188rem 0.75rem -0.625rem $shadowy, inset 0 0.325rem 0.75rem -0.625rem $shadowy
     AltBG()
 
 .tours_nav__section_header
@@ -1231,7 +1351,7 @@ textarea
     flex 0 0 $tour_card_width
     height: $tour_card_height
     position: relative
-    z-index: 5
+    z-index: 501
     margin: 0.1rem
     transition: all 0.3s ease-in-out
     will-change: transform
@@ -1412,7 +1532,7 @@ textarea
     flex-direction: row
     justify-content: flex-end
     align-items: center
-    box-shadow: inset 0 -3px 12px -6px $shadowy
+    box-shadow: inset 0 -0.188rem 0.75rem -0.325rem $shadowy
     AltBG()
 
 .services__summary
