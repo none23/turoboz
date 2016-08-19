@@ -1,19 +1,51 @@
 include ../mixins.jade
 | {% assign newid = page.id | remove: 'tours' | remove: '/'%}
-| {% assign tttr = site.data.tours[newid] %}
+| {% assign currentTour = site.data.tours[newid] %}
 .full_tour__heading
     .full_tour__heading__left
+        //- breadcrumbs {{{
+        .full_tour__breadcrumbs
+            a.full_tour__breadcrumb.full_tour__breadcrumb--top(href='/tours')
+                .full_tour__breadcrumb__icon
+                    +iconArrowBack('full_tour__breadcrumb__icon__svg')
+                .full_tour__breadcrumb__label
+                    | К списку экскурсий
+
+            | {% for item in currentTour.tags %}
+            | {% for tag in site.data.tags %}
+            | {% if tag.tag == item %}
+            a.full_tour__breadcrumb(href='{{ tag.url }}')
+                .full_tour__breadcrumb__label
+                    | {{ tag.title }}
+            | {% elsif tag.subtags%}
+            | {% for subtag in tag.subtags %}
+            | {% if subtag.subtag == item %}
+            a.full_tour__breadcrumb.full_tour__breadcrumb--subtag(href='{{ subtag.url }}')
+                .full_tour__breadcrumb__label
+                    | {{ subtag.title }}
+            | {% endif %}
+            | {% endfor %}
+            | {% endif %}
+            | {% endfor %}
+            | {% endfor %}
+        //- /breadcrumbs }}}
+
         .full_tour__date
-            +LiquidRussianDate('tttr.dates[0]')
+            +LiquidRussianDate('currentTour.dates[0]')
+
         h1.full_tour__title
-            | {{ tttr.title }}
+            | {{ currentTour.title }}
+
         .full_tour__subtitle
-            | {{ tttr.subtitle }}
+            | {{ currentTour.subtitle }}
+
     .full_tour__heading__right
+
         .full_tour__len
-            | {{ tttr.length }}
+            | {{ currentTour.length }}
+
         .full_tour__prices
-            | {% for item in tttr.prices %}
+            | {% for item in currentTour.prices %}
             | {{ item }}
             | {% endfor %}
 
@@ -21,17 +53,17 @@ include ../mixins.jade
     //- introduction {{{
     section.full_tour__intro__wrap
         p.full_tour__intro
-            | {{ tttr.intro }}
+            | {{ currentTour.intro }}
         p.full_tour__summary
-            | {{ tttr.summary }}
+            | {{ currentTour.summary }}
     //- /introduction }}}
     //- blueprint {{{
-    | {% if tttr.blueprint[0] > '' %}
+    | {% if currentTour.blueprint[0] > '' %}
     section.full_tour__blueprint__wrap
         h2.section_header
             | Программа:
         ul.full_tour__blueprint__list
-            | {% for item in tttr.blueprint %}
+            | {% for item in currentTour.blueprint %}
             li.full_tour__blueprint__list__item
                 | {{ item }}
             | {% endfor %}
@@ -42,61 +74,44 @@ include ../mixins.jade
         h2.section_header
             | в стоимость входят:
         ul.full_tour__includes__list
-            | {% for item in tttr.includes %}
+            | {% for item in currentTour.includes %}
             li.full_tour__includes__list__item
                 | {{ item }}
             | {% endfor %}
     //- /includes }}}
     //- details {{{
-    | {% if tttr.details[0] > '' %}
+    | {% if currentTour.details[0] > '' %}
     section.full_tour__details__wrap
-        | {% for d in tttr.details %}
+        | {% for d in currentTour.details %}
         p.full_tour__details
             | {{ d }}
         | {% endfor %}
     | {% endif %}
     //- /details }}}
     //- additional_fees {{{
-    | {% if tttr.additional_fees[0] > '' %}
+    | {% if currentTour.additional_fees[0] > '' %}
     section.full_tour__additional_fees__wrap
         h2.section_header
             | Дополнительно оплачиваемые услуги:
         ul.full_tour__additional_fees__list
-            | {% for item in tttr.additional_fees %}
+            | {% for item in currentTour.additional_fees %}
             li.full_tour__additional_fees__list__item
                 | {{ item }}
             | {% endfor %}
     | {% endif %}
     //- /additional_fees }}}
     //- will_learn {{{
-    | {% if tttr.will_learn[0] > '' %}
+    | {% if currentTour.will_learn[0] > '' %}
     section.full_tour__will_learn__wrap
         h2.section_header
             | Вы узнаете:
         ul.full_tour__will_learn_list
-            | {% for item in tttr.will_learn %}
+            | {% for item in currentTour.will_learn %}
         li.full_tour__will_learn__list__item
             | {{ item }}
         | {% endfor %}
     | {% endif %}
     //- /will_learn }}}
-    //- tags {{{
-    .full_tour__tags
-        | {% for item in tttr.tags %}
-        span.full_tour__tag
-            | {% for tag in site.data.tags %}
-            | {% if tag.tag == item %}
-            | {{ tag.title }}
-            | {% elsif tag.subtags%}
-            | {% for subtag in tag.subtags %}
-            | {% if subtag.subtag == item %}
-            | {{ subtag.title }}
-            | {% endif %}
-            | {% endfor %}
-            | {% endif %}
-            | {% endfor %}
-        | {% endfor %}
-    //- /tags }}}
 //- form {{{
 .full_tour__form__wrap.order_form__wrap
     include order_form.jade

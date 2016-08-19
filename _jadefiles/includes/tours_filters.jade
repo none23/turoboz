@@ -1,3 +1,5 @@
+include ../mixins.jade
+
 mixin ToursNavPrimary()
     | {% for nptag in site.data.tags %}
     a(href='{{ nptag.url }}', class='tours_nav__link {% if page.url contains nptag.url %}active{% endif %}', id='{% if nptag.subtags %}opens--{{ nptag.tag }}{% endif %}')
@@ -6,9 +8,7 @@ mixin ToursNavPrimary()
 
 mixin ToursNavSecondary(tAgg)
     a.tours_nav__link--back(href='../') 
-        svg(viewbox='0 0 20 20')
-            title назад
-            path.tours_nav__link--back__svg(d='M2.5,10L9,3.5V7h8v6H9v3.5L2.5,10z')
+        +iconArrowBack('tours_nav__link--back__svg')
     | {% for nssubtag in #{tAgg}.subtags %}
     a(href='{{ nssubtag.url }}', class='tours_nav__link {% if page.url contains nssubtag.url %}active{% endif %}')
         | {{ nssubtag.title }}

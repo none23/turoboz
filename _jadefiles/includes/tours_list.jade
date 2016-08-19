@@ -1,26 +1,27 @@
 include ../mixins.jade
 //-- tour {{{
 mixin Tour()
-        li.tour__wrap
+        li.tour__wrap(itemscope='', itemtype='http://schema.org/Event')
             .tour__fixed
                 .tour__image__wrap
-                    img.tour__image(src='/img/{{ tour.imgpath }}', alt='{{ tour.title }}')
-                .tour__date
+                    img.tour__image(itemprop='image', src='/img/{{ tour.imgpath }}', alt='{{ tour.title }}')
+                .tour__date(itemprop='startDate', content='{{ tour.dates[0] | date: "%d-%m-%Y" }}')
                     +LiquidRussianDate('tour.dates[0]')
-                h3.tour__title
+                h3.tour__title(itemprop='name')
                     | {{ tour.title }} 
                     | {{ tour.subtitle }} 
-                a.tour__link(href='/tours/{{ tour.tour }}')
+                a.tour__link(itemprop='url', href='/tours/{{ tour.tour }}')
                     | Подробнее
 
             .tour__moving
                 .tour__length
                     | Продолжительность:
                     | {{ tour.length }}
-                p.tour__intro
-                    | {{ tour.intro }}
-                p.tour__summary
-                    | {{ tour.summary }}
+                .tour__description(itemscope='description')
+                    p.tour__intro
+                        | {{ tour.intro }}
+                    p.tour__summary
+                        | {{ tour.summary }}
 
 //--/tour }}}
 //-- tours__list {{{
