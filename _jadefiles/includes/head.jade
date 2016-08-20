@@ -9,7 +9,7 @@ meta(name='description', content='{% if page.excerpt %}{{ page.excerpt | strip_h
 link(rel='stylesheet', href='/css/site.css')
 link(rel='icon', href='favicon.ico')
 link(rel='canonical', href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}")
-//-- prerender_tours_pages -----------------------------------------------{{{
+//-- prerender -----------------------------------------------{{{
 | {% if page.url contains '/tours/' %}
 | {%     if page.url == '/tours/' %}
 //-- all tours page {{{
@@ -52,4 +52,9 @@ link(rel='prerender prefetch', href='{{ subtag.url }}')
 link(rel='prerender prefetch', href='/tours')
 //-- /not in tours }}}
 | {% endif %}
-//-- /prerender_tours_pages -----------------------------------------------}}}
+//-- always_prerender {{{
+link(rel='prerender prefetch', href='/about')
+link(rel='prerender prefetch', href='/contact')
+link(rel='prerender prefetch', href='/testimonials')
+//-- /always_prerender }}}
+//-- /prerender -----------------------------------------------}}}
