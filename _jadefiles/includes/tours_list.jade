@@ -1,17 +1,4 @@
 include ../mixins.jade
-//-- tour__data {{{
-mixin TourData()
-    script(type='application/ld+json')
-        | {
-        | "@context" : "http://schema.org",
-        | "@type" : "Event",
-        | "name" : "{{ tour.title }}. {{ tour.subtitle }}",
-        | "startDate" : "{{ tour.dates[0] | date: '%Y-%d-%m' }}",
-        | "image" : "src='/img/{{ tour.imgpath }}', alt='{{ tour.title }}')",
-        | "description" : "{{ tour.intro }} {{ tour.summary }}",
-        | "url" : "/tours/{{ tour.tour }}"
-        | }
-//--/tour__data }}}
 //-- tour {{{
 mixin Tour()
         li.tour__wrap
@@ -34,7 +21,6 @@ mixin Tour()
                     | {{ tour.intro }}
                 p.tour__summary
                     | {{ tour.summary }}
-            +TourData()
 
 //--/tour }}}
 //-- tours__list {{{

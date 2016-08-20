@@ -20,15 +20,7 @@
 {% endcase %} 
 {{ unixdate | date: "%Y" }}</div><h3 class="tour__title">{{ tour.title }} 
 {{ tour.subtitle }} </h3><a href="/tours/{{ tour.tour }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
-{{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div><script type="application/ld+json">{
-"@context" : "http://schema.org",
-"@type" : "Event",
-"name" : "{{ tour.title }}. {{ tour.subtitle }}",
-"startDate" : "{{ tour.dates[0] | date: '%Y-%d-%m' }}",
-"image" : "src='/img/{{ tour.imgpath }}', alt='{{ tour.title }}')",
-"description" : "{{ tour.intro }} {{ tour.summary }}",
-"url" : "/tours/{{ tour.tour }}"
-}</script></li>{% endfor %}</ul>{% else %}
+{{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div></li>{% endfor %}</ul>{% else %}
  {% for tag in site.data.tags %}
   {% if purl == tag.url %}<ul class="tours__list">{% for tt in site.tours %}
 {% assign ttt = tt.id | remove: 'tours' | remove: '/' %}
@@ -52,15 +44,7 @@
 {% endcase %} 
 {{ unixdate | date: "%Y" }}</div><h3 class="tour__title">{{ tour.title }} 
 {{ tour.subtitle }} </h3><a href="/tours/{{ tour.tour }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
-{{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div><script type="application/ld+json">{
-"@context" : "http://schema.org",
-"@type" : "Event",
-"name" : "{{ tour.title }}. {{ tour.subtitle }}",
-"startDate" : "{{ tour.dates[0] | date: '%Y-%d-%m' }}",
-"image" : "src='/img/{{ tour.imgpath }}', alt='{{ tour.title }}')",
-"description" : "{{ tour.intro }} {{ tour.summary }}",
-"url" : "/tours/{{ tour.tour }}"
-}</script></li>  {% endif %}
+{{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div></li>  {% endif %}
 {% endfor %}{% endfor %}</ul>  {% endif %}
   {% if tag.subtags %}
    {% for subtag in tag.subtags %}
@@ -86,15 +70,7 @@
 {% endcase %} 
 {{ unixdate | date: "%Y" }}</div><h3 class="tour__title">{{ tour.title }} 
 {{ tour.subtitle }} </h3><a href="/tours/{{ tour.tour }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
-{{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div><script type="application/ld+json">{
-"@context" : "http://schema.org",
-"@type" : "Event",
-"name" : "{{ tour.title }}. {{ tour.subtitle }}",
-"startDate" : "{{ tour.dates[0] | date: '%Y-%d-%m' }}",
-"image" : "src='/img/{{ tour.imgpath }}', alt='{{ tour.title }}')",
-"description" : "{{ tour.intro }} {{ tour.summary }}",
-"url" : "/tours/{{ tour.tour }}"
-}</script></li>  {% endif %}
+{{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div></li>  {% endif %}
 {% endfor %}{% endfor %}</ul>    {% endif %}
    {% endfor %}
   {% endif %}
