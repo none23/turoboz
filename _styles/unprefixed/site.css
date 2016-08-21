@@ -675,8 +675,8 @@ textarea {
   .full_tour__content__wrap,
   .full_post__content__wrap,
   .full_tour__form__wrap {
-    width: 96vw;
-    max-width: 96vw;
+    width: 92vw;
+    max-width: 92vw;
     min-width: 0;
   }
 }
@@ -1043,7 +1043,6 @@ textarea {
 }
 .about_info {
   margin-top: 0;
-  columns: 2 16rem;
 }
 .guides {
   display: flex;
@@ -1062,7 +1061,7 @@ textarea {
   flex: 0 1 25rem;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: stretch;
   margin: 0.5rem;
   padding: 1rem;
   border: 0.063rem solid #9dcde1;
@@ -1090,6 +1089,13 @@ textarea {
 .guide__img {
   width: 100%;
   height: 100%;
+}
+.guide__link {
+  flex: 0 0 3rem;
+  outline: 0.063rem solid #9dcde1;
+  margin: 0 -1rem;
+  text-align: center;
+  text-transform: uppercase;
 }
 .advantages__list {
   background: #fff;
@@ -1718,8 +1724,8 @@ textarea {
 }
 @media (max-width: 660px) {
   .services__sections_group {
-    width: 96vw;
-    max-width: 96vw;
+    width: 92vw;
+    max-width: 92vw;
     min-width: 0;
   }
 }
@@ -1766,8 +1772,8 @@ textarea {
 }
 @media (max-width: 660px) {
   .services__payments__wrap {
-    width: 96vw;
-    max-width: 96vw;
+    width: 92vw;
+    max-width: 92vw;
     min-width: 0;
   }
 }

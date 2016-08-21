@@ -13,5 +13,10 @@ section.about__wrap.guides__wrap
                 p.guide__resume__p
                     | {{ paragraph }}
                 | {% endfor %}
+            .guide__link__wrap.guide__link--reviews(href='{{ g.reviews_link.url }}')
+                | {{ g.reviews_link.copy }}
+            .guide__link__wrap
+                a.guide__link--page(href='{{ g.page_link.url }}')
+                    | {{ g.page_link.copy }}
         | {% endfor %}
 
