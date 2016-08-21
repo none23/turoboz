@@ -1,4 +1,18 @@
 include ../mixins.jade
+head
+    script(type='application/ld+json').
+        {
+        "@context" : "http://schema.org",
+        "@type" : "Event",
+            "name" : "",
+            "startDate" : "2016-11-16",
+            "description" : "",
+            "offers" : {
+                "@type" : "Offer",
+                "price" : "от 300руб"
+            }
+        }
+
 | {% assign newid = page.id | remove: 'tours' | remove: '/'%}
 | {% assign currentTour = site.data.tours[newid] %}
 //- heading {{{
@@ -31,15 +45,14 @@ include ../mixins.jade
             | {% endfor %}
         //- /breadcrumbs }}}
 
-        .full_tour__date(itemprop='startDate', content='{{ currentTour.dates[0] | date: "%d-%m-%Y" }}')
+        .full_tour__date
             +LiquidRussianDate('currentTour.dates[0]')
 
-        .full_tour__title__wrap(itemprop='name')
-            h1.full_tour__title
-                | {{ currentTour.title }}
+        h1.full_tour__title
+            | {{ currentTour.title }}
 
-            .full_tour__subtitle
-                | {{ currentTour.subtitle }}
+        .full_tour__subtitle
+            | {{ currentTour.subtitle }}
 
     .full_tour__heading__right
 
@@ -122,7 +135,3 @@ include ../mixins.jade
 .full_tour__form__wrap.order_form__wrap
     include order_form.jade
 //- /form }}}
-                h3.tour__title(itemprop='name')
-                    | {{ tour.title }} 
-                    | {{ tour.subtitle }} 
-                a.tour__link(itemprop='url', href='/tours/{{ tour.tour }}')

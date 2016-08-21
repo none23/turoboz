@@ -15,7 +15,7 @@ SectionWidth()
     margin: 1rem auto
 
     @media(max-width: 660px)
-        width: 96vw
+        width: 92vw
         max-width: @width
         min-width: 0
 
@@ -1024,7 +1024,6 @@ textarea
 // =========================================================================
 .about_info
     margin-top: 0
-    columns: 2 16rem
 
 .guides
     display: flex
@@ -1041,7 +1040,7 @@ textarea
     flex: 0 1 25rem
     flex-direction: column
     justify-content: flex-start
-    align-items: flex-start
+    align-items: stretch
     margin: 0.5rem
     padding: 1rem
     border: $border
@@ -1069,6 +1068,13 @@ textarea
 .guide__img
     width: 100%
     height: 100%
+
+.guide__link
+    flex: 0 0 3rem
+    outline: $border
+    margin: 0 -1rem
+    text-align: center
+    text-transform: uppercase
 
 .advantages__list
     background: white
