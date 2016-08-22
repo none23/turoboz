@@ -432,7 +432,7 @@ function saveJSON() {
         var finalObj = {};
         for (var i = 0; i < all_tours.length; ++i ){
             finalObj[all_tours[i].tour] = all_tours[i];
-            toursFiles(all_tours[i].tour);
+            toursFiles(all_tours[i].tour, all_tours[i].title);
         }
         upcoming_tours.sort(function(a, b){
             return a.date - b.date;
@@ -458,8 +458,8 @@ function saveJSON() {
 }
 // }}}
 // Create index files for each tour {{{
-function toursFiles (x) {
-    content="---\nid: " + x + "\nlayout: tour\npermalink: /tours/" + x + "/\n---";
+function toursFiles (x, y) {
+    content="---\nid: " + x + "\nlayout: tour\npermalink: /tours/" + x + "/\ntitle: " + y + "\n---";
     filename = "_tours/" + x + ".html";
     fs.writeFile(filename, content, 'utf8', function (err){
         if (err) {
