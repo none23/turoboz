@@ -1,0 +1,7 @@
+---
+permalink:  /_redirects
+---
+{% for page in site.html_pages %} {{ page.url }} {{ page.url | prepend: site.url }}
+{% endfor %}
+{% for tour in site.tours %} {{ tour.permalink }} {{ tour.permalink | prepend: site.url }}
+{% endfor %}
