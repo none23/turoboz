@@ -63,7 +63,7 @@
     "predeploy": "npm run data-update && npm run build"
   },
   "author": "none23",
-  "license": "MIT",
+  "license": "MIT License",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/none23/turoboz.git"
