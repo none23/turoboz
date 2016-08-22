@@ -1,7 +1,11 @@
 ---
 permalink:  /_redirects
 ---
-{% for page in site.html_pages %} {{ page.url }} {{ page.url | prepend: site.url }}
+{% for page in site.html_pages %}
+{{ page.url | prepend: site.unsafe_url }} {{ page.url | prepend: site.url }}
+
 {% endfor %}
-{% for tour in site.tours %} {{ tour.permalink }} {{ tour.permalink | prepend: site.url }}
+{% for tour in site.tours %} {{ tour.permalink | prepend: site.unsafe_url }} {{ tour.permalink | prepend: site.url }}
+
 {% endfor %}
+
