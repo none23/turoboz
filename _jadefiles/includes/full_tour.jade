@@ -17,33 +17,33 @@ head
 | {% assign currentTour = site.data.tours[newid] %}
 //- heading {{{
 .full_tour__heading
-    .full_tour__heading__left
-        //- breadcrumbs {{{
-        .full_tour__breadcrumbs
-            a.full_tour__breadcrumb.full_tour__breadcrumb--top(href='/tours')
-                .full_tour__breadcrumb__icon
-                    +iconArrowBack('full_tour__breadcrumb__icon__svg')
-                .full_tour__breadcrumb__label
-                    | К списку экскурсий
+    //- breadcrumbs {{{
+    .full_tour__breadcrumbs
+        a.full_tour__breadcrumb.full_tour__breadcrumb--top(href='/tours')
+            .full_tour__breadcrumb__icon
+                +iconArrowBack('full_tour__breadcrumb__icon__svg')
+            .full_tour__breadcrumb__label
+                | К списку экскурсий
 
-            | {% for item in currentTour.tags %}
-            | {% for tag in site.data.tags %}
-            | {% if tag.tag == item %}
-            a.full_tour__breadcrumb(href='{{ tag.url }}')
-                .full_tour__breadcrumb__label
-                    | {{ tag.title }}
-            | {% elsif tag.subtags%}
-            | {% for subtag in tag.subtags %}
-            | {% if subtag.subtag == item %}
-            a.full_tour__breadcrumb.full_tour__breadcrumb--subtag(href='{{ subtag.url }}')
-                .full_tour__breadcrumb__label
-                    | {{ subtag.title }}
-            | {% endif %}
-            | {% endfor %}
-            | {% endif %}
-            | {% endfor %}
-            | {% endfor %}
-        //- /breadcrumbs }}}
+        | {% for item in currentTour.tags %}
+        | {% for tag in site.data.tags %}
+        | {% if tag.tag == item %}
+        a.full_tour__breadcrumb(href='{{ tag.url }}')
+            .full_tour__breadcrumb__label
+                | {{ tag.title }}
+        | {% elsif tag.subtags%}
+        | {% for subtag in tag.subtags %}
+        | {% if subtag.subtag == item %}
+        a.full_tour__breadcrumb.full_tour__breadcrumb--subtag(href='{{ subtag.url }}')
+            .full_tour__breadcrumb__label
+                | {{ subtag.title }}
+        | {% endif %}
+        | {% endfor %}
+        | {% endif %}
+        | {% endfor %}
+        | {% endfor %}
+    //- /breadcrumbs }}}
+    .full_tour__heading__left
 
         .full_tour__date
             +LiquidRussianDate('currentTour.dates[0]')
@@ -70,7 +70,7 @@ head
     //- introduction {{{
     section.full_tour__intro__wrap
         .full_tour__image__wrap
-            img.full_tour__image(itemprop='image', src='/img/{{ currentTour.imgpath }}', alt='{{ currentTour.title }}')
+            img.full_tour__image(itemprop='image', src='/img/tours400/{{ currentTour.imgpath }}', alt='{{ currentTour.title }}')
         p.full_tour__intro
             | {{ currentTour.intro }}
         p.full_tour__summary
