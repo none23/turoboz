@@ -8,7 +8,7 @@ section.upcoming_events__wrap
         |       {% assign tt = site.data.tours[t] %}
         a.event__wrap(href='/tours/{{ tt.tour }}')
             .event__image__wrap
-                img.event__image(src='/img/{{ tt.imgpath }}', alt='{{ tt.title | smartify }}')
+                img.event__image(src='/img/posts400/{{ tt.imgpath }}', alt='{{ tt.title | smartify }}')
             .event__date
                 +LiquidRussianDate('tt.dates[0]')
             h4.event__title
