@@ -27,7 +27,7 @@
     "watch": "latest"
   },
   "scripts": {
-    "build": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
+    "build": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:images && npm run build:jekyll",
         "build:jade": "npm run build:jade:includes && npm run build:jade:layouts",
             "build:jade:layouts": "jade -o _layouts/  _jadefiles/layouts/*.jade",
             "build:jade:includes": "jade -o _includes/  _jadefiles/includes/*.jade",
@@ -42,11 +42,11 @@
             "long_build:scripts:compile": "(cd _scripts && for file in *; do (cat $file/*.coffee | coffee --compile  --stdio > ../js/$file.js); done)",
             "long_build:scripts:uglify": "(cd js && for file in *; do (uglifyjs -c -m -o $file $file); done)",
 
-        "build:jekyll": "bundle exec jekyll build",
-
         "build:images": "npm run build:images:tours400px && npm run build:images:posts400px",
             "build:images:tours400px": "mogrify -path img/tours400 -filter Triangle -define filter:support=2 -thumbnail 400 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB img/_tours/*.jpg",
             "build:images:posts400px": "mogrify -path img/posts400 -filter Triangle -define filter:support=2 -thumbnail 400 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB img/_posts/*.jpg",
+
+        "build:jekyll": "bundle exec jekyll build",
 
     "watch": "npm run watch:jekyll -s & npm run watch:jade -s & npm run watch:styles & npm run watch:scripts & npm run browser-sync",
         "prewatch": "npm run build",
