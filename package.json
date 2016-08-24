@@ -19,6 +19,7 @@
     "webfontloader": "^1.6.24"
   },
   "devDependencies": {
+    "barba.js": "0.0.10",
     "browser-sync": "^2.14.0",
     "caniuse-db": "^1.0.30000466",
     "gulp": "^3.9.1",

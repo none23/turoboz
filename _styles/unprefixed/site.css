@@ -571,6 +571,7 @@ textarea {
   }
 }
 #site_footer {
+  order: 2;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -634,6 +635,11 @@ textarea {
   .page_wrap {
     min-height: 100vh;
   }
+}
+.page_content_wrap {
+  height: auto;
+  flex: 1 0 1;
+  transition: all 1s ease-in-out;
 }
 .page_heading {
   flex: 0 0 100%;

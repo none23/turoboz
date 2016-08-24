@@ -5,6 +5,13 @@ mobileNav = ->
         $('#mobile_nav_toggle, #mobile_nav').toggleClass 'is_open'
     return
 # /mobile_nav }}}####################################################
+# active link transitions {{{########################################
+activeNavLink = ->
+    $('.site_nav__link').on 'click', ->
+        $('.site_nav__link').removeClass 'active'
+        $(this).addClass 'active'
+    return
+# /active link transitions }}}#######################################
 # forms {{{##########################################################
 
 callBackFormToggle = ->
@@ -96,4 +103,5 @@ $ ->
     enableContactForm()
     enableReviewForm()
     enableOrderForm()
+    activeNavLink()
     return
