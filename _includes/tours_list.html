@@ -1,5 +1,6 @@
 <section class="tours_list__wrap">{% assign purl = page.url %}
-{% if purl == '/tours/'%}<ul class="tours__list">{% for tour in site.tours %}<li class="tour__wrap"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/tours400/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><div class="tour__date">{% assign unixdate = tour.dates[0] | round | minus:25569 | times:86400 %}
+{% if purl == '/tours/'%}<ul class="tours__list">{% for tour in site.tours %}
+{% if tour.dates[0] | plus: 0 > 0 %}<li class="tour__wrap"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/tours400/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><div class="tour__date">{% assign unixdate = tour.dates[0] | round | minus:25569 | times:86400 %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %} 
@@ -18,9 +19,11 @@
 {% endcase %} 
 {{ unixdate | date: "%Y" }}</div><h3 class="tour__title">{{ tour.title }} 
 {{ tour.subtitle }} </h3><a href="{{ tour.id }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
-{{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div></li>{% endfor %}</ul>{% else %}
+{{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div></li>{% endif %}
+{% endfor %}</ul>{% else %}
  {% for tag in site.data.tags %}
-  {% if purl == tag.url %}<ul class="tours__list">{% for tour in site.tours %}{% for x in tour.tags %}
+  {% if purl == tag.url %}<ul class="tours__list">{% for tour in site.tours %}
+{% if tour.dates[0] | plus: 0 > 0 %}{% for x in tour.tags %}
   {% if x == tag.tag %}<li class="tour__wrap"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/tours400/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><div class="tour__date">{% assign unixdate = tour.dates[0] | round | minus:25569 | times:86400 %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
@@ -41,10 +44,12 @@
 {{ unixdate | date: "%Y" }}</div><h3 class="tour__title">{{ tour.title }} 
 {{ tour.subtitle }} </h3><a href="{{ tour.id }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
 {{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div></li>  {% endif %}
-{% endfor %}{% endfor %}</ul>  {% endif %}
+{% endfor %}{% endif %}
+{% endfor %}</ul>  {% endif %}
   {% if tag.subtags %}
    {% for subtag in tag.subtags %}
-    {% if purl == subtag.url %}<ul class="tours__list">{% for tour in site.tours %}{% for x in tour.tags %}
+    {% if purl == subtag.url %}<ul class="tours__list">{% for tour in site.tours %}
+{% if tour.dates[0] | plus: 0 > 0 %}{% for x in tour.tags %}
   {% if x == subtag.subtag %}<li class="tour__wrap"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/tours400/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><div class="tour__date">{% assign unixdate = tour.dates[0] | round | minus:25569 | times:86400 %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
@@ -65,7 +70,8 @@
 {{ unixdate | date: "%Y" }}</div><h3 class="tour__title">{{ tour.title }} 
 {{ tour.subtitle }} </h3><a href="{{ tour.id }}" class="tour__link">Подробнее</a></div><div class="tour__moving"><div class="tour__length">Продолжительность:
 {{ tour.length }}</div><p class="tour__intro">{{ tour.intro }}</p><p class="tour__summary">{{ tour.summary }}</p></div></li>  {% endif %}
-{% endfor %}{% endfor %}</ul>    {% endif %}
+{% endfor %}{% endif %}
+{% endfor %}</ul>    {% endif %}
    {% endfor %}
   {% endif %}
  {% endfor %}
