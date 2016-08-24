@@ -50,6 +50,9 @@ function animate(oldContent, newContent) {
 window.addEventListener('popstate', changePage);
 
 document.addEventListener('click', function(e) {
+  if (e.ctrlKey) {
+    return;
+  }
   var el = e.target;
   while (el && !el.href) {
     el = el.parentNode;
