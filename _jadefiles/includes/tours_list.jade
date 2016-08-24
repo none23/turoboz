@@ -10,7 +10,7 @@ mixin Tour()
                 h3.tour__title
                     | {{ tour.title }} 
                     | {{ tour.subtitle }} 
-                a.tour__link(href='/tours/{{ tour.tour }}')
+                a.tour__link(href='{{ tour.id }}')
                     | Подробнее
 
             .tour__moving
@@ -26,9 +26,7 @@ mixin Tour()
 //-- tours__list {{{
 mixin ToursList( activeFilter='' )
     ul.tours__list
-        | {% for tt in site.tours %}
-        | {% assign ttt = tt.id | remove: 'tours' | remove: '/' %}
-        | {% assign tour = site.data.tours[ttt] %}
+        | {% for tour in site.tours %}
         if activeFilter
             | {% for x in tour.tags %}
             |   {% if x == #{activeFilter} %}

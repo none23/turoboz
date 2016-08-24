@@ -145,7 +145,7 @@ function getStrs(auth) {
         tourObj.intro = tourIntro;
         tourObj.summary = tourSummary;
         tourObj.imgpath = tourImgpath;
-        tourObj.length = tourLength;
+        tourObj.tourlength = tourLength;
 
         all_tours.push(tourObj);
       }
@@ -432,7 +432,7 @@ function saveJSON() {
         var finalObj = {};
         for (var i = 0; i < all_tours.length; ++i ){
             finalObj[all_tours[i].tour] = all_tours[i];
-            toursFiles(all_tours[i].tour, all_tours[i].title);
+            toursFiles(all_tours[i].tour, all_tours[i].title, all_tours[i].subtitle, all_tours[i].intro, all_tours[i].summary, all_tours[i].imgpath, all_tours[i].tourlength, all_tours[i].tags, all_tours[i].dates, all_tours[i].prices, all_tours[i].includes, all_tours[i].additional_fees, all_tours[i].will_learn, all_tours[i].details, all_tours[i].blueprint);
         }
         upcoming_tours.sort(function(a, b){
             return a.date - b.date;
@@ -458,10 +458,33 @@ function saveJSON() {
 }
 // }}}
 // Create index files for each tour {{{
-function toursFiles (x, y) {
-    content="---\nid: " + x + "\nlayout: tour\npermalink: /tours/" + x + "/\ntitle: " + y + "\n---";
-    filename = "_tours/" + x + ".html";
-    fs.writeFile(filename, content, 'utf8', function (err){
+function concatArray (arr, arr_title) {
+    var result_str = arr_title + ':\n';
+    if (arr.length > 0) {
+        for (var i = 0; i < arr.length; i++) {
+            var item_str = '  - \'' + arr[i] + '\'\n';
+            result_str += item_str;
+        }
+        return result_str;
+    } else {
+        return;
+    }
+}
+function toursFiles (id, title, subtitle, intro, summary, imgpath, tourlength, tags, dates, prices, includes, additional_fees, will_learn, details, blueprint) {
+    var strsContent = "---\nid: " + id + "\nlayout: tour\npermalink: /tours/" + id + "/\ntitle: '" + title + "'\nsubtitle: '" + subtitle + "'\nintro: '" + intro + "'\nsummary: '" + summary + "'\nimgpath: " + imgpath + "\ntourlength: " + tourlength + "\n";
+    var tagsContent            = concatArray(tags,            'tags');
+    var datesContent           = concatArray(dates,           'dates');
+    var pricesContent          = concatArray(prices,          'prices');
+    var includesContent        = concatArray(includes,        'includes');
+    var additional_feesContent = concatArray(additional_fees, 'additional_fees');
+    var will_learnContent      = concatArray(will_learn,      'will_learn');
+    var detailsContent         = concatArray(details,         'details');
+    var blueprintContent       = concatArray(blueprint,       'blueprint');
+
+    var content = strsContent + tagsContent + datesContent + pricesContent + includesContent + additional_feesContent + will_learnContent + detailsContent + blueprintContent + '---';
+
+    var filename = "_tours/" + id + ".html";
+    fs.writeFile(filename, content, 'utf8', function (err) {
         if (err) {
             return console.log(err);
         }
