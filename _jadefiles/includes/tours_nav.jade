@@ -8,7 +8,7 @@ section.tours_nav__wrap
         |   {% assign is_empty = 1 %}
         |   {% for tour in site.tours %}
         |     {% if tour.dates[0] | plus: 0 > 0 %}
-        |       {% if tour.tags contains tag.tag %}
+        |       {% if tour.tags contains tag %}
         |         {% assign is_empty = 0 %}
         |       {% endif %}
         |     {% endif %}
@@ -21,13 +21,13 @@ section.tours_nav__wrap
         |         {% assign subtag_is_empty = 1 %}
         |         {% for tour in site.tours %}
         |           {% if tour.dates[0] | plus: 0 > 0 %}
-        |             {% if tour.tags contains subtag.subtag %}
+        |             {% if tour.tags contains subtag %}
         |               {% assign subtag_is_empty = 0 %}
         |             {% endif %}
         |           {% endif %}
         |         {% endfor %}
         |         {% if subtag_is_empty == 0 %}
-        a(href='{{ subtag.url }}', class='tours_nav__link tours_nav__link--subtag {% if forloop.last %}tours_nav__link--subtag--last {% else %}{% endif %}tours_nav__link--subtag--notlast {% if page.url contains tag.url %}visible{% if page.url contains subtag.url %} active{% endif %}{% endif %}')
+        a(href='{{ subtag.url }}', class='tours_nav__link tours_nav__link--subtag {% if page.url contains tag.url %}visible{% if page.url contains subtag.url %} active{% endif %}{% endif %}')
             | {{ subtag.title }}
         |         {% endif %}
         |       {% endfor %}

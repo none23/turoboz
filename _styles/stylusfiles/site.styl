@@ -1371,7 +1371,7 @@ textarea
 
 .tours_nav
     position: absolute
-    top: 4.4rem + 3.3rem
+    top: 4.4rem
     right: 0
     left: 0
     width: auto
@@ -1386,19 +1386,8 @@ textarea
     //transform: translateX(20%)
     AltBG()
 
-    &.minified
-        .tours_nav__link
-            z-index: 400
-
-#tours_nav--primary
-    top: 4.4rem
-
 .tours_nav__link
     text-align: right
-    padding-right: $tours_nav_link_padding_h
-    padding-left: $tours_nav_link_padding_h
-    padding-top: $tours_nav_link_padding_v
-    padding-bottom: $tours_nav_link_padding_v
     text-transform: uppercase
 
     &:hover
@@ -1416,28 +1405,49 @@ textarea
         color: white
 
     &.active
-        order: -1
         z-index: 500
 
-.tours_nav__link--back
-    align-self: center
-    height: 4rem
-    width: @height
-    margin: 0
-    padding: 0.51rem 70% 0.51rem 50%
-    margin:  0 auto
-    fill: white
-    background-color: $turbo_brown
-    transition: all 0.3s ease-in-out
+.tours_nav__link--tag
+    padding-right: $tours_nav_link_padding_h
+    padding-left: $tours_nav_link_padding_h
+    padding-top: $tours_nav_link_padding_v
+    padding-bottom: $tours_nav_link_padding_v
 
-    &:hover
-    &:focus
-        transform: translateX(-7%)
-        fill: $turbo_blue
+.tours_nav__link--subtag
+    position: relative
+    display: none
+    padding-right: $tours_nav_link_padding_h * 2.5
+    padding-left: $tours_nav_link_padding_h * 0.5
+    padding-top: $tours_nav_link_padding_v * 0.75
+    padding-bottom: $tours_nav_link_padding_v * 0.75
+    background: $turbo_lightblue
 
-    &:active
-        transform: translateX(-20%)
-        fill: $turbo_darkblue
+    &.visible
+        display: block
+
+.tours_nav__link--subtag--last
+    padding-bottom: $tours_nav_link_padding_v
+
+.tours_nav__link--subtag--notlast:before
+        content: '├─'
+
+.tours_nav__link--subtag--last:before
+        content: '└─'
+
+.tours_nav__link--subtag--notlast
+.tours_nav__link--subtag--last
+    &:before
+        position: absolute
+        left: 1.5rem
+        top: 0.2rem
+        font-size: 1.5rem + $tours_nav_link_padding_v 
+        line-height: 1.5rem + $tours_nav_link_padding_v 
+        color: mix($turbo_brown, $turbo_lightblue)
+    &:focus:before
+    &:hover:before
+    &.active:before
+    &:active:before
+        color: mix(white, $turbo_lightblue)
 
 // /tours_nav }}}
 // tours_list {{{
@@ -1575,6 +1585,15 @@ textarea
         flex: 1 0 16rem
 
 @media(max-width: 899px)
+    .tours_nav__wrap
+        flex: 0 1 20rem
+
+    .tours_nav
+        top 0
+
+    .tours_nav__link
+        padding: 0.75rem 0.5rem
+
     .tours__list
         margin: 0 0.5rem 0 0
         display: block
@@ -1594,19 +1613,6 @@ textarea
     .tour__fixed
         position: static
         flex: 1 1 $tour_card_width
-
-    .tours_nav
-        top 0
-
-    .tours_nav.minified
-    .tours_nav.hidden
-        display: none
-
-    .tours_nav__wrap
-        flex: 0 1 20rem
-
-    .tours_nav__link
-        padding: 0.75rem 0.5rem
         
     .tour__image__wrap
     .tour__moving
