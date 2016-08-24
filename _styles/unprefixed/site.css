@@ -639,7 +639,6 @@ textarea {
 .page_content_wrap {
   height: auto;
   flex: 1 0 1;
-  transition: all 1s ease-in-out;
 }
 .page_heading {
   flex: 0 0 100%;
