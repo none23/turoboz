@@ -1,18 +1,4 @@
 include ../mixins.jade
-head
-    script(type='application/ld+json').
-        {
-        "@context" : "http://schema.org",
-        "@type" : "Event",
-            "name" : "",
-            "startDate" : "2016-11-16",
-            "description" : "",
-            "offers" : {
-                "@type" : "Offer",
-                "price" : "от 300руб"
-            }
-        }
-
 //- heading {{{
 .full_tour__heading
     //- breadcrumbs {{{
@@ -68,7 +54,7 @@ head
     //- introduction {{{
     section.full_tour__intro__wrap
         .full_tour__image__wrap
-            img.full_tour__image(itemprop='image', src='/img/tours400/{{ page.imgpath }}', alt='{{ page.title }}')
+            img.full_tour__image(src='/img/tours400/{{ page.imgpath }}', alt='{{ page.title }}')
         p.full_tour__intro
             | {{ page.intro }}
         p.full_tour__summary

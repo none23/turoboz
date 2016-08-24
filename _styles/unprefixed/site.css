@@ -840,6 +840,7 @@ textarea {
 }
 .event__wrap {
   flex: 1 0 14rem;
+  max-width: 25rem;
   border: 0.063rem solid #9dcde1;
   border-radius: 0.125rem;
   margin: 0.5rem 0.313rem;
@@ -1180,22 +1181,32 @@ textarea {
 .full_post__heading__right {
   flex: 1 2 35%;
 }
-.full_tour__breadcrumbs {
+.full_tour__breadcrumbs,
+.full_post__breadcrumbs,
+.full_post__breadcrumbs--bottom {
   flex: 0 0 100%;
-  margin: -1rem -5vw 1rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-.full_tour__breadcrumb {
+.full_tour__breadcrumbs,
+.full_post__breadcrumbs {
+  margin: -1rem -5vw 1rem;
+}
+.full_post__breadcrumbs--bottom {
+  justify-content: space-around;
+}
+.full_tour__breadcrumb,
+.full_post__breadcrumb {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   margin: 0 0.5rem;
 }
-.full_tour__breadcrumb__label {
+.full_tour__breadcrumb__label,
+.full_post__breadcrumb__label {
   color: #3485a8;
   line-height: 1;
   text-decoration: underline;
@@ -1203,7 +1214,8 @@ textarea {
   padding: 0.75rem 0;
 }
 @media (max-width: 500px) {
-  .full_tour__breadcrumb__label {
+  .full_tour__breadcrumb__label,
+  .full_post__breadcrumb__label {
     font-size: 0.8rem;
   }
 }
@@ -1216,24 +1228,31 @@ textarea {
   margin-left: 1.5rem;
   margin-right: -1rem;
 }
-.full_tour__breadcrumb__icon {
+.full_tour__breadcrumb__icon,
+.full_post__breadcrumb__icon {
   flex: 0 0 3rem;
   display: block;
   width: 3rem;
   height: 3rem;
 }
-.full_tour__breadcrumb__icon__svg {
+.full_tour__breadcrumb__icon__svg,
+.full_post__breadcrumb__icon__svg {
   fill: #3485a8;
 }
-.full_tour__breadcrumb {
+.full_tour__breadcrumb,
+.full_post__breadcrumb {
   transition: all 0.3s ease-in-out;
 }
 .full_tour__breadcrumb:hover .full_tour__breadcrumb__icon__svg,
-.full_tour__breadcrumb:focus .full_tour__breadcrumb__icon__svg {
+.full_post__breadcrumb:hover .full_tour__breadcrumb__icon__svg,
+.full_tour__breadcrumb:focus .full_tour__breadcrumb__icon__svg,
+.full_post__breadcrumb:focus .full_tour__breadcrumb__icon__svg {
   fill: #613b23;
 }
 .full_tour__breadcrumb:hover .full_tour__breadcrumb__label,
-.full_tour__breadcrumb:focus .full_tour__breadcrumb__label {
+.full_post__breadcrumb:hover .full_tour__breadcrumb__label,
+.full_tour__breadcrumb:focus .full_tour__breadcrumb__label,
+.full_post__breadcrumb:focus .full_tour__breadcrumb__label {
   color: #613b23;
   line-height: 1;
   text-decoration: underline;

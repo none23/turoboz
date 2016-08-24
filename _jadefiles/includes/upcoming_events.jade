@@ -4,8 +4,8 @@ section.upcoming_events__wrap
         | Ближайшие туры
     .upcoming_events__list
         | {% for x in site.data.upcoming %}
-        |   {% assign t = x.key %}
-        |       {% assign tt = site.data.tours[t] %}
+        |   {% assign t = x.key %}{% assign tt = site.data.tours[t] %}
+        |   {% if tt.dates[0] | plus: 0 > 0 %}
         a.event__wrap(href='/tours/{{ tt.tour }}')
             .event__image__wrap
                 img.event__image(src='/img/posts400/{{ tt.imgpath }}', alt='{{ tt.title | smartify }}')
@@ -16,4 +16,5 @@ section.upcoming_events__wrap
                 | {{ tt.subtitle }}
             footer.event__footer
                 | Подробнее
+        |   {% endif %}
         | {% endfor %}

@@ -27,6 +27,7 @@ mixin Tour()
 mixin ToursList( activeFilter='' )
     ul.tours__list
         | {% for tour in site.tours %}
+        | {% if tour.dates[0] | plus: 0 > 0 %}
         if activeFilter
             | {% for x in tour.tags %}
             |   {% if x == #{activeFilter} %}
@@ -35,6 +36,7 @@ mixin ToursList( activeFilter='' )
             | {% endfor %}
         else
             +Tour()
+        | {% endif %}
         | {% endfor %}
 
 //--/tours__list }}}
