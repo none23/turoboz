@@ -13,8 +13,6 @@ head
             }
         }
 
-| {% assign newid = page.id | remove: 'tours' | remove: '/'%}
-| {% assign currentTour = site.data.tours[newid] %}
 //- heading {{{
 .full_tour__heading
     //- breadcrumbs {{{
@@ -25,7 +23,7 @@ head
             .full_tour__breadcrumb__label
                 | К списку экскурсий
 
-        | {% for item in currentTour.tags %}
+        | {% for item in page.tags %}
         | {% for tag in site.data.tags %}
         | {% if tag.tag == item %}
         a.full_tour__breadcrumb(href='{{ tag.url }}')
@@ -46,21 +44,21 @@ head
     .full_tour__heading__left
 
         .full_tour__date
-            +LiquidRussianDate('currentTour.dates[0]')
+            +LiquidRussianDate('page.dates[0]')
 
         h1.full_tour__title
-            | {{ currentTour.title }}
+            | {{ page.title }}
 
         .full_tour__subtitle
-            | {{ currentTour.subtitle }}
+            | {{ page.subtitle }}
 
     .full_tour__heading__right
 
         .full_tour__len
-            | {{ currentTour.length }}
+            | {{ page.length }}
 
         .full_tour__prices
-            | {% for item in currentTour.prices %}
+            | {% for item in page.prices %}
             .full_tour__price
                 | {{ item }}
             | {% endfor %}
@@ -70,19 +68,19 @@ head
     //- introduction {{{
     section.full_tour__intro__wrap
         .full_tour__image__wrap
-            img.full_tour__image(itemprop='image', src='/img/tours400/{{ currentTour.imgpath }}', alt='{{ currentTour.title }}')
+            img.full_tour__image(itemprop='image', src='/img/tours400/{{ page.imgpath }}', alt='{{ page.title }}')
         p.full_tour__intro
-            | {{ currentTour.intro }}
+            | {{ page.intro }}
         p.full_tour__summary
-            | {{ currentTour.summary }}
+            | {{ page.summary }}
     //- /introduction }}}
     //- blueprint {{{
-    | {% if currentTour.blueprint[0] > '' %}
+    | {% if page.blueprint[0] > '' %}
     section.full_tour__blueprint__wrap
         h2.section_header
             | Программа:
         ul.full_tour__blueprint__list
-            | {% for item in currentTour.blueprint %}
+            | {% for item in page.blueprint %}
             li.full_tour__blueprint__list__item
                 | {{ item }}
             | {% endfor %}
@@ -93,39 +91,39 @@ head
         h2.section_header
             | в стоимость входят:
         ul.full_tour__includes__list
-            | {% for item in currentTour.includes %}
+            | {% for item in page.includes %}
             li.full_tour__includes__list__item
                 | {{ item }}
             | {% endfor %}
     //- /includes }}}
     //- details {{{
-    | {% if currentTour.details[0] > '' %}
+    | {% if page.details[0] > '' %}
     section.full_tour__details__wrap
-        | {% for d in currentTour.details %}
+        | {% for d in page.details %}
         p.full_tour__details
             | {{ d }}
         | {% endfor %}
     | {% endif %}
     //- /details }}}
     //- additional_fees {{{
-    | {% if currentTour.additional_fees[0] > '' %}
+    | {% if page.additional_fees[0] > '' %}
     section.full_tour__additional_fees__wrap
         h2.section_header
             | Дополнительно оплачиваемые услуги:
         ul.full_tour__additional_fees__list
-            | {% for item in currentTour.additional_fees %}
+            | {% for item in page.additional_fees %}
             li.full_tour__additional_fees__list__item
                 | {{ item }}
             | {% endfor %}
     | {% endif %}
     //- /additional_fees }}}
     //- will_learn {{{
-    | {% if currentTour.will_learn[0] > '' %}
+    | {% if page.will_learn[0] > '' %}
     section.full_tour__will_learn__wrap
         h2.section_header
             | Вы узнаете:
         ul.full_tour__will_learn_list
-            | {% for item in currentTour.will_learn %}
+            | {% for item in page.will_learn %}
         li.full_tour__will_learn__list__item
             | {{ item }}
         | {% endfor %}

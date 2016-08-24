@@ -577,10 +577,10 @@ textarea {
   justify-content: space-between;
   align-items: flex-end;
   flex-wrap: wrap;
-  background-color: #613b23;
   background-image: url("/img/blue.png");
   background-repeat: repeat;
   background-blend-mode: color-dodge;
+  background-color: #613b23;
   color: #fff;
   margin-top: 2rem;
   box-shadow: 0 0 0.75rem -0.063rem #333;
