@@ -1551,38 +1551,14 @@ textarea {
   padding-left: 0.75rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  background: #9dcde1;
+  background: #68a9c4;
+  font-size: 0.9rem;
 }
 .tours_nav__link--subtag.visible {
   display: block;
 }
 .tours_nav__link--subtag--last {
   padding-bottom: 1rem;
-}
-.tours_nav__link--subtag--notlast:before {
-  content: '├─';
-}
-.tours_nav__link--subtag--last:before {
-  content: '└─';
-}
-.tours_nav__link--subtag--notlast:before,
-.tours_nav__link--subtag--last:before {
-  position: absolute;
-  left: 1.5rem;
-  top: 0.2rem;
-  font-size: 2.5rem;
-  line-height: 2.5rem;
-  color: #7f8482;
-}
-.tours_nav__link--subtag--notlast:focus:before,
-.tours_nav__link--subtag--last:focus:before,
-.tours_nav__link--subtag--notlast:hover:before,
-.tours_nav__link--subtag--last:hover:before,
-.tours_nav__link--subtag--notlast.active:before,
-.tours_nav__link--subtag--last.active:before,
-.tours_nav__link--subtag--notlast:active:before,
-.tours_nav__link--subtag--last:active:before {
-  color: #cee6f0;
 }
 .tours__list__wrap {
   flex: 1 0 20rem;

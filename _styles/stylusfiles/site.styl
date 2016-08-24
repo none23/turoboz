@@ -1420,7 +1420,8 @@ textarea
     padding-left: $tours_nav_link_padding_h * 0.5
     padding-top: $tours_nav_link_padding_v * 0.75
     padding-bottom: $tours_nav_link_padding_v * 0.75
-    background: $turbo_lightblue
+    background: $turbo_mixblue
+    font-size: 0.9rem
 
     &.visible
         display: block
@@ -1428,6 +1429,8 @@ textarea
 .tours_nav__link--subtag--last
     padding-bottom: $tours_nav_link_padding_v
 
+// hierarchy tree {{{
+/*
 .tours_nav__link--subtag--notlast:before
         content: '├─'
 
@@ -1448,6 +1451,8 @@ textarea
     &.active:before
     &:active:before
         color: mix(white, $turbo_lightblue)
+*/
+// /hierarchy tree }}}
 
 // /tours_nav }}}
 // tours_list {{{
