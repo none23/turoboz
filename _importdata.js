@@ -435,7 +435,7 @@ function saveJSON() {
             toursFiles(all_tours[i].tour, all_tours[i].title, all_tours[i].subtitle, all_tours[i].intro, all_tours[i].summary, all_tours[i].imgpath, all_tours[i].tourlength, all_tours[i].tags, all_tours[i].dates, all_tours[i].prices, all_tours[i].includes, all_tours[i].additional_fees, all_tours[i].will_learn, all_tours[i].details, all_tours[i].blueprint);
         }
         upcoming_tours.sort(function(a, b){
-            return a.date - b.date;
+            return a.val - b.val;
         });
         var upcoming_four = upcoming_tours.slice(0,4);
         var upcomingJSON = JSON.stringify(upcoming_four);
