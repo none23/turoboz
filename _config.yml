@@ -29,3 +29,5 @@ collections:
     output: true
   news:
     output: true
+gems:
+  - jekyll-sitemap
