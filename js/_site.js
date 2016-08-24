@@ -113,7 +113,6 @@
     enableReviewForm();
     enableOrderForm();
     activeNavLink();
-    Barba.Pjax.start();
   });
 
 }).call(this);

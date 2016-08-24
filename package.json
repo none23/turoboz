@@ -19,7 +19,6 @@
     "webfontloader": "^1.6.24"
   },
   "devDependencies": {
-    "barba.js": "0.0.10",
     "browser-sync": "^2.14.0",
     "caniuse-db": "^1.0.30000466",
     "gulp": "^3.9.1",
@@ -39,7 +38,9 @@
 
         "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify",
             "build:scripts:compile": "coffee -c -o js _scripts/_site.coffee",
-            "build:scripts:uglify": "uglifyjs -c -m -o js/site.js js/_site.js",
+            "build:scripts:uglify": "npm run build:scripts:uglify:1 && npm run build:scripts:uglify:2",
+            "build:scripts:uglify:1": "uglifyjs -c -m -o js/site.js js/_site.js",
+            "build:scripts:uglify:2": "uglifyjs -c -m -o js/page_transitions.js js/_page_transitions.js",
             "long_build:scripts:compile": "(cd _scripts && for file in *; do (cat $file/*.coffee | coffee --compile  --stdio > ../js/$file.js); done)",
             "long_build:scripts:uglify": "(cd js && for file in *; do (uglifyjs -c -m -o $file $file); done)",
 

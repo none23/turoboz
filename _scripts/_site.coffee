@@ -104,5 +104,5 @@ $ ->
     enableReviewForm()
     enableOrderForm()
     activeNavLink()
-    Barba.Pjax.start()
+    # Barba.Pjax.start()
     return
