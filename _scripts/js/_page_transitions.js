@@ -34,9 +34,9 @@ function changePage() {
 
 function animate(oldContent, newContent) {
 
-  var fadeOut = oldContent.animate({
+  oldContent.animate({
     opacity: [1, 0]
-  }, 150);
+  }, 300);
 
   var fadeIn = newContent.animate({
     opacity: [0, 1]
@@ -51,23 +51,19 @@ window.addEventListener('popstate', changePage);
 
 document.addEventListener('click', function(e) {
   var el = e.target;
-
   while (el && !el.href) {
     el = el.parentNode;
   }
 
   if (el) {
     if (el.target == '_blank') {
-      return;
-    } else if (el.href.includes("tel:")) {
-      return;
-    } else if (el.href.includes("mailto:")) {
-      return;
+    } else if (el.href.indexOf("tel:") !== -1) {
+    } else if (el.href.indexOf("mailto:") !== -1) {
     } else {
       e.preventDefault();
       history.pushState(null, null, el.href);
       changePage();
-      return;
     }
+    return;
   }
 });
