@@ -4,7 +4,7 @@ mixin Tour()
         li.tour__wrap
             .tour__fixed
                 .tour__image__wrap
-                    img.tour__image(src='/img/{{ tour.imgpath }}', alt='{{ tour.title }}')
+                    img.tour__image(src='/img/tours400/{{ tour.imgpath }}', alt='{{ tour.title }}')
                 .tour__date
                     +LiquidRussianDate('tour.dates[0]')
                 h3.tour__title

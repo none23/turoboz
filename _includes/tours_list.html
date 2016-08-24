@@ -1,7 +1,7 @@
 <section class="tours_list__wrap">{% assign purl = page.url %}
 {% if purl == '/tours/'%}<ul class="tours__list">{% for tt in site.tours %}
 {% assign ttt = tt.id | remove: 'tours' | remove: '/' %}
-{% assign tour = site.data.tours[ttt] %}<li class="tour__wrap"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><div class="tour__date">{% assign unixdate = tour.dates[0] | round | minus:25569 | times:86400 %}
+{% assign tour = site.data.tours[ttt] %}<li class="tour__wrap"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/tours400/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><div class="tour__date">{% assign unixdate = tour.dates[0] | round | minus:25569 | times:86400 %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %} 
@@ -25,7 +25,7 @@
   {% if purl == tag.url %}<ul class="tours__list">{% for tt in site.tours %}
 {% assign ttt = tt.id | remove: 'tours' | remove: '/' %}
 {% assign tour = site.data.tours[ttt] %}{% for x in tour.tags %}
-  {% if x == tag.tag %}<li class="tour__wrap"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><div class="tour__date">{% assign unixdate = tour.dates[0] | round | minus:25569 | times:86400 %}
+  {% if x == tag.tag %}<li class="tour__wrap"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/tours400/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><div class="tour__date">{% assign unixdate = tour.dates[0] | round | minus:25569 | times:86400 %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %} 
@@ -51,7 +51,7 @@
     {% if purl == subtag.url %}<ul class="tours__list">{% for tt in site.tours %}
 {% assign ttt = tt.id | remove: 'tours' | remove: '/' %}
 {% assign tour = site.data.tours[ttt] %}{% for x in tour.tags %}
-  {% if x == subtag.subtag %}<li class="tour__wrap"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><div class="tour__date">{% assign unixdate = tour.dates[0] | round | minus:25569 | times:86400 %}
+  {% if x == subtag.subtag %}<li class="tour__wrap"><div class="tour__fixed"><div class="tour__image__wrap"><img src="/img/tours400/{{ tour.imgpath }}" alt="{{ tour.title }}" class="tour__image"/></div><div class="tour__date">{% assign unixdate = tour.dates[0] | round | minus:25569 | times:86400 %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %} 
