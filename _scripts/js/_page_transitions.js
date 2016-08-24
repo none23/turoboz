@@ -1,4 +1,5 @@
 var cache = {};
+
 function loadPage(url) {
   if (cache[url]) {
     return new Promise(function(resolve) {
@@ -35,11 +36,11 @@ function animate(oldContent, newContent) {
 
   var fadeOut = oldContent.animate({
     opacity: [1, 0]
-  }, 200);
+  }, 150);
 
   var fadeIn = newContent.animate({
     opacity: [0, 1]
-  }, 200);
+  }, 300);
 
   fadeIn.onfinish = function() {
     oldContent.parentNode.removeChild(oldContent);
@@ -56,10 +57,17 @@ document.addEventListener('click', function(e) {
   }
 
   if (el) {
-    e.preventDefault();
-    history.pushState(null, null, el.href);
-    changePage();
-
-    return;
+    if (el.target == '_blank') {
+      return;
+    } else if (el.href.includes("tel:")) {
+      return;
+    } else if (el.href.includes("mailto:")) {
+      return;
+    } else {
+      e.preventDefault();
+      history.pushState(null, null, el.href);
+      changePage();
+      return;
+    }
   }
 });

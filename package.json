@@ -37,12 +37,10 @@
             "build:styles:prefix": "(cd _styles/unprefixed && for file in *.css; do (autoprefixer-cli -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < $file   | csso > ../../css/$file); done)", 
 
         "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify",
-            "build:scripts:compile": "coffee -c -o js _scripts/_site.coffee",
+            "build:scripts:compile": "coffee -c -o _scripts/js _scripts/coffee/_site.coffee",
             "build:scripts:uglify": "npm run build:scripts:uglify:1 && npm run build:scripts:uglify:2",
-            "build:scripts:uglify:1": "uglifyjs -c -m -o js/site.js js/_site.js",
-            "build:scripts:uglify:2": "uglifyjs -c -m -o js/page_transitions.js js/_page_transitions.js",
-            "long_build:scripts:compile": "(cd _scripts && for file in *; do (cat $file/*.coffee | coffee --compile  --stdio > ../js/$file.js); done)",
-            "long_build:scripts:uglify": "(cd js && for file in *; do (uglifyjs -c -m -o $file $file); done)",
+            "build:scripts:uglify:1": "uglifyjs -c -m -o js/site.js _scripts/js/_site.js",
+            "build:scripts:uglify:2": "uglifyjs -c -m -o js/page_transitions.js _scripts/js/_page_transitions.js",
 
         "build:images": "npm run build:images:tours400px && npm run build:images:posts400px",
             "build:images:tours400px": "mogrify -path img/tours400 -filter Triangle -define filter:support=2 -thumbnail 400 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB img/_tours/*.jpg",
@@ -63,9 +61,9 @@
             "watch:styles:compile": "stylus -w _styles/styles --out _styles/unprefixed",
             "watch:styles:prefix": "watch 'npm run build:styles:prefix' _styles/unprefixed", 
 
-        "watch:scripts": "watch 'npm run build:scripts' _scripts",
-        "broken_watch:scripts": "watch 'npm run watch:scripts:compile' _scripts",
-            "watch:scripts:compile": "coffee --stdio --compile _scripts/_site.coffee > js/site.js",
+        "watch:scripts": "npm run watch:scripts:compile & npm run watch:scripts:uglify",
+        "watch:scripts:compile": "watch 'npm run build:scripts:compile' _scripts/coffee ",
+        "watch:scripts:uglify": "watch 'npm run build:scripts:uglify' _scripts/js ",
 
     "justbuild": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
     "data-update": "node _importdata.js",
