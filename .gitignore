@@ -3,8 +3,6 @@
 logs
 *.log
 npm-debug.log*
-client_secret.json
-_client_secret.json
 node_modules
 
 # Runtime data
@@ -36,5 +34,4 @@ _site/*
 __pycache__/
 
 _importdata.py
-_oauth
 
