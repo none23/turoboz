@@ -171,6 +171,17 @@ $modal_form_button_fg = white
         fill: $turbo_darkbrown
     100%
         fill: $turbo_brown
+
+@keyframes form_button_submit
+    0%
+        transform: scale(0)
+        border-radius: 3rem
+    80%
+        transform: scale(1.1)
+        border-radius: 0.25rem
+    100%
+        transform: scale(1)
+        border-radius: 0.063rem
 // /keyframes }}}
 // /vars }}}
 // base {{{
@@ -417,6 +428,14 @@ textarea
         flex: 4 4  $header_form_field_width * 2
         margin: 0
 
+        &:hover
+        &:focus
+            color: white
+            background: $turbo_blue
+        &:active
+            color: @background
+            background: $turbo_brown
+
     #call_back_form__cancel_button
         order: 1
         flex: 1 0 3rem
@@ -431,10 +450,10 @@ textarea
 
         &:hover
         &:focus
-            color: @background
+            color: white
             background: $turbo_cancel
         &:active
-            color: @background
+            color: white
             background: $turbo_cancel_active
 
 
@@ -727,6 +746,11 @@ textarea
     color: $turbo_blue
     border-radius: $border-radius
     outline: $border
+.form__button--success
+.form__button--loading
+.form__button--failure
+    transition: all 0.3s ease-in-out
+    animation: form_button_submit 0.3s ease-in-out 0s 1 normal forwards
 
 .form__button
     background: white
@@ -737,13 +761,13 @@ textarea
         color: white
 
 .form__button--success
-    background: hsl(120,90%,15%)
+    background: hsl(120,90%,15%) !important
 
 .form__button--loading
-    background: $turbo_blue
+    background: $turbo_blue !important
 
 .form__button--failure
-    background: hsl(0,90%,20%)
+    background: hsl(0,90%,20%) !important
 
 // /forms }}}
 // /site_wide }}}

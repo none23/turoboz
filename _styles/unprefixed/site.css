@@ -411,6 +411,15 @@ textarea {
   flex: 4 4 34rem;
   margin: 0;
 }
+.header_form__wrap #call_back_form__button:hover,
+.header_form__wrap #call_back_form__button:focus {
+  color: #fff;
+  background: #3485a8;
+}
+.header_form__wrap #call_back_form__button:active {
+  color: #fff;
+  background: #613b23;
+}
 .header_form__wrap #call_back_form__cancel_button {
   order: 1;
   flex: 1 0 3rem;
@@ -738,6 +747,12 @@ textarea {
   border-radius: 0.125rem;
   outline: 0.063rem solid #9dcde1;
 }
+.form__button--success,
+.form__button--loading,
+.form__button--failure {
+  transition: all 0.3s ease-in-out;
+  animation: form_button_submit 0.3s ease-in-out 0s 1 normal forwards;
+}
 .form__button {
   background: #fff;
 }
@@ -747,13 +762,13 @@ textarea {
   color: #fff;
 }
 .form__button--success {
-  background: #044904;
+  background: #044904 !important;
 }
 .form__button--loading {
-  background: #3485a8;
+  background: #3485a8 !important;
 }
 .form__button--failure {
-  background: #610505;
+  background: #610505 !important;
 }
 .first_glance {
   width: 100%;
@@ -2251,5 +2266,61 @@ textarea {
   }
   100% {
     fill: #613b23;
+  }
+}
+@-moz-keyframes form_button_submit {
+  0% {
+    transform: scale(0);
+    border-radius: 3rem;
+  }
+  80% {
+    transform: scale(1.1);
+    border-radius: 0.25rem;
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 0.063rem;
+  }
+}
+@-webkit-keyframes form_button_submit {
+  0% {
+    transform: scale(0);
+    border-radius: 3rem;
+  }
+  80% {
+    transform: scale(1.1);
+    border-radius: 0.25rem;
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 0.063rem;
+  }
+}
+@-o-keyframes form_button_submit {
+  0% {
+    transform: scale(0);
+    border-radius: 3rem;
+  }
+  80% {
+    transform: scale(1.1);
+    border-radius: 0.25rem;
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 0.063rem;
+  }
+}
+@keyframes form_button_submit {
+  0% {
+    transform: scale(0);
+    border-radius: 3rem;
+  }
+  80% {
+    transform: scale(1.1);
+    border-radius: 0.25rem;
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 0.063rem;
   }
 }
