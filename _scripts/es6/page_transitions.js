@@ -1,5 +1,14 @@
 var cache = {};
 
+// animateLogo{{{
+function logoLoading () {
+    document.getElementById('site_logo').focus();
+    sleep(600).then(() => {
+        document.getElementById('site_logo').blur();
+    })
+};
+// /animateLog}}}
+//
 function loadPage(url) {
     if (cache[url]) {
         return new Promise(function(resolve) {
@@ -27,10 +36,12 @@ function changePage() {
         var oldContent = document.querySelector('.page_content_wrap');
         var newContent = wrapper.querySelector('.page_content_wrap');
 
+        logoLoading();
         page_wrap.appendChild(newContent);
         animate(oldContent, newContent);
         ga('set', 'page', url);
         ga('send', 'pageview');
+        
     });
 }
 
