@@ -16,7 +16,7 @@ var compl = 0;
 //var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
 //    process.env.USERPROFILE) + '/.credentials/';
 //var TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.json';
-//var TOKEN_PATH = 'sheets.googleapis.json';
+var TOKEN_PATH = 'sheets.googleapis.json';
 
 // Load client secrets from a local file.
 // {{{
