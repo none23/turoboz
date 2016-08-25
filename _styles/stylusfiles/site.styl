@@ -2,7 +2,7 @@
 AltBG()
     //--{{{
     background-image: url(/img/card.png) 
-    background-color: $turbo_darkblue
+    background-color: $turbo_blue
     background-repeat: repeat 
     background-blend-mode: hard-light
     //--}}}
@@ -303,23 +303,23 @@ textarea
     .logo_blue
         fill: $turbo_blue
 
-    #site_logo__icon
-        &:hover
-        &:focus
-            .logo_gray
-            .logo_brown
-            .logo_blue
-                animation-duration: 4s
-                animation-timing-function: linear
-                animation-iteration-count: infinite
+#site_logo__icon
+    &:hover
+    &:focus
+        .logo_gray
+        .logo_brown
+        .logo_blue
+            animation-duration: 4s
+            animation-timing-function: linear
+            animation-iteration-count: infinite
 
-            .logo_gray
-                transform-origin: 1.50rem 1.48rem
-                animation-name: logo_animate_gray
-            .logo_brown
-                animation-name: logo_animate_brown
-            .logo_blue
-                animation-name: logo_animate_blue
+        .logo_gray
+            transform-origin: 1.50rem 1.48rem
+            animation-name: logo_animate_gray
+        .logo_brown
+            animation-name: logo_animate_brown
+        .logo_blue
+            animation-name: logo_animate_blue
 
 #site_logo__icon
     position: absolute
@@ -1425,7 +1425,7 @@ textarea
     padding-left: $tours_nav_link_padding_h * 0.5
     padding-top: $tours_nav_link_padding_v * 0.75
     padding-bottom: $tours_nav_link_padding_v * 0.75
-    background: $turbo_mixblue
+    background: $turbo_lightblue
     font-size: 0.9rem
 
     &.visible

@@ -65,6 +65,7 @@ document.addEventListener('click', function(e) {
         } else if (el.href.indexOf("tel:") !== -1) {
         } else if (el.href.indexOf("mailto:") !== -1) {
         } else {
+            console.log(el.href);
             e.preventDefault();
             history.pushState(null, null, el.href);
             changePage();
