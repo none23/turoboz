@@ -2,10 +2,16 @@
   "name": "turoboz",
   "version": "0.0.1",
   "description": "Turoboz website",
+  "babel": {
+       "presets": ["es2015"] 
+  },
   "dependencies": {
     "autoprefixer": "^6.4.0",
     "autoprefixer-cli": "^1.0.0",
-    "coffee-script": "latest",
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
     "csso": "^2.1.1",
     "google-auth-library": "^0.9.8",
     "googleapis": "^12.2.0",
@@ -21,8 +27,6 @@
   "devDependencies": {
     "browser-sync": "^2.14.0",
     "caniuse-db": "^1.0.30000466",
-    "gulp": "^3.9.1",
-    "gulp-imagemin": "^3.0.1",
     "jshint": "latest",
     "watch": "latest"
   },
@@ -37,10 +41,10 @@
             "build:styles:prefix": "(cd _styles/unprefixed && for file in *.css; do (autoprefixer-cli -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < $file   | csso > ../../css/$file); done)", 
 
         "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify",
-            "build:scripts:compile": "coffee -c -o _scripts/js _scripts/coffee/_site.coffee",
+            "build:scripts:compile": "babel _scripts/es6 -d _scripts/js",
             "build:scripts:uglify": "npm run build:scripts:uglify:1 && npm run build:scripts:uglify:2",
-            "build:scripts:uglify:1": "uglifyjs -c -m -o js/site.js _scripts/js/_site.js",
-            "build:scripts:uglify:2": "uglifyjs -c -m -o js/page_transitions.js _scripts/js/_page_transitions.js",
+            "build:scripts:uglify:1": "uglifyjs -c -m -o js/site.js _scripts/js/site.js",
+            "build:scripts:uglify:2": "uglifyjs -c -m -o js/page_transitions.js _scripts/js/page_transitions.js",
 
         "build:images": "npm run build:images:tours400px && npm run build:images:posts400px",
             "build:images:tours400px": "mogrify -path img/tours400 -filter Triangle -define filter:support=2 -thumbnail 400 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB img/_tours/*.jpg",
@@ -62,7 +66,7 @@
             "watch:styles:prefix": "watch 'npm run build:styles:prefix' _styles/unprefixed", 
 
         "watch:scripts": "npm run watch:scripts:compile & npm run watch:scripts:uglify",
-        "watch:scripts:compile": "watch 'npm run build:scripts:compile' _scripts/coffee ",
+        "watch:scripts:compile": "watch 'npm run build:scripts:compile' _scripts/es6 ",
         "watch:scripts:uglify": "watch 'npm run build:scripts:uglify' _scripts/js ",
 
     "justbuild": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
