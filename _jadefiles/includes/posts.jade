@@ -8,13 +8,12 @@ section.posts__wrap#posts__wrap
         li.post__wrap
             .post__image__wrap
                 img.post__image(src='/img/{{ post.image }}', alt='{{ post.title | smartify }}')
-            .post__content__wrap
+            a.post__content__wrap(href='{{ post.url }}')
                 .post__date
                     +LiquidRussianDateLite('post.date')
 
-                a.post__link(href='{{ post.url }}')
-                    h3.post__title
-                        | {{ post.title }}
+                h3.post__title
+                    | {{ post.title }}
 
                 p.post__summary
                     | {{ post.summary }}

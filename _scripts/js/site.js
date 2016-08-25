@@ -109,15 +109,6 @@ function iSendAJAX(event, form, sendButton, successMsg) {
 };
 // /forms}}}
 
-// animateLogo{{{
-function deanimateLogo() {
-    $('#site_logo').on('click', function () {
-        sleep(2000).then(function () {
-            $('site_logo').blur();
-        });
-    });
-};
-// /animateLog}}}
 
 $(function () {
     mobileNav();
@@ -127,5 +118,4 @@ $(function () {
     enableReviewForm();
     enableOrderForm();
     activeNavLink();
-    deanimateLogo();
 });

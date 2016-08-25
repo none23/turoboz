@@ -102,7 +102,7 @@ $turbo_mixblue = mix($turbo_lightblue, $turbo_blue)
 $turbo_gray = hsl(30, 1%, 44%)
 $shadowy = hsl(0, 0, 20%, 0.4)
 $body_fg = $turbo_darkbrown
-$body_bg = beige
+$body_bg = ivory
 
 $site_nav_bg = hsl(0, 0, 94%)
 $mobile_nav_bg = white
@@ -133,7 +133,7 @@ $modal_form_button_fg = white
     25%
         transform: rotate(180deg) scale(1.01)
     50%
-        transform: rotate(359deg) scale(1.02)
+        transform: rotate(359deg) scale(1)
     75%
         transform: rotate(540deg) scale(1.01)
     100%
@@ -141,6 +141,18 @@ $modal_form_button_fg = white
         fill: darken($turbo_gray, 30%)
 
 @keyframes logo_animate_blue
+    0%
+        fill: $turbo_blue
+    25%
+        fill: $turbo_darkbrown
+    50%
+        fill: $turbo_blue
+    75%
+        fill: $turbo_darkbrown
+    100%
+        fill: $turbo_blue
+
+@keyframes logo_animate_blue_2
     0%
         fill: $turbo_blue
     17%
@@ -157,6 +169,18 @@ $modal_form_button_fg = white
         fill: $turbo_blue
 
 @keyframes logo_animate_brown
+    0%
+        fill: $turbo_brown
+    25%
+        fill: $turbo_darkblue
+    50%
+        fill: $turbo_brown
+    75%
+        fill: $turbo_darkblue
+    100%
+        fill: $turbo_brown
+
+@keyframes logo_animate_brown_2
     0%
         fill: $turbo_brown
     17%
@@ -287,9 +311,9 @@ textarea
     flex-direction: row
     justify-content: space-between
     align-items: flex-start
-    background-color: $site_nav_bg 
-    background-blend-mode: lighten
     background-image: url(/img/noise.png) 
+    background-blend-mode: lighten
+    background-color: $site_nav_bg 
     background-repeat: repeat
     box-shadow: 0 0 0.75rem -0.25rem $shadowy
     border-bottom: 0.063rem solid $turbo_lightblue
@@ -314,18 +338,19 @@ textarea
     .logo_blue
         fill: $turbo_blue
 
-#site_logo__icon
+#site_logo
     &:hover
     &:focus
+        outline: none !important
         .logo_gray
         .logo_brown
         .logo_blue
-            animation-duration: 4s
-            animation-timing-function: linear
+            animation-duration: 1s
+            animation-timing-function: ease-out
             animation-iteration-count: infinite
 
         .logo_gray
-            transform-origin: 1.50rem 1.48rem
+            transform-origin: 1.52rem 1.50rem
             animation-name: logo_animate_gray
         .logo_brown
             animation-name: logo_animate_brown
@@ -669,10 +694,10 @@ textarea
     justify-content: space-between
     align-items: stretch
     color: $body_fg
-    background-color: $body_bg
     background-image: url(/img/wall.png)
     background-repeat: repeat
     background-blend-mode: lightten
+    background-color: $body_bg
 
     @media(min-height: $page_wrap_min-height)
         min-height: 100vh
@@ -1390,7 +1415,9 @@ textarea
     margin-top: -4.4rem
     margin-bottom: -2rem
     box-shadow: 0.325rem -0.188rem 0.75rem -0.625rem $shadowy, inset 0 0.325rem 0.75rem -0.625rem $shadowy
-    AltBG()
+    background-image: url(/img/noise.png) 
+    background-blend-mode: lighten
+    background-color: snow  
 
 .tours_nav__section_header
     font-size: 1.1rem
@@ -1413,7 +1440,9 @@ textarea
     transition: all 0.4s ease-in-out
     will-change: transform
     //transform: translateX(20%)
-    AltBG()
+    background-image: url(/img/noise.png) 
+    background-blend-mode: lighten
+    background-color: snow 
 
 .tours_nav__link
     text-align: right
@@ -1497,6 +1526,19 @@ textarea
     flex-wrap: wrap
     margin: 0 $tour_card_width * 0.5 0 0
 
+.tours__count
+    position: absolute
+    top: $site_header_height + 1rem
+    right: 1rem
+    font-size: 1rem
+    color: $turbo_mixblue
+.tours__total
+    font-size: 0.9rem
+    color: $turbo_blue
+.tours__on_page
+    font-size: 1.2rem
+    color: $turbo_darkblue
+
 .tour__wrap
     flex 0 0 $tour_card_width
     height: $tour_card_height
@@ -1541,7 +1583,7 @@ textarea
     z-index: 10
     border-left: none
     overflow-y: scroll
-    background: $turbo_verylightblue
+    background: snow
     transform-origin: 0% 0%
     transform: scaleX(0.8)
 

@@ -69,7 +69,7 @@ mixin CallBackForm()
             | Заказать звонок
 
 header#site_header
-    a#site_logo(href='/')
+    a#site_logo(href='/', tabindex = -1)
         include header_logo.jade
         | {{ site.title }}
     a#mobile_nav_toggle(href='#')

@@ -273,9 +273,9 @@ textarea {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: #f0f0f0;
-  background-blend-mode: lighten;
   background-image: url("/img/noise.png");
+  background-blend-mode: lighten;
+  background-color: #f0f0f0;
   background-repeat: repeat;
   box-shadow: 0 0 0.75rem -0.25rem #333;
   border-bottom: 0.063rem solid #9dcde1;
@@ -298,27 +298,31 @@ textarea {
 #site_logo .logo_blue {
   fill: #3485a8;
 }
-#site_logo__icon:hover .logo_gray,
-#site_logo__icon:focus .logo_gray,
-#site_logo__icon:hover .logo_brown,
-#site_logo__icon:focus .logo_brown,
-#site_logo__icon:hover .logo_blue,
-#site_logo__icon:focus .logo_blue {
-  animation-duration: 4s;
-  animation-timing-function: linear;
+#site_logo:hover,
+#site_logo:focus {
+  outline: none !important;
+}
+#site_logo:hover .logo_gray,
+#site_logo:focus .logo_gray,
+#site_logo:hover .logo_brown,
+#site_logo:focus .logo_brown,
+#site_logo:hover .logo_blue,
+#site_logo:focus .logo_blue {
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
   animation-iteration-count: infinite;
 }
-#site_logo__icon:hover .logo_gray,
-#site_logo__icon:focus .logo_gray {
-  transform-origin: 1.5rem 1.48rem;
+#site_logo:hover .logo_gray,
+#site_logo:focus .logo_gray {
+  transform-origin: 1.52rem 1.5rem;
   animation-name: logo_animate_gray;
 }
-#site_logo__icon:hover .logo_brown,
-#site_logo__icon:focus .logo_brown {
+#site_logo:hover .logo_brown,
+#site_logo:focus .logo_brown {
   animation-name: logo_animate_brown;
 }
-#site_logo__icon:hover .logo_blue,
-#site_logo__icon:focus .logo_blue {
+#site_logo:hover .logo_blue,
+#site_logo:focus .logo_blue {
   animation-name: logo_animate_blue;
 }
 #site_logo__icon {
@@ -635,10 +639,10 @@ textarea {
   justify-content: space-between;
   align-items: stretch;
   color: #452917;
-  background-color: #f5f5dc;
   background-image: url("/img/wall.png");
   background-repeat: repeat;
   background-blend-mode: lightten;
+  background-color: #fffff0;
 }
 @media (min-height: 46.2rem) {
   .page_wrap {
@@ -1507,10 +1511,9 @@ textarea {
   margin-top: -4.4rem;
   margin-bottom: -2rem;
   box-shadow: 0.325rem -0.188rem 0.75rem -0.625rem #333, inset 0 0.325rem 0.75rem -0.625rem #333;
-  background-image: url("/img/card.png");
-  background-color: #3485a8;
-  background-repeat: repeat;
-  background-blend-mode: hard-light;
+  background-image: url("/img/noise.png");
+  background-blend-mode: lighten;
+  background-color: #fffafa;
 }
 .tours_nav__section_header {
   font-size: 1.1rem;
@@ -1532,10 +1535,9 @@ textarea {
   z-index: 500;
   transition: all 0.4s ease-in-out;
   will-change: transform;
-  background-image: url("/img/card.png");
-  background-color: #3485a8;
-  background-repeat: repeat;
-  background-blend-mode: hard-light;
+  background-image: url("/img/noise.png");
+  background-blend-mode: lighten;
+  background-color: #fffafa;
 }
 .tours_nav__link {
   text-align: right;
@@ -1591,6 +1593,21 @@ textarea {
   flex-wrap: wrap;
   margin: 0 8.4rem 0 0;
 }
+.tours__count {
+  position: absolute;
+  top: 7rem;
+  right: 1rem;
+  font-size: 1rem;
+  color: #68a9c4;
+}
+.tours__total {
+  font-size: 0.9rem;
+  color: #3485a8;
+}
+.tours__on_page {
+  font-size: 1.2rem;
+  color: #26637d;
+}
 .tour__wrap {
   flex: 0 0 16.8rem;
   height: 25rem;
@@ -1638,7 +1655,7 @@ textarea {
   z-index: 10;
   border-left: none;
   overflow-y: scroll;
-  background: #e8eced;
+  background: #fffafa;
   transform-origin: 0% 0%;
   transform: scaleX(0.8);
 }
@@ -2020,7 +2037,7 @@ textarea {
     transform: rotate(180deg) scale(1.01);
   }
   50% {
-    transform: rotate(359deg) scale(1.02);
+    transform: rotate(359deg) scale(1);
   }
   75% {
     transform: rotate(540deg) scale(1.01);
@@ -2038,7 +2055,7 @@ textarea {
     transform: rotate(180deg) scale(1.01);
   }
   50% {
-    transform: rotate(359deg) scale(1.02);
+    transform: rotate(359deg) scale(1);
   }
   75% {
     transform: rotate(540deg) scale(1.01);
@@ -2056,7 +2073,7 @@ textarea {
     transform: rotate(180deg) scale(1.01);
   }
   50% {
-    transform: rotate(359deg) scale(1.02);
+    transform: rotate(359deg) scale(1);
   }
   75% {
     transform: rotate(540deg) scale(1.01);
@@ -2074,7 +2091,7 @@ textarea {
     transform: rotate(180deg) scale(1.01);
   }
   50% {
-    transform: rotate(359deg) scale(1.02);
+    transform: rotate(359deg) scale(1);
   }
   75% {
     transform: rotate(540deg) scale(1.01);
@@ -2088,20 +2105,14 @@ textarea {
   0% {
     fill: #3485a8;
   }
-  17% {
-    fill: #26637d;
-  }
-  33% {
+  25% {
     fill: #452917;
   }
   50% {
-    fill: #613b23;
+    fill: #3485a8;
   }
-  67% {
+  75% {
     fill: #452917;
-  }
-  84% {
-    fill: #26637d;
   }
   100% {
     fill: #3485a8;
@@ -2111,26 +2122,54 @@ textarea {
   0% {
     fill: #3485a8;
   }
-  17% {
-    fill: #26637d;
-  }
-  33% {
+  25% {
     fill: #452917;
   }
   50% {
-    fill: #613b23;
+    fill: #3485a8;
   }
-  67% {
+  75% {
     fill: #452917;
-  }
-  84% {
-    fill: #26637d;
   }
   100% {
     fill: #3485a8;
   }
 }
 @-o-keyframes logo_animate_blue {
+  0% {
+    fill: #3485a8;
+  }
+  25% {
+    fill: #452917;
+  }
+  50% {
+    fill: #3485a8;
+  }
+  75% {
+    fill: #452917;
+  }
+  100% {
+    fill: #3485a8;
+  }
+}
+@keyframes logo_animate_blue {
+  0% {
+    fill: #3485a8;
+  }
+  25% {
+    fill: #452917;
+  }
+  50% {
+    fill: #3485a8;
+  }
+  75% {
+    fill: #452917;
+  }
+  100% {
+    fill: #3485a8;
+  }
+}
+@-moz-keyframes logo_animate_blue_2 {
   0% {
     fill: #3485a8;
   }
@@ -2153,7 +2192,53 @@ textarea {
     fill: #3485a8;
   }
 }
-@keyframes logo_animate_blue {
+@-webkit-keyframes logo_animate_blue_2 {
+  0% {
+    fill: #3485a8;
+  }
+  17% {
+    fill: #26637d;
+  }
+  33% {
+    fill: #452917;
+  }
+  50% {
+    fill: #613b23;
+  }
+  67% {
+    fill: #452917;
+  }
+  84% {
+    fill: #26637d;
+  }
+  100% {
+    fill: #3485a8;
+  }
+}
+@-o-keyframes logo_animate_blue_2 {
+  0% {
+    fill: #3485a8;
+  }
+  17% {
+    fill: #26637d;
+  }
+  33% {
+    fill: #452917;
+  }
+  50% {
+    fill: #613b23;
+  }
+  67% {
+    fill: #452917;
+  }
+  84% {
+    fill: #26637d;
+  }
+  100% {
+    fill: #3485a8;
+  }
+}
+@keyframes logo_animate_blue_2 {
   0% {
     fill: #3485a8;
   }
@@ -2180,20 +2265,14 @@ textarea {
   0% {
     fill: #613b23;
   }
-  17% {
-    fill: #452917;
-  }
-  33% {
+  25% {
     fill: #26637d;
   }
   50% {
-    fill: #3485a8;
+    fill: #613b23;
   }
-  67% {
+  75% {
     fill: #26637d;
-  }
-  84% {
-    fill: #452917;
   }
   100% {
     fill: #613b23;
@@ -2203,26 +2282,54 @@ textarea {
   0% {
     fill: #613b23;
   }
-  17% {
-    fill: #452917;
-  }
-  33% {
+  25% {
     fill: #26637d;
   }
   50% {
-    fill: #3485a8;
+    fill: #613b23;
   }
-  67% {
+  75% {
     fill: #26637d;
-  }
-  84% {
-    fill: #452917;
   }
   100% {
     fill: #613b23;
   }
 }
 @-o-keyframes logo_animate_brown {
+  0% {
+    fill: #613b23;
+  }
+  25% {
+    fill: #26637d;
+  }
+  50% {
+    fill: #613b23;
+  }
+  75% {
+    fill: #26637d;
+  }
+  100% {
+    fill: #613b23;
+  }
+}
+@keyframes logo_animate_brown {
+  0% {
+    fill: #613b23;
+  }
+  25% {
+    fill: #26637d;
+  }
+  50% {
+    fill: #613b23;
+  }
+  75% {
+    fill: #26637d;
+  }
+  100% {
+    fill: #613b23;
+  }
+}
+@-moz-keyframes logo_animate_brown_2 {
   0% {
     fill: #613b23;
   }
@@ -2245,7 +2352,53 @@ textarea {
     fill: #613b23;
   }
 }
-@keyframes logo_animate_brown {
+@-webkit-keyframes logo_animate_brown_2 {
+  0% {
+    fill: #613b23;
+  }
+  17% {
+    fill: #452917;
+  }
+  33% {
+    fill: #26637d;
+  }
+  50% {
+    fill: #3485a8;
+  }
+  67% {
+    fill: #26637d;
+  }
+  84% {
+    fill: #452917;
+  }
+  100% {
+    fill: #613b23;
+  }
+}
+@-o-keyframes logo_animate_brown_2 {
+  0% {
+    fill: #613b23;
+  }
+  17% {
+    fill: #452917;
+  }
+  33% {
+    fill: #26637d;
+  }
+  50% {
+    fill: #3485a8;
+  }
+  67% {
+    fill: #26637d;
+  }
+  84% {
+    fill: #452917;
+  }
+  100% {
+    fill: #613b23;
+  }
+}
+@keyframes logo_animate_brown_2 {
   0% {
     fill: #613b23;
   }
