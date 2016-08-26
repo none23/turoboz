@@ -138,6 +138,7 @@ function getStrs(auth) {
         var tourSummary = row[4];
         var tourImgpath = row[5];
         var tourLength = row[6];
+        var tourHidden = row[7];
 
         tourObj.tour = tourId;
         tourObj.title = tourTitle;
@@ -146,6 +147,7 @@ function getStrs(auth) {
         tourObj.summary = tourSummary;
         tourObj.imgpath = tourImgpath;
         tourObj.tourlength = tourLength;
+        tourObj.is_hidden = tourHidden;
 
         all_tours.push(tourObj);
       }
@@ -432,7 +434,7 @@ function saveJSON() {
         var finalObj = {};
         for (var i = 0; i < all_tours.length; ++i ){
             finalObj[all_tours[i].tour] = all_tours[i];
-            toursFiles(all_tours[i].tour, all_tours[i].title, all_tours[i].subtitle, all_tours[i].intro, all_tours[i].summary, all_tours[i].imgpath, all_tours[i].tourlength, all_tours[i].tags, all_tours[i].dates, all_tours[i].prices, all_tours[i].includes, all_tours[i].additional_fees, all_tours[i].will_learn, all_tours[i].details, all_tours[i].blueprint);
+            toursFiles(all_tours[i].tour, all_tours[i].is_hidden, all_tours[i].title, all_tours[i].subtitle, all_tours[i].intro, all_tours[i].summary, all_tours[i].imgpath, all_tours[i].tourlength, all_tours[i].tags, all_tours[i].dates, all_tours[i].prices, all_tours[i].includes, all_tours[i].additional_fees, all_tours[i].will_learn, all_tours[i].details, all_tours[i].blueprint);
         }
         upcoming_tours.sort(function(a, b){
             return a.val - b.val;
@@ -470,24 +472,26 @@ function concatArray (arr, arr_title) {
         return;
     }
 }
-function toursFiles (id, title, subtitle, intro, summary, imgpath, tourlength, tags, dates, prices, includes, additional_fees, will_learn, details, blueprint) {
-    var strsContent = "---\nid: " + id + "\nlayout: tour\npermalink: /tours/" + id + "/\ntitle: '" + title + "'\nsubtitle: '" + subtitle + "'\nintro: '" + intro + "'\nsummary: '" + summary + "'\nimgpath: " + imgpath + "\ntourlength: " + tourlength + "\n";
-    var tagsContent            = concatArray(tags,            'tags');
-    var datesContent           = concatArray(dates,           'dates');
-    var pricesContent          = concatArray(prices,          'prices');
-    var includesContent        = concatArray(includes,        'includes');
-    var additional_feesContent = concatArray(additional_fees, 'additional_fees');
-    var will_learnContent      = concatArray(will_learn,      'will_learn');
-    var detailsContent         = concatArray(details,         'details');
-    var blueprintContent       = concatArray(blueprint,       'blueprint');
+function toursFiles (id, is_hidden, title, subtitle, intro, summary, imgpath, tourlength, tags, dates, prices, includes, additional_fees, will_learn, details, blueprint) {
+    if (is_hidden == 1 ) {  } else {
+        var strsContent = "---\nid: " + id + "\nlayout: tour\npermalink: /tours/" + id + "/\ntitle: '" + title + "'\nsubtitle: '" + subtitle + "'\nintro: '" + intro + "'\nsummary: '" + summary + "'\nimgpath: " + imgpath + "\ntourlength: " + tourlength + "\n";
+        var tagsContent            = concatArray(tags,            'tags');
+        var datesContent           = concatArray(dates,           'dates');
+        var pricesContent          = concatArray(prices,          'prices');
+        var includesContent        = concatArray(includes,        'includes');
+        var additional_feesContent = concatArray(additional_fees, 'additional_fees');
+        var will_learnContent      = concatArray(will_learn,      'will_learn');
+        var detailsContent         = concatArray(details,         'details');
+        var blueprintContent       = concatArray(blueprint,       'blueprint');
 
-    var content = strsContent + tagsContent + datesContent + pricesContent + includesContent + additional_feesContent + will_learnContent + detailsContent + blueprintContent + '---';
+        var content = strsContent + tagsContent + datesContent + pricesContent + includesContent + additional_feesContent + will_learnContent + detailsContent + blueprintContent + '---';
 
-    var filename = "_tours/" + id + ".html";
-    fs.writeFile(filename, content, 'utf8', function (err) {
-        if (err) {
-            return console.log(err);
-        }
-    });
+        var filename = "_tours/" + id + ".html";
+        fs.writeFile(filename, content, 'utf8', function (err) {
+            if (err) {
+                return console.log(err);
+            }
+        });
+    }
 }
 // }}}
