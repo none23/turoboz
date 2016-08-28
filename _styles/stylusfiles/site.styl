@@ -2,7 +2,7 @@
 AltBG()
     //--{{{
     background-image: url(/img/card.png) 
-    background-color: $turbo_darkblue
+    background-color: $turbo_blue
     background-repeat: repeat 
     background-blend-mode: hard-light
     //--}}}
@@ -15,7 +15,7 @@ SectionWidth()
     margin: 1rem auto
 
     @media(max-width: 660px)
-        width: 96vw
+        width: 92vw
         max-width: @width
         min-width: 0
 
@@ -47,17 +47,16 @@ Bullets()
         transform: translateX(0%)
     //--}}}
 
-textLink(Color=$turbo_blue, ColorUnderline=$turbo_mixblue, Flag=false) 
+textLink(Color=$turbo_blue, Flag=false) 
     //--{{{
     color: Color
     line-height: 1
-    border-bottom: solid 0.063rem ColorUnderline
+    text-decoration: underline
 
     unless Flag==nohover
         &:hover
         &:focus
             color: $turbo_brown
-            border-bottom: 0.063rem solid $turbo_brown
     //--}}}
 
 // /mixins }}}
@@ -103,7 +102,7 @@ $turbo_mixblue = mix($turbo_lightblue, $turbo_blue)
 $turbo_gray = hsl(30, 1%, 44%)
 $shadowy = hsl(0, 0, 20%, 0.4)
 $body_fg = $turbo_darkbrown
-$body_bg = beige
+$body_bg = ivory
 
 $site_nav_bg = hsl(0, 0, 94%)
 $mobile_nav_bg = white
@@ -134,7 +133,7 @@ $modal_form_button_fg = white
     25%
         transform: rotate(180deg) scale(1.01)
     50%
-        transform: rotate(359deg) scale(1.02)
+        transform: rotate(359deg) scale(1)
     75%
         transform: rotate(540deg) scale(1.01)
     100%
@@ -142,6 +141,18 @@ $modal_form_button_fg = white
         fill: darken($turbo_gray, 30%)
 
 @keyframes logo_animate_blue
+    0%
+        fill: $turbo_blue
+    25%
+        fill: $turbo_darkbrown
+    50%
+        fill: $turbo_blue
+    75%
+        fill: $turbo_darkbrown
+    100%
+        fill: $turbo_blue
+
+@keyframes logo_animate_blue_2
     0%
         fill: $turbo_blue
     17%
@@ -160,6 +171,18 @@ $modal_form_button_fg = white
 @keyframes logo_animate_brown
     0%
         fill: $turbo_brown
+    25%
+        fill: $turbo_darkblue
+    50%
+        fill: $turbo_brown
+    75%
+        fill: $turbo_darkblue
+    100%
+        fill: $turbo_brown
+
+@keyframes logo_animate_brown_2
+    0%
+        fill: $turbo_brown
     17%
         fill: $turbo_darkbrown
     33%
@@ -172,6 +195,17 @@ $modal_form_button_fg = white
         fill: $turbo_darkbrown
     100%
         fill: $turbo_brown
+
+@keyframes form_button_submit
+    0%
+        transform: scale(0)
+        border-radius: 3rem
+    80%
+        transform: scale(1.1)
+        border-radius: 0.25rem
+    100%
+        transform: scale(1)
+        border-radius: 0.063rem
 // /keyframes }}}
 // /vars }}}
 // base {{{
@@ -277,9 +311,9 @@ textarea
     flex-direction: row
     justify-content: space-between
     align-items: flex-start
-    background-color: $site_nav_bg 
-    background-blend-mode: lighten
     background-image: url(/img/noise.png) 
+    background-blend-mode: lighten
+    background-color: $site_nav_bg 
     background-repeat: repeat
     box-shadow: 0 0 0.75rem -0.25rem $shadowy
     border-bottom: 0.063rem solid $turbo_lightblue
@@ -304,23 +338,24 @@ textarea
     .logo_blue
         fill: $turbo_blue
 
-    #site_logo__icon
-        &:hover
-        &:focus
-            .logo_gray
-            .logo_brown
-            .logo_blue
-                animation-duration: 4s
-                animation-timing-function: linear
-                animation-iteration-count: infinite
+#site_logo
+    &:hover
+    &:focus
+        outline: none !important
+        .logo_gray
+        .logo_brown
+        .logo_blue
+            animation-duration: 1s
+            animation-timing-function: ease-out
+            animation-iteration-count: infinite
 
-            .logo_gray
-                transform-origin: 1.50rem 1.48rem
-                animation-name: logo_animate_gray
-            .logo_brown
-                animation-name: logo_animate_brown
-            .logo_blue
-                animation-name: logo_animate_blue
+        .logo_gray
+            transform-origin: 1.52rem 1.50rem
+            animation-name: logo_animate_gray
+        .logo_brown
+            animation-name: logo_animate_brown
+        .logo_blue
+            animation-name: logo_animate_blue
 
 #site_logo__icon
     position: absolute
@@ -418,6 +453,14 @@ textarea
         flex: 4 4  $header_form_field_width * 2
         margin: 0
 
+        &:hover
+        &:focus
+            color: white
+            background: $turbo_blue
+        &:active
+            color: @background
+            background: $turbo_brown
+
     #call_back_form__cancel_button
         order: 1
         flex: 1 0 3rem
@@ -432,10 +475,10 @@ textarea
 
         &:hover
         &:focus
-            color: @background
+            color: white
             background: $turbo_cancel
         &:active
-            color: @background
+            color: white
             background: $turbo_cancel_active
 
 
@@ -593,16 +636,17 @@ textarea
 // site_footer {{{
 // =========================================================================
 #site_footer
+    order: 2
     display: flex
     position: relative
     flex-direction: row
     justify-content: space-between
     align-items: flex-end
     flex-wrap: wrap
-    background-color: $site_footer_bg 
     background-image: url(/img/blue.png) 
     background-repeat: repeat 
     background-blend-mode: color-dodge
+    background-color: $site_footer_bg 
     color: $site_footer_fg 
     margin-top: 2rem
     box-shadow: 0 0 0.75rem -0.063rem $shadowy 
@@ -635,7 +679,7 @@ textarea
 
 #f__developer,
 #f__developer__link
-    font-size: 0.9rem 
+    font-size: 0.7rem 
 
 #f__developer__link
     color: $turbo_blue
@@ -650,14 +694,18 @@ textarea
     justify-content: space-between
     align-items: stretch
     color: $body_fg
-    background-color: $body_bg
     background-image: url(/img/wall.png)
     background-repeat: repeat
     background-blend-mode: lightten
+    background-color: $body_bg
 
     @media(min-height: $page_wrap_min-height)
         min-height: 100vh
 
+.page_content_wrap
+    height: auto
+    flex: 1 0 1
+    
 .page_heading
     flex: 0 0 100%
 
@@ -723,6 +771,11 @@ textarea
     color: $turbo_blue
     border-radius: $border-radius
     outline: $border
+.form__button--success
+.form__button--loading
+.form__button--failure
+    transition: all 0.3s ease-in-out
+    animation: form_button_submit 0.3s ease-in-out 0s 1 normal forwards
 
 .form__button
     background: white
@@ -733,13 +786,13 @@ textarea
         color: white
 
 .form__button--success
-    background: hsl(120,90%,15%)
+    background: hsl(120,90%,15%) !important
 
 .form__button--loading
-    background: $turbo_blue
+    background: $turbo_blue !important
 
 .form__button--failure
-    background: hsl(0,90%,20%)
+    background: hsl(0,90%,20%) !important
 
 // /forms }}}
 // /site_wide }}}
@@ -758,8 +811,8 @@ textarea
 
 // heading {{{
 .main__heading__section
-    flex: 5 1 36rem
-    min-height: 26.25rem
+    flex: 5 2 34rem
+    min-height: 25rem
     display: flex
     flex-direction: row
     justify-content: center
@@ -786,7 +839,7 @@ textarea
 // /heading }}}
 // news {{{
 .news__section
-    flex: 1 0 20rem
+    flex: 1 0 19rem
     box-shadow: inset 0 -0.188rem 0.75rem -0.375rem $shadowy
     AltBG()
 
@@ -821,6 +874,7 @@ textarea
 
 .event__wrap
     flex: 1 0 14rem
+    max-width: 25rem
     border: $border
     border-radius: $border-radius
     margin: 0.5rem 0.313rem
@@ -1024,7 +1078,6 @@ textarea
 // =========================================================================
 .about_info
     margin-top: 0
-    columns: 2 16rem
 
 .guides
     display: flex
@@ -1041,7 +1094,7 @@ textarea
     flex: 0 1 25rem
     flex-direction: column
     justify-content: flex-start
-    align-items: flex-start
+    align-items: stretch
     margin: 0.5rem
     padding: 1rem
     border: $border
@@ -1056,12 +1109,13 @@ textarea
     margin: -1rem -1rem 1rem
 
 .guide__name
-    flex: 0 1 3.6rem
+    flex: 0 1 2.4rem
     font-size: 1.2rem
-    margin: 1.2rem 0.6rem 
+    line-height: 2.4rem
 
 .guide__resume
-    flex: 0 2 20rem
+    flex: 0 2 14rem
+    padding: 0 0.6rem
 
 .guide__resume_p
     margin: 1rem
@@ -1069,6 +1123,23 @@ textarea
 .guide__img
     width: 100%
     height: 100%
+
+.guide__link__wrap
+    flex: 0 0 1rem
+    margin: 0 -1rem
+    padding: 1rem
+    border-top: $border
+    text-align: center
+
+.guide__link__wrap--page
+    margin-bottom: -1rem
+    border-radius: 0 0 $border-radius $border-radius
+
+.guide__link
+    line-height: 1rem
+    margin: 0rem
+    padding: 0
+    color: $turbo_blue
 
 .advantages__list
     background: white
@@ -1090,26 +1161,47 @@ textarea
     padding: 1.64rem 10vw 40vh
     margin-bottom: -35vh
     display: flex
+    flex-direction: row
     justify-content: space-between
-    flex-wrap: nowrap
+    flex-wrap: wrap
     align-items: baseline
     AltBG()
 
+    @media(max-width: 700px)
+        flex-direction: column
+        justify-content: space-between
+        flex-wrap: nowrap
+        align-items: stretch
+
 .full_tour__heading__left
 .full_post__heading__left
-    flex: 2 1 60vw
+    flex: 2 1 65%
+
+    @media(max-width: 700px)
+        margin-bottom: 1rem
+
 .full_tour__heading__right
 .full_post__heading__right
-    flex: 1 2 30vw
+    flex: 1 2 35%
 
 .full_tour__breadcrumbs
-    flex: 0 0 3rem
-    margin: -1rem -25vw 1rem -5vw
+.full_post__breadcrumbs
+.full_post__breadcrumbs--bottom
+    flex: 0 0 100%
     display: flex
     flex-direction: row
     justify-content: flex-start
+    flex-wrap: wrap
+
+.full_tour__breadcrumbs
+.full_post__breadcrumbs
+    margin: -1rem -5vw 1rem
+
+.full_post__breadcrumbs--bottom
+    justify-content: space-around
 
 .full_tour__breadcrumb
+.full_post__breadcrumb
     display: flex
     flex-direction: row
     justify-content: flex-start
@@ -1117,7 +1209,14 @@ textarea
     margin: 0 0.5rem
 
 .full_tour__breadcrumb__label
-    textLink($turbo_blue, $turbo_mixblue, nohover)
+.full_post__breadcrumb__label
+    textLink($turbo_blue, nohover)
+    white-space: nowrap
+    padding: 0.75rem 0
+
+    @media(max-width: 500px)
+        font-size: 0.8rem
+    
 
 .full_tour__breadcrumb--top
     order:-1
@@ -1129,15 +1228,18 @@ textarea
     margin-right: -1rem
 
 .full_tour__breadcrumb__icon
+.full_post__breadcrumb__icon
     flex: 0 0 3rem
     display: block
     width: 3rem
     height: @width
 
 .full_tour__breadcrumb__icon__svg
+.full_post__breadcrumb__icon__svg
     fill: $turbo_blue
 
 .full_tour__breadcrumb
+.full_post__breadcrumb
     transition: all 0.3s ease-in-out
     &:hover
     &:focus 
@@ -1145,7 +1247,7 @@ textarea
             fill: $turbo_brown
 
         .full_tour__breadcrumb__label
-            textLink($turbo_brown, $turbo_brown, nohover)
+            textLink($turbo_brown, nohover)
 
 .full_tour__date
 .full_post__date
@@ -1159,6 +1261,14 @@ textarea
 .full_tour__subtitle
     font-size: 1.6rem
     line-height: 1.6
+
+@media(max-width: 500px)
+    .full_tour__title
+    .full_post__title
+        font-size: 1.4rem
+
+    .full_tour__subtitle
+        font-size: 1.2rem
 
 .full_tour__subtitle
 .full_tour__date
@@ -1189,6 +1299,12 @@ textarea
 .full_tour__len
     text-align: right
     margin-right: 1rem
+
+    @media(max-width: 700px)
+        text-align: center
+
+.full_tour__price
+    white-space: nowrap
 
 .full_tour__content__wrap
 .full_post__content__wrap
@@ -1228,7 +1344,15 @@ textarea
     flex: 1 1 35%
 
 .full_tour__intro__wrap
+    display: block
+    flex-direction: column
+    justify-content: flex-start
+    align-items: stretch
     margin-top: 0
+
+    @media(max-width: 700px)
+        display: flex
+
 
 .full_tour__blueprint__list__item
 .full_tour__includes__list__item
@@ -1243,16 +1367,28 @@ textarea
 .full_tour__image
     width: 100%
     height: 100%
-    blend-mode: contain
+    object-fit: contain
     border-radius: $border-radius
+
+.full_tour__intro
+    order: -1
 
 .full_post__image__wrap
 .full_tour__image__wrap
     float: right
     margin: 1rem 0 1rem 1rem
-    max-height: 25rem
+    width: 50%
+    max-height: auto
     max-width: 25rem
     overflow: hidden
+
+    @media(max-width: 700px)
+        width: 45%
+
+    @media(max-width: 600px)
+        width: 100%
+        margin: 0 auto
+        float: none
 
 .full_post__content__wrap
     li 
@@ -1279,7 +1415,9 @@ textarea
     margin-top: -4.4rem
     margin-bottom: -2rem
     box-shadow: 0.325rem -0.188rem 0.75rem -0.625rem $shadowy, inset 0 0.325rem 0.75rem -0.625rem $shadowy
-    AltBG()
+    background-image: url(/img/noise.png) 
+    background-blend-mode: lighten
+    background-color: snow  
 
 .tours_nav__section_header
     font-size: 1.1rem
@@ -1289,7 +1427,7 @@ textarea
 
 .tours_nav
     position: absolute
-    top: 4.4rem + 3.3rem
+    top: 4.4rem
     right: 0
     left: 0
     width: auto
@@ -1302,21 +1440,12 @@ textarea
     transition: all 0.4s ease-in-out
     will-change: transform
     //transform: translateX(20%)
-    AltBG()
-
-    &.minified
-        .tours_nav__link
-            z-index: 400
-
-#tours_nav--primary
-    top: 4.4rem
+    background-image: url(/img/noise.png) 
+    background-blend-mode: lighten
+    background-color: snow 
 
 .tours_nav__link
     text-align: right
-    padding-right: $tours_nav_link_padding_h
-    padding-left: $tours_nav_link_padding_h
-    padding-top: $tours_nav_link_padding_v
-    padding-bottom: $tours_nav_link_padding_v
     text-transform: uppercase
 
     &:hover
@@ -1334,28 +1463,54 @@ textarea
         color: white
 
     &.active
-        order: -1
         z-index: 500
 
-.tours_nav__link--back
-    align-self: center
-    height: 4rem
-    width: @height
-    margin: 0
-    padding: 0.51rem 70% 0.51rem 50%
-    margin:  0 auto
-    fill: white
-    background-color: $turbo_brown
-    transition: all 0.3s ease-in-out
+.tours_nav__link--tag
+    padding-right: $tours_nav_link_padding_h
+    padding-left: $tours_nav_link_padding_h
+    padding-top: $tours_nav_link_padding_v
+    padding-bottom: $tours_nav_link_padding_v
 
-    &:hover
-    &:focus
-        transform: translateX(-7%)
-        fill: $turbo_blue
+.tours_nav__link--subtag
+    position: relative
+    display: none
+    padding-right: $tours_nav_link_padding_h * 2.5
+    padding-left: $tours_nav_link_padding_h * 0.5
+    padding-top: $tours_nav_link_padding_v * 0.75
+    padding-bottom: $tours_nav_link_padding_v * 0.75
+    background: $turbo_lightblue
+    font-size: 0.9rem
 
-    &:active
-        transform: translateX(-20%)
-        fill: $turbo_darkblue
+    &.visible
+        display: block
+
+.tours_nav__link--subtag--last
+    padding-bottom: $tours_nav_link_padding_v
+
+// hierarchy tree {{{
+/*
+.tours_nav__link--subtag--notlast:before
+        content: '├─'
+
+.tours_nav__link--subtag--last:before
+        content: '└─'
+
+.tours_nav__link--subtag--notlast
+.tours_nav__link--subtag--last
+    &:before
+        position: absolute
+        left: 1.5rem
+        top: 0.2rem
+        font-size: 1.5rem + $tours_nav_link_padding_v 
+        line-height: 1.5rem + $tours_nav_link_padding_v 
+        color: mix($turbo_brown, $turbo_lightblue)
+    &:focus:before
+    &:hover:before
+    &.active:before
+    &:active:before
+        color: mix(white, $turbo_lightblue)
+*/
+// /hierarchy tree }}}
 
 // /tours_nav }}}
 // tours_list {{{
@@ -1370,6 +1525,19 @@ textarea
     align-items: stretch
     flex-wrap: wrap
     margin: 0 $tour_card_width * 0.5 0 0
+
+.tours__count
+    position: absolute
+    top: $site_header_height + 1rem
+    right: 1rem
+    font-size: 1rem
+    color: $turbo_mixblue
+.tours__total
+    font-size: 0.9rem
+    color: $turbo_blue
+.tours__on_page
+    font-size: 1.2rem
+    color: $turbo_darkblue
 
 .tour__wrap
     flex 0 0 $tour_card_width
@@ -1415,7 +1583,7 @@ textarea
     z-index: 10
     border-left: none
     overflow-y: scroll
-    background: $turbo_verylightblue
+    background: snow
     transform-origin: 0% 0%
     transform: scaleX(0.8)
 
@@ -1493,6 +1661,15 @@ textarea
         flex: 1 0 16rem
 
 @media(max-width: 899px)
+    .tours_nav__wrap
+        flex: 0 1 20rem
+
+    .tours_nav
+        top 0
+
+    .tours_nav__link
+        padding: 0.75rem 0.5rem
+
     .tours__list
         margin: 0 0.5rem 0 0
         display: block
@@ -1512,19 +1689,6 @@ textarea
     .tour__fixed
         position: static
         flex: 1 1 $tour_card_width
-
-    .tours_nav
-        top 0
-
-    .tours_nav.minified
-    .tours_nav.hidden
-        display: none
-
-    .tours_nav__wrap
-        flex: 0 1 20rem
-
-    .tours_nav__link
-        padding: 0.75rem 0.5rem
         
     .tour__image__wrap
     .tour__moving

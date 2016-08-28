@@ -1,14 +1,15 @@
 title: Туробоз
 description: > 
     Turoboz website
-url: https://courier-threshold-25517.netlify.com/
-email: TODO@TODO.TODO
+url: https://www.turoboz.com
+unsafe_url: http://www.turoboz.com
+email: info@turoboz.com
 vk_group: vk.com/club33948424
-company_legal: TODO
+company_legal:  Туробоз
 copyright_dates: 2013-2016
 
 github_username:  none23
-
+google_analytics: UA-83021795-1
 # Build settings
 markdown: kramdown
 
@@ -28,3 +29,5 @@ collections:
     output: true
   news:
     output: true
+gems:
+  - jekyll-sitemap
