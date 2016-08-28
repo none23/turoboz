@@ -19,6 +19,10 @@
    title: по святым местам
    url: /tours/sacred/
 
+ - tag: permregion
+   title: по Пермскому краю
+   url: /tours/permregion/
+
  - tag: perm
    title: по Перми
    url: /tours/perm/

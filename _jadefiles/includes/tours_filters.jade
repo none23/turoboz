@@ -1,53 +1,37 @@
 include ../mixins.jade
 
-mixin ToursNavPrimary()
-    | {% for nptag in site.data.tags %}
-    a(href='{{ nptag.url }}', class='tours_nav__link {% if page.url contains nptag.url %}active{% endif %}', id='{% if nptag.subtags %}opens--{{ nptag.tag }}{% endif %}')
-        | {{ nptag.title }}
-    | {% endfor %}
-
-mixin ToursNavSecondary(tAgg)
-    a.tours_nav__link--back(href='../') 
-        +iconArrowBack('tours_nav__link--back__svg')
-    | {% for nssubtag in #{tAgg}.subtags %}
-    a(href='{{ nssubtag.url }}', class='tours_nav__link {% if page.url contains nssubtag.url %}active{% endif %}')
-        | {{ nssubtag.title }}
-    | {% endfor %}
-
 section.tours_nav__wrap
     h2.section_header.tours_nav__section_header
         | Категории
-    | {% if page.url == '/tours/' %}
-    //-- case 1:
-    //-- {{{
-    //-- no tag selected => show only primary
-    nav#tours_nav--primary.tours_nav
-        +ToursNavPrimary()
-    //-- }}}
+    nav.tours_nav
+        | {% for tag in site.data.tags %}
+        |   {% assign is_empty = 1 %}
+        |   {% for tour in site.tours %}
+        //-- |     {% if tour.dates[0] | plus: 0 > 0 %}
+        |       {% if tour.tags contains tag.tag %}
+        |         {% assign is_empty = 0 %}
+        |       {% endif %}
+        //-- |     {% endif %}
+        |   {% endfor %}
+        |   {% if is_empty == 0 %}
+        a(href='{{ tag.url }}', class='tours_nav__link tours_nav__link--tag {% if page.url contains tag.url %}active{% endif %}') 
+            | {{ tag.title }}
+        |     {% if tag.subtags %}
+        |       {% for subtag in tag.subtags %}
+        |         {% assign subtag_is_empty = 1 %}
+        |         {% for tour in site.tours %}
+        //-- |           {% if tour.dates[0] | plus: 0 > 0 %}
+        |             {% if tour.tags contains subtag.subtag %}
+        |               {% assign subtag_is_empty = 0 %}
+        |             {% endif %}
+        //-- |           {% endif %}
+        |         {% endfor %}
+        |         {% if subtag_is_empty == 0 %}
+        a(href='{{ subtag.url }}', class='tours_nav__link tours_nav__link--subtag {% if forloop.last %}tours_nav__link--subtag--last {% else %}{% endif %}tours_nav__link--subtag--notlast {% if page.url contains tag.url %}visible{% if page.url contains subtag.url %} active{% endif %}{% endif %}')
+            | {{ subtag.title }}
+        |         {% endif %}
+        |       {% endfor %}
+        |     {% endif %}
+        |   {% endif %}
+        | {% endfor %}
 
-    | {% else %}
-    | {% for tatag in site.data.tags %}
-    | {% if page.url contains tatag.url %}
-    | {% if tatag.subtags %}
-    //-- case 2:
-    //-- {{{
-    //-- a tag containing subtags selected => show secondary and (minimized) primary 
-    nav#tours_nav--primary.tours_nav.minified
-        +ToursNavPrimary()
-    nav(id='tours_nav--{{ tatag.tag }}', class='tours_nav tours_nav--{{ tatag.tag }}')
-        +ToursNavSecondary('tatag')
-    //-- }}}
-
-    | {% else %}
-    //-- case 3:
-    //-- {{{
-    //-- a tag containing no subtags selected =>  show only primary
-    nav#tours_nav--primary.tours_nav
-        +ToursNavPrimary()
-    //-- }}}
-
-    | {% endif %}
-    | {% endif %}
-    | {% endfor %}
-    | {% endif %}
-    

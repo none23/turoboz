@@ -2,19 +2,24 @@
   "name": "turoboz",
   "version": "0.0.1",
   "description": "Turoboz website",
+  "babel": {
+       "presets": [
+           "es2015"
+       ] 
+  },
   "dependencies": {
     "autoprefixer": "^6.4.0",
     "autoprefixer-cli": "^1.0.0",
-    "coffee-script": "latest",
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
     "csso": "^2.1.1",
     "google-auth-library": "^0.9.8",
     "googleapis": "^12.2.0",
-    "gulp": "^3.9.1",
-    "gulp-imagemin": "^3.0.3",
     "imagemin-cli": "^3.0.0",
-    "imagemin-jpegtran": "^5.0.2",
-    "imagemin-pngquant": "^5.0.0",
     "jade": "latest",
+    "jade-babel": "^5.0.0",
     "jade-cli": "latest",
     "normalize.css": "^4.1.1",
     "postcss": "^5.1.2",
@@ -25,45 +30,60 @@
   "devDependencies": {
     "browser-sync": "^2.14.0",
     "caniuse-db": "^1.0.30000466",
-    "gulp": "^3.9.1",
-    "gulp-imagemin": "^3.0.1",
     "jshint": "latest",
     "watch": "latest"
   },
   "scripts": {
-    "build": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
-    "build:jade": "npm run build:jade:includes && npm run build:jade:layouts",
-    "build:jade:layouts": "jade -o _layouts/  _jadefiles/layouts/*.jade",
-    "build:jade:includes": "jade -o _includes/  _jadefiles/includes/*.jade",
-    "build:styles": "npm run build:styles:compile && npm run build:styles:prefix",
-    "build:styles:compile": "stylus _styles/styles --out _styles/unprefixed",
-    "build:styles:prefix": "(cd _styles/unprefixed && for file in *.css; do (autoprefixer-cli -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < $file   | csso > ../../css/$file); done)",
-    "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify",
-    "build:scripts:compile": "coffee -c -o js _scripts/_site.coffee",
-    "build:scripts:uglify": "uglifyjs -c -m -o js/site.js js/_site.js",
-    "long_build:scripts:compile": "(cd _scripts && for file in *; do (cat $file/*.coffee | coffee --compile  --stdio > ../js/$file.js); done)",
-    "long_build:scripts:uglify": "(cd js && for file in *; do (uglifyjs -c -m -o $file $file); done)",
-    "build:jekyll": "bundle exec jekyll build",
+    "build": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:images && npm run build:jekyll",
+        "build:jade": "npm run build:jade:includes && npm run build:jade:layouts",
+            "build:jade:layouts": "jade -o _layouts/  _jadefiles/layouts/*.jade",
+            "build:jade:includes": "jade -o _includes/  _jadefiles/includes/*.jade",
+
+        "build:styles": "npm run build:styles:compile && npm run build:styles:prefix",
+            "build:styles:compile": "stylus _styles/styles --out _styles/unprefixed",
+            "build:styles:prefix": "(cd _styles/unprefixed && for file in *.css; do (autoprefixer-cli -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < $file   | csso > ../../css/$file); done)", 
+
+        "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify",
+            "build:scripts:compile": "babel _scripts/es6 -d _scripts/js",
+            "build:scripts:uglify": "npm run build:scripts:uglify:1 && npm run build:scripts:uglify:2",
+            "build:scripts:uglify:1": "uglifyjs -c -m -o js/site.js _scripts/js/site.js",
+            "build:scripts:uglify:2": "uglifyjs -c -m -o js/page_transitions.js _scripts/js/page_transitions.js",
+
+        "build:images": "npm run build:images:tours400px && npm run build:images:posts400px",
+            "build:images:tours400px": "mogrify -path img/tours400 -filter Triangle -define filter:support=2 -thumbnail 400 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB img/_tours/*.jpg",
+            "build:images:posts400px": "mogrify -path img/posts400 -filter Triangle -define filter:support=2 -thumbnail 400 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB img/_posts/*.jpg",
+
+        "build:jekyll": "bundle exec jekyll build",
+
     "watch": "npm run watch:jekyll -s & npm run watch:jade -s & npm run watch:styles & npm run watch:scripts & npm run browser-sync",
-    "prewatch": "npm run build",
-    "watch:jekyll": "bundle exec jekyll build --watch --incremental",
-    "watch:jade": "npm run watch:jade:includes & npm run watch:jade:layouts",
-    "watch:jade:layouts": "jade -o _layouts/ -w _jadefiles/layouts/*.jade",
-    "watch:jade:includes": "jade -o _includes/ -w  _jadefiles/includes/*.jade",
-    "watch:styles": "npm run watch:styles:compile & npm run watch:styles:prefix",
-    "watch:styles:compile": "stylus -w _styles/styles --out _styles/unprefixed",
-    "watch:styles:prefix": "watch 'npm run build:styles:prefix' _styles/unprefixed",
-    "watch:scripts": "watch 'npm run build:scripts' _scripts",
-    "broken_watch:scripts": "watch 'npm run watch:scripts:compile' _scripts",
-    "watch:scripts:compile": "coffee --stdio --compile _scripts/_site.coffee > js/site.js",
-    "justbuild": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
+        "prewatch": "npm run build",
+
+        "watch:jekyll": "bundle exec jekyll build --watch --incremental",
+
+        "watch:jade": "npm run watch:jade:includes & npm run watch:jade:layouts",
+            "watch:jade:layouts": "jade -o _layouts/ -w _jadefiles/layouts/*.jade",
+            "watch:jade:includes": "jade -o _includes/ -w  _jadefiles/includes/*.jade",
+
+        "watch:styles": "npm run watch:styles:compile & npm run watch:styles:prefix",
+            "watch:styles:compile": "stylus -w _styles/styles --out _styles/unprefixed",
+            "watch:styles:prefix": "watch 'npm run build:styles:prefix' _styles/unprefixed", 
+
+        "watch:scripts": "npm run watch:scripts:compile & npm run watch:scripts:uglify",
+        "watch:scripts:compile": "watch 'npm run build:scripts:compile' _scripts/es6 ",
+        "watch:scripts:uglify": "watch 'npm run build:scripts:uglify' _scripts/js ",
+
     "data-update": "node _importdata.js",
+        "predata-update": "rm _tours/1*.html",
+        "postdata-update": "npm run build:jade && npm run build:jekyll",
+
+    "justbuild": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
     "browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open --no-notify",
     "deploy": "netlify deploy",
-    "predeploy": "npm run data-update && npm run build"
+        "predeploy": "npm run data-update && npm run build"
+
   },
   "author": "none23",
-  "license": "MIT",
+  "license": "MIT License",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/none23/turoboz.git"

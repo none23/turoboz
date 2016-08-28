@@ -1,0 +1,37 @@
+include ../mixins.jade
+
+section.tours_nav__wrap
+    h2.section_header.tours_nav__section_header
+        | Категории
+    nav.tours_nav
+        | {% for tag in site.data.tags %}
+        |   {% assign is_empty = 1 %}
+        |   {% for tour in site.tours %}
+        |     {% if tour.dates[0] | plus: 0 > 0 %}
+        |       {% if tour.tags contains tag %}
+        |         {% assign is_empty = 0 %}
+        |       {% endif %}
+        |     {% endif %}
+        |   {% endfor %}
+        |   {% if is_empty == 0 %}
+        a(href='{{ tag.url }}', class='tours_nav__link tours_nav__link--tag {% if page.url contains tag.url %}active{% endif %}') 
+            | {{ tag.title }}
+        |     {% if tag.subtags %}
+        |       {% for subtag in tag.subtags %}
+        |         {% assign subtag_is_empty = 1 %}
+        |         {% for tour in site.tours %}
+        |           {% if tour.dates[0] | plus: 0 > 0 %}
+        |             {% if tour.tags contains subtag %}
+        |               {% assign subtag_is_empty = 0 %}
+        |             {% endif %}
+        |           {% endif %}
+        |         {% endfor %}
+        |         {% if subtag_is_empty == 0 %}
+        a(href='{{ subtag.url }}', class='tours_nav__link tours_nav__link--subtag {% if page.url contains tag.url %}visible{% if page.url contains subtag.url %} active{% endif %}{% endif %}')
+            | {{ subtag.title }}
+        |         {% endif %}
+        |       {% endfor %}
+        |     {% endif %}
+        |   {% endif %}
+        | {% endfor %}
+
