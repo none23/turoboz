@@ -1,6 +1,11 @@
-<section class="upcoming_events__wrap"><h2 class="section_header">Ближайшие туры</h2><div class="upcoming_events__list">{% for x in site.data.upcoming %}
-  {% assign t = x.key %}{% assign tt = site.data.tours[t] %}
-  {% if tt.dates[0] | plus: 0 > 0 %}<a href="/tours/{{ tt.tour }}" class="event__wrap"><div class="event__image__wrap"><img src="/img/posts400/{{ tt.imgpath }}" alt="{{ tt.title | smartify }}" class="event__image"/></div><div class="event__date">{% assign unixdate = tt.dates[0] | round | minus:25569 | times:86400 %}
+<section class="upcoming_events__wrap"><h2 class="section_header">Ближайшие туры</h2><div class="upcoming_events__list">{% assign upcoming_counter = 0 %}
+{% for x in site.data.upcoming%}
+    {% assign tt = site.data.tours[x] %}
+    {% if tt.dates[0] != 0 %}
+        {% if upcoming_counter > 3 %}
+            {% break %}
+        {% else %}
+            {% assign upcoming_counter = upcoming_counter | plus: 1 %}<a href="/tours/{{ tt.tourid }}" class="event__wrap"><div class="event__image__wrap"><img src="/img/posts400/{{ tt.imgpath }}" alt="{{ tt.title | smartify }}" class="event__image"/></div><div class="event__date">{% if tt.dates[0] | plus: 0 > 10 %} {% assign unixdate = tt.dates[0] | round | minus:25569 | times:86400 %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %} 
@@ -17,6 +22,7 @@
 {% when '11' %}ноября
 {% when '12' %}декабя
 {% endcase %} 
-{{ unixdate | date: "%Y" }}</div><h4 class="event__title">{{ tt.title }}.
-{{ tt.subtitle }}</h4><footer class="event__footer">Подробнее</footer></a>  {% endif %}
+{{ unixdate | date: "%Y" }}{% else %} по заказу {% endif %}</div><h4 class="event__title">{{ tt.title }}.
+{{ tt.subtitle }}</h4><footer class="event__footer">Подробнее</footer></a>        {% endif %}
+    {% endif %}
 {% endfor %}</div></section>

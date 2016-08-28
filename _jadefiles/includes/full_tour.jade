@@ -97,7 +97,7 @@ include ../mixins.jade
         h2.section_header
             | Дополнительно оплачиваемые услуги:
         ul.full_tour__additional_fees__list
-            | {% for item in page.additional_fees %}
+            | {% for item in page.additionalFees %}
             li.full_tour__additional_fees__list__item
                 | {{ item }}
             | {% endfor %}
@@ -109,7 +109,7 @@ include ../mixins.jade
         h2.section_header
             | Вы узнаете:
         ul.full_tour__will_learn_list
-            | {% for item in page.will_learn %}
+            | {% for item in page.willLearn %}
         li.full_tour__will_learn__list__item
             | {{ item }}
         | {% endfor %}
