@@ -2,9 +2,9 @@ include ../mixins.jade
 //-- tour {{{
 mixin Tour(tour)
         | {% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}
-        a.tour__wrap(tabindex=1, href='{{ #{tour}.id }}')
+        a.tour__wrap(tabindex=1, href="{{ #{tour}.id }}")
             .tour__fixed
-                .tour__image__wrap
+                picture.tour__image__wrap
                     img.tour__image(src='/img/tours400/{{ #{tour}.imgpath }}', alt='{{ #{tour}.title }}')
                 .tour__date
                     | {% if #{tour}.dates[0] | plus: 0 > 10 %} 
@@ -20,7 +20,7 @@ mixin Tour(tour)
             .tour__moving
                 .tour__length
                     | Продолжительность:
-                    | {{ #{tour}.length }}
+                    | {{ #{tour}.tourlength }}
                 p.tour__intro
                     | {{ #{tour}.intro }}
                 p.tour__summary
