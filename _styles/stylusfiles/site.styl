@@ -76,7 +76,7 @@ $tours_nav_link_padding_h = 1.5rem
 $tours_nav_link_padding_v = 1rem
 $tours_nav_min-height = $tours_nav_header_height + $tours_nav_header_margin * 2 + $tours_nav_header_padding * 2 + 8 * ($tours_nav_link_height + $tours_nav_link_padding_v * 2)
 
-$tour_card_width = 16.8rem
+$tour_card_width = 18rem
 $tour_card_height = 25rem
 
 $site_footer_height = 8rem
@@ -910,7 +910,7 @@ textarea
         width: auto
 
 .event__image
-    filter: grayscale(0.5) contrast(75%) opacity(.9)
+    filter: grayscale(0.1)
 
     .event__wrap:hover &
     .event__wrap:focus &
@@ -1021,7 +1021,7 @@ textarea
     line-height: 0
 
 .post__image
-    filter: grayscale(0.5) contrast(75%) opacity(0.9)
+    filter: grayscale(0.1)
 
     .post__wrap:hover &
     .post__wrap:focus &
@@ -1605,13 +1605,14 @@ textarea
         transform: translateX(-75%)
 
 .tour__image__wrap
-    flex: 0 0 50% 
+    flex: 0 0 50%
     overflow: hidden
 
 .tour__image
-    width: 100%
-    height: 100%
-    filter: grayscale(0.5) contrast(75%) opacity(.9)
+    width: $tour_card_width
+    height: auto
+    object-fit: contain
+    filter: grayscale(0.1)
 
     .tour__wrap:hover &
     .tour__wrap:focus &
@@ -1630,7 +1631,7 @@ textarea
 
 // /tours_list }}}
 
-@media(max-width: 1210px) and (min-width: 900px)
+@media(max-width: 1278px) and (min-width: 900px)
     .tours__list
         justify-content: space-around
         margin: 0 $tour_card_width * 0.3 0 0

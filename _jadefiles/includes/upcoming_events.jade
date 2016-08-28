@@ -3,7 +3,7 @@ include ../mixins.jade
 mixin EventWrap()
     a.event__wrap(href='/tours/{{ tt.tourid }}')
         .event__image__wrap
-            img.event__image(src='/img/posts400/{{ tt.imgpath }}', alt='{{ tt.title | smartify }}')
+            img.event__image(src='/img/tours400/{{ tt.imgpath }}', alt='{{ tt.title | smartify }}')
         .event__date
             | {% if tt.dates[0] | plus: 0 > 10 %} 
             +LiquidRussianDate('tt.dates[0]')

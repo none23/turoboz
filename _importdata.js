@@ -228,8 +228,11 @@ function getDates(auth) {
         var excelTimeNow = Math.floor(unixTimeNow / 86400 + 25569);
         var items = [];
         for (var k = 1; k < row.length; k++) {
-            if(row[k] > excelTimeNow){
+            if(row[k] >= excelTimeNow){
                 items.push(row[k]);
+             } else {
+             console.log(row[k])
+             console.log(excelTimeNow)
              }
         }
         all_tours[i].dates = items;
@@ -483,15 +486,16 @@ function toursFiles (id, is_hidden, title, subtitle, intro, summary, imgpath, to
         var datesContent           = concatArray(dates,           'dates');
         var pricesContent          = concatArray(prices,          'prices');
         var includesContent        = concatArray(includes,        'includes');
-        var additional_feesContent = concatArray(additionalFees,  'additionalFees');
-        var will_learnContent      = concatArray(willLearn,       'willLearn');
+        var additionalFeesContent  = concatArray(additionalFees,  'additionalFees');
+        var willLearnContent       = concatArray(willLearn,       'willLearn');
         var detailsContent         = concatArray(details,         'details');
         var blueprintContent       = concatArray(blueprint,       'blueprint');
 
-        var content = strsContent + tagsContent + datesContent + pricesContent + includesContent + additional_feesContent + will_learnContent + detailsContent + blueprintContent + '---';
+        var content = strsContent + tagsContent + datesContent + pricesContent + includesContent + additionalFeesContent + willLearnContent + detailsContent + blueprintContent + '---';
+        var cleancontent = content.replace('undefined','').replace('undefined','').replace('undefined','').replace('undefined','').replace('undefined','');
 
         var filename = "_tours/" + id + ".html";
-        fs.writeFile(filename, content, 'utf8', function (err) {
+        fs.writeFile(filename, cleancontent, 'utf8', function (err) {
             if (err) {
                 return console.log(err);
             }
