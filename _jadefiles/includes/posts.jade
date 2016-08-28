@@ -3,8 +3,8 @@ section.posts__wrap#posts__wrap
     h2.section_header
         | Новости и спецпредложения
     ul.posts__list
-        | {% assign posts = site.news sort: 'date' %}
-        | {% for post in posts reversed %}
+        | {% assign posts = site.news %}
+        | {% for post in posts %}
         li.post__wrap
             .post__image__wrap
                 img.post__image(src='/img/{{ post.image }}', alt='{{ post.title | smartify }}')
