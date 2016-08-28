@@ -30,7 +30,9 @@ include ../mixins.jade
     .full_tour__heading__left
 
         .full_tour__date
+            | {% if page.dates[0] | plus: 0 > 10 %} 
             +LiquidRussianDate('page.dates[0]')
+            | {% else %} по заказу {% endif %}
 
         h1.full_tour__title
             | {{ page.title }}
@@ -41,7 +43,7 @@ include ../mixins.jade
     .full_tour__heading__right
 
         .full_tour__len
-            | {{ page.length }}
+            | {{ page.tourlength }}
 
         .full_tour__prices
             | {% for item in page.prices %}
