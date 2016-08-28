@@ -4,7 +4,7 @@ var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
 var all_tours = [];
-var upcoming_tours = [];
+var upcoming_tours = {};
 var data_file = "_data/tours.json";
 var upcoming_file = "_data/upcoming.json";
 var compl = 0;
@@ -147,7 +147,15 @@ function getStrs(auth) {
         tourObj.summary = tourSummary;
         tourObj.imgpath = tourImgpath;
         tourObj.tourlength = tourLength;
-        tourObj.is_hidden = tourHidden;
+        tourObj.isHidden = tourHidden;
+        tourObj.dates = {};
+        tourObj.tags = {};
+        tourObj.prices = {};
+        tourObj.includes = {};
+        tourObj.additionalFees = {};
+        tourObj.willLearn = {};
+        tourObj.details = {};
+        tourObj.blueprint = {};
 
         all_tours.push(tourObj);
       }
@@ -222,16 +230,13 @@ function getDates(auth) {
         for (var k = 1; k < row.length; k++) {
             if(row[k] > excelTimeNow){
                 items.push(row[k]);
-            } else {
-                 console.log(row[k]);
-                 console.log(excelTimeNow);
              }
         }
         all_tours[i].dates = items;
-        upcoming_tours.push({
-            "key": rowId,
-            "val": items[0]
-        });
+        if (items[0]) {
+            upcoming_tours[all_tours[i].tour] = items[0];
+            //upcoming_tours[i] = items[0];
+        }
       }
       //console.log(all_tours);
       console.log('/dat');
@@ -308,7 +313,7 @@ function getAdditionalFees(auth) {
   sheets.spreadsheets.values.get({
     auth: auth,
     spreadsheetId: '1xrCjmIHigIbd-NjRhgIF0l5LDO9o5FHmAwdeJpDTtGY',
-    range: 'additional_fees',
+    range: 'additionalFees',
   }, function(err, response) {
     if (err) {
       console.log('The API returned an error: ' + err);
@@ -325,7 +330,7 @@ function getAdditionalFees(auth) {
         for (var k = 1; k < row.length; k++) {
             items.push(row[k]);
         }
-        all_tours[i].additional_fees = items;
+        all_tours[i].additionalFees = items;
       }
       console.log('/add');
       compl += 1;
@@ -339,7 +344,7 @@ function getWillLearn(auth) {
   sheets.spreadsheets.values.get({
     auth: auth,
     spreadsheetId: '1xrCjmIHigIbd-NjRhgIF0l5LDO9o5FHmAwdeJpDTtGY',
-    range: 'will_learn',
+    range: 'willLearn',
   }, function(err, response) {
     if (err) {
       console.log('The API returned an error: ' + err);
@@ -356,7 +361,7 @@ function getWillLearn(auth) {
         for (var k = 1; k < row.length; k++) {
             items.push(row[k]);
         }
-        all_tours[i].will_learn = items;
+        all_tours[i].willLearn = items;
       }
       console.log('/wil');
       compl += 1;
@@ -434,12 +439,11 @@ function saveJSON() {
         var finalObj = {};
         for (var i = 0; i < all_tours.length; ++i ){
             finalObj[all_tours[i].tour] = all_tours[i];
-            toursFiles(all_tours[i].tour, all_tours[i].is_hidden, all_tours[i].title, all_tours[i].subtitle, all_tours[i].intro, all_tours[i].summary, all_tours[i].imgpath, all_tours[i].tourlength, all_tours[i].tags, all_tours[i].dates, all_tours[i].prices, all_tours[i].includes, all_tours[i].additional_fees, all_tours[i].will_learn, all_tours[i].details, all_tours[i].blueprint);
+            toursFiles(all_tours[i].tour, all_tours[i].is_hidden, all_tours[i].title, all_tours[i].subtitle, all_tours[i].intro, all_tours[i].summary, all_tours[i].imgpath, all_tours[i].tourlength, all_tours[i].tags, all_tours[i].dates, all_tours[i].prices, all_tours[i].includes, all_tours[i].additionalFees, all_tours[i].willLearn, all_tours[i].details, all_tours[i].blueprint);
         }
-        upcoming_tours.sort(function(a, b){
-            return a.val - b.val;
+        var upcoming_four = Object.keys(upcoming_tours).sort(function(a,b){ 
+            return a.date - b.date
         });
-        var upcoming_four = upcoming_tours.slice(0,4);
         var upcomingJSON = JSON.stringify(upcoming_four);
         var finalJSON = JSON.stringify(finalObj);
         console.log("printing!");
@@ -472,15 +476,15 @@ function concatArray (arr, arr_title) {
         return;
     }
 }
-function toursFiles (id, is_hidden, title, subtitle, intro, summary, imgpath, tourlength, tags, dates, prices, includes, additional_fees, will_learn, details, blueprint) {
+function toursFiles (id, is_hidden, title, subtitle, intro, summary, imgpath, tourlength, tags, dates, prices, includes, additionalFees, willLearn, details, blueprint) {
     if (is_hidden == 1 ) {  } else {
         var strsContent = "---\nid: " + id + "\nlayout: tour\npermalink: /tours/" + id + "/\ntitle: '" + title + "'\nsubtitle: '" + subtitle + "'\nintro: '" + intro + "'\nsummary: '" + summary + "'\nimgpath: " + imgpath + "\ntourlength: " + tourlength + "\n";
         var tagsContent            = concatArray(tags,            'tags');
         var datesContent           = concatArray(dates,           'dates');
         var pricesContent          = concatArray(prices,          'prices');
         var includesContent        = concatArray(includes,        'includes');
-        var additional_feesContent = concatArray(additional_fees, 'additional_fees');
-        var will_learnContent      = concatArray(will_learn,      'will_learn');
+        var additional_feesContent = concatArray(additionalFees,  'additionalFees');
+        var will_learnContent      = concatArray(willLearn,       'willLearn');
         var detailsContent         = concatArray(details,         'details');
         var blueprintContent       = concatArray(blueprint,       'blueprint');
 
