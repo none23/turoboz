@@ -34,7 +34,7 @@
     "watch": "latest"
   },
   "scripts": {
-    "build": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
+    "build": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:images && npm run build:jekyll",
         "build:jade": "npm run build:jade:includes && npm run build:jade:layouts",
             "build:jade:layouts": "jade -o _layouts/  _jadefiles/layouts/*.jade",
             "build:jade:includes": "jade -o _includes/  _jadefiles/includes/*.jade",
@@ -51,9 +51,10 @@
 
         "build:images": "npm run build:images:tours200px && npm run build:images:tours300px && npm run build:images:tours400px && npm run build:images:posts200px && npm run build:images:posts300px && npm run build:images:posts400px",
             "prebuild:images": "touch img/{posts,tours}{2,3,4}00/rm.me && rm img/{posts,tours}{2,3,4}00/* ",
-            "build:images:posts200px": "(cd img/_posts && for file in *.jpg; do (mogrify -path ../posts200 -filter Triangle -define filter:support=2 -thumbnail 200x150^ -extent 200x150 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 
-            "build:images:posts300px": "(cd img/_posts && for file in *.jpg; do (mogrify -path ../posts300 -filter Triangle -define filter:support=2 -thumbnail 300x225^ -extent 300x225 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 
-            "build:images:posts400px": "(cd img/_posts && for file in *.jpg; do (mogrify -path ../posts400 -filter Triangle -define filter:support=2 -thumbnail 400x300^ -extent 400x300 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 
+            "build:images:posts200px": "(cd img/_posts && for file in *.jpg; do (mogrify -path ../posts200 -filter Triangle -define filter:support=2 -thumbnail 200x200^ -extent 200x200 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 
+            "build:images:posts300px": "(cd img/_posts && for file in *.jpg; do (mogrify -path ../posts300 -filter Triangle -define filter:support=2 -thumbnail 300x300^ -extent 300x300 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 
+            "build:images:posts400px": "(cd img/_posts && for file in *.jpg; do (mogrify -path ../posts400 -filter Triangle -define filter:support=2 -thumbnail 400x400^ -extent 400x400 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 
+
             "build:images:tours200px": "(cd img/_tours && for file in *.jpg; do (mogrify -path ../tours200 -filter Triangle -define filter:support=2 -thumbnail 200x150^ -extent 200x150 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 
             "build:images:tours300px": "(cd img/_tours && for file in *.jpg; do (mogrify -path ../tours300 -filter Triangle -define filter:support=2 -thumbnail 300x225^ -extent 300x225 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 
             "build:images:tours400px": "(cd img/_tours && for file in *.jpg; do (mogrify -path ../tours400 -filter Triangle -define filter:support=2 -thumbnail 400x300^ -extent 400x300 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 

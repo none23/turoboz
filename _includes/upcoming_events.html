@@ -5,7 +5,7 @@
         {% if upcoming_counter > 3 %}
             {% break %}
         {% else %}
-            {% assign upcoming_counter = upcoming_counter | plus: 1 %}<a href="/tours/{{ tt.tourid }}" class="event__wrap"><div class="event__image__wrap"><img src="/img/tours400/{{ tt.imgpath }}" alt="{{ tt.title | smartify }}" class="event__image"/></div><div class="event__date">{% if tt.dates[0] | plus: 0 > 10 %} {% assign unixdate = tt.dates[0] | round | minus:25569 | times:86400 %}
+            {% assign upcoming_counter = upcoming_counter | plus: 1 %}<a href="/tours/{{ tt.tour }}" class="event__wrap"><div class="event__image__wrap"><img src="/img/tours400/{{ tt.imgpath }}" alt="{{ tt.title | smartify }}" class="event__image"/></div><div class="event__date">{% if tt.dates[0] | plus: 0 > 10 %} {% assign unixdate = tt.dates[0] | round | minus:25569 | times:86400 %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %} 
