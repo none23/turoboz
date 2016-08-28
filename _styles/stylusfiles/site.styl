@@ -1032,13 +1032,13 @@ textarea
     flex 1 1 70%
     display: flex
     flex-direction: column
-    justify-content: space-between
+    justify-content: space-around
     align-items: stretch
 
 .post__title
-    flex 1 1 5rem
-    padding: 0 0.7rem 1rem 
-    font-size: 1.1rem
+    flex 1 1 3rem
+    padding: 1rem 0.7rem
+    font-size: 1.2rem
 
 .post__summary
     padding: 0 1rem 1rem 
@@ -1413,7 +1413,7 @@ textarea
     position: relative
     overflow: hidden
     margin-top: -4.4rem
-    margin-bottom: -2rem
+    margin-bottom: -3rem
     box-shadow: 0.325rem -0.188rem 0.75rem -0.625rem $shadowy, inset 0 0.325rem 0.75rem -0.625rem $shadowy
     background-image: url(/img/noise.png) 
     background-blend-mode: lighten
@@ -1487,36 +1487,14 @@ textarea
 .tours_nav__link--subtag--last
     padding-bottom: $tours_nav_link_padding_v
 
-// hierarchy tree {{{
-/*
-.tours_nav__link--subtag--notlast:before
-        content: '├─'
-
-.tours_nav__link--subtag--last:before
-        content: '└─'
-
-.tours_nav__link--subtag--notlast
-.tours_nav__link--subtag--last
-    &:before
-        position: absolute
-        left: 1.5rem
-        top: 0.2rem
-        font-size: 1.5rem + $tours_nav_link_padding_v 
-        line-height: 1.5rem + $tours_nav_link_padding_v 
-        color: mix($turbo_brown, $turbo_lightblue)
-    &:focus:before
-    &:hover:before
-    &.active:before
-    &:active:before
-        color: mix(white, $turbo_lightblue)
-*/
-// /hierarchy tree }}}
-
 // /tours_nav }}}
 // tours_list {{{
 // ------------------------------------------------------------------------
-.tours__list__wrap
+.tours_list__wrap
+    position: relative
     flex: 1 0 20rem
+    padding-top: 3rem
+    margin-top: -3rem
 
 .tours__list
     display: flex
@@ -1528,7 +1506,7 @@ textarea
 
 .tours__count
     position: absolute
-    top: $site_header_height + 1rem
+    top:  1rem
     right: 1rem
     font-size: 1rem
     color: $turbo_mixblue
@@ -1644,19 +1622,7 @@ textarea
         right: 0
 
     .tour__moving
-        left: -25%
-        transform-origin: 100% 100%
-        transform: scaleX(0.8)
-
-    .tour__wrap:hover
-    .tour__wrap:focus
-    .tour__wrap:active
-        transform: scale(1) translateY(10%)
-
-        .tour__fixed
-                transform: translateX(-100%)
-        .tour__moving
-                transform: scaleX(1) translateX(20%)
+        display: none
 
     .tours_nav__wrap
         flex: 1 0 16rem
@@ -1704,6 +1670,7 @@ textarea
 
     .tours_nav__wrap
         margin-top: 1rem
+        margin-bottom: 0
 
     .tours_nav
         position: static

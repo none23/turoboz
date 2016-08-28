@@ -231,8 +231,8 @@ function getDates(auth) {
             if(row[k] >= excelTimeNow){
                 items.push(row[k]);
              } else {
-             console.log(row[k])
-             console.log(excelTimeNow)
+             console.log(row[k]);
+             console.log(excelTimeNow);
              }
         }
         all_tours[i].dates = items;
@@ -445,7 +445,7 @@ function saveJSON() {
             toursFiles(all_tours[i].tour, all_tours[i].is_hidden, all_tours[i].title, all_tours[i].subtitle, all_tours[i].intro, all_tours[i].summary, all_tours[i].imgpath, all_tours[i].tourlength, all_tours[i].tags, all_tours[i].dates, all_tours[i].prices, all_tours[i].includes, all_tours[i].additionalFees, all_tours[i].willLearn, all_tours[i].details, all_tours[i].blueprint);
         }
         var upcoming_four = Object.keys(upcoming_tours).sort(function(a,b){ 
-            return a.date - b.date
+            return upcoming_tours[a] - upcoming_tours[b];
         });
         var upcomingJSON = JSON.stringify(upcoming_four);
         var finalJSON = JSON.stringify(finalObj);
