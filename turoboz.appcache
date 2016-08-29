@@ -1,7 +1,7 @@
 ---
 ---
 CACHE MANIFEST
-# {{ site.date }}
+# {{ site.time | date: "%s" }}
 /css/site.css
 /js/site.js
 /js/page_transitions.js
@@ -11,5 +11,5 @@ NETWORK:
 *
 
 FALLBACK:
-{% for file in site.static_files %} {% if file.extname contains "jpg" %}
-{{ file.path }} {{ file.path }}{% endif %} {% endfor %}
+{% for file in site.static_files %}{% if file.extname contains "jpg" %}{{ file.path }} {{ file.path }}
+{% endif %}{% endfor %}
