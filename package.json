@@ -34,7 +34,9 @@
     "watch": "latest"
   },
   "scripts": {
+    "build-deploy": "npm run build-deploy:prepare && npm run build:jekyll",
     "build": "npm run build:prepare && npm run build:jekyll",
+        "build-deploy:prepare": "npm run build:jade & npm run build:styles & npm run build:scripts",
         "build:prepare": "npm run build:jade & npm run build:styles & npm run build:scripts & npm run build:images ",
             "build:jade": "npm run build:jade:includes && npm run build:jade:layouts",
                 "build:jade:layouts": "jade -o _layouts/  _jadefiles/layouts/*.jade",
