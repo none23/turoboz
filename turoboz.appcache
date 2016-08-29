@@ -11,5 +11,14 @@ NETWORK:
 *
 
 FALLBACK:
-{% for file in site.static_files %}{% if file.extname contains "jpg" %}{{ file.path }} {{ file.path }}
-{% endif %}{% endfor %}
+{% for file in site.static_files %}
+  {% if file.extname contains "jpg" %}
+    {% if file.path contains '400' %}
+      {{ file.path }} {{ file.path | replace: "400", "200" }}
+    {% elsif file.path contains "300" %}
+      {{ file.path }} {{ file.path | replace: "300", "200" }}
+    {% elsif file.path contains "200" %}
+      {{ file.path }} {{ file.path }}
+    {% endif %}
+  {% endif %}
+{% endfor %}
