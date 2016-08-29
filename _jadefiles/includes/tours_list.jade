@@ -2,7 +2,7 @@ include ../mixins.jade
 //-- tour {{{
 mixin Tour(tour)
         | {% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}
-        a.tour__wrap(tabindex=1, href="{{ #{tour}.tour }}")
+        a.tour__wrap(tabindex=1, href="{{ #{tour}.id }}")
             .tour__fixed
                 picture.tour__image__wrap
                     img.tour__image(src='/img/tours400/{{ #{tour}.imgpath }}', alt='{{ #{tour}.title }}')
