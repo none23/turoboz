@@ -2,8 +2,8 @@
 permalink:  /_headers
 ---
 /css/*
-    Cache-control: max-age=60
+    Cache-control: max-age=600
 /js/*
-    Cache-control: max-age=60
-/images/**
-    Cache-control: max-age=120
+    Cache-control: max-age=600
+/images/*
+    Cache-control: max-age=1200
