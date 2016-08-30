@@ -4,6 +4,7 @@ CACHE MANIFEST
 # {{ site.time | date: "%s" }}
 /css/site.css
 /js/site.js
+/js/history.min.js
 /js/page_transitions.js
 /js/jquery-3.1.0.slim.min.js
 
