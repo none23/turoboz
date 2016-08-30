@@ -5,7 +5,7 @@
         {% if upcoming_counter > 3 %}
             {% break %}
         {% else %}
-            {% assign upcoming_counter = upcoming_counter | plus: 1 %}<a href="/tours/{{ tt.tour }}" class="event__wrap"><div class="event__image__wrap"><img sizes="(max-width: 619px) 1px, (min-width: 720px) and (max-width: 1079px) 37vw, (min-width: 1080px) and (max-width: 1158px) 24vw, 263px" srcset="/img/none.jpg 1w, /img/tours200/{{ tt.imgpath }} 200w, /img/tours300/{{ tt.imgpath }} 300w, /img/tours400/{{ tt.imgpath }} 400w" src="/img/tours300/{{ tt.imgpath }}" alt="{{ tt.title | smartify }}" class="event__image"/></div><div class="event__date">{% if tt.dates[0] | plus: 0 > 10 %} {% assign unixdate = tt.dates[0] | round | minus:25569 | times:86400 %}
+            {% assign upcoming_counter = upcoming_counter | plus: 1 %}<a href="/tours/{{ tt.tour }}" class="event__wrap"><div class="event__image__wrap"><img sizes="(max-width: 619px) 1px, (min-width: 720px) and (max-width: 1079px) 37vw, (min-width: 1080px) and (max-width: 1158px) 24vw, 263px" srcset="/img/none.jpg 1w, /img/tours200/{{ tt.imgpath }} 200w, /img/tours300/{{ tt.imgpath }} 300w, /img/tours400/{{ tt.imgpath }} 400w" alt="{{ tt.title | smartify }}" class="event__image"/></div><div class="event__date">{% if tt.dates[0] | plus: 0 > 10 %} {% assign unixdate = tt.dates[0] | round | minus:25569 | times:86400 %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %} 
