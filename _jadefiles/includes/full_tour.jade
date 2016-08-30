@@ -43,9 +43,11 @@ include ../mixins.jade
     .full_tour__heading__right
 
         .full_tour__len
+            Продолжительность:
             | {{ page.tourlength }}
 
         .full_tour__prices
+            Стоимость:
             | {% for item in page.prices %}
             .full_tour__price
                 | {{ item }}

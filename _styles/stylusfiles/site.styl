@@ -95,7 +95,7 @@ $turbo_cancel_active = hsl(0, 53%, 33%)
 $turbo_brown = hsl(23, 47%, 26%)
 $turbo_darkbrown = hsl(23, 50%, 18%)
 $turbo_darkblue = hsl(198, 53%, 32%)
-$turbo_blue = hsl(197, 53%, 43%)
+$turbo_blue = hsl(198, 53%, 43%)
 $turbo_lightblue = hsl(198, 53%, 75%)
 $turbo_verylightblue = hsl(198, 13%, 92%)
 $turbo_mixblue = mix($turbo_lightblue, $turbo_blue) 
@@ -711,10 +711,12 @@ textarea
 
 .page_heading
 .section_header
-    font-size: 1.6rem
+    font-size: 1.4rem
     position: relative
     z-index: 10
-    margin: 1rem
+    margin: 0
+    line-height: 1
+    padding: 1em
     text-align: center
     text-transform: uppercase
 
@@ -931,7 +933,6 @@ textarea
     padding: 0 1rem
 
 .event__title
-.tour__title
     flex: 1 1 6.6rem
     padding: 0 0.7rem .8rem 
     font-size: 1.1rem
@@ -1155,6 +1156,186 @@ textarea
     Bullets()
 
 // /about }}}
+//// tours {{{
+//// =========================================================================
+
+
+.tours__wrap
+    width: 100%
+    display: flex
+    justify-content: space-between
+    min-height: $tours_nav_min-height
+
+
+//// tours_nav {{{
+//// ------------------------------------------------------------------------
+.tours_nav__wrap
+    flex: 0 1 25vw
+    min-width: 15rem
+    margin-bottom: -2rem
+    background-image: url(/img/card.png) 
+    background-blend-mode: lighten
+    background-repeat: repeat 
+    background-color: snow
+    box-shadow: 0 0 0.75rem -0.25rem $shadowy
+
+.tours_nav__section_header
+    color: $turbo_brown
+
+.tours_nav
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    margin: 0.5rem 0 
+
+.tours_nav__link
+    text-align: right
+    text-transform: uppercase
+    line-height: 1
+    padding: 1em 12%
+
+    &:hover
+    &:focus
+        background: $turbo_blue
+
+    &:active
+    &.active
+        background: $turbo_brown
+
+    &:hover
+    &:focus
+    &:active
+    &.active
+        color: white
+
+    &.active
+        z-index: 500
+
+.tours_nav__link--subtag
+    padding-right: 18%
+    background-color: $turbo_lightblue
+    display: none
+
+    &.visible
+        display: block
+
+.tours_nav__link--subtag--last
+    padding-bottom: 1.5em
+
+//// /tours_nav }}}
+
+//// tours_list {{{
+//// ------------------------------------------------------------------------
+.tours_list__wrap
+    flex: 0 1 75vw
+    position: relative
+
+.tours_list
+    display: flex
+    justify-content: space-around
+    flex-wrap: wrap
+    align-items: stretch
+    align-content: flex-start
+    margin: 1.5rem 1.5rem
+
+.tour__wrap
+    flex: 0 0 285px
+    position: relative
+    margin: 0 0.5rem 2.5rem
+
+.tour__image__wrap
+    max-width: 285px
+    max-height: 214px
+    overflow: hidden
+
+.tour__image
+    max-width: 300px
+    transition: all 1s ease-out
+    transform-origin: 0 0
+    transform: scale(0.97, 0.97)
+    .tour__wrap:hover &
+        transform: scale(1, 1)
+
+
+
+.tour__title
+    padding: 0.6rem
+    flex: 1 1 6rem
+
+.tour__card
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    background: white
+    border: $border
+    border-radius: $border-radius
+
+.tour__length
+    display: inline
+    text-align: right
+    font-size: 0.9rem
+    line-height: 2.25rem
+    margin-top: -2.25rem
+    color: $turbo_darkblue
+    padding: 0 1rem
+
+//// /tours_list }}}
+
+.tours__count
+    position: absolute
+    right: 1.6rem
+    top: 2rem
+    color: $turbo_blue
+
+//// tours media {{{
+//// ------------------------------------------------------------------------
+@media(max-width: 1139px)
+    .tours_nav
+        margin-top: 2.5rem
+
+    .tours_list
+        margin-top: 3.5rem
+
+    .tours__count
+        top: 4rem
+
+@media(max-width: 899px)
+    .tours__wrap
+        display: block
+
+    .tours_nav__wrap
+        margin-bottom: 0
+        padding-bottom: 1rem
+
+    .tours_nav
+        margin-top: 0
+
+    .tours_nav__link
+        text-align: center
+
+@media(max-width: 659px) and (min-width: 565px)
+    .tour__wrap
+        flex: 0 0 15rem
+
+    .tour__image__wrap
+        max-width: 15rem
+
+@media(max-width: 659px)
+    .tour__title
+        font-size: 1.1rem
+
+@media(max-width: 449px)
+    .tour__wrap
+        flex-grow: 1
+        margin-bottom: 1rem
+
+
+    .tour__image__wrap
+    .tour__image
+        display: none
+
+//// /tours media }}}
+//// /tours }}}
 // full_tour/post {{{
 // =========================================================================
 .full_tour__heading
@@ -1396,290 +1577,6 @@ textarea
         Bullets()
 
 // /full_tour/post }}}
-// tours {{{
-// =========================================================================
-.tours__wrap
-    width: 100%
-    display: flex
-    flex-direction: row
-    justify-content: space-between
-    align-items: stretch
-    flex-wrap: nowrap
-    min-height: $tours_nav_min-height
-
-// tours_nav {{{
-// ------------------------------------------------------------------------
-.tours_nav__wrap
-    flex: 0 0 16rem
-    position: relative
-    overflow: hidden
-    margin-top: -4.4rem
-    margin-bottom: -3rem
-    box-shadow: 0.325rem -0.188rem 0.75rem -0.625rem $shadowy, inset 0 0.325rem 0.75rem -0.625rem $shadowy
-    background-image: url(/img/noise.png) 
-    background-blend-mode: lighten
-    background-color: snow  
-
-.tours_nav__section_header
-    font-size: 1.1rem
-    line-height: $tours_nav_header_height
-    padding: $tours_nav_header_padding
-    margin: $tours_nav_header_margin
-
-.tours_nav
-    position: absolute
-    top: 4.4rem
-    right: 0
-    left: 0
-    width: auto
-    bottom: 0
-    display: flex
-    flex-direction: column
-    justify-content: flex-start
-    align-items: stretch
-    z-index: 500
-    transition: all 0.4s ease-in-out
-    will-change: transform
-    //transform: translateX(20%)
-    background-image: url(/img/noise.png) 
-    background-blend-mode: lighten
-    background-color: snow 
-
-.tours_nav__link
-    text-align: right
-    text-transform: uppercase
-
-    &:hover
-    &:focus
-        background: $turbo_blue
-
-    &:active
-    &.active
-        background: $turbo_brown
-
-    &:hover
-    &:focus
-    &:active
-    &.active
-        color: white
-
-    &.active
-        z-index: 500
-
-.tours_nav__link--tag
-    padding-right: $tours_nav_link_padding_h
-    padding-left: $tours_nav_link_padding_h
-    padding-top: $tours_nav_link_padding_v
-    padding-bottom: $tours_nav_link_padding_v
-
-.tours_nav__link--subtag
-    position: relative
-    display: none
-    padding-right: $tours_nav_link_padding_h * 2.5
-    padding-left: $tours_nav_link_padding_h * 0.5
-    padding-top: $tours_nav_link_padding_v * 0.75
-    padding-bottom: $tours_nav_link_padding_v * 0.75
-    background: $turbo_lightblue
-    font-size: 0.9rem
-
-    &.visible
-        display: block
-
-.tours_nav__link--subtag--last
-    padding-bottom: $tours_nav_link_padding_v
-
-// /tours_nav }}}
-// tours_list {{{
-// ------------------------------------------------------------------------
-.tours_list__wrap
-    position: relative
-    flex: 1 0 20rem
-    padding-top: 3rem
-    margin-top: -3rem
-
-.tours__list
-    display: flex
-    flex-direction: row
-    justify-content: center
-    align-items: stretch
-    flex-wrap: wrap
-    margin: 0 $tour_card_width * 0.5 0 0
-
-.tours__count
-    position: absolute
-    top:  1rem
-    right: 1rem
-    font-size: 1rem
-    color: $turbo_mixblue
-.tours__total
-    font-size: 0.9rem
-    color: $turbo_blue
-.tours__on_page
-    font-size: 1.2rem
-    color: $turbo_darkblue
-
-.tour__wrap
-    flex 0 0 $tour_card_width
-    height: $tour_card_height
-    position: relative
-    z-index: 501
-    margin: 0.1rem
-    transition: all 0.3s ease-in-out
-    will-change: transform
-    transform: scale(0.963)
-
-    &:hover
-    &:focus
-    &:active
-        z-index: 1001
-        transform: scale(1)
-
-.tour__fixed
-.tour__moving
-    position: absolute
-    top: 0
-    left: 0
-    bottom: 0 
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-    align-items: stretch
-    flex-wrap: nowrap
-    border: $border
-    border-radius: $border-radius
-    transition: all 0.2s ease-in-out
-    will-change: transform
-    background: white
-
-    .tour__wrap:hover &
-    .tour__wrap:focus &
-    .tour__wrap:active &
-        border-width: 0.08rem
-        border-color: $turbo_blue
-
-.tour__moving
-    right: -25%
-    z-index: 10
-    border-left: none
-    overflow-y: scroll
-    background: snow
-    transform-origin: 0% 0%
-    transform: scaleX(0.8)
-
-    .tour__wrap:hover &
-    .tour__wrap:focus &
-    .tour__wrap:active &
-        z-index: 1010
-        transform: scaleX(1) translateX(20%)
-
-
-.tour__fixed
-    right: 0
-    z-index: 20
-
-    .tour__wrap:hover &
-    .tour__wrap:focus &
-    .tour__wrap:active &
-        z-index: 1020
-        transform: translateX(-75%)
-
-.tour__image__wrap
-    flex: 0 0 50%
-    overflow: hidden
-
-.tour__image
-    width: $tour_card_width
-    height: auto
-    object-fit: contain
-    filter: grayscale(0.1)
-
-    .tour__wrap:hover &
-    .tour__wrap:focus &
-    .tour__wrap:active &
-        filter: none
-
-.tour__length
-    color: $turbo_darkblue
-    margin-bottom: 1rem
-
-.tour__intro
-.tour__summary
-.tour__length
-    padding: 0 1.0rem 
-    margin-top: 1rem
-
-// /tours_list }}}
-
-@media(max-width: 1278px) and (min-width: 900px)
-    .tours__list
-        justify-content: space-around
-        margin: 0 $tour_card_width * 0.3 0 0
-
-    .tour__fixed
-    .tour__moving
-        top: 0
-        left: 0
-        bottom: 0 
-        right: 0
-
-    .tour__moving
-        display: none
-
-    .tours_nav__wrap
-        flex: 1 0 16rem
-
-@media(max-width: 899px)
-    .tours_nav__wrap
-        flex: 0 1 20rem
-
-    .tours_nav
-        top 0
-
-    .tours_nav__link
-        padding: 0.75rem 0.5rem
-
-    .tours__list
-        margin: 0 0.5rem 0 0
-        display: block
-
-    .tour__wrap
-        height: auto
-        flex: 1 1 12rem
-
-    .tour__wrap
-    .tour__fixed
-        transform: none !important
-        height: auto
-
-    .tour__title
-        flex: 1 0 4rem
-
-    .tour__fixed
-        position: static
-        flex: 1 1 $tour_card_width
-        
-    .tour__image__wrap
-    .tour__moving
-        display: none
-
-@media(max-width: 619px)
-    .tours__wrap
-        display: block
-
-    .tours_nav__section_header
-        display: none
-
-    .tours_nav__wrap
-        margin-top: 1rem
-        margin-bottom: 0
-
-    .tours_nav
-        position: static
-        margin-bottom: 3rem
-        .tours_nav__link
-            text-align: center
-
-// /tours }}}
 // services {{{
 // =========================================================================
 .services__summary__wrap
@@ -1802,7 +1699,7 @@ textarea
     width: 100%
     height: auto
     margin-bottom: -0.30rem
-    filter: grayscale(.4)
+    filter: grayscale(.25)
 
 // /contact }}}
 // testimonials {{{
