@@ -76,6 +76,7 @@
 
             "postbuild:prepare": "npm run build:jekyll",
                 "build:jekyll": "bundle exec jekyll build",
+                "postbuild:jekyll": "cp redirects _site/_redirects && cp headers _site/_headers",
 
     "watch": "concurrently 'npm run watch:jekyll -s' 'npm run watch:jade -s' 'npm run watch:styles' 'npm run watch:scripts' 'npm run browser-sync'",
         "prewatch": "npm run build",
