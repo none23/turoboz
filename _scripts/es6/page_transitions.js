@@ -89,4 +89,4 @@ $(function(){
         $('#mobile_nav').removeClass('is_open');
         $('#mobile_nav_toggle').removeClass('is_open');
     });
-}
+})
