@@ -29,7 +29,8 @@ function loadPage(url) {
 var page_wrap = document.querySelector('.page_wrap');
 
 function changePage() {
-    var url = window.location.href;
+    var location = window.history.location || window.location;
+    var url = location.href;
 
     loadPage(url).then(function (responseText) {
         var wrapper = document.createElement('div');
