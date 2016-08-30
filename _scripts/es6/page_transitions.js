@@ -27,8 +27,7 @@ function loadPage(url) {
 var page_wrap = document.querySelector('.page_wrap');
 
 function changePage() {
-    var location = window.history.location || window.location;
-    var url = location.href;
+    var url = window.location.href;
 
     loadPage(url).then(function(responseText) {
         var wrapper = document.createElement('div');
@@ -81,6 +80,8 @@ document.addEventListener('click', function(e) {
             e.preventDefault();
             history.pushState(null, null, el.href);
             changePage();
+            $('#mobile_nav').removeClass('is_open');
+            $('#mobile_nav_toggle').removeClass('is_open');
         }
         return;
     }
