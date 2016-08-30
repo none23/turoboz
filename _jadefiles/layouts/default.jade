@@ -1,5 +1,5 @@
 doctype html
-html(lang='ru-RU', manifest="/turoboz.appcache")
+html(lang='ru-RU')
     head
         | {% include head.html %}
     body
@@ -11,6 +11,6 @@ html(lang='ru-RU', manifest="/turoboz.appcache")
 
             | {% include footer.html %}
         script(src='/js/jquery-3.1.0.slim.min.js')
-        script(src='/js/page_transitions.js')
+        //-- script(src='/js/page_transitions.js')
         script(src='/js/site.js')
         | {% include google_analytics.html %}

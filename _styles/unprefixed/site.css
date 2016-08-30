@@ -296,7 +296,7 @@ textarea {
   fill: #613b23;
 }
 #site_logo .logo_blue {
-  fill: #3487a8;
+  fill: #3485a8;
 }
 #site_logo:hover,
 #site_logo:focus {
@@ -356,7 +356,7 @@ textarea {
   height: 3rem;
   width: 3rem;
   flex: 0 0 3rem;
-  fill: #3487a8;
+  fill: #3485a8;
 }
 .site_header__call_back {
   font-size: 0.9rem;
@@ -371,7 +371,7 @@ textarea {
 .site_header__call_back:hover,
 .site_header__call_back:focus {
   color: #fff;
-  background: #3487a8;
+  background: #3485a8;
 }
 .site_header__call_back:active {
   color: #fff;
@@ -379,7 +379,7 @@ textarea {
 }
 .site_header__call_back.is_open {
   color: #fff;
-  background: #3487a8;
+  background: #3485a8;
   opacity: 0.4;
 }
 .header_form__wrap {
@@ -418,7 +418,7 @@ textarea {
 .header_form__wrap #call_back_form__button:hover,
 .header_form__wrap #call_back_form__button:focus {
   color: #fff;
-  background: #3487a8;
+  background: #3485a8;
 }
 .header_form__wrap #call_back_form__button:active {
   color: #fff;
@@ -428,7 +428,7 @@ textarea {
   order: 1;
   flex: 1 0 3rem;
   background: #fff;
-  color: #3487a8;
+  color: #3485a8;
   border-left: 0.063rem solid #9dcde1;
   border-right: 0.063rem solid #9dcde1;
   border-radius: 0;
@@ -458,7 +458,7 @@ textarea {
 .site_nav__link:hover,
 .site_nav__link:focus {
   color: #fff;
-  background: #3487a8;
+  background: #3485a8;
 }
 .site_nav__link:hover,
 .site_nav__link:focus,
@@ -510,7 +510,7 @@ textarea {
 #mobile_nav .site_header__vk_button {
   height: 2.8rem;
   fill: #fff;
-  background: #3487a8;
+  background: #3485a8;
   padding: 0.1rem 7.975rem;
 }
 #mobile_nav .site_header__phone,
@@ -613,8 +613,8 @@ textarea {
 }
 .f__contact:hover,
 .f__contact:focus {
-  color: #3487a8;
-  fill: #3487a8;
+  color: #3485a8;
+  fill: #3485a8;
 }
 .f__contact_icon {
   height: 3rem;
@@ -630,7 +630,7 @@ textarea {
   font-size: 0.7rem;
 }
 #f__developer__link {
-  color: #3487a8;
+  color: #3485a8;
 }
 .page_wrap {
   min-height: 46.2rem;
@@ -658,10 +658,12 @@ textarea {
 }
 .page_heading,
 .section_header {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   position: relative;
   z-index: 10;
-  margin: 1rem;
+  margin: 0;
+  line-height: 1;
+  padding: 1em;
   text-align: center;
   text-transform: uppercase;
 }
@@ -747,7 +749,7 @@ textarea {
   width: 111%;
   margin: 2rem -5.5% 0;
   padding: 1rem;
-  color: #3487a8;
+  color: #3485a8;
   border-radius: 0.125rem;
   outline: 0.063rem solid #9dcde1;
 }
@@ -762,14 +764,14 @@ textarea {
 }
 .form:hover .form__button,
 .form:focus .form__button {
-  background: #3487a8;
+  background: #3485a8;
   color: #fff;
 }
 .form__button--success {
   background: #044904 !important;
 }
 .form__button--loading {
-  background: #3487a8 !important;
+  background: #3485a8 !important;
 }
 .form__button--failure {
   background: #610505 !important;
@@ -814,7 +816,7 @@ textarea {
   flex: 1 0 19rem;
   box-shadow: inset 0 -0.188rem 0.75rem -0.375rem #333;
   background-image: url("/img/card.png");
-  background-color: #3487a8;
+  background-color: #3485a8;
   background-repeat: repeat;
   background-blend-mode: hard-light;
 }
@@ -837,7 +839,7 @@ textarea {
   background: transparent;
   border-top: 0.32rem solid transparent;
   border-bottom: 0.32rem solid transparent;
-  border-left: 0.5rem solid #68aac4;
+  border-left: 0.5rem solid #68a9c4;
   transition: all 0.2s ease-in-out;
   transform: translateX(10%);
 }
@@ -921,8 +923,7 @@ textarea {
   color: #26637d;
   padding: 0 1rem;
 }
-.event__title,
-.tour__title {
+.event__title {
   flex: 1 1 6.6rem;
   padding: 0 0.7rem 0.8rem;
   font-size: 1.1rem;
@@ -949,7 +950,7 @@ textarea {
 .post__wrap:focus .post__footer,
 .post__wrap:active .post__footer {
   color: #fff;
-  background: #3487a8;
+  background: #3485a8;
 }
 .post__wrap:active .post__footer {
   background: #613b23;
@@ -957,7 +958,7 @@ textarea {
 .tour__wrap:hover .tour__link,
 .tour__wrap:focus .tour__link {
   color: #fff;
-  background: #3487a8;
+  background: #3485a8;
 }
 .tour__wrap:hover .tour__link:hover,
 .tour__wrap:focus .tour__link:hover,
@@ -973,7 +974,7 @@ textarea {
 .event__wrap:focus .event__footer,
 .event__wrap:active .event__footer {
   color: #fff;
-  background: #3487a8;
+  background: #3485a8;
 }
 .event__wrap:active .event__footer {
   background: #613b23;
@@ -1131,7 +1132,7 @@ textarea {
   line-height: 1rem;
   margin: 0rem;
   padding: 0;
-  color: #3487a8;
+  color: #3485a8;
 }
 .advantages__list {
   background: #fff;
@@ -1159,7 +1160,7 @@ textarea {
   background: transparent;
   border-top: 0.32rem solid transparent;
   border-bottom: 0.32rem solid transparent;
-  border-left: 0.5rem solid #68aac4;
+  border-left: 0.5rem solid #68a9c4;
   transition: all 0.2s ease-in-out;
   transform: translateX(10%);
 }
@@ -1167,6 +1168,172 @@ textarea {
 .advantage:focus:before {
   border-left: 0.5rem solid #26637d;
   transform: translateX(0%);
+}
+.tours__wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  min-height: 32.2rem;
+}
+.tours_nav__wrap {
+  flex: 0 1 25vw;
+  min-width: 15rem;
+  margin-bottom: -2rem;
+  background-image: url("/img/card.png");
+  background-blend-mode: lighten;
+  background-repeat: repeat;
+  background-color: #fffafa;
+  box-shadow: 0 0 0.75rem -0.25rem #333;
+}
+.tours_nav__section_header {
+  color: #613b23;
+}
+.tours_nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0.5rem 0;
+}
+.tours_nav__link {
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 1em 12%;
+}
+.tours_nav__link:hover,
+.tours_nav__link:focus {
+  background: #3485a8;
+}
+.tours_nav__link:active,
+.tours_nav__link.active {
+  background: #613b23;
+}
+.tours_nav__link:hover,
+.tours_nav__link:focus,
+.tours_nav__link:active,
+.tours_nav__link.active {
+  color: #fff;
+}
+.tours_nav__link.active {
+  z-index: 500;
+}
+.tours_nav__link--subtag {
+  padding-right: 18%;
+  background-color: #9dcde1;
+  display: none;
+}
+.tours_nav__link--subtag.visible {
+  display: block;
+}
+.tours_nav__link--subtag--last {
+  padding-bottom: 1.5em;
+}
+.tours_list__wrap {
+  flex: 0 1 75vw;
+  position: relative;
+}
+.tours_list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: stretch;
+  align-content: flex-start;
+  margin: 1.5rem 1.5rem;
+}
+.tour__wrap {
+  flex: 0 0 285px;
+  position: relative;
+  margin: 0 0.5rem 2.5rem;
+}
+.tour__image__wrap {
+  max-width: 285px;
+  max-height: 214px;
+  overflow: hidden;
+}
+.tour__image {
+  max-width: 300px;
+  transition: all 1s ease-out;
+  transform-origin: 0 0;
+  transform: scale(0.97, 0.97);
+}
+.tour__wrap:hover .tour__image {
+  transform: scale(1, 1);
+}
+.tour__title {
+  padding: 0.6rem;
+  flex: 1 1 6rem;
+}
+.tour__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  border: 0.063rem solid #9dcde1;
+  border-radius: 0.125rem;
+}
+.tour__length {
+  display: inline;
+  text-align: right;
+  font-size: 0.9rem;
+  line-height: 2.25rem;
+  margin-top: -2.25rem;
+  color: #26637d;
+  padding: 0 1rem;
+}
+.tours__count {
+  position: absolute;
+  right: 1.6rem;
+  top: 2rem;
+  color: #3485a8;
+}
+@media (max-width: 1139px) {
+  .tours_nav {
+    margin-top: 2.5rem;
+  }
+  .tours_list {
+    margin-top: 3.5rem;
+  }
+  .tours__count {
+    top: 4rem;
+  }
+}
+@media (max-width: 899px) {
+  .tours__wrap {
+    display: block;
+  }
+  .tours_nav__wrap {
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+  }
+  .tours_nav {
+    margin-top: 0;
+  }
+  .tours_nav__link {
+    text-align: center;
+  }
+}
+@media (max-width: 659px) and (min-width: 565px) {
+  .tour__wrap {
+    flex: 0 0 15rem;
+  }
+  .tour__image__wrap {
+    max-width: 15rem;
+  }
+}
+@media (max-width: 659px) {
+  .tour__title {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 449px) {
+  .tour__wrap {
+    flex-grow: 1;
+    margin-bottom: 1rem;
+  }
+  .tour__image__wrap,
+  .tour__image {
+    display: none;
+  }
 }
 .full_tour__heading,
 .full_post__heading {
@@ -1178,7 +1345,7 @@ textarea {
   flex-wrap: wrap;
   align-items: baseline;
   background-image: url("/img/card.png");
-  background-color: #3487a8;
+  background-color: #3485a8;
   background-repeat: repeat;
   background-blend-mode: hard-light;
 }
@@ -1231,7 +1398,7 @@ textarea {
 }
 .full_tour__breadcrumb__label,
 .full_post__breadcrumb__label {
-  color: #3487a8;
+  color: #3485a8;
   line-height: 1;
   text-decoration: underline;
   white-space: nowrap;
@@ -1261,7 +1428,7 @@ textarea {
 }
 .full_tour__breadcrumb__icon__svg,
 .full_post__breadcrumb__icon__svg {
-  fill: #3487a8;
+  fill: #3485a8;
 }
 .full_tour__breadcrumb,
 .full_post__breadcrumb {
@@ -1420,7 +1587,7 @@ textarea {
   background: transparent;
   border-top: 0.32rem solid transparent;
   border-bottom: 0.32rem solid transparent;
-  border-left: 0.5rem solid #68aac4;
+  border-left: 0.5rem solid #68a9c4;
   transition: all 0.2s ease-in-out;
   transform: translateX(10%);
 }
@@ -1486,7 +1653,7 @@ textarea {
   background: transparent;
   border-top: 0.32rem solid transparent;
   border-bottom: 0.32rem solid transparent;
-  border-left: 0.5rem solid #68aac4;
+  border-left: 0.5rem solid #68a9c4;
   transition: all 0.2s ease-in-out;
   transform: translateX(10%);
 }
@@ -1494,287 +1661,6 @@ textarea {
 .full_post__content__wrap li:focus:before {
   border-left: 0.5rem solid #26637d;
   transform: translateX(0%);
-}
-.tours__wrap {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  flex-wrap: nowrap;
-  min-height: 32.2rem;
-}
-.tours_nav__wrap {
-  flex: 0 0 16rem;
-  position: relative;
-  overflow: hidden;
-  margin-top: -4.4rem;
-  margin-bottom: -3rem;
-  box-shadow: 0.325rem -0.188rem 0.75rem -0.625rem #333, inset 0 0.325rem 0.75rem -0.625rem #333;
-  background-image: url("/img/noise.png");
-  background-blend-mode: lighten;
-  background-color: #fffafa;
-}
-.tours_nav__section_header {
-  font-size: 1.1rem;
-  line-height: 4.2rem;
-  padding: 1rem;
-  margin: -1rem;
-}
-.tours_nav {
-  position: absolute;
-  top: 4.4rem;
-  right: 0;
-  left: 0;
-  width: auto;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  z-index: 500;
-  transition: all 0.4s ease-in-out;
-  will-change: transform;
-  background-image: url("/img/noise.png");
-  background-blend-mode: lighten;
-  background-color: #fffafa;
-}
-.tours_nav__link {
-  text-align: right;
-  text-transform: uppercase;
-}
-.tours_nav__link:hover,
-.tours_nav__link:focus {
-  background: #3487a8;
-}
-.tours_nav__link:active,
-.tours_nav__link.active {
-  background: #613b23;
-}
-.tours_nav__link:hover,
-.tours_nav__link:focus,
-.tours_nav__link:active,
-.tours_nav__link.active {
-  color: #fff;
-}
-.tours_nav__link.active {
-  z-index: 500;
-}
-.tours_nav__link--tag {
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-.tours_nav__link--subtag {
-  position: relative;
-  display: none;
-  padding-right: 3.75rem;
-  padding-left: 0.75rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  background: #9dcde1;
-  font-size: 0.9rem;
-}
-.tours_nav__link--subtag.visible {
-  display: block;
-}
-.tours_nav__link--subtag--last {
-  padding-bottom: 1rem;
-}
-.tours_list__wrap {
-  position: relative;
-  flex: 1 0 20rem;
-  padding-top: 3rem;
-  margin-top: -3rem;
-}
-.tours__list {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
-  flex-wrap: wrap;
-  margin: 0 9rem 0 0;
-}
-.tours__count {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1rem;
-  color: #68aac4;
-}
-.tours__total {
-  font-size: 0.9rem;
-  color: #3487a8;
-}
-.tours__on_page {
-  font-size: 1.2rem;
-  color: #26637d;
-}
-.tour__wrap {
-  flex: 0 0 18rem;
-  height: 25rem;
-  position: relative;
-  z-index: 501;
-  margin: 0.1rem;
-  transition: all 0.3s ease-in-out;
-  will-change: transform;
-  transform: scale(0.963);
-}
-.tour__wrap:hover,
-.tour__wrap:focus,
-.tour__wrap:active {
-  z-index: 1001;
-  transform: scale(1);
-}
-.tour__fixed,
-.tour__moving {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  flex-wrap: nowrap;
-  border: 0.063rem solid #9dcde1;
-  border-radius: 0.125rem;
-  transition: all 0.2s ease-in-out;
-  will-change: transform;
-  background: #fff;
-}
-.tour__wrap:hover .tour__fixed,
-.tour__wrap:hover .tour__moving,
-.tour__wrap:focus .tour__fixed,
-.tour__wrap:focus .tour__moving,
-.tour__wrap:active .tour__fixed,
-.tour__wrap:active .tour__moving {
-  border-width: 0.08rem;
-  border-color: #3487a8;
-}
-.tour__moving {
-  right: -25%;
-  z-index: 10;
-  border-left: none;
-  overflow-y: scroll;
-  background: #fffafa;
-  transform-origin: 0% 0%;
-  transform: scaleX(0.8);
-}
-.tour__wrap:hover .tour__moving,
-.tour__wrap:focus .tour__moving,
-.tour__wrap:active .tour__moving {
-  z-index: 1010;
-  transform: scaleX(1) translateX(20%);
-}
-.tour__fixed {
-  right: 0;
-  z-index: 20;
-}
-.tour__wrap:hover .tour__fixed,
-.tour__wrap:focus .tour__fixed,
-.tour__wrap:active .tour__fixed {
-  z-index: 1020;
-  transform: translateX(-75%);
-}
-.tour__image__wrap {
-  flex: 0 0 50%;
-  overflow: hidden;
-}
-.tour__image {
-  width: 18rem;
-  height: auto;
-  object-fit: contain;
-  filter: grayscale(0.1);
-}
-.tour__wrap:hover .tour__image,
-.tour__wrap:focus .tour__image,
-.tour__wrap:active .tour__image {
-  filter: none;
-}
-.tour__length {
-  color: #26637d;
-  margin-bottom: 1rem;
-}
-.tour__intro,
-.tour__summary,
-.tour__length {
-  padding: 0 1rem;
-  margin-top: 1rem;
-}
-@media (max-width: 1278px) and (min-width: 900px) {
-  .tours__list {
-    justify-content: space-around;
-    margin: 0 5.399999999999999rem 0 0;
-  }
-  .tour__fixed,
-  .tour__moving {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-  .tour__moving {
-    display: none;
-  }
-  .tours_nav__wrap {
-    flex: 1 0 16rem;
-  }
-}
-@media (max-width: 899px) {
-  .tours_nav__wrap {
-    flex: 0 1 20rem;
-  }
-  .tours_nav {
-    top: 0;
-  }
-  .tours_nav__link {
-    padding: 0.75rem 0.5rem;
-  }
-  .tours__list {
-    margin: 0 0.5rem 0 0;
-    display: block;
-  }
-  .tour__wrap {
-    height: auto;
-    flex: 1 1 12rem;
-  }
-  .tour__wrap,
-  .tour__fixed {
-    transform: none !important;
-    height: auto;
-  }
-  .tour__title {
-    flex: 1 0 4rem;
-  }
-  .tour__fixed {
-    position: static;
-    flex: 1 1 18rem;
-  }
-  .tour__image__wrap,
-  .tour__moving {
-    display: none;
-  }
-}
-@media (max-width: 619px) {
-  .tours__wrap {
-    display: block;
-  }
-  .tours_nav__section_header {
-    display: none;
-  }
-  .tours_nav__wrap {
-    margin-top: 1rem;
-    margin-bottom: 0;
-  }
-  .tours_nav {
-    position: static;
-    margin-bottom: 3rem;
-  }
-  .tours_nav .tours_nav__link {
-    text-align: center;
-  }
 }
 .services__summary__wrap {
   margin-top: -4.5rem;
@@ -1785,7 +1671,7 @@ textarea {
   align-items: center;
   box-shadow: inset 0 -0.188rem 0.75rem -0.325rem #333;
   background-image: url("/img/card.png");
-  background-color: #3487a8;
+  background-color: #3485a8;
   background-repeat: repeat;
   background-blend-mode: hard-light;
 }
@@ -1811,7 +1697,7 @@ textarea {
   background: transparent;
   border-top: 0.32rem solid transparent;
   border-bottom: 0.32rem solid transparent;
-  border-left: 0.5rem solid #68aac4;
+  border-left: 0.5rem solid #68a9c4;
   transition: all 0.2s ease-in-out;
   transform: translateX(10%);
 }
@@ -1950,7 +1836,7 @@ textarea {
   width: 100%;
   height: auto;
   margin-bottom: -0.3rem;
-  filter: grayscale(0.4);
+  filter: grayscale(0.25);
 }
 .testimonial {
   width: 100%;
@@ -1997,7 +1883,7 @@ textarea {
   fill: #9dcde1;
 }
 .testimonial__footer {
-  background: #3487a8;
+  background: #3485a8;
   padding: 0.7rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -2091,75 +1977,75 @@ textarea {
 }
 @-moz-keyframes logo_animate_blue {
   0% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   25% {
     fill: #452917;
   }
   50% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   75% {
     fill: #452917;
   }
   100% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
 }
 @-webkit-keyframes logo_animate_blue {
   0% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   25% {
     fill: #452917;
   }
   50% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   75% {
     fill: #452917;
   }
   100% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
 }
 @-o-keyframes logo_animate_blue {
   0% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   25% {
     fill: #452917;
   }
   50% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   75% {
     fill: #452917;
   }
   100% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
 }
 @keyframes logo_animate_blue {
   0% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   25% {
     fill: #452917;
   }
   50% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   75% {
     fill: #452917;
   }
   100% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
 }
 @-moz-keyframes logo_animate_blue_2 {
   0% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   17% {
     fill: #26637d;
@@ -2177,12 +2063,12 @@ textarea {
     fill: #26637d;
   }
   100% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
 }
 @-webkit-keyframes logo_animate_blue_2 {
   0% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   17% {
     fill: #26637d;
@@ -2200,12 +2086,12 @@ textarea {
     fill: #26637d;
   }
   100% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
 }
 @-o-keyframes logo_animate_blue_2 {
   0% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   17% {
     fill: #26637d;
@@ -2223,12 +2109,12 @@ textarea {
     fill: #26637d;
   }
   100% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
 }
 @keyframes logo_animate_blue_2 {
   0% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   17% {
     fill: #26637d;
@@ -2246,7 +2132,7 @@ textarea {
     fill: #26637d;
   }
   100% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
 }
 @-moz-keyframes logo_animate_brown {
@@ -2328,7 +2214,7 @@ textarea {
     fill: #26637d;
   }
   50% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   67% {
     fill: #26637d;
@@ -2351,7 +2237,7 @@ textarea {
     fill: #26637d;
   }
   50% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   67% {
     fill: #26637d;
@@ -2374,7 +2260,7 @@ textarea {
     fill: #26637d;
   }
   50% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   67% {
     fill: #26637d;
@@ -2397,7 +2283,7 @@ textarea {
     fill: #26637d;
   }
   50% {
-    fill: #3487a8;
+    fill: #3485a8;
   }
   67% {
     fill: #26637d;

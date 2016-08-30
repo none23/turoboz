@@ -1,20 +1,2 @@
 h1.page_heading
-    | {% if page.url contains '/tours/' %}
-    | {% if page.url == '/tours/' %}
-    | Экскурсии
-    | {% else %}
-    | {% for tag in site.data.tags %}
-    | {% if tag.url == page.url %}
-    | Экскурсии: {{ tag.title }}
-    | {% elsif page.url contains tag.url %}
-    | {% for subtag in tag.subtags %}
-    | {% if subtag.url == page.url %}
-    | Экскурсии: {{ subtag.title }}
-    | {% endif %}
-    | {% endfor %}
-    | {% endif %}
-    | {% endfor %}
-    | {% endif %}
-    | {% else %}
     | {{ page.title }}
-    | {% endif %}
