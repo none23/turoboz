@@ -1,0 +1,9 @@
+---
+permalink:  /_headers
+---
+/css/*
+    Cache-control: max-age=60
+/js/*
+    Cache-control: max-age=60
+/images/**
+    Cache-control: max-age=120
