@@ -78,9 +78,13 @@ document.addEventListener('click', function (e) {
             e.preventDefault();
             history.pushState(null, null, el.href);
             changePage();
-            $('#mobile_nav').removeClass('is_open');
-            $('#mobile_nav_toggle').removeClass('is_open');
         }
         return;
     }
+});
+$(function () {
+    $('.site_nav__link').on('click', '', function () {
+        $('#mobile_nav').removeClass('is_open');
+        $('#mobile_nav_toggle').removeClass('is_open');
+    });
 });
