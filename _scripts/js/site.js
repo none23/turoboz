@@ -9,7 +9,7 @@ function sleep(time) {
 // mobileNav{{{
 function mobileNav() {
     $('#mobile_nav_toggle').on('click', '', function () {
-        return $('#mobile_nav_toggle, #mobile_nav').toggleClass('is_open');
+        $('#mobile_nav_toggle, #mobile_nav').toggleClass('is_open');
     });
 };
 // /mobileNav}}}
