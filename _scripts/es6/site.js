@@ -1,3 +1,6 @@
+var $=require('../../node_modules/jquery/dist/jquery.slim.min.js')
+var jquery=require('../../node_modules/jquery/dist/jquery.slim.min.js')
+
 function sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 };
