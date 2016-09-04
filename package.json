@@ -53,7 +53,7 @@
 
             "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify",
                 "build:scripts:compile": "babel _scripts/es6 -d _scripts/js",
-                "build:scripts:uglify": "uglifyjs -c -m -o js/site.js _scripts/js/site.js",
+                "build:scripts:uglify": "(cd _scripts/js && for file in *.js; do ( uglifyjs -c -m -o ../../js/$file $file); done)",
                 "postbuild:scripts": "echo 'scripts ready'",
 
             "build:images": "concurrently 'npm run build:images:tours' 'npm run build:images:posts'",
@@ -90,9 +90,7 @@
             "watch:styles:compile": "stylus -w _styles/styles --out _styles/unprefixed",
             "watch:styles:prefix": "watch 'npm run build:styles:prefix' _styles/unprefixed", 
 
-        "watch:scripts": "concurrently 'npm run watch:scripts:compile' 'npm run watch:scripts:uglify'",
-            "watch:scripts:compile": "watch 'npm run build:scripts:compile' _scripts/es6 ",
-            "watch:scripts:uglify": "watch 'npm run build:scripts:uglify' _scripts/js ",
+        "watch:scripts": "watch 'npm run build:scripts' _scripts/es6 ",
 
     "data-update": "node _importdata.js",
         "predata-update": "rm _tours/1*.html",
