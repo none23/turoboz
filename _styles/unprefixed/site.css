@@ -357,6 +357,7 @@ textarea {
   width: 3rem;
   flex: 0 0 3rem;
   fill: #3485a8;
+  margin-left: 1rem;
 }
 .site_header__call_back {
   font-size: 0.9rem;
@@ -386,9 +387,9 @@ textarea {
   position: absolute;
   top: 100%;
   right: 0;
-  transform: translateX(100%) scale(0);
+  transform: rotateY(90deg);
   transform-origin: 100% 0;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-out;
   z-index: 1002;
   background: #fff;
   box-shadow: 0 0.25rem 0.75rem -0.325rem #333;
@@ -397,7 +398,7 @@ textarea {
   border-radius: 0.1875rem;
 }
 .header_form__wrap.is_open {
-  transform: translateX(0%) scale(1);
+  transform: rotateY(0);
 }
 .header_form__wrap #call_back_form {
   justify-content: flex-start;
@@ -489,10 +490,10 @@ textarea {
   justify-content: space-around;
   align-items: flex-start;
   background: #fff;
-  transform: translateX(100%) scale(0);
+  transform: rotateY(90deg);
   transform-origin: 100% 0;
   will-change: transform;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.2s ease-out;
   box-shadow: 0 0.063rem 0.875rem -0.25rem #333;
 }
 #mobile_nav .site_header__phone,
@@ -525,10 +526,10 @@ textarea {
   width: 100%;
 }
 #mobile_nav.is_open {
-  transform: translateX(0) scale(1);
+  transform: rotateY(0);
 }
 .mobile_nav_toggle__svg {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-out;
   fill: #613b23;
 }
 .mobile_nav_toggle__svg__top_bar {
@@ -756,8 +757,8 @@ textarea {
 .form__button--success,
 .form__button--loading,
 .form__button--failure {
-  transition: all 0.3s ease-in-out;
-  animation: form_button_submit 0.3s ease-in-out 0s 1 normal forwards;
+  transition: all 0.3s ease-out;
+  animation: form_button_submit 0.3s ease-out 0s 1 normal forwards;
 }
 .form__button {
   background: #fff;
@@ -864,32 +865,21 @@ textarea {
   justify-content: center;
   align-items: stretch;
 }
-.event__wrap {
-  flex: 1 0 14rem;
-  max-width: 25rem;
-  border: 0.063rem solid #9dcde1;
-  border-radius: 0.125rem;
-  margin: 0.5rem 0.313rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  position: relative;
-  z-index: 20;
-  background-color: #fff;
+@media (max-width: 1239px) {
+  .upcoming_events__wrap {
+    width: 38rem;
+    max-width: 38rem;
+  }
+  .upcoming_events__list {
+    flex-wrap: wrap;
+  }
 }
-.event__wrap:active {
-  transform: scale(0.95);
-  z-index: 30;
+@media (max-width: 564px) {
+  .upcoming_events__wrap {
+    width: 16rem;
+    max-width: 16rem;
+  }
 }
-.event__wrap:hover,
-.event__wrap:focus {
-  z-index: 29;
-}
-.event__image__wrap {
-  flex: 1 0 12rem;
-}
-.event__image,
 .post__image {
   max-width: 100%;
   max-height: 100%;
@@ -903,19 +893,10 @@ textarea {
     max-width: 100%;
   }
 }
-.event__image {
-  filter: grayscale(0.1);
-}
-.event__wrap:hover .event__image,
-.event__wrap:focus .event__image,
-.event__wrap:active .event__image {
-  filter: none;
-}
 .post__date {
   text-align: right;
 }
 .post__date,
-.event__date,
 .tour__date {
   flex: 0 0 2.25rem;
   font-size: 0.9rem;
@@ -923,13 +904,7 @@ textarea {
   color: #26637d;
   padding: 0 1rem;
 }
-.event__title {
-  flex: 1 1 6.6rem;
-  padding: 0 0.7rem 0.8rem;
-  font-size: 1.1rem;
-}
 .tour__link,
-.event__footer,
 .post__footer {
   flex: 0 0 2.5rem;
   padding-left: 1rem;
@@ -940,8 +915,6 @@ textarea {
   color: #26637d;
   background: #fff;
 }
-.event__footer,
-.event__image,
 .post__footer,
 .post__image {
   transition: all 0.2s ease;
@@ -968,15 +941,6 @@ textarea {
 }
 .tour__wrap:hover .tour__link:active,
 .tour__wrap:focus .tour__link:active {
-  background: #613b23;
-}
-.event__wrap:hover .event__footer,
-.event__wrap:focus .event__footer,
-.event__wrap:active .event__footer {
-  color: #fff;
-  background: #3485a8;
-}
-.event__wrap:active .event__footer {
   background: #613b23;
 }
 .posts__wrap {
@@ -1036,35 +1000,9 @@ textarea {
   padding: 0 1rem 1rem;
   font-size: 1rem;
 }
-@media (max-width: 1079px) {
-  .upcoming_events__wrap {
-    width: 75vw;
-    min-width: 33.75rem;
-  }
-  .upcoming_events__list {
-    flex-wrap: wrap;
-  }
-  .event__wrap {
-    flex: 1 0 34%;
-  }
-}
 @media (max-width: 619px) {
-  .upcoming_events__wrap {
-    width: 95vw;
-    max-width: 37.5rem;
-    min-width: 12.5rem;
-  }
-  .event__wrap {
-    flex: 1 0 45%;
-  }
-  .event__image__wrap,
   .post__image__wrap {
     display: none;
-  }
-}
-@media (max-width: 419px) {
-  .event__wrap {
-    flex: 1 0 85%;
   }
 }
 .about_info {
@@ -1251,6 +1189,7 @@ textarea {
   overflow: hidden;
 }
 .tour__image {
+  width: 103.1%;
   max-width: 300px;
   transition: all 1s ease-out;
   transform-origin: 0 0;
@@ -1317,12 +1256,17 @@ textarea {
     flex: 0 0 15rem;
   }
   .tour__image__wrap {
-    max-width: 15rem;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
   }
 }
 @media (max-width: 659px) {
   .tour__title {
     font-size: 1.1rem;
+  }
+  .tour__length {
+    color: #613b23;
   }
 }
 @media (max-width: 449px) {

@@ -1,17 +1,18 @@
 include ../mixins.jade
+include tour_card.jade
 
 mixin EventWrap()
-    a.event__wrap(href='/tours/{{ tt.tour }}')
+    a.event__wrap(href='/tours/{{ tour.tour }}')
         .event__image__wrap
-            img.event__image( sizes="(max-width: 619px) 1px, (min-width: 720px) and (max-width: 1079px) 37vw, (min-width: 1080px) and (max-width: 1158px) 24vw, 263px", srcset="/img/none.jpg 1w, /img/tours200/{{ tt.imgpath }} 200w, /img/tours300/{{ tt.imgpath }} 300w, /img/tours400/{{ tt.imgpath }} 400w", alt="{{ tt.title | smartify }}")
+            img.event__image( sizes="(max-width: 619px) 1px, (min-width: 720px) and (max-width: 1079px) 37vw, (min-width: 1080px) and (max-width: 1158px) 24vw, 263px", srcset="/img/none.jpg 1w, /img/tours200/{{ tour.imgpath }} 200w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours400/{{ tour.imgpath }} 400w", alt="{{ tour.title | smartify }}")
         .event__date
-            | {% if tt.dates[0] | plus: 0 > 10 %} 
-            +LiquidRussianDate('tt.dates[0]')
+            | {% if tour.dates[0] | plus: 0 > 10 %} 
+            +LiquidRussianDate('tour.dates[0]')
             | {% else %} по заказу {% endif %}
 
         h4.event__title
-            | {{ tt.title }}.
-            | {{ tt.subtitle }}
+            | {{ tour.title }}.
+            | {{ tour.subtitle }}
         footer.event__footer
             | Подробнее
 
@@ -21,13 +22,13 @@ section.upcoming_events__wrap
     .upcoming_events__list
         | {% assign upcoming_counter = 0 %}
         | {% for x in site.data.upcoming%}
-        |     {% assign tt = site.data.tours[x] %}
-        |     {% if tt.dates[0] != 0 %}
+        |     {% assign tour = site.data.tours[x] %}
+        |     {% if tour.dates[0] != 0 %}
         |         {% if upcoming_counter > 3 %}
         |             {% break %}
         |         {% else %}
         |             {% assign upcoming_counter = upcoming_counter | plus: 1 %}
-        +EventWrap()
+        +TourCard('tour')
         |         {% endif %}
         |     {% endif %}
         | {% endfor %}
