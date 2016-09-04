@@ -1,28 +1,23 @@
 'use strict';
 
+/*
+// {{{
 var cache = {};
 
 // animateLogo{{{
-function logoLoading() {
+function logoLoading () {
     document.getElementById('site_logo').focus();
-    sleep(600).then(function () {
+    sleep(600).then(() => {
         document.getElementById('site_logo').blur();
-    });
+    })
 };
 // /animateLog}}}
 //
 function loadPage(url) {
-    if (cache[url]) {
-        return new Promise(function (resolve) {
-            resolve(cache[url]);
-        });
-    }
-
     return fetch(url, {
         method: 'GET'
-    }).then(function (response) {
-        cache[url] = response.text();
-        return cache[url];
+    }).then(function(response) {
+        return response.text();
     });
 }
 
@@ -31,9 +26,9 @@ var page_wrap = document.querySelector('.page_wrap');
 function changePage() {
     var url = window.location.href;
 
-    loadPage(url).then(function (responseText) {
+    loadPage(url).then(function(responseText) {
         var wrapper = document.createElement('div');
-        wrapper.innerHTML = responseText;
+            wrapper.innerHTML = responseText;
 
         var oldContent = document.querySelector('.page_content_wrap');
         var newContent = wrapper.querySelector('.page_content_wrap');
@@ -43,6 +38,7 @@ function changePage() {
         animate(oldContent, newContent);
         ga('set', 'page', url);
         ga('send', 'pageview');
+        
     });
 }
 
@@ -56,14 +52,14 @@ function animate(oldContent, newContent) {
         opacity: [0, 1]
     }, 200);
 
-    fadeIn.onfinish = function () {
+    fadeIn.onfinish = function() {
         oldContent.parentNode.removeChild(oldContent);
     };
 }
 
 window.addEventListener('popstate', changePage);
 
-document.addEventListener('click', function (e) {
+document.addEventListener('click', function(e) {
     if (e.ctrlKey) {
         return;
     }
@@ -73,7 +69,10 @@ document.addEventListener('click', function (e) {
     }
 
     if (el) {
-        if (el.target == '_blank') {} else if (el.href.indexOf("tel:") !== -1) {} else if (el.href.indexOf("mailto:") !== -1) {} else {
+        if (el.target == '_blank') {
+        } else if (el.href.indexOf("tel:") !== -1) {
+        } else if (el.href.indexOf("mailto:") !== -1) {
+        } else {
             console.log(el.href);
             e.preventDefault();
             history.pushState(null, null, el.href);
@@ -82,9 +81,82 @@ document.addEventListener('click', function (e) {
         return;
     }
 });
-$(function () {
-    $('.site_nav__link').on('click', '', function () {
+$(function(){
+    $('.site_nav__link').on('click', '', function(){
         $('#mobile_nav').removeClass('is_open');
         $('#mobile_nav_toggle').removeClass('is_open');
     });
-});
+})
+// }}}
+*/
+(function () {
+    var pageContentWrap = 'page_content_wrap';
+
+    var animateChange = function animateChange(newPage, currentPage) {
+
+        fadeAway.onfinish = function () {
+            currentPage.parentNode.replaceChild(newPage, currentPage);
+        };
+    };
+
+    var changePage = function changePage(url) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', url);
+        xhr.responseType = 'document';
+
+        xhr.onload = function () {
+            var newPage = this.response.getElementById(pageContentWrap);
+            var currentPage = document.getElementById(pageContentWrap);
+
+            var fadeAway = currentPage.animate({
+                opacity: [1, 0]
+            }, 200);
+
+            fadeAway.onfinish = function () {
+                currentPage.parentNode.replaceChild(newPage, currentPage);
+            };
+        };
+
+        xhr.send();
+    };
+
+    if (history && history.pushState) {
+
+        document.addEventListener('click', function (e) {
+            if (e.ctrlKey) {
+                return;
+            }
+            var etarg = e.target;
+            while (etarg && !etarg.href) {
+                etarg = etarg.parentNode;
+            }
+            if (etarg) {
+                if (etarg.target == '_blank') {} else if (etarg.href.indexOf("tel:") !== -1) {} else if (etarg.href.indexOf("mailto:") !== -1) {} else {
+                    changePage(etarg.href);
+                    history.pushState(null, null, etarg.href);
+                    ga('set', 'page', url);
+                    ga('send', 'pageview');
+                }
+                return;
+            }
+        });
+
+        setTimeout(function () {
+            window.onpopstate = function () {
+                changePage(window.location.href);
+            };
+        }, 500);
+
+        var onUpdateReady = function onUpdateReady() {
+            var currentPage = document.getElementById(pageContentWrap);
+            currentPage.parentNode.replaceChild(currentPage, currentPage);
+        };
+
+        window.applicationCache.addEventListener('updateready', onUpdateReady);
+
+        if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+            onUpdateReady();
+        }
+    }
+})();

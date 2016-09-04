@@ -466,11 +466,6 @@ textarea {
   color: #fff;
   background: #3485a8;
 }
-.site_nav__link:hover,
-.site_nav__link:focus,
-.site_nav__link.active {
-  box-shadow: 0 0.063rem 0.188rem -0.063rem #333;
-}
 #desktop_nav {
   flex: 1 0 20rem;
   height: 100%;

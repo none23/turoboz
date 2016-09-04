@@ -1,3 +1,5 @@
+/*
+// {{{
 var cache = {};
 
 // animateLogo{{{
@@ -10,17 +12,10 @@ function logoLoading () {
 // /animateLog}}}
 //
 function loadPage(url) {
-    if (cache[url]) {
-        return new Promise(function(resolve) {
-            resolve(cache[url]);
-        });
-    }
-
     return fetch(url, {
         method: 'GET'
     }).then(function(response) {
-        cache[url] = response.text();
-        return cache[url];
+        return response.text();
     });
 }
 
@@ -90,3 +85,81 @@ $(function(){
         $('#mobile_nav_toggle').removeClass('is_open');
     });
 })
+// }}}
+*/
+(function(){
+    var pageContentWrap = 'page_content_wrap';
+
+    var animateChange = function(newPage, currentPage) {
+
+
+        fadeAway.onfinish = function() {
+            currentPage.parentNode.replaceChild(newPage, currentPage);
+        };
+    };
+
+    var changePage = function(url) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', url);
+        xhr.responseType = 'document';
+
+        xhr.onload = function() {
+            var newPage = this.response.getElementById(pageContentWrap);
+            var currentPage = document.getElementById(pageContentWrap);
+
+            var fadeAway = currentPage.animate({
+                opacity: [1, 0]
+                }, 200);
+
+            fadeAway.onfinish = function() {
+                currentPage.parentNode.replaceChild(newPage, currentPage);
+            }
+
+        };
+
+        xhr.send();
+    };
+
+    if (history && history.pushState) {
+
+        document.addEventListener('click', function(e) {
+            if (e.ctrlKey) {
+                    return;
+            }
+            var etarg = e.target;
+            while (etarg && !etarg.href) {
+                etarg = etarg.parentNode;
+            }
+            if (etarg) {
+                if (etarg.target == '_blank') {
+                } else if (etarg.href.indexOf("tel:") !== -1) {
+                } else if (etarg.href.indexOf("mailto:") !== -1) {
+                } else {
+                    changePage(etarg.href);
+                    history.pushState(null, null, etarg.href);
+                    ga('set', 'page', url);
+                    ga('send', 'pageview');
+                }
+                return;
+            }
+        });
+
+        setTimeout(function() {
+            window.onpopstate = function() {
+                changePage(window.location.href);
+            };
+        }, 500);
+
+        var onUpdateReady = function() {
+            var currentPage = document.getElementById(pageContentWrap);
+            currentPage.parentNode.replaceChild(currentPage, currentPage);
+        }
+
+        window.applicationCache.addEventListener('updateready', onUpdateReady);
+
+        if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+          onUpdateReady();
+        }
+    }
+}())
