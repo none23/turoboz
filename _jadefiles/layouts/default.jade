@@ -6,11 +6,11 @@ html(lang='ru-RU')
         #page_wrap.page_wrap
             | {% include header.html %}
 
-            .page_content_wrap
+            .page_content_wrap(class="page_content_wrap--{% if page.url contains '/tours/1' %}tour{% elsif page.url contains '/tours/' %}tours{% elsif page.url contains '/news/' %}post{% elsif page.url == '/' %}main{% else %}page{% endif %}")
               | {{ content }}
 
             | {% include footer.html %}
-        //-- script(src='/js/jquery-3.1.0.slim.min.js')
-        //-- script(src='/js/page_transitions.js')
+        script(src='/js/jquery-3.1.0.slim.min.js')
+        script(src='/js/page_transitions.js')
         script(src='/js/site.js')
         | {% include google_analytics.html %}

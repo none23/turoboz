@@ -1,8 +1,5 @@
 'use strict';
 
-var $ = require('../../node_modules/jquery/dist/jquery.slim.min.js');
-var jquery = require('../../node_modules/jquery/dist/jquery.slim.min.js');
-
 function sleep(time) {
     return new Promise(function (resolve) {
         return setTimeout(resolve, time);
@@ -111,7 +108,6 @@ function iSendAJAX(event, form, sendButton, successMsg) {
     };
 };
 // /forms}}}
-
 
 $(function () {
     mobileNav();

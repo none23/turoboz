@@ -17,36 +17,36 @@ link(rel='canonical', href="{{ page.url | replace:'index.html','' | prepend: sit
 link(rel='prerender prefetch', href='{{ tag.url }}')
 | {%         endfor %}
 //-- /all tours page }}}
-| {%     else %}
-| {%         for tag in site.data.tags %}
-| {%             if tag.url == page.url %}
-| {%                 if tag.subtags %}
+| {% else %}
+| {% for tag in site.data.tags %}
+| {% if tag.url == page.url %}
+| {% if tag.subtags %}
 //-- tours tag page that has subtags {{{
-| {%                     for subtag in tag.subtags %}
-| {%                             if subtag.url != page.url %}
+| {% for subtag in tag.subtags %}
+| {% if subtag.url != page.url %}
 link(rel='prerender prefetch', href='{{ subtag.url }}')
-| {%                             endif %}
-| {%                     endfor %}
+| {% endif %}
+| {% endfor %}
 //-- /tours tag page that has subtags }}}
-| {%                 endif %}
+| {% endif %}
 //-- tours tag page that has no subtags {{{
-| {%                     for tata in site.data.tags %}
-| {%                         if tata.url != page.url %}
+| {% for tata in site.data.tags %}
+| {% if tata.url != page.url %}
 link(rel='prerender prefetch', href='{{ tata.url }}')
-| {%                         endif %}
-| {%                     endfor %}
+| {% endif %}
+| {% endfor %}
 //-- /tours tag page that has no subtags }}}
-| {%             elsif page.url contains tag.url %}
+| {% elsif page.url contains tag.url %}
 //-- tours subtag page {{{
-| {%                 for subtag in tag.subtags %}
-| {%                     if subtag.url != page.url %}
+| {% for subtag in tag.subtags %}
+| {% if subtag.url != page.url %}
 link(rel='prerender prefetch', href='{{ subtag.url }}')
-| {%                     endif %}
-| {%                 endfor %}
+| {% endif %}
+| {% endfor %}
 //-- /tours subtag page }}}
-| {%             endif %}
-| {%         endfor %}
-| {%     endif %}
+| {% endif %}
+| {% endfor %}
+| {% endif %}
 | {% else %}
 //-- not in tours {{{
 link(rel='prerender prefetch', href='/tours')
