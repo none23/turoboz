@@ -1,6 +1,7 @@
-(function(){
-    var pageContentWrap = 'page_content_wrap';
 
+(function(){
+
+    var pageContentWrap = 'page_content_wrap';
     var animateChange = function(newPage, currentPage) {
 
 
@@ -25,12 +26,28 @@
 
             fadeAway.onfinish = function() {
                 currentPage.parentNode.replaceChild(newPage, currentPage);
-            }
+            };
 
         };
 
         xhr.send();
     };
+
+    function onUpdateReady() {
+        var pageContentWrap = 'page_content_wrap';
+        console.log('applying changes in cache');
+        window.applicationCache.swapCache();
+        console.log('updating page');
+        changePage(document.URL);
+    }
+
+    window.applicationCache.addEventListener('updateready', onUpdateReady);
+
+    if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+      onUpdateReady();
+    }
+    window.applicationCache.update();
+    setInterval(function () { window.applicationCache.update(); }, 3600000);
 
     if (history && history.pushState) {
 
@@ -49,7 +66,7 @@
                 } else {
                     changePage(etarg.href);
                     history.pushState(null, null, etarg.href);
-                    ga('set', 'page', url);
+                    ga('set', 'page', etarg.href);
                     ga('send', 'pageview');
                 }
                 return;
@@ -62,15 +79,5 @@
             };
         }, 500);
 
-        var onUpdateReady = function() {
-            var currentPage = document.getElementById(pageContentWrap);
-            currentPage.parentNode.replaceChild(currentPage, currentPage);
-        }
-
-        window.applicationCache.addEventListener('updateready', onUpdateReady);
-
-        if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
-          onUpdateReady();
-        }
     }
-}())
+}());

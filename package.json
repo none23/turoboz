@@ -1,6 +1,6 @@
 {
   "name": "turoboz",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Turoboz website",
   "babel": {
        "presets": [
@@ -94,7 +94,6 @@
 
     "data-update": "node _importdata.js",
         "predata-update": "rm _tours/1*.html",
-        "postdata-update": "npm run build:jade && npm run build:jekyll",
 
     "justbuild": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
     "browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open --no-notify",
