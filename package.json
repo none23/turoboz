@@ -104,7 +104,7 @@
     "justbuild": "npm run build:jade && npm run build:styles && npm run build:scripts && npm run build:jekyll",
     "browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open --no-notify",
     "deploy": "netlify deploy",
-        "predeploy": "npm run data-update && npm run build:images && npm run build"
+        "predeploy": "npm run data-update && npm run build"
 
   },
   "author": "none23",
