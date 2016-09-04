@@ -59,7 +59,7 @@
                 "postbuild:scripts": "echo 'scripts ready'",
 
             "build:images": "concurrently 'npm run build:images:tours' 'npm run build:images:posts'",
-                "build:images:posts": "POSTS_CHECKSUM_NOW=$(md5sum img/_posts/*.jpg | md5sum); POSTS_CHECKSUM_SAVED=$(cat img/_posts/.checksum); if [ \"$POSTS_CHECKSUM_NOW\" != \"$POSTS_CHECKSUM_SAVED\" ]; then npm run build:images:posts:generate; fi",
+                "build:images:posts": "POSTS_CHECKSUM_NOW=$(md5sum img/_posts/*.jpg | md5sum); POSTS_CHECKSUM_SAVED=$(cat img/_posts/.checksum); if [ \"$POSTS_CHECKSUM_NOW\" != \"$POSTS_CHECKSUM_SAVED\" ]; then echo \"$POSTS_CHECKSUM_NOW\" && echo $\"POSTS_CHECKSUM_SAVED\" && npm run build:images:posts:generate; fi",
                     "build:images:posts:generate": "concurrently 'npm run build:images:posts200px' 'npm run build:images:posts300px' 'npm run build:images:posts400px'",
                         "prebuild:images:posts:generate": "rm img/posts{2,3,4}00/* || echo 'nothing to delete' ",
                         "build:images:posts200px": "(cd img/_posts && for file in *.jpg; do (mogrify -path ../posts200 -filter Triangle -define filter:support=2 -resize 200x150^ -extent 200x150 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 
@@ -67,7 +67,7 @@
                         "build:images:posts400px": "(cd img/_posts && for file in *.jpg; do (mogrify -path ../posts400 -filter Triangle -define filter:support=2 -resize 400x300^ -extent 400x300 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 
                         "postbuild:images:posts:generate": "md5sum img/_posts/*.jpg | md5sum > img/_posts/.checksum && echo 'posts images ready'",
 
-                "build:images:tours": "TOURS_CHECKSUM_NOW=$(md5sum img/_tours/*.jpg | md5sum); TOURS_CHECKSUM_SAVED=$(cat img/_tours/.checksum); if [ \"$TOURS_CHECKSUM_NOW\" != \"$TOURS_CHECKSUM_SAVED\" ]; then npm run build:images:tours:generate; fi",
+                "build:images:tours": "TOURS_CHECKSUM_NOW=$(md5sum img/_tours/*.jpg | md5sum); TOURS_CHECKSUM_SAVED=$(cat img/_tours/.checksum); if [ \"$TOURS_CHECKSUM_NOW\" != \"$TOURS_CHECKSUM_SAVED\" ]; then echo \"$POSTS_CHECKSUM_NOW\" && echo $\"POSTS_CHECKSUM_SAVED\" && npm run build:images:tours:generate; fi",
                     "build:images:tours:generate": "concurrently 'npm run build:images:tours300px' 'npm run build:images:tours400px' 'npm run build:images:tours600px' 'npm run build:images:tours800px'",
                         "prebuild:images:tours:generate": "rm img/tours{3,4,6,8}00/* || echo 'nothing to delete'",
                         "build:images:tours300px": "(cd img/_tours && for file in *.jpg; do (mogrify -path ../tours300 -filter Triangle -define filter:support=2 -resize 300x225^ -extent 300x225 -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file); done)", 
