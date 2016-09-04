@@ -28,8 +28,7 @@
     "normalize.css": "^4.1.1",
     "postcss": "^5.1.2",
     "stylus": "^0.54.5",
-    "uglify-js": "latest",
-    "webpack": "^1.13.2"
+    "uglify-js": "latest"
   },
   "devDependencies": {
     "browser-sync": "^2.14.0",
@@ -52,10 +51,9 @@
                 "build:styles:prefix": "(cd _styles/unprefixed && for file in *.css; do (autoprefixer-cli -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < $file   | csso > ../../css/$file); done)", 
                 "postbuild:styles": "echo 'styles ready'",
 
-            "build:scripts": "npm run build:scripts:compile && npm run build:scripts:webpack && npm run build:scripts:uglify",
+            "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify",
                 "build:scripts:compile": "babel _scripts/es6 -d _scripts/js",
-                "build:scripts:webpack": "webpack _scripts/js/site.js _scripts/webpack/site.js",
-                "build:scripts:uglify": "uglifyjs -c -m -o js/site.js _scripts/webpack/site.js",
+                "build:scripts:uglify": "uglifyjs -c -m -o js/site.js _scripts/js/site.js",
                 "postbuild:scripts": "echo 'scripts ready'",
 
             "build:images": "concurrently 'npm run build:images:tours' 'npm run build:images:posts'",
@@ -92,9 +90,8 @@
             "watch:styles:compile": "stylus -w _styles/styles --out _styles/unprefixed",
             "watch:styles:prefix": "watch 'npm run build:styles:prefix' _styles/unprefixed", 
 
-        "watch:scripts": "concurrently 'npm run watch:scripts:compile' 'npm run watch:scripts:webpack' 'npm run watch:scripts:uglify'",
+        "watch:scripts": "concurrently 'npm run watch:scripts:compile' 'npm run watch:scripts:uglify'",
             "watch:scripts:compile": "watch 'npm run build:scripts:compile' _scripts/es6 ",
-            "watch:scripts:webpack": "webpack -w _scripts/js/site.js _scripts/webpack/site.js",
             "watch:scripts:uglify": "watch 'npm run build:scripts:uglify' _scripts/js ",
 
     "data-update": "node _importdata.js",

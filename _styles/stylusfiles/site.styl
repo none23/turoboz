@@ -127,6 +127,33 @@ $modal_form_button_bg = $turbo_blue
 $modal_form_button_fg = white
 
 // keyframes {{{
+// page_effects keyframes {{{
+@keyframes slideInLeft
+    0%
+        transform: translateX(100%)
+        opacity: 0
+    100%
+        transform: translateY(0%)
+        opacity: 1
+
+@keyframes slideInRight
+    0%
+        transform: translateX(-100%)
+        opacity: 0
+    100%
+        transform: translateY(0%)
+        opacity: 1
+
+@keyframes slideInUp
+    0%
+        transform: translateY(100%)
+        opacity: 0
+    100%
+        transform: translateY(0%)
+        opacity: 1
+
+// /page_effects keyframes }}}
+// logo_effects keyframes {{{
 @keyframes logo_animate_gray
     0%
         transform: rotate(0deg) scale(1)
@@ -206,6 +233,7 @@ $modal_form_button_fg = white
     100%
         transform: scale(1)
         border-radius: 0.063rem
+// /logo_effects keyframes }}}
 // /keyframes }}}
 // /vars }}}
 // base {{{
@@ -805,6 +833,31 @@ textarea
     background: hsl(0,90%,20%) !important
 
 // /forms }}}
+// page_effects {{{
+//.page_content_wrap
+//    animation-duration: 0.25s
+//    transition-timing-function: ease-out
+//    animation-fill-mode: both
+//    animation-name: slideInRight
+//
+//    .is_exiting &
+//        animation-direction: alternate-reverse
+//
+//.page_content_wrap--
+//    &main
+//        animation-name: slideInUp
+//
+//    &page
+//        animation-name: slideInRight
+//
+//    &tours
+//        animation-name: slideInLeft
+//
+//    &post
+//    &tour
+//        animation-name: slideInLeft
+//
+// /page_effects }}}
 // /site_wide }}}
 // main {{{
 // =========================================================================
@@ -984,9 +1037,6 @@ textarea
     &:hover
     &:focus
         z-index: 29
-
-    &:active
-        transform: scale(0.95)
 
 .post__image__wrap
     flex 1 1 21.875rem
