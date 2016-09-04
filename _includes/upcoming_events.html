@@ -1,11 +1,11 @@
 <section class="upcoming_events__wrap"><h2 class="section_header">Ближайшие туры</h2><div class="upcoming_events__list">{% assign upcoming_counter = 0 %}
 {% for x in site.data.upcoming%}
-    {% assign tt = site.data.tours[x] %}
-    {% if tt.dates[0] != 0 %}
+    {% assign tour = site.data.tours[x] %}
+    {% if tour.dates[0] != 0 %}
         {% if upcoming_counter > 3 %}
             {% break %}
         {% else %}
-            {% assign upcoming_counter = upcoming_counter | plus: 1 %}<a href="/tours/{{ tt.tour }}" class="event__wrap"><div class="event__image__wrap"><img sizes="(max-width: 619px) 1px, (min-width: 720px) and (max-width: 1079px) 37vw, (min-width: 1080px) and (max-width: 1158px) 24vw, 263px" srcset="/img/none.jpg 1w, /img/tours200/{{ tt.imgpath }} 200w, /img/tours300/{{ tt.imgpath }} 300w, /img/tours400/{{ tt.imgpath }} 400w" alt="{{ tt.title | smartify }}" class="event__image"/></div><div class="event__date">{% if tt.dates[0] | plus: 0 > 10 %} {% assign unixdate = tt.dates[0] | round | minus:25569 | times:86400 %}
+            {% assign upcoming_counter = upcoming_counter | plus: 1 %}{% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}<div class="tour__wrap"><a tabindex="1" href="{{ tour.id }}" class="tour__card"><div class="tour__image__wrap"><img sizes="(max-width: 449px) 1px, (min-width: 450px) and (max-width: 659px) 15rem, 291px" srcset="/img/none.jpg 1w, /img/tours200/{{ tour.imgpath }} 200w, /img/tours300/{{ tour.imgpath }} 300w" alt="{{ tour.title | smartify }}" class="tour__image"/></div><div class="tour__date">{% if tour.dates[0] | plus: 0 > 10 %} {% assign unixdate = #{tour}.dates[0] | round | minus:25569 | times:86400 %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %} 
@@ -22,7 +22,7 @@
 {% when '11' %}ноября
 {% when '12' %}декабя
 {% endcase %} 
-{{ unixdate | date: "%Y" }}{% else %} по заказу {% endif %}</div><h4 class="event__title">{{ tt.title }}.
-{{ tt.subtitle }}</h4><footer class="event__footer">Подробнее</footer></a>        {% endif %}
+{{ unixdate | date: "%Y" }}{% else %} по заказу {% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title">{{ tour.title }} 
+{{ tour.subtitle }} </h3><div class="tour__link">Подробнее</div></a></div>        {% endif %}
     {% endif %}
 {% endfor %}</div></section>
