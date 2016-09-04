@@ -141,6 +141,7 @@ function getStrs(auth) {
         var tourHidden = row[7];
 
         tourObj.tour = tourId;
+        tourObj.id = '/tours/' + tourId;
         tourObj.title = tourTitle;
         tourObj.subtitle = tourSubtitle;
         tourObj.intro = tourIntro;
@@ -442,7 +443,7 @@ function saveJSON() {
         var finalObj = {};
         for (var i = 0; i < all_tours.length; ++i ){
             finalObj[all_tours[i].tour] = all_tours[i];
-            toursFiles(all_tours[i].tour, all_tours[i].is_hidden, all_tours[i].title, all_tours[i].subtitle, all_tours[i].intro, all_tours[i].summary, all_tours[i].imgpath, all_tours[i].tourlength, all_tours[i].tags, all_tours[i].dates, all_tours[i].prices, all_tours[i].includes, all_tours[i].additionalFees, all_tours[i].willLearn, all_tours[i].details, all_tours[i].blueprint);
+            toursFiles(all_tours[i].tour, all_tours[i].isHidden, all_tours[i].title, all_tours[i].subtitle, all_tours[i].intro, all_tours[i].summary, all_tours[i].imgpath, all_tours[i].tourlength, all_tours[i].tags, all_tours[i].dates, all_tours[i].prices, all_tours[i].includes, all_tours[i].additionalFees, all_tours[i].willLearn, all_tours[i].details, all_tours[i].blueprint);
         }
         var upcoming_four = Object.keys(upcoming_tours).sort(function(a,b){ 
             return upcoming_tours[a] - upcoming_tours[b];
@@ -479,8 +480,8 @@ function concatArray (arr, arr_title) {
         return;
     }
 }
-function toursFiles (id, is_hidden, title, subtitle, intro, summary, imgpath, tourlength, tags, dates, prices, includes, additionalFees, willLearn, details, blueprint) {
-    if (is_hidden == 1 ) {  } else {
+function toursFiles (id, isHidden, title, subtitle, intro, summary, imgpath, tourlength, tags, dates, prices, includes, additionalFees, willLearn, details, blueprint) {
+    if (isHidden == 1 ) {  } else {
         var strsContent = "---\nid: " + id + "\nlayout: tour\npermalink: /tours/" + id + "/\ntitle: '" + title + "'\nsubtitle: '" + subtitle + "'\nintro: '" + intro + "'\nsummary: '" + summary + "'\nimgpath: " + imgpath + "\ntourlength: " + tourlength + "\n";
         var tagsContent            = concatArray(tags,            'tags');
         var datesContent           = concatArray(dates,           'dates');
