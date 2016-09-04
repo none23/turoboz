@@ -443,6 +443,7 @@ textarea
         flex-direction: row
         flex-wrap: wrap
         max-width: $header_form_field_width * 2 + 2rem + 6rem
+        margin-right: -1rem
 
     #call_back_form__name
     #call_back_form__phone
@@ -468,7 +469,6 @@ textarea
         background: white
         color: $turbo_blue
         border-left: $border
-        border-right: $border
         border-radius: 0
         -webkit-appearance: none
         margin: 0 
@@ -481,6 +481,9 @@ textarea
         &:active
             color: white
             background: $turbo_cancel_active
+
+        @media(max-width: 648px)
+            border: none
 
 
 // /header_form }}}
@@ -545,6 +548,7 @@ textarea
     .site_header__call_back
         width: 100%
         height: 3rem
+        min-height: 3rem
         line-height: 3rem
         text-align: center
         margin: 0
@@ -592,7 +596,7 @@ textarea
     display: none
     position: relative
     flex: 0 0 3rem
-    margin: 1.7rem 2rem
+    padding: 1.7rem 2rem
     order: 1
     z-index: 1001
 
@@ -627,6 +631,9 @@ textarea
         .site_header__call_back,
         .site_header__vk_button
             display: block
+
+    .site_header__vk_button
+        margin-left: 0
 
 @media(max-width: 349px)
     #site_logo
@@ -1191,7 +1198,7 @@ textarea
 .tour__image
     width: 103.1%
     max-width: 300px
-    transition: all 1s ease-out
+    transition: all .5s ease-out
     transform-origin: 0 0
     transform: scale(0.97, 0.97)
     .tour__wrap:hover &

@@ -3,7 +3,7 @@ mixin TourCard(tour)
         .tour__wrap
             a.tour__card(tabindex=1, href="{{ #{tour}.id }}")
                 .tour__image__wrap
-                    img.tour__image(sizes="(max-width: 449px) 1px, (min-width: 450px) and (max-width: 659px) 15rem, 291px", srcset="/img/none.jpg 1w, /img/tours200/{{ #{tour}.imgpath }} 200w, /img/tours300/{{ #{tour}.imgpath }} 300w", alt="{{ #{tour}.title | smartify }}")
+                    img.tour__image(sizes="(max-width: 449px) 1px, (min-width: 450px) and (min-device-pixel-ratio: 2) 600px, 300px", srcset="/img/none.jpg 1w, /img/tours300/{{ #{tour}.imgpath }} 300w, /img/tours600/{{ #{tour}.imgpath }} 600w", alt="{{ #{tour}.title | smartify }}")
 
                 .tour__date
                     | {% if #{tour}.dates[0] | plus: 0 > 10 %} 
