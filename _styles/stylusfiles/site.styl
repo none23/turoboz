@@ -946,16 +946,13 @@ textarea
 // /upcoming_events }}}
 
 .post__image
-    max-width: 100%
-    max-height: 100%
     width: auto
     height: auto
     object-fit: cover
 
 @media(max-width: 860px)
-    .post__image
+    .post__image__wrap
         min-height: 20rem
-        max-width: 100%
 
 
 .post__date
@@ -1034,6 +1031,7 @@ textarea
         z-index: 29
 
 .post__image__wrap
+    overflow: hidden
     flex 1 1 21.875rem
     line-height: 0
 
