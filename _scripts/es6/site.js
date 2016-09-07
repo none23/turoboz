@@ -7,7 +7,7 @@ function mobileNav() {
     var mobile_nav_toggle = document.getElementById('mobile_nav_toggle');
     var mobile_nav = document.getElementById('mobile_nav');
 
-    document.addEventListener('click', function(event) {
+    mobile_nav_toggle.addEventListener('click', function(event) {
         event.preventDefault();
         mobile_nav_toggle.classList.toggle('is_open');
         mobile_nav.classList.toggle('is_open');
