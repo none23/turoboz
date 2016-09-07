@@ -4,9 +4,13 @@ function sleep (time) {
 
 // mobileNav{{{
 function mobileNav() {
-    $('#mobile_nav_toggle').on('click', '', function() {
-        $('#mobile_nav_toggle, #mobile_nav').toggleClass('is_open');
-    });
+    var mobile_nav_toggle = document.getElementById('mobile_nav_toggle');
+    var mobile_nav = document.getElementById('mobile_nav');
+
+    mobile_nav_toggle.onclick = function() {
+        mobile_nav_toggle.classList.toggle('is_open');
+        mobile_nav.classList.toggle('is_open');
+    };
 };
 // /mobileNav}}}
 // activeNavLinkTransition{{{

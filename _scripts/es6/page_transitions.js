@@ -61,8 +61,9 @@
             }
             if (etarg) {
                 if (etarg.target == '_blank') {
-                } else if (etarg.href.indexOf("tel:") !== -1) {
-                } else if (etarg.href.indexOf("mailto:") !== -1) {
+                } else if (etarg.href.indexOf("tel:") >= 0) {
+                } else if (etarg.href.indexOf("mailto:") >= 0) {
+                } else if (etarg.href.length < 26 && etarg.href.indexOf("turoboz.com") >= 0) {
                 } else {
                     changePage(etarg.href);
                     history.pushState(null, null, etarg.href);
