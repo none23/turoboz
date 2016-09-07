@@ -65,6 +65,7 @@
                 } else if (etarg.href.indexOf("mailto:") >= 0) {
                 } else if (etarg.id === "mobile_nav_toggle") {
                 } else {
+                    e.preventDefault();
                     changePage(etarg.href);
                     history.pushState(null, null, etarg.href);
                     ga('set', 'page', etarg.href);
