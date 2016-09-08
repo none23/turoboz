@@ -1,6 +1,6 @@
 function sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
-};
+}
 
 // mobileNav{{{
 function mobileNav() {
@@ -12,26 +12,47 @@ function mobileNav() {
         mobile_nav_toggle.classList.toggle('is_open');
         mobile_nav.classList.toggle('is_open');
     });
-};
+}
 // /mobileNav}}}
 // activeNavLinkTransition{{{
 function activeNavLink() {
-    $('.site_nav__link').on('click', function() {
-        $('.site_nav__link').removeClass('active');
-        $(this).addClass('active');
-        $(this).blur();
-    });
-};
+    var site_nav_Links = document.getElementById('site_header').getElementsByClassName('site_nav__link');
+    for (var site_nav_link of site_nav_Links) {
+        site_nav_link.addEventListener('click', function(e) {
+            document.querySelector(".site_nav__link.active").classList.remove('active');
+            e.target.classList.add('active');
+            document.activeElement.blur();
+        });
+    }
+}
 // /activeNavLinkTransition}}}
 // forms{{{
 // callBackForm{{{
 function  callBackFormToggle() {
-    $('.call_back_form__toggle').on('click', '', function() {
-      $('.call_back_form__toggle, .call_back_form__wrap').toggleClass('is_open');
-      $('#call_back_form__name').focus();
-      return false;
-    });
-  };
+    var call_back_form_Toggles = document.getElementsByClassName('call_back_form__toggle');
+    var call_back_form_wrap = document.getElementById('call_back_form__wrap');
+    var call_back_form_maintoggle = document.querySelector('#site_contacts_wrap .call_back_form__toggle');
+    for (var call_back_form_toggle of call_back_form_Toggles) {
+         call_back_form_toggle.addEventListener('click', function(ev) {
+             // dont follow the '#' href
+             ev.preventDefault();
+
+             // change state of toggle in the desktop_nav if such exists
+             if (call_back_form_maintoggle) {
+                 call_back_form_maintoggle.classList.toggle('is_open');
+             }
+
+             // show/hide the form 
+             call_back_form_wrap.classList.toggle('is_open');
+
+             // when the form appears, set focus to its first field 
+             if (call_back_form_wrap.classList.indexOf('is_open') >= 0) {
+                 call_back_form_wrap.getElementById('call_back_form__name').focus();
+             }
+         });
+    }
+        
+}
 
 function enableCallBackForm() {
     var TheForm, sendForm, successCallBack;
@@ -45,7 +66,7 @@ function enableCallBackForm() {
     } else {
 
     }
-  };
+  }
 // /callBackForm}}}
 
 function enableContactForm() {
@@ -60,7 +81,7 @@ function enableContactForm() {
     } else {
 
     }
-};
+}
 
 function enableReviewForm() {
     var TheForm, sendForm, successReview;
@@ -74,7 +95,7 @@ function enableReviewForm() {
     } else {
 
     }
-};
+}
 
 function enableOrderForm() {
     var TheForm, sendForm, successOrder;
@@ -88,7 +109,7 @@ function enableOrderForm() {
     } else {
 
     }
-};
+}
 
 function iSendAJAX(event, form, sendButton, successMsg) {
     var formData, message, request;
@@ -97,7 +118,7 @@ function iSendAJAX(event, form, sendButton, successMsg) {
     message.loading = 'Отправка...';
     message.success = successMsg;
     message.failure = 'Возникла ошибка при отправке.';
-    request = new XMLHttpRequest;
+    request = new XMLHttpRequest();
     request.open('POST', '//formspree.io/n.anisimov.23@gmail.com', true);
     request.setRequestHeader('accept', 'application/json');
     formData = new FormData(form);
@@ -115,15 +136,16 @@ function iSendAJAX(event, form, sendButton, successMsg) {
             }
         }
     };
-};
+}
 // /forms}}}
-
-$(function() {
-    mobileNav();
-    callBackFormToggle();
-    enableCallBackForm();
-    enableContactForm();
-    enableReviewForm();
-    enableOrderForm();
-    activeNavLink();
-});
+(function main(){
+    window.addEventListener("DOMContentLoaded", function(Ev) {
+        mobileNav();
+        callBackFormToggle();
+        enableCallBackForm();
+        enableContactForm();
+        enableReviewForm();
+        enableOrderForm();
+        activeNavLink();
+    });
+})();
