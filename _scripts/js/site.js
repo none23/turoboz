@@ -4,7 +4,7 @@ function sleep(time) {
     return new Promise(function (resolve) {
         return setTimeout(resolve, time);
     });
-};
+}
 
 // mobileNav{{{
 function mobileNav() {
@@ -16,26 +16,88 @@ function mobileNav() {
         mobile_nav_toggle.classList.toggle('is_open');
         mobile_nav.classList.toggle('is_open');
     });
-};
+}
 // /mobileNav}}}
 // activeNavLinkTransition{{{
 function activeNavLink() {
-    $('.site_nav__link').on('click', function () {
-        $('.site_nav__link').removeClass('active');
-        $(this).addClass('active');
-        $(this).blur();
-    });
-};
+    var site_nav_Links = document.getElementById('site_header').getElementsByClassName('site_nav__link');
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+        for (var _iterator = site_nav_Links[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var site_nav_link = _step.value;
+
+            site_nav_link.addEventListener('click', function (e) {
+                document.querySelector(".site_nav__link.active").classList.remove('active');
+                e.target.classList.add('active');
+                document.activeElement.blur();
+            });
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+}
 // /activeNavLinkTransition}}}
 // forms{{{
 // callBackForm{{{
 function callBackFormToggle() {
-    $('.call_back_form__toggle').on('click', '', function () {
-        $('.call_back_form__toggle, .call_back_form__wrap').toggleClass('is_open');
-        $('#call_back_form__name').focus();
-        return false;
-    });
-};
+    var call_back_form_Toggles = document.getElementsByClassName('call_back_form__toggle');
+    var call_back_form_wrap = document.getElementById('call_back_form__wrap');
+    var call_back_form_maintoggle = document.querySelector('#site_contacts_wrap .call_back_form__toggle');
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+        for (var _iterator2 = call_back_form_Toggles[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var call_back_form_toggle = _step2.value;
+
+            call_back_form_toggle.addEventListener('click', function (ev) {
+                // dont follow the '#' href
+                ev.preventDefault();
+
+                // change state of toggle in the desktop_nav if such exists
+                if (call_back_form_maintoggle) {
+                    call_back_form_maintoggle.classList.toggle('is_open');
+                }
+
+                // show/hide the form 
+                call_back_form_wrap.classList.toggle('is_open');
+
+                // when the form appears, set focus to its first field 
+                if (call_back_form_wrap.classList.indexOf('is_open') >= 0) {
+                    call_back_form_wrap.getElementById('call_back_form__name').focus();
+                }
+            });
+        }
+    } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                _iterator2.return();
+            }
+        } finally {
+            if (_didIteratorError2) {
+                throw _iteratorError2;
+            }
+        }
+    }
+}
 
 function enableCallBackForm() {
     var TheForm, sendForm, successCallBack;
@@ -47,7 +109,7 @@ function enableCallBackForm() {
             return iSendAJAX(event, TheForm, sendForm, successCallBack);
         });
     } else {}
-};
+}
 // /callBackForm}}}
 
 function enableContactForm() {
@@ -60,7 +122,7 @@ function enableContactForm() {
             return iSendAJAX(event, TheForm, sendForm, successContact);
         });
     } else {}
-};
+}
 
 function enableReviewForm() {
     var TheForm, sendForm, successReview;
@@ -72,7 +134,7 @@ function enableReviewForm() {
             return iSendAJAX(event, TheForm, sendForm, successReview);
         });
     } else {}
-};
+}
 
 function enableOrderForm() {
     var TheForm, sendForm, successOrder;
@@ -84,7 +146,7 @@ function enableOrderForm() {
             return iSendAJAX(event, TheForm, sendForm, successOrder);
         });
     } else {}
-};
+}
 
 function iSendAJAX(event, form, sendButton, successMsg) {
     var formData, message, request;
@@ -111,15 +173,16 @@ function iSendAJAX(event, form, sendButton, successMsg) {
             }
         }
     };
-};
+}
 // /forms}}}
-
-$(function () {
-    mobileNav();
-    callBackFormToggle();
-    enableCallBackForm();
-    enableContactForm();
-    enableReviewForm();
-    enableOrderForm();
-    activeNavLink();
-});
+(function main() {
+    window.addEventListener("DOMContentLoaded", function (Ev) {
+        mobileNav();
+        callBackFormToggle();
+        enableCallBackForm();
+        enableContactForm();
+        enableReviewForm();
+        enableOrderForm();
+        activeNavLink();
+    });
+})();
