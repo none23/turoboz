@@ -1,8 +1,12 @@
+// helper functions{{{
+
 function sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
 
+// helper functions}}}
 // mobileNav{{{
+
 function mobileNav() {
     var mobile_nav_toggle = document.getElementById('mobile_nav_toggle');
     var mobile_nav = document.getElementById('mobile_nav');
@@ -13,21 +17,25 @@ function mobileNav() {
         mobile_nav.classList.toggle('is_open');
     });
 }
+
 // /mobileNav}}}
 // activeNavLinkTransition{{{
+
 function activeNavLink() {
     var site_nav_Links = document.getElementById('site_header').getElementsByClassName('site_nav__link');
-    for (var site_nav_link of site_nav_Links) {
-        site_nav_link.addEventListener('click', function(e) {
+    for (var linkno = 0; linkno < site_nav_Links.length; linkno++ ) {
+        site_nav_Links[linkno].addEventListener('click', function(e) {
             document.querySelector(".site_nav__link.active").classList.remove('active');
             e.target.classList.add('active');
             document.activeElement.blur();
         });
     }
 }
+
 // /activeNavLinkTransition}}}
 // forms{{{
 // callBackForm{{{
+
 function  callBackFormToggle() {
     var call_back_form_Toggles = document.getElementsByClassName('call_back_form__toggle');
     var call_back_form_wrap = document.getElementById('call_back_form__wrap');
@@ -68,6 +76,7 @@ function enableCallBackForm() {
     }
   }
 // /callBackForm}}}
+// contactForm{{{
 
 function enableContactForm() {
     var TheForm, sendForm, successContact;
@@ -83,6 +92,9 @@ function enableContactForm() {
     }
 }
 
+// /contactForm}}}
+// reviewForm{{{
+
 function enableReviewForm() {
     var TheForm, sendForm, successReview;
     TheForm = document.getElementById('review_form');
@@ -97,6 +109,9 @@ function enableReviewForm() {
     }
 }
 
+// /reviewForm}}}
+// orderForm{{{
+
 function enableOrderForm() {
     var TheForm, sendForm, successOrder;
     TheForm = document.getElementById('order_form');
@@ -110,6 +125,8 @@ function enableOrderForm() {
 
     }
 }
+
+// /orderForm}}}
 
 function iSendAJAX(event, form, sendButton, successMsg) {
     var formData, message, request;
@@ -138,6 +155,8 @@ function iSendAJAX(event, form, sendButton, successMsg) {
     };
 }
 // /forms}}}
+// initiate on page load{{{
+
 (function main(){
     window.addEventListener("DOMContentLoaded", function(Ev) {
         mobileNav();
@@ -149,3 +168,5 @@ function iSendAJAX(event, form, sendButton, successMsg) {
         activeNavLink();
     });
 })();
+
+// /initiate on page load}}}
