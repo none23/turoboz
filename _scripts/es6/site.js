@@ -1,10 +1,3 @@
-// helper functions{{{
-
-function sleep (time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-}
-
-// helper functions}}}
 // mobileNav{{{
 
 function mobileNav() {
@@ -42,8 +35,6 @@ function  callBackFormToggle() {
     var call_back_form_maintoggle = document.querySelector('#site_contacts_wrap .call_back_form__toggle');
     for (var call_back_form_toggle of call_back_form_Toggles) {
          call_back_form_toggle.addEventListener('click', function(ev) {
-             // dont follow the '#' href
-             ev.preventDefault();
 
              // change state of toggle in the desktop_nav if such exists
              if (call_back_form_maintoggle) {
@@ -54,9 +45,13 @@ function  callBackFormToggle() {
              call_back_form_wrap.classList.toggle('is_open');
 
              // when the form appears, set focus to its first field 
-             if (call_back_form_wrap.classList.indexOf('is_open') >= 0) {
-                 call_back_form_wrap.getElementById('call_back_form__name').focus();
+             if (call_back_form_wrap.classList.contains('is_open')) {
+                 document.getElementById('call_back_form__name').focus();
              }
+
+             // dont follow the '#' href
+             ev.preventDefault();
+
          });
     }
         
@@ -71,8 +66,6 @@ function enableCallBackForm() {
       TheForm.addEventListener('submit', function(event) {
         return iSendAJAX(event, TheForm, sendForm, successCallBack);
       });
-    } else {
-
     }
   }
 // /callBackForm}}}
@@ -87,8 +80,6 @@ function enableContactForm() {
         TheForm.addEventListener('submit', function(event) {
             return iSendAJAX(event, TheForm, sendForm, successContact);
         });
-    } else {
-
     }
 }
 
@@ -104,8 +95,6 @@ function enableReviewForm() {
         TheForm.addEventListener('submit', function(event) {
             return iSendAJAX(event, TheForm, sendForm, successReview);
         });
-    } else {
-
     }
 }
 
@@ -121,8 +110,6 @@ function enableOrderForm() {
         TheForm.addEventListener('submit', function(event) {
             return iSendAJAX(event, TheForm, sendForm, successOrder);
         });
-    } else {
-
     }
 }
 
@@ -158,7 +145,7 @@ function iSendAJAX(event, form, sendButton, successMsg) {
 // initiate on page load{{{
 
 (function main(){
-    window.addEventListener("DOMContentLoaded", function(Ev) {
+    window.addEventListener("DOMContentLoaded", function() {
         mobileNav();
         callBackFormToggle();
         enableCallBackForm();
