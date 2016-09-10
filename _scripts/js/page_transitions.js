@@ -28,10 +28,7 @@
     };
 
     function onUpdateReady() {
-        var pageContentWrap = 'page_content_wrap';
-        console.log('applying changes in cache');
         appcache.swapCache();
-        console.log('updating page');
         changePage(document.URL);
     }
 
@@ -55,13 +52,20 @@
                 etarg = etarg.parentNode;
             }
             if (etarg) {
-                if (etarg.target == '_blank') {} else if (etarg.href.indexOf("tel:") >= 0) {} else if (etarg.href.indexOf("mailto:") >= 0) {} else if (etarg.id === "mobile_nav_toggle") {} else {
-                    e.preventDefault();
-                    changePage(etarg.href);
-                    history.pushState(null, null, etarg.href);
-                    ga('set', 'page', etarg.href);
-                    ga('send', 'pageview');
+                if (etarg.target == '_blank') {
+                    return;
+                } else if (etarg.href.indexOf("tel:") >= 0) {
+                    return;
+                } else if (etarg.href.indexOf("mailto:") >= 0) {
+                    return;
+                } else if (etarg.id === "mobile_nav_toggle") {
+                    return;
                 }
+                e.preventDefault();
+                changePage(etarg.href);
+                history.pushState(null, null, etarg.href);
+                // ga('set', 'page', etarg.href);
+                // ga('send', 'pageview');
                 return;
             }
         });
