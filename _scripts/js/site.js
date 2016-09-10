@@ -1,12 +1,16 @@
 'use strict';
 
+// helper functions{{{
+
 function sleep(time) {
     return new Promise(function (resolve) {
         return setTimeout(resolve, time);
     });
 }
 
+// helper functions}}}
 // mobileNav{{{
+
 function mobileNav() {
     var mobile_nav_toggle = document.getElementById('mobile_nav_toggle');
     var mobile_nav = document.getElementById('mobile_nav');
@@ -17,53 +21,36 @@ function mobileNav() {
         mobile_nav.classList.toggle('is_open');
     });
 }
+
 // /mobileNav}}}
 // activeNavLinkTransition{{{
+
 function activeNavLink() {
     var site_nav_Links = document.getElementById('site_header').getElementsByClassName('site_nav__link');
+    for (var linkno = 0; linkno < site_nav_Links.length; linkno++) {
+        site_nav_Links[linkno].addEventListener('click', function (e) {
+            document.querySelector(".site_nav__link.active").classList.remove('active');
+            e.target.classList.add('active');
+            document.activeElement.blur();
+        });
+    }
+}
+
+// /activeNavLinkTransition}}}
+// forms{{{
+// callBackForm{{{
+
+function callBackFormToggle() {
+    var call_back_form_Toggles = document.getElementsByClassName('call_back_form__toggle');
+    var call_back_form_wrap = document.getElementById('call_back_form__wrap');
+    var call_back_form_maintoggle = document.querySelector('#site_contacts_wrap .call_back_form__toggle');
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
 
     try {
-        for (var _iterator = site_nav_Links[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var site_nav_link = _step.value;
-
-            site_nav_link.addEventListener('click', function (e) {
-                document.querySelector(".site_nav__link.active").classList.remove('active');
-                e.target.classList.add('active');
-                document.activeElement.blur();
-            });
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-            }
-        } finally {
-            if (_didIteratorError) {
-                throw _iteratorError;
-            }
-        }
-    }
-}
-// /activeNavLinkTransition}}}
-// forms{{{
-// callBackForm{{{
-function callBackFormToggle() {
-    var call_back_form_Toggles = document.getElementsByClassName('call_back_form__toggle');
-    var call_back_form_wrap = document.getElementById('call_back_form__wrap');
-    var call_back_form_maintoggle = document.querySelector('#site_contacts_wrap .call_back_form__toggle');
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
-
-    try {
-        for (var _iterator2 = call_back_form_Toggles[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var call_back_form_toggle = _step2.value;
+        for (var _iterator = call_back_form_Toggles[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var call_back_form_toggle = _step.value;
 
             call_back_form_toggle.addEventListener('click', function (ev) {
                 // dont follow the '#' href
@@ -84,16 +71,16 @@ function callBackFormToggle() {
             });
         }
     } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
+        _didIteratorError = true;
+        _iteratorError = err;
     } finally {
         try {
-            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                _iterator2.return();
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
             }
         } finally {
-            if (_didIteratorError2) {
-                throw _iteratorError2;
+            if (_didIteratorError) {
+                throw _iteratorError;
             }
         }
     }
@@ -111,6 +98,7 @@ function enableCallBackForm() {
     } else {}
 }
 // /callBackForm}}}
+// contactForm{{{
 
 function enableContactForm() {
     var TheForm, sendForm, successContact;
@@ -124,6 +112,9 @@ function enableContactForm() {
     } else {}
 }
 
+// /contactForm}}}
+// reviewForm{{{
+
 function enableReviewForm() {
     var TheForm, sendForm, successReview;
     TheForm = document.getElementById('review_form');
@@ -136,6 +127,9 @@ function enableReviewForm() {
     } else {}
 }
 
+// /reviewForm}}}
+// orderForm{{{
+
 function enableOrderForm() {
     var TheForm, sendForm, successOrder;
     TheForm = document.getElementById('order_form');
@@ -147,6 +141,8 @@ function enableOrderForm() {
         });
     } else {}
 }
+
+// /orderForm}}}
 
 function iSendAJAX(event, form, sendButton, successMsg) {
     var formData, message, request;
@@ -175,6 +171,8 @@ function iSendAJAX(event, form, sendButton, successMsg) {
     };
 }
 // /forms}}}
+// initiate on page load{{{
+
 (function main() {
     window.addEventListener("DOMContentLoaded", function (Ev) {
         mobileNav();
@@ -186,3 +184,5 @@ function iSendAJAX(event, form, sendButton, successMsg) {
         activeNavLink();
     });
 })();
+
+// /initiate on page load}}}

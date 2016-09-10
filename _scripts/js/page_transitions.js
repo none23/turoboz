@@ -3,12 +3,7 @@
 (function () {
 
     var pageContentWrap = 'page_content_wrap';
-    var animateChange = function animateChange(newPage, currentPage) {
-
-        fadeAway.onfinish = function () {
-            currentPage.parentNode.replaceChild(newPage, currentPage);
-        };
-    };
+    var appcache = window.applicationCache;
 
     var changePage = function changePage(url) {
         var xhr = new XMLHttpRequest();
@@ -35,20 +30,19 @@
     function onUpdateReady() {
         var pageContentWrap = 'page_content_wrap';
         console.log('applying changes in cache');
-        window.applicationCache.swapCache();
+        appcache.swapCache();
         console.log('updating page');
         changePage(document.URL);
     }
 
-    window.applicationCache.addEventListener('updateready', onUpdateReady);
+    appcache.addEventListener('updateready', onUpdateReady);
 
-    if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+    if (appcache.status === appcache.UPDATEREADY) {
         onUpdateReady();
     }
-    window.applicationCache.update();
     setInterval(function () {
-        window.applicationCache.update();
-    }, 3600000);
+        appcache.update();
+    }, 300000);
 
     if (history && history.pushState) {
 
