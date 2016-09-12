@@ -36,7 +36,5 @@ __pycache__/
 _importdata.py
 
 # Old site
-.old-site
 .old-site/
 .old_site
-.old_site/
