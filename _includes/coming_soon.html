@@ -1,4 +1,0 @@
-<section class="upcoming_events"><h2 class="section_header">Ближайшие туры</h2><ul class="upcoming_events__list">{% for tour in site.tours | limit: 4 %}
-  {% assign t = tour.id | remove: 'tours' | remove: '/' %}
-      {% assign tt = site.data.tours[t] %}<li class="event__wrap"><a href="/tours/{{ tt.tour }}" class="event__link"><img src="{{ tt.image }}" alt="{{ tt.title }}" class="event__image"/><time class="event__date">{{ tt.dates[0] | round | minus:25569 | times:86400 | date: "%Y %B %-d" }}</time><h3 class="event__title">{{ tt.title }}.
-{{ tt.subtitle }}</h3><footer class="event__footer"><div class="event__button">Подробнее</div></footer></a></li>{% endfor %}</ul></section>
