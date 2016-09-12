@@ -7,7 +7,7 @@ section.posts__wrap#posts__wrap
         | {% for post in posts reversed %}
         li.post__wrap
             .post__image__wrap
-                img.post__image( sizes="(max-width: 619px) 1px, (min-width: 620px) and (max-width: 859px) 45vw, (min-width: 860px) and (max-width: 1158px) 36vw, 345px", srcset="/img/none.jpg 1w, /img/posts200/{{ post.image }} 200w, /img/posts300/{{ post.image }} 300w, /img/posts400/{{ post.image }} 400w", alt='{{ post.title | smartify }}')
+                img.post__image( sizes="(max-width: 619px) 1px, (min-width: 620px) and (max-width: 859px) 45vw, (min-width: 860px) and (max-width: 1158px) 36vw, 345px", srcset="/img/none.jpg 1w, /img/posts200/{{ post.image }} 200w, /img/posts300/{{ post.image }} 300w, /img/posts400/{{ post.image }} 400w", src="/img/posts300/{{ post.image }}", "alt='{{ post.title | smartify }}")
             a.post__content__wrap(href='{{ post.url }}')
                 .post__date
                     +LiquidRussianDateLite('post.dateposted')

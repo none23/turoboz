@@ -1,5 +1,5 @@
 <section id="posts__wrap" class="posts__wrap"><h2 class="section_header">Новости и спецпредложения</h2><ul class="posts__list">{% assign posts = site.news | sort: 'dateposted' %}
-{% for post in posts reversed %}<li class="post__wrap"><div class="post__image__wrap"><img sizes="(max-width: 619px) 1px, (min-width: 620px) and (max-width: 859px) 45vw, (min-width: 860px) and (max-width: 1158px) 36vw, 345px" srcset="/img/none.jpg 1w, /img/posts200/{{ post.image }} 200w, /img/posts300/{{ post.image }} 300w, /img/posts400/{{ post.image }} 400w" alt="{{ post.title | smartify }}" class="post__image"/></div><a href="{{ post.url }}" class="post__content__wrap"><div class="post__date">{% assign unixdate = post.dateposted %}
+{% for post in posts reversed %}<li class="post__wrap"><div class="post__image__wrap"><img sizes="(max-width: 619px) 1px, (min-width: 620px) and (max-width: 859px) 45vw, (min-width: 860px) and (max-width: 1158px) 36vw, 345px" srcset="/img/none.jpg 1w, /img/posts200/{{ post.image }} 200w, /img/posts300/{{ post.image }} 300w, /img/posts400/{{ post.image }} 400w" src="/img/posts300/{{ post.image }}" alt="alt" class="post__image"/></div><a href="{{ post.url }}" class="post__content__wrap"><div class="post__date">{% assign unixdate = post.dateposted %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %} 
