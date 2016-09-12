@@ -10,6 +10,6 @@ html(lang='ru-RU', manifest="/turoboz.appcache")
               | {{ content }}
 
             | {% include footer.html %}
-        script(src='/js/page_transitions.js')
+        script(src='/serviceworker.js')
         script(src='/js/site.js')
         | {% include google_analytics.html %}

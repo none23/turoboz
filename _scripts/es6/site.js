@@ -1,3 +1,86 @@
+// page transitions {{{
+
+(function(){
+
+        var pageContentWrap = 'page_content_wrap';
+        var appcache = window.applicationCache;
+
+        var changePage = function(url) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', url);
+            xhr.responseType = 'document';
+
+            xhr.onload = function() {
+                var newPage = this.response.getElementById(pageContentWrap);
+                var currentPage = document.getElementById(pageContentWrap);
+
+                var fadeAway = currentPage.animate({
+                    opacity: [1, 0]
+                    }, 200);
+
+                fadeAway.onfinish = function() {
+                    currentPage.parentNode.replaceChild(newPage, currentPage);
+                };
+
+            };
+
+            xhr.send();
+        };
+
+        function onUpdateReady() {
+            appcache.swapCache();
+            changePage(document.URL);
+        }
+
+        appcache.addEventListener('updateready', onUpdateReady);
+
+        if (appcache.status === appcache.UPDATEREADY) {
+          onUpdateReady();
+        }
+        setInterval(function () { appcache.update(); }, 300000);
+
+        if (history && history.pushState) {
+
+            document.addEventListener('click', function(e) {
+                if (e.ctrlKey) {
+                        return;
+                }
+                var etarg = e.target;
+                while (etarg && !etarg.href) {
+                    etarg = etarg.parentNode;
+                }
+                if (etarg) {
+                    if (etarg.target == '_blank') {
+                        return;
+                    } else if (etarg.href.indexOf("tel:") >= 0) {
+                        return;
+                    } else if (etarg.href.indexOf("mailto:") >= 0) {
+                        return;
+                    } else if (etarg.id === "mobile_nav_toggle") {
+                        return;
+                    } 
+                    e.preventDefault();
+                    changePage(etarg.href);
+                    history.pushState(null, null, etarg.href);
+                    // ga('set', 'page', etarg.href);
+                    // ga('send', 'pageview');
+                    return;
+                    
+                }
+            });
+
+            setTimeout(function() {
+                window.onpopstate = function() {
+                    changePage(window.location.href);
+                };
+            }, 500);
+
+        }
+}());
+
+// page transitions }}}
+
 // mobileNav{{{
 
 function mobileNav() {
@@ -12,6 +95,7 @@ function mobileNav() {
 }
 
 // /mobileNav}}}
+
 // activeNavLinkTransition{{{
 
 function activeNavLink() {
@@ -26,6 +110,7 @@ function activeNavLink() {
 }
 
 // /activeNavLinkTransition}}}
+
 // forms{{{
 // callBackForm{{{
 
@@ -116,24 +201,23 @@ function enableOrderForm() {
 // /orderForm}}}
 
 function iSendAJAX(event, form, sendButton, successMsg) {
-    var formData, message, request;
-    event.preventDefault();
-    message = {};
-    message.loading = 'Отправка...';
-    message.success = successMsg;
-    message.failure = 'Возникла ошибка при отправке.';
+    var formData, request;
+    var message = {};
+        message.loading = 'Отправка...';
+        message.success = successMsg;
+        message.failure = 'Возникла ошибка при отправке.';
+
     request = new XMLHttpRequest();
     request.open('POST', '//formspree.io/n.anisimov.23@gmail.com', true);
-    request.setRequestHeader('accept', 'application/json');
-    formData = new FormData(form);
-    request.send(formData);
-    return request.onreadystatechange = function() {
-        if (request.readyState < 4) {
-            sendButton.innerHTML = message.loading;
-            sendButton.className = 'form__button--loading';
-        } else if (request.readyState === 4) {
+        request.setRequestHeader('accept', 'application/json');
+        formData = new FormData(form);
+        request.send(formData);
+        sendButton.innerText = message.loading;
+        sendButton.className = 'form__button--loading';
+        return request.onreadystatechange = function() {
+        if (request.readyState === 4) {
             if (request.status === 200 && request.status < 300) {
-                sendButton.innerHTML = message.success;
+                sendButton.innerText = message.success;
                 sendButton.className = 'form__button--success';
             } else {
                 form.insertAdjacentHTML('beforeend', message.failure);
@@ -142,6 +226,7 @@ function iSendAJAX(event, form, sendButton, successMsg) {
     };
 }
 // /forms}}}
+
 // initiate on page load{{{
 
 (function main(){

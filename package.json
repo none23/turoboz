@@ -48,7 +48,6 @@
     "build:jade": "concurrently 'npm run build:jade:includes' 'npm run build:jade:layouts'",
     "build:jade:layouts": "jade -o _layouts/  _jadefiles/layouts/*.jade",
     "build:jade:includes": "jade -o _includes/  _jadefiles/includes/*.jade",
-    "postbuild:jade": "echo 'jade ready'",
     "build:styles": "npm run build:styles:compile && npm run build:styles:prefix",
     "build:styles:compile": "stylus _styles/styles --out _styles/unprefixed",
     "build:styles:prefix": "(cd _styles/unprefixed && for file in *.css; do (autoprefixer-cli -b 'ie >= 9, > 1%, last 2 versions, ios >= 7' < $file   | csso > ../../css/$file); done)",
