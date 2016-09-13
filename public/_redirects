@@ -1,23 +1,23 @@
-http://turobozperm.ru/index/o-nas/0-2.html https://www.turoboz.com/about/
-http://turobozperm.ru/index/0-3.html https://www.turoboz.com/contact/
-http://turobozperm.ru/gb.html https://www.turoboz.com/testimonials/
-http://turobozperm.ru/index/0-6.html https://www.turoboz.com/services/
-http://turobozperm.ru/index.html https://www.turoboz.com/
-http://turobozperm.ru/board/index.html https://www.turoboz.com/tours/
-http://turobozperm.ru/board/ehkskursii_dlja_shkolnikov/1.html https://www.turoboz.com/tours/school/
-http://turobozperm.ru/board/ekskursii_po_gorodam_prikam/7.html https://www.turoboz.com/tours/permregion/
-http://turobozperm.ru/board/ehkskursii_po_rossii/9.html https://www.turoboz.com/tours/russia/
-http://turobozperm.ru/board/ehkskursii_po_svjatym_mestam/8.html https://www.turoboz.com/tours/sacred/
-http://turobozperm.ru/board/1/5.html https://www.turoboz.com/tours/cooking/
-http://turobozperm.ru/board/prazdnichnye_tury/4.html https://www.turoboz.com/tours/holiday/
-http://turobozperm.ru/board/tury_vykhodnogo_dnja/6.html https://www.turoboz.com/tours/weekend/
-http://turobozperm.ru/board/1/2.html https://www.turoboz.com/tours/perm/
-http://turobozperm.ru https://www.turoboz.com/
-http://turobozperm.ru/board/*/*/*.html https://www.turoboz.com/tours/
-http://turobozperm.ru/board/*.html https://www.turoboz.com/tours/
-http://turobozperm.ru/news/*.html https://www.turoboz.com/
-http://turobozperm.ru/news/*/*.html https://www.turoboz.com/
-http://turobozperm.ru/news/*/*/*.html https://www.turoboz.com/
+/index/o-nas/0-2.html https://www.turoboz.com/about/
+/index/0-3.html https://www.turoboz.com/contact/
+/gb.html https://www.turoboz.com/testimonials/
+/index/0-6.html https://www.turoboz.com/services/
+/index.html https://www.turoboz.com/
+/board/index.html https://www.turoboz.com/tours/
+/board/ehkskursii_dlja_shkolnikov/1.html https://www.turoboz.com/tours/school/
+/board/ekskursii_po_gorodam_prikam/7.html https://www.turoboz.com/tours/permregion/
+/board/ehkskursii_po_rossii/9.html https://www.turoboz.com/tours/russia/
+/board/ehkskursii_po_svjatym_mestam/8.html https://www.turoboz.com/tours/sacred/
+/board/1/5.html https://www.turoboz.com/tours/cooking/
+/board/prazdnichnye_tury/4.html https://www.turoboz.com/tours/holiday/
+/board/tury_vykhodnogo_dnja/6.html https://www.turoboz.com/tours/weekend/
+/board/1/2.html https://www.turoboz.com/tours/perm/
+/* https://www.turoboz.com/
+/board/*/*/*.html https://www.turoboz.com/tours/
+/board/*.html https://www.turoboz.com/tours/
+/news/*.html https://www.turoboz.com/
+/news/*/*.html https://www.turoboz.com/
+/news/*/*/*.html https://www.turoboz.com/
 /index/o-nas/0-2.html https://www.turoboz.com/about/ 200!
 /index/0-3.html https://www.turoboz.com/contact/ 200!
 /gb.html https://www.turoboz.com/testimonials/ 200!
