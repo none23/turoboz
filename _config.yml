@@ -1,15 +1,20 @@
 title: Туробоз
-description_main: > 
+description_main: >
     ТурОбоз - Экскурсии по Перми и Пермскому краю,
     экскурсии для школьников,
     туры выходного дня из Перми
-description: > 
+description: >
     ТурОбоз - Экскурсии по Перми и Пермскому краю,
     экскурсии для школьников,
     туры выходного дня из Перми
 url: https://www.turoboz.com
 unsafe_url: http://www.turoboz.com
+
 email: info@turoboz.com
+phones:
+ - 8 908 275 70 92
+ - 8 342 281 15 25
+ - 8 342 268 03 62
 vk_group: vk.com/club33948424
 company_legal:  Туробоз
 copyright_dates: 2013-2016

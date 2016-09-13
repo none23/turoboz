@@ -58,9 +58,9 @@ include ../mixins.jade
         .full_tour__image__wrap
             img.full_tour__image(srcset="/img/tours400/{{ page.imgpath }} 1x, /img/tours800/{{ page.imgpath }} 2x", alt="{{ page.title | smartify }}")
         p.full_tour__intro
-            | {{ page.intro }}
+            | {{ page.intro | smartify }}
         p.full_tour__summary
-            | {{ page.summary }}
+            | {{ page.summary | smartify }}
     //- /introduction }}}
     //- blueprint {{{
     | {% if page.blueprint[0] > '' %}
@@ -70,7 +70,7 @@ include ../mixins.jade
         ul.full_tour__blueprint__list
             | {% for item in page.blueprint %}
             li.full_tour__blueprint__list__item
-                | {{ item }}
+                | {{ item | smartify }}
             | {% endfor %}
     | {% endif %}
     //- /blueprint }}}
@@ -81,7 +81,7 @@ include ../mixins.jade
         ul.full_tour__includes__list
             | {% for item in page.includes %}
             li.full_tour__includes__list__item
-                | {{ item }}
+                | {{ item | smartify }}
             | {% endfor %}
     //- /includes }}}
     //- details {{{
@@ -89,7 +89,7 @@ include ../mixins.jade
     section.full_tour__details__wrap
         | {% for d in page.details %}
         p.full_tour__details
-            | {{ d }}
+            | {{ d | smartify }}
         | {% endfor %}
     | {% endif %}
     //- /details }}}
@@ -101,7 +101,7 @@ include ../mixins.jade
         ul.full_tour__additional_fees__list
             | {% for item in page.additionalFees %}
             li.full_tour__additional_fees__list__item
-                | {{ item }}
+                | {{ item | smartify }}
             | {% endfor %}
     | {% endif %}
     //- /additional_fees }}}
@@ -113,7 +113,7 @@ include ../mixins.jade
         ul.full_tour__will_learn_list
             | {% for item in page.willLearn %}
         li.full_tour__will_learn__list__item
-            | {{ item }}
+            | {{ item | smartify }}
         | {% endfor %}
     | {% endif %}
     //- /will_learn }}}

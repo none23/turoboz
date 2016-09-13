@@ -9,7 +9,7 @@ meta(name='yandex-verification', content="fa9cf3cdd3267c1c")
 
 title
     | {% if page.title %}{{ page.title | escape }} - {% endif %} {{ site.title }}
-meta(name='description', content='{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}')
+meta(id='pageDescription', name='description', content='{% if page.description %}{{ page.description | smartify | truncate: 160 }}{% elsif page.intro %}{{ page.intro | smartify | truncate: 160 }}{% elsif page.summary %}{{ page.summary | smartify | truncate: 160 }}{% else %}{{ site.description | smartify | truncate: 160 }}{% endif %}')
 
 link(rel='canonical', href="{{ page.url | replace:'index.html','' | prepend: site.url }}")
 meta(http-equiv='X-UA-Compatible', content='IE=edge')
