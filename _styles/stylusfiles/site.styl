@@ -945,15 +945,6 @@ textarea
 
 // /upcoming_events }}}
 
-.post__image
-    width: auto
-    height: auto
-    object-fit: cover
-
-@media(max-width: 860px)
-    .post__image__wrap
-        min-height: 20rem
-
 
 .post__date
     text-align: right
@@ -978,7 +969,6 @@ textarea
     background: white
 
 .post__footer
-.post__image
     transition: all 0.2s ease
 
 .post__footer
@@ -1035,13 +1025,16 @@ textarea
     flex 1 1 21.875rem
     line-height: 0
 
-.post__image
-    filter: grayscale(0.1)
+    @media(max-width: 659px)
+        display: none
 
-    .post__wrap:hover &
-    .post__wrap:focus &
-    .post__wrap:active &
-        filter: none
+.post__image
+    width: auto
+    height: auto
+    object-fit: cover
+
+    @media(max-width: 960px)
+        min-height: 100%
 
 .post__content__wrap
     flex 1 1 70%
@@ -1061,9 +1054,6 @@ textarea
 
 // /blog }}}
 
-@media(max-width: 619px)
-    .post__image__wrap
-        display: none
 
 // /main }}}
 // about {{{
