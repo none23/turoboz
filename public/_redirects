@@ -3,7 +3,6 @@ http://turobozperm.ru/index/0-3.html https://www.turoboz.com/contact/
 http://turobozperm.ru/gb.html https://www.turoboz.com/testimonials/
 http://turobozperm.ru/index/0-6.html https://www.turoboz.com/services/
 http://turobozperm.ru/index.html https://www.turoboz.com/
-
 http://turobozperm.ru/board/index.html https://www.turoboz.com/tours/
 http://turobozperm.ru/board/ehkskursii_dlja_shkolnikov/1.html https://www.turoboz.com/tours/school/
 http://turobozperm.ru/board/ekskursii_po_gorodam_prikam/7.html https://www.turoboz.com/tours/permregion/
@@ -13,7 +12,6 @@ http://turobozperm.ru/board/1/5.html https://www.turoboz.com/tours/cooking/
 http://turobozperm.ru/board/prazdnichnye_tury/4.html https://www.turoboz.com/tours/holiday/
 http://turobozperm.ru/board/tury_vykhodnogo_dnja/6.html https://www.turoboz.com/tours/weekend/
 http://turobozperm.ru/board/1/2.html https://www.turoboz.com/tours/perm/
-
-http://turobozperm.ru/board/* https://www.turoboz.com/tours/
-http://turobozperm.ru/* https://www.turoboz.com/
+http://turobozperm.ru/board/*/*.html https://www.turoboz.com/tours/
 http://turobozperm.ru https://www.turoboz.com/
+http://turobozperm.ru/news/*.html https://www.turoboz.com/
