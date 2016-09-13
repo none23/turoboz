@@ -24,8 +24,8 @@ mixin SiteNav()
     | {% endfor %}
 
 mixin SiteContacts()
-    a.site_header__phone(href='tel:9082757092')
-        | 8 908 275 70 92
+    a.site_header__phone(href="{{ site.phones | first | remove: ' ' }}")
+        | {{ site.phones | first }}
     a.call_back_form__toggle.site_header__call_back(href='#')
         | Заказать звонок
     a.site_header__vk_button(href='https://{{ site.vk_group }}', target='_blank')

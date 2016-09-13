@@ -13,10 +13,10 @@ section.posts__wrap#posts__wrap
                     +LiquidRussianDateLite('post.dateposted')
 
                 h3.post__title
-                    | {{ post.title }}
+                    | {{ post.title | smartify }}
 
                 p.post__summary
-                    | {{ post.summary }}
+                    | {{ post.summary | smartify }}
 
                 footer.post__footer
                     | Читать далее

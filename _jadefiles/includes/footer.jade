@@ -5,10 +5,10 @@ footer#site_footer
         .f__contact_icon
             +iconMail('f__icon__path')
         | {{ site.email }}
-    a.f__contact.f__phone(href='tel:89082757092')
+    a.f__contact.f__phone(href="{{ site.phones | first | remove: ' ' }}")
         .f__contact_icon
             +iconPhone('f__icon__path')
-        | 8 908 275 70 92
+        | {{ site.phones | first }}
     a.f__contact.f__vk(href='https://{{ site.vk_group }}', target='_blank')
         .f__contact_icon
             +iconVK('f__icon__path')

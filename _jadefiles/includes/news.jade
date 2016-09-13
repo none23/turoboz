@@ -5,5 +5,5 @@ section.news__section
         | {% for post in site.news reversed limit:5 %}
         li.news__list__item
             a.news__list__item__link(href='{{ post.url }}')
-                | {{ post.title }}
+                | {{ post.title | smartify }}
         | {% endfor %}

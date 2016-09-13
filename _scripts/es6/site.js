@@ -15,12 +15,20 @@
                 var newPage = this.response.getElementById(pageContentWrap);
                 var currentPage = document.getElementById(pageContentWrap);
 
+                var newTitle = this.response.querySelector('title');
+                var currentTitle = document.querySelector('title');
+
+                var newDescription = this.response.getElementById('pageDescription');
+                var currentDescription = document.getElementById('pageDescription');
+
                 var fadeAway = currentPage.animate({
                     opacity: [1, 0]
                     }, 200);
 
                 fadeAway.onfinish = function() {
                     currentPage.parentNode.replaceChild(newPage, currentPage);
+                    currentTitle.parentNode.replaceChild(newTitle, currentTitle);
+                    currentDescription.parentNode.replaceChild(newDescription, currentDescription);
                 };
 
             };

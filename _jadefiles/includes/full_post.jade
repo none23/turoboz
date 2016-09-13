@@ -9,15 +9,15 @@ include ../mixins.jade
                 | вернуться на главную
     .full_post__heading__left
         .full_post__date
-              +LiquidRussianDateLite('{{page.date}}')
+              +LiquidRussianDateLite('{{ page.date }}')
           h1.full_post__title
-              | {{ page.title }}
+              | {{ page.title | smartify }}
 .full_post__content__wrap
     .full_post__summary
-        | {{ page.summary }}
+        | {{ page.summary | smartify }}
     .full_post__body
         .full_post__image__wrap
-            img.full_post__image(src='/img/posts400/{{ page.image }}', alt='{{ page.title }}')
+            img.full_post__image(src='/img/posts400/{{ page.image }}', alt='{{ page.title | smartify }}')
         | {{ content }}
     .full_post__breadcrumbs--bottom
         | {% unless page.previous == nil %}

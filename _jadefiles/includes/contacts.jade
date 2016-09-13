@@ -3,10 +3,10 @@ include ../mixins.jade
 section.contacts__wrap
     .c__textual
         ul.contacts__list
-            | {% for phn in page.phones %}
+            | {% for phone in site.phones %}
             li.c__contact.c__phone
-                a.phone(href="tel:{{ phn | remove: ' ' }}")
-                    | {{ phn }}
+                a.phone(href="tel:{{ phone | remove: ' ' }}")
+                    | {{ phone }}
             | {% endfor %}
             li.c__contact.c__mail
                 +mail('{{ site.email }}')
