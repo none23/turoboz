@@ -13,10 +13,11 @@ http://turobozperm.ru/board/prazdnichnye_tury/4.html https://www.turoboz.com/tou
 http://turobozperm.ru/board/tury_vykhodnogo_dnja/6.html https://www.turoboz.com/tours/weekend/
 http://turobozperm.ru/board/1/2.html https://www.turoboz.com/tours/perm/
 http://turobozperm.ru https://www.turoboz.com/
-http://turobozperm.ru/board/*/*.html https://www.turoboz.com/tours/
+http://turobozperm.ru/board/*/*/*.html https://www.turoboz.com/tours/
 http://turobozperm.ru/board/*.html https://www.turoboz.com/tours/
 http://turobozperm.ru/news/*.html https://www.turoboz.com/
 http://turobozperm.ru/news/*/*.html https://www.turoboz.com/
+http://turobozperm.ru/news/*/*/*.html https://www.turoboz.com/
 turobozperm.ru/index/o-nas/0-2.html https://www.turoboz.com/about/
 turobozperm.ru/index/0-3.html https://www.turoboz.com/contact/
 turobozperm.ru/gb.html https://www.turoboz.com/testimonials/
@@ -33,6 +34,8 @@ turobozperm.ru/board/tury_vykhodnogo_dnja/6.html https://www.turoboz.com/tours/w
 turobozperm.ru/board/1/2.html https://www.turoboz.com/tours/perm/
 turobozperm.ru/ https://www.turoboz.com/
 turobozperm.ru/board/*/*.html https://www.turoboz.com/tours/
+turobozperm.ru/board/*/*.html https://www.turoboz.com/tours/
 turobozperm.ru/board/*.html https://www.turoboz.com/tours/
 turobozperm.ru/news/*.html https://www.turoboz.com/
 turobozperm.ru/news/*/*.html https://www.turoboz.com/
+turobozperm.ru/news/*/*/*.html https://www.turoboz.com/
