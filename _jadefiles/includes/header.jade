@@ -33,7 +33,6 @@ mixin SiteContacts()
 
 mixin CallBackForm()
     form#call_back_form(
-      role='form',
       action="https://formspree.io/{{ site.email }}",
       method='POST')
         input#call_back_form__subject.hidden_field(
