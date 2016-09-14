@@ -77,8 +77,8 @@
                     e.preventDefault();
                     changePage(etarg.href);
                     history.pushState(null, null, etarg.href);
-                    // ga('set', 'page', etarg.href);
-                    // ga('send', 'pageview');
+                    ga('set', 'page', etarg.href);
+                    ga('send', 'pageview');
                     return;
                     
                 }
