@@ -133,47 +133,26 @@ function callBackFormToggle() {
     var call_back_form_Toggles = document.getElementsByClassName('call_back_form__toggle');
     var call_back_form_wrap = document.getElementById('call_back_form__wrap');
     var call_back_form_maintoggle = document.querySelector('#site_contacts_wrap .call_back_form__toggle');
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
+    for (var i = 0; i < call_back_form_Toggles.length; i++) {
+        call_back_form_Toggles[i].addEventListener('click', function (ev) {
 
-    try {
-        for (var _iterator = call_back_form_Toggles[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var call_back_form_toggle = _step.value;
+            // prevent following the '#' href
+            ev.preventDefault();
+            ev.stopPropagation();
 
-            call_back_form_toggle.addEventListener('click', function (ev) {
-
-                // prevent following the '#' href
-                ev.preventDefault();
-                ev.stopPropagation();
-
-                // change state of toggle in the desktop_nav if such exists
-                if (call_back_form_maintoggle) {
-                    call_back_form_maintoggle.classList.toggle('is_open');
-                }
-
-                // show/hide the form 
-                call_back_form_wrap.classList.toggle('is_open');
-
-                // when the form appears, set focus to its first field 
-                if (call_back_form_wrap.classList.contains('is_open')) {
-                    document.getElementById('call_back_form__name').focus();
-                }
-            });
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
+            // change state of toggle in the desktop_nav if such exists
+            if (call_back_form_maintoggle) {
+                call_back_form_maintoggle.classList.toggle('is_open');
             }
-        } finally {
-            if (_didIteratorError) {
-                throw _iteratorError;
+
+            // show/hide the form 
+            call_back_form_wrap.classList.toggle('is_open');
+
+            // when the form appears, set focus to its first field 
+            if (call_back_form_wrap.classList.contains('is_open')) {
+                document.getElementById('call_back_form__name').focus();
             }
-        }
+        });
     }
 }
 // /callBackFormToggle}}}
