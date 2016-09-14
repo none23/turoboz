@@ -5,7 +5,7 @@ footer#site_footer
         .f__contact_icon
             +iconMail('f__icon__path')
         | {{ site.email }}
-    a.f__contact.f__phone(href="{{ site.phones | first | remove: ' ' }}")
+    a.f__contact.f__phone(href="tel:{{ site.phones | first | remove: ' ' }}")
         .f__contact_icon
             +iconPhone('f__icon__path')
         | {{ site.phones | first }}
