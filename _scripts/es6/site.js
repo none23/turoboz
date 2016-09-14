@@ -120,7 +120,7 @@ function activeNavLink() {
 // /activeNavLinkTransition}}}
 
 // forms{{{
-// callBackForm{{{
+// callBackFormToggle{{{
 
 function  callBackFormToggle() {
     var call_back_form_Toggles = document.getElementsByClassName('call_back_form__toggle');
@@ -128,6 +128,10 @@ function  callBackFormToggle() {
     var call_back_form_maintoggle = document.querySelector('#site_contacts_wrap .call_back_form__toggle');
     for (var call_back_form_toggle of call_back_form_Toggles) {
          call_back_form_toggle.addEventListener('click', function(ev) {
+
+             // prevent following the '#' href
+             ev.preventDefault();
+             ev.stopPropagation();
 
              // change state of toggle in the desktop_nav if such exists
              if (call_back_form_maintoggle) {
@@ -142,93 +146,52 @@ function  callBackFormToggle() {
                  document.getElementById('call_back_form__name').focus();
              }
 
-             // dont follow the '#' href
-             ev.preventDefault();
 
          });
     }
         
 }
-
-function enableCallBackForm() {
-    var TheForm, sendForm, successCallBack;
-    TheForm = document.getElementById('call_back_form');
-    if (TheForm) {
-      successCallBack = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.';
-      sendForm = document.getElementById('call_back_form__button');
-      TheForm.addEventListener('submit', function(event) {
-        return iSendAJAX(event, TheForm, sendForm, successCallBack);
-      });
-    }
-  }
-// /callBackForm}}}
-// contactForm{{{
-
-function enableContactForm() {
-    var TheForm, sendForm, successContact;
-    TheForm = document.getElementById('contact_form');
-    if (TheForm) {
-        successContact = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.';
-        sendForm = document.getElementById('contact_form__button');
-        TheForm.addEventListener('submit', function(event) {
-            return iSendAJAX(event, TheForm, sendForm, successContact);
-        });
-    }
+// /callBackFormToggle}}}
+// enableForms{{{
+function enableForm(form_prefix, success_msg) {
+    var form_id = `${form_prefix}_form`;
+    var form_button_id = `${form_prefix}_form__button`;
+    var TheForm = document.getElementById(form_id);
+    var sendForm = document.getElementById(form_button_id);
+    return function(){
+        if (TheForm) {
+            TheForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                return iSendAJAX(event, TheForm, sendForm, success_msg);
+            });
+        }
+    };
 }
+var enableCallBackForm = enableForm('call_back', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.');
+var enableContactForm = enableForm('contact', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.');
+var enableReviewForm = enableForm('review', 'Спасибо! Отзыв принят и будет опубликован после проверки.');
+var enableOrderForm = enableForm('order', ' Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.');
 
-// /contactForm}}}
-// reviewForm{{{
-
-function enableReviewForm() {
-    var TheForm, sendForm, successReview;
-    TheForm = document.getElementById('review_form');
-    if (TheForm) {
-        successReview = 'Спасибо! Отзыв принят и будет опубликован после проверки.';
-        sendForm = document.getElementById('review_form__button');
-        TheForm.addEventListener('submit', function(event) {
-            return iSendAJAX(event, TheForm, sendForm, successReview);
-        });
-    }
-}
-
-// /reviewForm}}}
-// orderForm{{{
-
-function enableOrderForm() {
-    var TheForm, sendForm, successOrder;
-    TheForm = document.getElementById('order_form');
-    if (TheForm) {
-        successOrder = 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.';
-        sendForm = document.getElementById('order_form__button');
-        TheForm.addEventListener('submit', function(event) {
-            return iSendAJAX(event, TheForm, sendForm, successOrder);
-        });
-    }
-}
-
-// /orderForm}}}
+// /enableForms}}}
 
 function iSendAJAX(event, form, sendButton, successMsg) {
     var formData, request;
-    var message = {};
-        message.loading = 'Отправка...';
-        message.success = successMsg;
-        message.failure = 'Возникла ошибка при отправке.';
 
     request = new XMLHttpRequest();
     request.open('POST', '//formspree.io/n.anisimov.23@gmail.com', true);
         request.setRequestHeader('accept', 'application/json');
         formData = new FormData(form);
         request.send(formData);
-        sendButton.innerText = message.loading;
         sendButton.className = 'form__button--loading';
+        sendButton.textContent = 'Отправка...';
         return request.onreadystatechange = function() {
         if (request.readyState === 4) {
             if (request.status === 200 && request.status < 300) {
-                sendButton.innerText = message.success;
+                sendButton.textContent = successMsg;
                 sendButton.className = 'form__button--success';
             } else {
-                form.insertAdjacentHTML('beforeend', message.failure);
+                sendButton.textContent = 'Возникла ошибка при отправке.';
+                sendButton.className = 'form__button--failure';
             }
         }
     };

@@ -764,8 +764,16 @@ textarea {
 .form__button--success,
 .form__button--loading,
 .form__button--failure {
-  transition: all 0.3s ease-out;
-  animation: form_button_submit 0.3s ease-out 0s 1 normal forwards;
+  transition: transform 0.1s ease-out;
+  animation: form_button_submit 0.3s ease-out forwards;
+}
+.form__button--success,
+.form__button--failure {
+  animation-direction: normal;
+}
+.form__button--loading {
+  transition: all 0.1s ease-out;
+  animation-direction: reverse;
 }
 .form__button {
   background: #fff;
@@ -779,7 +787,8 @@ textarea {
   background: #044904 !important;
 }
 .form__button--loading {
-  background: #3485a8 !important;
+  background: #dada0b !important;
+  color: #000 !important;
 }
 .form__button--failure {
   background: #610505 !important;
@@ -2355,56 +2364,44 @@ textarea {
 @-moz-keyframes form_button_submit {
   0% {
     transform: scale(0);
-    border-radius: 3rem;
   }
   80% {
     transform: scale(1.1);
-    border-radius: 0.25rem;
   }
   100% {
     transform: scale(1);
-    border-radius: 0.063rem;
   }
 }
 @-webkit-keyframes form_button_submit {
   0% {
     transform: scale(0);
-    border-radius: 3rem;
   }
   80% {
     transform: scale(1.1);
-    border-radius: 0.25rem;
   }
   100% {
     transform: scale(1);
-    border-radius: 0.063rem;
   }
 }
 @-o-keyframes form_button_submit {
   0% {
     transform: scale(0);
-    border-radius: 3rem;
   }
   80% {
     transform: scale(1.1);
-    border-radius: 0.25rem;
   }
   100% {
     transform: scale(1);
-    border-radius: 0.063rem;
   }
 }
 @keyframes form_button_submit {
   0% {
     transform: scale(0);
-    border-radius: 3rem;
   }
   80% {
     transform: scale(1.1);
-    border-radius: 0.25rem;
   }
   100% {
     transform: scale(1);
-    border-radius: 0.063rem;
   }
 }
