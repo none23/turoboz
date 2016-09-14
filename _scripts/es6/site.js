@@ -132,8 +132,8 @@ function  callBackFormToggle() {
     var call_back_form_Toggles = document.getElementsByClassName('call_back_form__toggle');
     var call_back_form_wrap = document.getElementById('call_back_form__wrap');
     var call_back_form_maintoggle = document.querySelector('#site_contacts_wrap .call_back_form__toggle');
-    for (var call_back_form_toggle of call_back_form_Toggles) {
-         call_back_form_toggle.addEventListener('click', function(ev) {
+    for (var i = 0; i < call_back_form_Toggles.length; i++) {
+         call_back_form_Toggles[i].addEventListener('click', function(ev) {
 
              // prevent following the '#' href
              ev.preventDefault();
