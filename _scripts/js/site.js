@@ -23,15 +23,21 @@
             var newDescription = this.response.getElementById('pageDescription');
             var currentDescription = document.getElementById('pageDescription');
 
-            var fadeAway = currentPage.animate({
-                opacity: [1, 0]
-            }, 200);
+            if (currentPage.animate) {
+                var fadeAway = currentPage.animate({
+                    opacity: [1, 0]
+                }, 200);
 
-            fadeAway.onfinish = function () {
+                fadeAway.onfinish = function () {
+                    currentPage.parentNode.replaceChild(newPage, currentPage);
+                    currentTitle.parentNode.replaceChild(newTitle, currentTitle);
+                    currentDescription.parentNode.replaceChild(newDescription, currentDescription);
+                };
+            } else {
                 currentPage.parentNode.replaceChild(newPage, currentPage);
                 currentTitle.parentNode.replaceChild(newTitle, currentTitle);
                 currentDescription.parentNode.replaceChild(newDescription, currentDescription);
-            };
+            }
         };
 
         xhr.send();
