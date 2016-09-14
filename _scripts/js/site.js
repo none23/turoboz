@@ -189,8 +189,8 @@ function iSendAJAX(event, form, sendButton, successMsg) {
     sendButton.className = 'form__button--loading';
     sendButton.textContent = 'Отправка...';
     return request.onreadystatechange = function () {
-        if (request.readyState === 4) {
-            if (request.status === 200 && request.status < 300) {
+        if (request.readyState == 4) {
+            if (request.status == 200) {
                 sendButton.textContent = successMsg;
                 sendButton.className = 'form__button--success';
             } else {
