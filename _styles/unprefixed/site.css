@@ -1807,7 +1807,6 @@ textarea {
 }
 .c__map__tooltip {
   top: 0;
-  z-index: 1000;
 }
 .c__map__link:hover .c__map__tooltip {
   opacity: 1;
