@@ -229,17 +229,17 @@ function getDates(auth) {
         var excelTimeNow = Math.floor(unixTimeNow / 86400 + 25569);
         var items = [];
         for (var k = 1; k < row.length; k++) {
-            if(row[k] >= excelTimeNow){
-                items.push(row[k]);
-             } else {
-             console.log(row[k]);
-             console.log(excelTimeNow);
-             }
+          if(row[k] >= excelTimeNow){
+            items.push(row[k]);
+          } else {
+            console.log(row[k]);
+            console.log(excelTimeNow);
+          }
         }
         all_tours[i].dates = items;
         if (items[0]) {
-            upcoming_tours[all_tours[i].tour] = items[0];
-            //upcoming_tours[i] = items[0];
+          upcoming_tours[all_tours[i].tour] = items[0];
+          //upcoming_tours[i] = items[0];
         }
       }
       //console.log(all_tours);
@@ -269,8 +269,10 @@ function getPrices(auth) {
       for (var i = 0; i < rows.length; i++) {
         var row = rows[i];
         var items = [];
-        for (var k = 1; k < row.length; k++) {
+        if (row.length > 1) {
+          for (var k = 1; k < row.length; k++) {
             items.push(row[k]);
+          }
         }
         all_tours[i].prices = items;
       }
@@ -300,8 +302,10 @@ function getIncludes(auth) {
       for (var i = 0; i < rows.length; i++) {
         var row = rows[i];
         var items = [];
-        for (var k = 1; k < row.length; k++) {
+        if (row.length > 1) {
+          for (var k = 1; k < row.length; k++) {
             items.push(row[k]);
+          }
         }
         all_tours[i].includes = items;
       }
@@ -331,8 +335,10 @@ function getAdditionalFees(auth) {
       for (var i = 0; i < rows.length; i++) {
         var row = rows[i];
         var items = [];
-        for (var k = 1; k < row.length; k++) {
+        if (row.length > 1) {
+          for (var k = 1; k < row.length; k++) {
             items.push(row[k]);
+          }
         }
         all_tours[i].additionalFees = items;
       }
@@ -362,8 +368,10 @@ function getWillLearn(auth) {
       for (var i = 0; i < rows.length; i++) {
         var row = rows[i];
         var items = [];
-        for (var k = 1; k < row.length; k++) {
+        if (row.length > 1) {
+          for (var k = 1; k < row.length; k++) {
             items.push(row[k]);
+          }
         }
         all_tours[i].willLearn = items;
       }
@@ -393,8 +401,10 @@ function getDetails(auth) {
       for (var i = 0; i < rows.length; i++) {
         var row = rows[i];
         var items = [];
-        for (var k = 1; k < row.length; k++) {
+        if (row.length > 1) {
+          for (var k = 1; k < row.length; k++) {
             items.push(row[k]);
+          }
         }
         all_tours[i].details = items;
       }
@@ -424,8 +434,10 @@ function getBlueprint(auth) {
       for (var i = 0; i < rows.length; i++) {
         var row = rows[i];
         var items = [];
-        for (var k = 1; k < row.length; k++) {
+        if (row.length > 1) {
+          for (var k = 1; k < row.length; k++) {
             items.push(row[k]);
+          }
         }
         all_tours[i].blueprint = items;
       }
@@ -493,7 +505,7 @@ function toursFiles (id, isHidden, title, subtitle, intro, summary, imgpath, tou
         var blueprintContent       = concatArray(blueprint,       'blueprint');
 
         var content = strsContent + tagsContent + datesContent + pricesContent + includesContent + additionalFeesContent + willLearnContent + detailsContent + blueprintContent + '---';
-        var cleancontent = content.replace('undefined','').replace('undefined','').replace('undefined','').replace('undefined','').replace('undefined','');
+        var cleancontent = content.replace('undefined', '').replace('undefined', '').replace('undefined', '').replace('undefined', '').replace('undefined', '').replace('undefined', '').replace('undefined', '');
 
         var filename = "_tours/" + id + ".html";
         fs.writeFile(filename, cleancontent, 'utf8', function (err) {

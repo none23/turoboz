@@ -20,23 +20,22 @@
 
                 var newDescription = this.response.getElementById('pageDescription');
                 var currentDescription = document.getElementById('pageDescription');
+                var changePageContent = function() {
+                    currentPage.parentNode.replaceChild(newPage, currentPage);
+                    currentTitle.parentNode.replaceChild(newTitle, currentTitle);
+                    currentDescription.parentNode.replaceChild(newDescription, currentDescription);
+                    window.scrollTo(0, 0);
+                };
 
                 if (currentPage.animate) {
                     var fadeAway = currentPage.animate({
                         opacity: [1, 0]
                         }, 200);
 
-                    fadeAway.onfinish = function() {
-                        currentPage.parentNode.replaceChild(newPage, currentPage);
-                        currentTitle.parentNode.replaceChild(newTitle, currentTitle);
-                        currentDescription.parentNode.replaceChild(newDescription, currentDescription);
-                    };
+                    fadeAway.onfinish = changePageContent();
                 } else {
-                    currentPage.parentNode.replaceChild(newPage, currentPage);
-                    currentTitle.parentNode.replaceChild(newTitle, currentTitle);
-                    currentDescription.parentNode.replaceChild(newDescription, currentDescription);
+                    changePageContent;
                 }
-
             };
 
             xhr.send();
