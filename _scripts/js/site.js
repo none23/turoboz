@@ -36,7 +36,7 @@
 
                 fadeAway.onfinish = changePageContent();
             } else {
-                changePageContent;
+                changePageContent();
             }
         };
 
