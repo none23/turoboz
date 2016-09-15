@@ -75,6 +75,7 @@ include ../mixins.jade
     | {% endif %}
     //- /blueprint }}}
     //- includes {{{
+    | {% if page.includes[0] > '' %}
     section.full_tour__includes__wrap
         h2.section_header
             | в стоимость входят:
@@ -83,6 +84,7 @@ include ../mixins.jade
             li.full_tour__includes__list__item
                 | {{ item | smartify }}
             | {% endfor %}
+    | {% endif %}
     //- /includes }}}
     //- details {{{
     | {% if page.details[0] > '' %}
