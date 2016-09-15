@@ -2,7 +2,8 @@ include ../mixins.jade
 
 section.contacts__wrap
     .c__textual
-        ul.contacts__list
+        h2.c__brand Туробоз
+        ul.c__list
             | {% for phone in site.phones %}
             li.c__contact.c__phone
                 a.phone(href="tel:{{ phone | remove: ' ' }}")
@@ -19,3 +20,4 @@ section.contacts__wrap
 
     a.c__map__link(href='https://goo.gl/maps/FbLPyK1Y4sP2', target='_blank', alt='открыть на Картах Гугл')
         img.c__map__img(src='/img/map.jpg', alt='Туробоз - Карты Гугл') 
+        .tooltip.c__map__tooltip Открыть в Картах Гугл
