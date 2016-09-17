@@ -104,32 +104,30 @@ var changePage = function(url) {
         navigator.serviceWorker.register('/serviceworker.js');
     } else {
         html.setAttribute('manifest', '/turoboz.appcache');
-        html.manifest = '/turoboz.appcache';
+        useAppCache();
     }
 })();
 // /service worker }}}
 // appcache {{{
 
 // apply only if manifest is set (which means no serviseWorker support)
-(function() {
+function useAppCache() {
     var appcache = window.applicationCache;
 
     function onUpdateReady() {
         appcache.swapCache();
         changePage(document.URL);
     }
-    if (html.manifest) {
-        appcache.addEventListener('updateready', onUpdateReady);
+    appcache.addEventListener('updateready', onUpdateReady);
 
-        if (appcache.status === appcache.UPDATEREADY) {
-            onUpdateReady();
-        }
-
-        setInterval(function () {
-            appcache.update();
-        }, 300000);
+    if (appcache.status === appcache.UPDATEREADY) {
+        onUpdateReady();
     }
-})();
+
+    setInterval(function () {
+        appcache.update();
+    }, 300000);
+}
 
 // /appcache }}}
 // mobileNav{{{
