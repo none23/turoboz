@@ -1,63 +1,51 @@
 'use strict';
 
+var html = document.documentElement;
+
 // page transitions {{{
+var pageContentWrap = 'page_content_wrap';
+
+var changePage = function changePage(url) {
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', url);
+    xhr.responseType = 'document';
+
+    xhr.onload = function () {
+        var newPage = this.response.getElementById(pageContentWrap);
+        var currentPage = document.getElementById(pageContentWrap);
+
+        var newTitle = this.response.querySelector('title');
+        var currentTitle = document.querySelector('title');
+
+        var newDescription = this.response.getElementById('pageDescription');
+        var currentDescription = document.getElementById('pageDescription');
+        var changePageContent = function changePageContent() {
+            currentPage.parentNode.replaceChild(newPage, currentPage);
+            currentTitle.parentNode.replaceChild(newTitle, currentTitle);
+            currentDescription.parentNode.replaceChild(newDescription, currentDescription);
+            window.scrollTo(0, 0);
+        };
+
+        if (currentPage.animate) {
+            var fadeAway = currentPage.animate({
+                opacity: [1, 0]
+            }, 200);
+
+            fadeAway.onfinish = changePageContent();
+        } else {
+            changePageContent();
+        }
+    };
+
+    xhr.send();
+};
 
 (function () {
 
-    var pageContentWrap = 'page_content_wrap';
-    var appcache = window.applicationCache;
-
-    var changePage = function changePage(url) {
-        var xhr = new XMLHttpRequest();
-
-        xhr.open('GET', url);
-        xhr.responseType = 'document';
-
-        xhr.onload = function () {
-            var newPage = this.response.getElementById(pageContentWrap);
-            var currentPage = document.getElementById(pageContentWrap);
-
-            var newTitle = this.response.querySelector('title');
-            var currentTitle = document.querySelector('title');
-
-            var newDescription = this.response.getElementById('pageDescription');
-            var currentDescription = document.getElementById('pageDescription');
-            var changePageContent = function changePageContent() {
-                currentPage.parentNode.replaceChild(newPage, currentPage);
-                currentTitle.parentNode.replaceChild(newTitle, currentTitle);
-                currentDescription.parentNode.replaceChild(newDescription, currentDescription);
-                window.scrollTo(0, 0);
-            };
-
-            if (currentPage.animate) {
-                var fadeAway = currentPage.animate({
-                    opacity: [1, 0]
-                }, 200);
-
-                fadeAway.onfinish = changePageContent();
-            } else {
-                changePageContent();
-            }
-        };
-
-        xhr.send();
-    };
-
-    function onUpdateReady() {
-        appcache.swapCache();
-        changePage(document.URL);
-    }
-
-    appcache.addEventListener('updateready', onUpdateReady);
-
-    if (appcache.status === appcache.UPDATEREADY) {
-        onUpdateReady();
-    }
-    setInterval(function () {
-        appcache.update();
-    }, 300000);
-
     if (history && history.pushState) {
+
+        var site_nav_Links = document.getElementById('site_header').getElementsByClassName('site_nav__link');
 
         document.addEventListener('click', function (e) {
             if (e.ctrlKey) {
@@ -80,8 +68,10 @@
                 e.preventDefault();
                 changePage(etarg.href);
                 history.pushState(null, null, etarg.href);
-                ga('set', 'page', etarg.href);
-                ga('send', 'pageview');
+                if (window.ga) {
+                    window.ga('set', 'page', etarg.href);
+                    window.ga('send', 'pageview');
+                }
                 return;
             }
         });
@@ -91,14 +81,56 @@
                 changePage(window.location.href);
             };
         }, 500);
+
+        // activeNavLinkTransition
+        for (var linkno = 0; linkno < site_nav_Links.length; linkno++) {
+            site_nav_Links[linkno].addEventListener('click', function (e) {
+                document.querySelector(".site_nav__link.active").classList.remove('active');
+                e.target.classList.add('active');
+                document.activeElement.blur();
+            });
+        }
     }
 })();
 
-// page transitions }}}
+// /page transitions }}}
+// service worker {{{
+(function () {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/serviceworker.js');
+    } else {
+        html.setAttribute('manifest', '/turoboz.appcache');
+        html.manifest = '/turoboz.appcache';
+    }
+})();
+// /service worker }}}
+// appcache {{{
 
+// apply only if manifest is set (which means no serviseWorker support)
+(function () {
+    var appcache = window.applicationCache;
+
+    function onUpdateReady() {
+        appcache.swapCache();
+        changePage(document.URL);
+    }
+    if (html.manifest) {
+        appcache.addEventListener('updateready', onUpdateReady);
+
+        if (appcache.status === appcache.UPDATEREADY) {
+            onUpdateReady();
+        }
+
+        setInterval(function () {
+            appcache.update();
+        }, 300000);
+    }
+})();
+
+// /appcache }}}
 // mobileNav{{{
 
-function mobileNav() {
+(function () {
     var mobile_nav_toggle = document.getElementById('mobile_nav_toggle');
     var mobile_nav = document.getElementById('mobile_nav');
 
@@ -107,25 +139,9 @@ function mobileNav() {
         mobile_nav_toggle.classList.toggle('is_open');
         mobile_nav.classList.toggle('is_open');
     });
-}
+})();
 
 // /mobileNav}}}
-
-// activeNavLinkTransition{{{
-
-function activeNavLink() {
-    var site_nav_Links = document.getElementById('site_header').getElementsByClassName('site_nav__link');
-    for (var linkno = 0; linkno < site_nav_Links.length; linkno++) {
-        site_nav_Links[linkno].addEventListener('click', function (e) {
-            document.querySelector(".site_nav__link.active").classList.remove('active');
-            e.target.classList.add('active');
-            document.activeElement.blur();
-        });
-    }
-}
-
-// /activeNavLinkTransition}}}
-
 // forms{{{
 // callBackFormToggle{{{
 
@@ -145,10 +161,10 @@ function callBackFormToggle() {
                 call_back_form_maintoggle.classList.toggle('is_open');
             }
 
-            // show/hide the form 
+            // show/hide the form
             call_back_form_wrap.classList.toggle('is_open');
 
-            // when the form appears, set focus to its first field 
+            // when the form appears, set focus to its first field
             if (call_back_form_wrap.classList.contains('is_open')) {
                 document.getElementById('call_back_form__name').focus();
             }
@@ -174,7 +190,7 @@ function enableForm(form_prefix, success_msg) {
 var enableCallBackForm = enableForm('call_back', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.');
 var enableContactForm = enableForm('contact', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.');
 var enableReviewForm = enableForm('review', 'Спасибо! Отзыв принят и будет опубликован после проверки.');
-var enableOrderForm = enableForm('order', ' Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.');
+var enableOrderForm = enableForm('order', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.');
 
 // /enableForms}}}
 
@@ -200,20 +216,17 @@ function iSendAJAX(event, form, sendButton, successMsg) {
         }
     };
 }
-// /forms}}}
-
 // initiate on page load{{{
 
-(function main() {
+(function () {
     window.addEventListener("DOMContentLoaded", function () {
-        mobileNav();
         callBackFormToggle();
         enableCallBackForm();
         enableContactForm();
         enableReviewForm();
         enableOrderForm();
-        activeNavLink();
     });
 })();
 
 // /initiate on page load}}}
+// /forms}}}
