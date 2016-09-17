@@ -1,6 +1,7 @@
 module.exports = {
     "env": {
         "browser": true,
+        "serviceworker": true,
         "es6": true
     },
     "extends": "eslint:recommended",
@@ -59,7 +60,7 @@ module.exports = {
         "consistent-this": "error",
         "curly": "error",
         "default-case": "error",
-        "dot-location": "error",
+        "dot-location": ["error", "property"],
         "dot-notation": "error",
         "eol-last": "error",
         "eqeqeq": "off",
@@ -73,7 +74,7 @@ module.exports = {
         "id-blacklist": "error",
         "id-length": "off",
         "id-match": "error",
-        "indent": "off",
+        "indent": ["error", 4],
         "init-declarations": "off",
         "jsx-quotes": "error",
         "key-spacing": "error",
@@ -92,7 +93,11 @@ module.exports = {
         "lines-around-comment": "error",
         "lines-around-directive": "error",
         "max-depth": "error",
-        "max-len": "off",
+        "max-len": ["error",
+            {
+                "code": 120
+            }
+        ],
         "max-lines": "error",
         "max-nested-callbacks": "error",
         "max-params": "off",

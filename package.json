@@ -53,6 +53,7 @@
             "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify",
                 "build:scripts:compile": "babel _scripts/es6 -d _scripts/js",
                 "build:scripts:uglify": "(cd _scripts/js && for file in *.js; do ( uglifyjs -c -m -o ../../js/$file $file); done)",
+                    "postbuild:scripts:uglify": "cp _scripts/js/serviceworker.js ./serviceworker.js",
                 "postbuild:scripts": "echo 'scripts ready'",
             "build:images": "concurrently 'npm run build:images:tours' 'npm run build:images:posts'",
                 "build:images:posts": "POSTS_CHECKSUM_NOW=$(md5sum img/_posts/*.jpg | md5sum); POSTS_CHECKSUM_SAVED=$(cat img/_posts/.checksum); if [ \"$POSTS_CHECKSUM_NOW\" = \"$POSTS_CHECKSUM_SAVED\" ] ; then echo 'Posts images unchanged'; else npm run build:images:posts:generate ; fi",
