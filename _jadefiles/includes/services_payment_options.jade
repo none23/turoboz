@@ -5,8 +5,8 @@ section.services__wrap.services__payments__wrap
     ul.services__payments
         | {% for p_o in page.payment_opts %}
         li.services__payment
-            h3.payment.title
+            h3.payment__title
                 | {{ p_o.title }}
-            p.payment.details
+            p.payment__details
                 | {{ p_o.details }}
         | {% endfor %}
