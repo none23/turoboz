@@ -1,8 +1,6 @@
-var html = document.documentElement;
 var mobile_nav_toggle = document.getElementById('mobile_nav_toggle');
 var mobile_nav = document.getElementById('mobile_nav');
 var desktop_nav = document.getElementById('desktop_nav');
-var pageContentWrap = 'page_content_wrap';
 
 // page transitions {{{
 var changePage = function(url) {
@@ -12,14 +10,14 @@ var changePage = function(url) {
     xhr.responseType = 'document';
 
     xhr.onload = function() {
-        var newPage = this.response.getElementById(pageContentWrap);
-        var currentPage = document.getElementById(pageContentWrap);
+        var newPage = this.response.getElementById('page_content_wrap');
+        var currentPage =  document.getElementById('page_content_wrap');
 
         var newTitle = this.response.querySelector('title');
-        var currentTitle = document.querySelector('title');
+        var currentTitle =  document.querySelector('title');
 
         var newDescription = this.response.getElementById('pageDescription');
-        var currentDescription = document.getElementById('pageDescription');
+        var currentDescription =  document.getElementById('pageDescription');
         var changePageContent = function() {
             currentPage.parentNode.replaceChild(newPage, currentPage);
             currentTitle.parentNode.replaceChild(newTitle, currentTitle);
@@ -110,29 +108,33 @@ function switchActiveNavLink(targetLink) {
 
 (function() {
     desktop_nav.addEventListener('click', function(e) {
-        switchActiveNavLink(e.target);
+        if (e.target.href) {
+            switchActiveNavLink(e.target);
+        }
     });
     mobile_nav.addEventListener('click', function(e) {
-        switchActiveNavLink(e.target);
+        if (e.target.href) {
+            switchActiveNavLink(e.target);
+        }
     });
 })();
 
 // /activeNavLinkTransition}}}
 // /page transitions }}}
 // service worker {{{
-(function() {
-    if ('serviceWorker' in navigator){
-        navigator.serviceWorker.register('/serviceworker.js');
-    } else {
-        html.setAttribute('manifest', '/turoboz.appcache');
-        useAppCache();
-    }
-})();
-// /service worker }}}
-// appcache {{{
+// (function() {
+//     if ('serviceWorker' in navigator){
+//         navigator.serviceWorker.register('/serviceworker.js');
+//     } else {
+//         html.setAttribute('manifest', '/turoboz.appcache');
+//         useAppCache();
+//     }
+// })();
+//  /service worker }}}
+//  appcache {{{
 
 // apply only if manifest is set (which means no serviseWorker support)
-function useAppCache() {
+(function useAppCache() {
     var appcache = window.applicationCache;
 
     function onUpdateReady() {
@@ -148,7 +150,7 @@ function useAppCache() {
     setInterval(function () {
         appcache.update();
     }, 300000);
-}
+})();
 
 // /appcache }}}
 // mobileNav{{{
