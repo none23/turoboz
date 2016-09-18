@@ -1,9 +1,9 @@
-var version = 'v0.0.1';
+var version = 'v0.0.3';
 var cache_name = `${version}-cache`;
 
 self.addEventListener("install", function(event) {
     event.waitUntil(
-        
+
         caches.open(cache_name).then(function(cache) {
             return cache.addAll([
                 '/',
@@ -17,19 +17,22 @@ self.addEventListener("install", function(event) {
 self.addEventListener("fetch", function(event) {
 
     var request = event.request;
-    // do not cache POST,PUT,etc.
+
+    // do not cache POST,etc.
     if (request.method !== 'GET') {
         return;
     }
+
     event.respondWith(
-        caches.match(request).then(queriedCache)
+        caches.match(request)
+            .then(queriedCache)
     );
 
     function queriedCache(cached) {
 
         var networked = fetch(request)
             .then(fetchedFromNetwork, unableToResolve)
-            .catch(unableToResolve);
+                .catch(unableToResolve);
         return cached || networked;
     }
 
@@ -55,7 +58,7 @@ self.addEventListener("fetch", function(event) {
             headers: new Headers({
                 'Content-Type': 'text/html'
             }),
-            status: 503, 
+            status: 503,
             statusText: 'Service Unavailable'
         });
     }

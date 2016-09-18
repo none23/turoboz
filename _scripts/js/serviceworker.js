@@ -1,6 +1,6 @@
 'use strict';
 
-var version = 'v0.0.1';
+var version = 'v0.0.3';
 var cache_name = version + '-cache';
 
 self.addEventListener("install", function (event) {
@@ -12,10 +12,12 @@ self.addEventListener("install", function (event) {
 self.addEventListener("fetch", function (event) {
 
     var request = event.request;
-    // do not cache POST,PUT,etc.
+
+    // do not cache POST,etc.
     if (request.method !== 'GET') {
         return;
     }
+
     event.respondWith(caches.match(request).then(queriedCache));
 
     function queriedCache(cached) {

@@ -23,7 +23,7 @@ link(rel='icon', href='/favicon.ico')
 | {%     if page.url == '/tours/' %}
 //-- all tours page {{{
 | {%         for tag in site.data.tags %}
-link(rel='prerender prefetch', href='{{ tag.url }}')
+link(rel='prefetch', href='{{ tag.url }}')
 | {%         endfor %}
 //-- /all tours page }}}
 | {% else %}
@@ -33,7 +33,7 @@ link(rel='prerender prefetch', href='{{ tag.url }}')
 //-- tours tag page that has subtags {{{
 | {% for subtag in tag.subtags %}
 | {% if subtag.url != page.url %}
-link(rel='prerender prefetch', href='{{ subtag.url }}')
+link(rel='prefetch', href='{{ subtag.url }}')
 | {% endif %}
 | {% endfor %}
 //-- /tours tag page that has subtags }}}
@@ -41,7 +41,7 @@ link(rel='prerender prefetch', href='{{ subtag.url }}')
 //-- tours tag page that has no subtags {{{
 | {% for tata in site.data.tags %}
 | {% if tata.url != page.url %}
-link(rel='prerender prefetch', href='{{ tata.url }}')
+link(rel='prefetch', href='{{ tata.url }}')
 | {% endif %}
 | {% endfor %}
 //-- /tours tag page that has no subtags }}}
@@ -49,7 +49,7 @@ link(rel='prerender prefetch', href='{{ tata.url }}')
 //-- tours subtag page {{{
 | {% for subtag in tag.subtags %}
 | {% if subtag.url != page.url %}
-link(rel='prerender prefetch', href='{{ subtag.url }}')
+link(rel='prefetch', href='{{ subtag.url }}')
 | {% endif %}
 | {% endfor %}
 //-- /tours subtag page }}}
@@ -58,12 +58,11 @@ link(rel='prerender prefetch', href='{{ subtag.url }}')
 | {% endif %}
 | {% else %}
 //-- not in tours {{{
-link(rel='prerender prefetch', href='/tours')
+link(rel='prefetch', href='/tours')
 //-- /not in tours }}}
 | {% endif %}
-//-- always_prerender {{{
-link(rel='prerender prefetch', href='/about')
-link(rel='prerender prefetch', href='/contact')
-link(rel='prerender prefetch', href='/testimonials')
+//-- always_prefetch {{{
+link(rel='prefetch', href='/contact')
+link(rel='prefetch', href='/testimonials')
 //-- /always_prerender }}}
 //-- /prerender -----------------------------------------------}}}
