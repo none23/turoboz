@@ -457,7 +457,10 @@ textarea {
   color: #613b23;
   transition: all 0.1s ease-in-out;
 }
-.site_nav__link.active {
+.site_nav__link:active,
+.site_nav__link.active,
+.site_nav__link.active:hover,
+.site_nav__link.active:focus {
   color: #fff;
   background: #613b23;
 }
