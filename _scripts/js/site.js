@@ -1,10 +1,12 @@
 'use strict';
 
 var html = document.documentElement;
-
-// page transitions {{{
+var mobile_nav_toggle = document.getElementById('mobile_nav_toggle');
+var mobile_nav = document.getElementById('mobile_nav');
+var desktop_nav = document.getElementById('desktop_nav');
 var pageContentWrap = 'page_content_wrap';
 
+// page transitions {{{
 var changePage = function changePage(url) {
     var xhr = new XMLHttpRequest();
 
@@ -25,6 +27,11 @@ var changePage = function changePage(url) {
             currentTitle.parentNode.replaceChild(newTitle, currentTitle);
             currentDescription.parentNode.replaceChild(newDescription, currentDescription);
             window.scrollTo(0, 0);
+
+            // close mobile nav if open
+            if (mobile_nav.classList.contains('is_open')) {
+                toggleMobileNav();
+            }
         };
 
         if (currentPage.animate) {
@@ -44,8 +51,6 @@ var changePage = function changePage(url) {
 (function () {
 
     if (history && history.pushState) {
-
-        var site_nav_Links = document.getElementById('site_header').getElementsByClassName('site_nav__link');
 
         document.addEventListener('click', function (e) {
             if (e.ctrlKey) {
@@ -81,18 +86,33 @@ var changePage = function changePage(url) {
                 changePage(window.location.href);
             };
         }, 500);
-
-        // activeNavLinkTransition
-        for (var linkno = 0; linkno < site_nav_Links.length; linkno++) {
-            site_nav_Links[linkno].addEventListener('click', function (e) {
-                document.querySelector(".site_nav__link.active").classList.remove('active');
-                e.target.classList.add('active');
-                document.activeElement.blur();
-            });
-        }
     }
 })();
 
+// activeNavLinkTransition{{{
+
+function switchActiveNavLink(targetLink) {
+
+    // do nothing if the link clicked is already active
+    if (targetLink.className.indexOf('active') === -1) {
+
+        // need parentNode to select the right nav (desktop or mobile)
+        targetLink.parentNode.querySelector('.site_nav__link.active').classList.remove('active');
+        targetLink.classList.add('active');
+        document.activeElement.blur();
+    }
+}
+
+(function () {
+    desktop_nav.addEventListener('click', function (e) {
+        switchActiveNavLink(e.target);
+    });
+    mobile_nav.addEventListener('click', function (e) {
+        switchActiveNavLink(e.target);
+    });
+})();
+
+// /activeNavLinkTransition}}}
 // /page transitions }}}
 // service worker {{{
 (function () {
@@ -128,14 +148,15 @@ function useAppCache() {
 // /appcache }}}
 // mobileNav{{{
 
-(function () {
-    var mobile_nav_toggle = document.getElementById('mobile_nav_toggle');
-    var mobile_nav = document.getElementById('mobile_nav');
+function toggleMobileNav() {
+    mobile_nav_toggle.classList.toggle('is_open');
+    mobile_nav.classList.toggle('is_open');
+}
 
+(function () {
     mobile_nav_toggle.addEventListener('click', function (event) {
         event.preventDefault();
-        mobile_nav_toggle.classList.toggle('is_open');
-        mobile_nav.classList.toggle('is_open');
+        toggleMobileNav();
     });
 })();
 
