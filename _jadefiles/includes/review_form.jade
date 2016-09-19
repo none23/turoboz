@@ -17,7 +17,7 @@ section.review_form__wrap
           value='#TODO:form_submit_fallback')
         
         .form__input_group
-            label.form__input_label(for='clientName')
+            label.form__input_label(for='review_form__name')
                 | Ваше имя
             input#review_form__name.form__field(
               name='clientName',
@@ -28,7 +28,7 @@ section.review_form__wrap
               required)
         
         .form__input_group
-            label.form__input_label(for='theEmail')
+            label.form__input_label(for='review_form__mail')
                 | Ваш email
             input#review_form__mail.form__field(
               title="Электронная  почта",
@@ -39,7 +39,7 @@ section.review_form__wrap
               required)
 
         .form__input_group
-            label.form__input_label(for='theReview')
+            label.form__input_label(for='review_form__question')
                 | Ваш отзыв
             textarea#review_form__question.form__field.form__field--large(
               title="Отзыв",
