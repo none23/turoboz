@@ -3,25 +3,27 @@ var mobile_nav = document.getElementById('mobile_nav');
 var desktop_nav = document.getElementById('desktop_nav');
 
 // page transitions {{{
-var changePage = function(url) {
+function changePage(url) {
     var xhr = new XMLHttpRequest();
 
     xhr.open('GET', url);
     xhr.responseType = 'document';
 
     xhr.onload = function() {
-        var newPage = this.response.getElementById('page_content_wrap');
-        var currentPage =  document.getElementById('page_content_wrap');
+        var newDataIn = this.response;
 
-        var newTitle = this.response.querySelector('title');
-        var currentTitle =  document.querySelector('title');
+        var newPage = newDataIn.getElementById('page_content_wrap');
+        var newTitle = newDataIn.querySelector('title');
+        var newDescription = newDataIn.getElementById('pageDescription');
+        var oldPage = document.getElementById('page_content_wrap');
+        var oldTitle = document.querySelector('title');
+        var oldDescription = document.getElementById('pageDescription');
 
-        var newDescription = this.response.getElementById('pageDescription');
-        var currentDescription =  document.getElementById('pageDescription');
         var changePageContent = function() {
-            currentPage.parentNode.replaceChild(newPage, currentPage);
-            currentTitle.parentNode.replaceChild(newTitle, currentTitle);
-            currentDescription.parentNode.replaceChild(newDescription, currentDescription);
+
+            oldPage.parentNode.replaceChild(newPage, oldPage);
+            oldTitle.parentNode.replaceChild(newTitle, oldTitle);
+            oldDescription.parentNode.replaceChild(newDescription, oldDescription);
             window.scrollTo(0, 0);
 
             // close mobile nav if open
@@ -30,22 +32,34 @@ var changePage = function(url) {
             }
         };
 
-        if (currentPage.animate) {
-            var fadeAway = currentPage.animate(
-                {
-                    opacity: [1, 0]
-                },
-                200
-            );
+        var willAnimate = function() {
+            newPage.opacity = 0;
+            oldPage.animate(
+                [
+                    {opacity: 1},
+                    {opacity: 0}
+                ],
+                100
+            ).onfinish = function() {
+                changePageContent(); 
+                newPage.animate([
+                    {opacity: 0},
+                    {opacity: 1}
+                ],
+                100
+                ).onfinish = function() {
+                    newPage.opacity = 2;
+                };
+            };
+            oldPage.opacity = 0;
+        };
 
-            fadeAway.onfinish = changePageContent();
-        } else {
-            changePageContent();
-        }
+        var anim = new Promise( willAnimate, changePageContent );
+
+        return anim;
     };
-
     xhr.send();
-};
+}
 
 (function(){
 
