@@ -34,6 +34,7 @@ function changePage(url) {
 
         var willAnimate = function() {
             newPage.opacity = 0;
+            oldPage.opacity = 0;
             oldPage.animate(
                 [
                     {opacity: 1},
@@ -51,7 +52,6 @@ function changePage(url) {
                     newPage.opacity = 2;
                 };
             };
-            oldPage.opacity = 0;
         };
 
         var anim = new Promise( willAnimate, changePageContent );
