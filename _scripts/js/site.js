@@ -36,13 +36,13 @@ function changePage(url) {
 
         var willAnimate = function willAnimate() {
             newPage.opacity = 0;
+            oldPage.opacity = 0;
             oldPage.animate([{ opacity: 1 }, { opacity: 0 }], 100).onfinish = function () {
                 changePageContent();
                 newPage.animate([{ opacity: 0 }, { opacity: 1 }], 100).onfinish = function () {
                     newPage.opacity = 2;
                 };
             };
-            oldPage.opacity = 0;
         };
 
         var anim = new Promise(willAnimate, changePageContent);
