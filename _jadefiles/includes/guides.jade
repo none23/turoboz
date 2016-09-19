@@ -1,21 +1,28 @@
+mixin GuideCard(g)
+    .guide
+        .guide__img__wrap
+            img.guide__img(src='/img/{{ #{g}.photo }}', alt='{{ #{g}.name }}')
+        .guide__name
+            | {{ #{g}.name }}
+        .guide__resume
+            | {% for paragraph in #{g}.resume %}
+            p.guide__resume__p
+                | {{ paragraph }}
+            | {% endfor %}
+        //--a.guide__link.guide__link--reviews(href='{{ #{g}.page_link.url }}')
+        //--    | {{ #{g}.reviews_link.copy }}
+        a.guide__link.guide__link--page(href='{{ #{g}.page_link.url }}')
+            | {{ #{g}.page_link.copy }}
+
 section.about__wrap.guides__wrap
     h2.section_header
         | Наши экскурсоводы
     .guides
+        | {% if page.guides | first >= '' %}
         | {% for g in page.guides %}
-        .guide
-            .guide__img__wrap
-                img.guide__img(src='/img/{{ g.photo }}', alt='{{ g.name }}')
-            .guide__name
-                | {{ g.name }}
-            .guide__resume
-                | {% for paragraph in g.resume %}
-                p.guide__resume__p
-                    | {{ paragraph }}
-                | {% endfor %}
-            //--a.guide__link.guide__link--reviews(href='{{ g.page_link.url }}')
-            //--    | {{ g.reviews_link.copy }}
-            a.guide__link.guide__link--page(href='{{ g.page_link.url }}')
-                | {{ g.page_link.copy }}
+        +GuideCard('g')
         | {% endfor %}
+        | {% else %}
+        +GuideCard('page.guide')
+        | {% endif %}
 

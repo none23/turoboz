@@ -21,6 +21,7 @@ function changePage(url) {
 
         var changePageContent = function() {
 
+            console.log('changing content');
             oldPage.parentNode.replaceChild(newPage, oldPage);
             oldTitle.parentNode.replaceChild(newTitle, oldTitle);
             oldDescription.parentNode.replaceChild(newDescription, oldDescription);
@@ -54,7 +55,8 @@ function changePage(url) {
             };
         };
 
-        var anim = new Promise( willAnimate, changePageContent );
+        var anim = new Promise(willAnimate, null)
+            .catch(() => changePageContent() );
 
         return anim;
     };
@@ -152,8 +154,12 @@ function switchActiveNavLink(targetLink) {
     var appcache = window.applicationCache;
 
     function onUpdateReady() {
-        appcache.swapCache();
-        changePage(document.URL);
+        try {
+            appcache.swapCache();
+            changePage(document.URL);
+        } catch (err) {
+            setTimeout(changePage(), 2000);
+        }
     }
     appcache.addEventListener('updateready', onUpdateReady);
 
