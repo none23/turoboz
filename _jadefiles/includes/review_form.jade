@@ -44,8 +44,7 @@ section.review_form__wrap
             textarea#review_form__question.form__field.form__field--large(
               title="Отзыв",
               name="theReview",
-              type="text",
-              pattern=".{8,}",
+              minlength=8,
               required)
 
         button#review_form__button.form__button(type='submit')
