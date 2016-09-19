@@ -1,5 +1,6 @@
 doctype html
-html(lang='ru-RU', manifest='/turoboz.appcache') 
+//-- html(lang='ru-RU')
+html(lang='ru-RU', manifest='/turoboz.appcache')
     head
         | {% include head.html %}
     body
@@ -7,7 +8,7 @@ html(lang='ru-RU', manifest='/turoboz.appcache')
             | {% include header.html %}
 
             #page_content_wrap.page_content_wrap(class="page_content_wrap--{% if page.url contains '/tours/1' %}tour{% elsif page.url contains '/tours/' %}tours{% elsif page.url contains '/news/' %}post{% elsif page.url == '/' %}main{% else %}page{% endif %}")
-              | {{ content }}
+                | {{ content }}
 
             | {% include footer.html %}
         script(src='/js/site.js')
