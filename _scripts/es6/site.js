@@ -21,7 +21,6 @@ function changePage(url) {
 
         var changePageContent = function() {
 
-            console.log('changing content');
             oldPage.parentNode.replaceChild(newPage, oldPage);
             oldTitle.parentNode.replaceChild(newTitle, oldTitle);
             oldDescription.parentNode.replaceChild(newDescription, oldDescription);
