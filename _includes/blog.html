@@ -1,0 +1,19 @@
+<section id="blog__wrap" class="blog__wrap posts__wrap"><h2 class="section_header">Блог</h2><ul class="blog posts__list">{% assign vkposts = site.vk_news | sort: 'date' %}
+{% for post in vkposts reversed %}<li class="post__wrap blog__post__wrap"><div class="post__image__wrap blog__post__image__wrap"><img src="{{ post.image }}" alt="{{ post.intro | smartify }}" class="post__image blog__post__image"/></div><a href="{{ post.url }}" class="post__content__wrap blog__post__content__wrap"><div class="post__date blog__post__date">{% assign unixdate = post.date %}
+{% assign m = unixdate | date: "%-m" %}
+{{ unixdate | date: "%-d" }}
+{% case m %} 
+{% when '1' %}января
+{% when '2' %}февраля
+{% when '3' %}марта
+{% when '4' %}апреля
+{% when '5' %}мая
+{% when '6' %}июня
+{% when '7' %}июля
+{% when '8' %}августа
+{% when '9' %}сентября
+{% when '10' %}октября
+{% when '11' %}ноября
+{% when '12' %}декабя
+{% endcase %} 
+{{ unixdate | date: "%Y" }}</div><h3 class="post__summary blog__post__intro">{{ post.intro | smartify }}</h3><footer class="post__footer blog__post__footer">Читать далее</footer></a></li>{% endfor %}</ul></section>
