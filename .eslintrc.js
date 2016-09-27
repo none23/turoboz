@@ -1,6 +1,7 @@
 module.exports = {
     "env": {
         "browser": true,
+        "node": true,
         "serviceworker": true,
         "es6": true
     },
@@ -236,7 +237,7 @@ module.exports = {
         "radix": "error",
         "require-jsdoc": "off",
         "rest-spread-spacing": "error",
-        "semi": "error",
+        "semi": "off",
         "semi-spacing": [
             "error",
             {

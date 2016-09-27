@@ -40,5 +40,7 @@ collections:
     output: true
   news:
     output: true
+  vk_news:
+    output: true
 gems:
   - jekyll-sitemap
