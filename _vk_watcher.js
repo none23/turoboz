@@ -13,13 +13,11 @@ app.post('/', jsonParser, (request, response) => {
     } else if (request.body.type === 'confirmation') {
         return response.send('a81b533d')
     } 
-    console.log(request.body.object)
+    console.log(`got a request: ${request.body.object}`)
+
     return response.status(200).send('ok')
 })
 
-app.listen(port, (err) => {
-    if (err) {
-        return console.log(`got an error: ${err}`)
-    }
-    console.log(`server listening on ${port}`)
-}) 
+app.listen(port, () => {
+    console.log(`listening on ${port}`)
+});

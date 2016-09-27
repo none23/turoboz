@@ -38,6 +38,5 @@ _importdata.py
 # Old site
 .old-site/
 .old_site
-_contentful_accessToken
-_contentful_accessToken.json
+_contentful_management_accessToken.json
 .users.yml

@@ -3,7 +3,7 @@ const contentful = require('contentful-management')
 const localTours = require('./_data/tours.json')
 const localTestims = require('./_data/testimonials.json')
 
-const accessToken = require('./_contentful_accessToken.json')
+const accessToken = require('./_contentful_management_accessToken.json')
 const spaceId = 'x9tc47a70skr'
 
 const client = contentful.createClient({accessToken})

@@ -7,10 +7,10 @@ const groupId = 33948424
 const vkPostsDirPath = '_vk_news'
 
 const requestURL = `https://api.vk.com/method/wall.get?\
-owner_id=-${groupId}&count=${postsCount}&extended=1&filter=owner&v=5.53`
+owner_id=-${groupId}&count=${postsCount}&extended=1&filter=owner&https=1&v=5.53`
 
 function attachmentIsPhoto(attachment) {
-    return attachment.type === 'photo'
+    return attachment.type.indexOf('photo') >= 0
 }
 const readSynced = new Promise((resolve, reject) => {
 
@@ -30,21 +30,23 @@ fetchOnline.catch((err) => { throw err })
 
 function savePost(post) {
     const postDate = new Date(post.date * 1000)
-    const postDateDay = postDate.getDate()
     const postDateYear = postDate.getFullYear()
 
-    // get zero-padded month
+    const postDay = `0${postDate.getDate()}`
+    const postDateDay = postDay.slice(postDay.length - 2)
+
     const postMonth = `0${postDate.getMonth() + 1}`
     const postDateMonth = postMonth.slice(postMonth.length - 2)
 
-
-    const postIntro = post.text.split(".")[0]
-    const postBody = post.text.slice(postIntro.length + 2)
+    
+    const postImage = post.photos[0].photo.photo_1280 || post.photos[0].photo.photo_807 || post.photos[0].photo.photo_604
+    const postBody = post.text.split("\n").join("\n \n \n")
+    const postTitle = post.text.split(" ").splice(0, 8).join(" ")
     const frontMatterObj = {
         'dateposted': `${postDateDay}.${postDateMonth}.${postDateYear}`,
-        'image': `${post.photos[0].photo.photo_604}`,
-        'intro': `${postIntro}...`,
-        'layout': 'post'
+        'image':  postImage,
+        'layout': 'blogpost',
+        'title': `${postTitle}...`
     }
     const frontMatterYaml = yaml.dump(frontMatterObj)
     const fileName = `./${vkPostsDirPath}/${post.id}.md`
@@ -91,8 +93,10 @@ const processData = Promise.all([
 
                     // Not signed
                     if (post.signer_id) {
-                        console.log(`skipping ${post.id}: is signed`)
-                        reject()
+                        if (post.signer_id !== -groupId) {
+                            console.log(`skipping ${post.id}: is signed`)
+                            reject()
+                        }
                     }
 
                     // Not a repost
@@ -101,13 +105,8 @@ const processData = Promise.all([
                         reject()
                     }
 
-                    // Text has at least 3 sentences
-                    if (post.text.split(".").length < 2) {
-                        console.log(`skipping ${post.id}: text too short`)
-                        reject()
-                    }
-                    // Text is at least 200 chars long
-                    if (post.text.length < 300) {
+                    // Text has at least 200 chars long
+                    if (post.text.length < 200) {
                         console.log(`skipping ${post.id}: text too short`)
                         reject()
                     }
