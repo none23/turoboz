@@ -38,3 +38,4 @@ _importdata.py
 # Old site
 .old-site/
 .old_site
+_contentful_import.js

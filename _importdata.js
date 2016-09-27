@@ -1,12 +1,12 @@
-var fs = require('fs');
-var readline = require('readline');
-var google = require('googleapis');
-var googleAuth = require('google-auth-library');
+const fs = require('fs');
+const readline = require('readline');
+const google = require('googleapis');
+const googleAuth = require('google-auth-library');
 
 var all_tours = [];
 var upcoming_tours = {};
-var data_file = "_data/tours.json";
-var upcoming_file = "_data/upcoming.json";
+const data_file = "_data/tours.json";
+const upcoming_file = "_data/upcoming.json";
 var compl = 0;
 
 
@@ -131,24 +131,15 @@ function getStrs(auth) {
         var row = rows[i];
         var tourObj = {};
 
-        var tourId = row[0];
-        var tourTitle = row[1];
-        var tourSubtitle = row[2];
-        var tourIntro = row[3];
-        var tourSummary = row[4];
-        var tourImgpath = row[5];
-        var tourLength = row[6];
-        var tourHidden = row[7];
-
-        tourObj.tour = tourId;
-        tourObj.id = '/tours/' + tourId;
-        tourObj.title = tourTitle;
-        tourObj.subtitle = tourSubtitle;
-        tourObj.intro = tourIntro;
-        tourObj.summary = tourSummary;
-        tourObj.imgpath = tourImgpath;
-        tourObj.tourlength = tourLength;
-        tourObj.isHidden = tourHidden;
+        tourObj.tour = row[0];
+        tourObj.id = '/tours/' + row[0];
+        tourObj.title = row[1];
+        tourObj.subtitle = row[2];
+        tourObj.intro = row[3];
+        tourObj.summary = row[4];
+        tourObj.imgpath = row[5];
+        tourObj.tourlength = row[6];
+        tourObj.isHidden = row[7];
         tourObj.dates = {};
         tourObj.tags = {};
         tourObj.prices = {};
