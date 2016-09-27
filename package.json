@@ -1,6 +1,6 @@
 {
   "name": "turoboz",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Turoboz website",
   "babel": {
     "presets": [
@@ -44,11 +44,11 @@
     "eslint-plugin-react": "^6.2.0",
     "html-validator": "^2.0.1",
     "html-validator-cli": "^2.0.0",
-    "jshint": "latest",
     "watch": "latest"
   },
   "scripts": {
     "build": "concurrently 'npm run build:jade' 'npm run build:styles' 'npm run build:scripts'",
+        "prebuild": "npm run vk-fetch",
         "build:jade": "concurrently 'npm run build:jade:includes' 'npm run build:jade:layouts'",
             "build:jade:layouts": "jade -o _layouts/ _jadefiles/layouts/*.jade",
             "build:jade:includes": "jade -o _includes/ _jadefiles/includes/*.jade",
@@ -80,7 +80,7 @@
     "contentful-fetch": "node _contentful-fetch.js",
 
     "deploy": "netlify deploy",
-        "predeploy": "npm run vk-fetch && npm run build"
+        "predeploy": "npm run build"
   },
   "author": "none23",
   "license": "MIT License",

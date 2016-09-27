@@ -13,7 +13,8 @@ app.post('/', jsonParser, (request, response) => {
     } else if (request.body.type === 'confirmation') {
         return response.send('a81b533d')
     } 
-    console.log(`got a request: ${request.body.object}`)
+    console.log(`got new request: ${request.body.object}`)
+
 
     return response.status(200).send('ok')
 })
