@@ -39,3 +39,5 @@ _importdata.py
 .old-site/
 .old_site
 _contentful_import.js
+.users.yml
+.users.yml2
