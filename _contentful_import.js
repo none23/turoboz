@@ -1,15 +1,38 @@
 const fs = require('fs')
 const contentful = require('contentful-management')
 const localTours = require('./_data/tours.json')
+const localTestims = require('./_data/testimonials.json')
 
 const accessToken = require('./_contentful_accessToken.json')
 const spaceId = 'x9tc47a70skr'
 
 const client = contentful.createClient({accessToken})
 
+const createTestimEntry = (space, testimObj) => {
+    space.createEntry('testimonial', testimObj)
+}
+
 const createTourEntry = (space, id, tourObj) => {
     space.createEntryWithId('tour', id, tourObj)
     .then((e) => console.log(e))
+}
+
+const rebuildTestim = (oldTestim) => {
+    const newTestimFields = {
+        "author": {
+            "ru-RU": oldTestim.author
+        },
+        "date": {
+            "ru-RU": oldTestim.date
+        },
+        "message": {
+            "ru-RU": oldTestim.testimonial.join('\n\n')
+        }
+    }
+    const newTestim = {
+        "fields": newTestimFields
+    }
+    return JSON.stringify(newTestim)
 }
 
 const rebuild = (oldTourId, oldTour) => {
@@ -138,33 +161,31 @@ client.getSpace(spaceId)
         //     createTourEntry(space, localTourId, rebuild(localTourId, localTour))
         // }
 
-        fs.readdir('img/_posts', function(err, allImages){
-            for (const Img of allImages) {
-                space.createAssetWithId(
-                    Img,
-                    {
-                        "fields": {
-                            "title": {
-                                "ru-RU": Img
-                            },
-                            "file": {
-                                "ru-RU": {
-                                    "contentType": "image/jpeg",
-                                    "fileName": Img,
-                                    "upload": `https://github.com/none23/turoboz/raw/master/img/_posts/${Img}`
-                                }
-                            }
-                        }
-                    }
-                ).then((e) => e.processForAllLocales())
-                .then((e) => console.log(e))
-            }
-        })
+        // fs.readdir('img/_posts', function(err, allImages){
+        //     for (const Img of allImages) {
+        //         space.createAssetWithId(
+        //             Img,
+        //             {
+        //                 "fields": {
+        //                     "title": {
+        //                         "ru-RU": Img
+        //                     },
+        //                     "file": {
+        //                         "ru-RU": {
+        //                             "contentType": "image/jpeg",
+        //                             "fileName": Img,
+        //                             "upload": `https://github.com/none23/turoboz/raw/master/img/_posts/${Img}`
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         ).then((e) => e.processForAllLocales())
+        //         .then((e) => console.log(e))
+        //     }
+        // })
 
-        // const localToursList = Object.keys(localTours)
-        // for (const localTourId of localToursList) {
-        //     const localTour = localTours[localTourId]
-        //     createTourEntry(space, localTourId, rebuild(localTourId, localTour))
-        // }
+         for (const localTestim of localTestims) {
+             createTestimEntry(space, rebuildTestim(localTestim))
+         }
     })
 

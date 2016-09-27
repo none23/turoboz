@@ -3,7 +3,7 @@ section.blog__wrap#blog__wrap
     h2.section_header
         | Блог
     ul.blog
-        | {% assign vkposts = site.vk_news | sort: 'dateposted' %}
+        | {% assign vkposts = site.vk_news | sort: 'date' %}
         | {% for post in vkposts reversed %}
         li.blog__post__wrap
             .blog__post__image__wrap
