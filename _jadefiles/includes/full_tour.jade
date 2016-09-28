@@ -10,29 +10,27 @@ include ../mixins.jade
                 | К списку экскурсий
 
         | {% for item in page.tags %}
-        | {% for tag in site.data.tags %}
-        | {% if tag.tag == item %}
+        |   {% for tag in site.data.tags %}
+        |     {% if tag.tag == item %}
         a.full_tour__breadcrumb(href='{{ tag.url }}')
             .full_tour__breadcrumb__label
                 | {{ tag.title }}
-        | {% elsif tag.subtags%}
-        | {% for subtag in tag.subtags %}
-        | {% if subtag.subtag == item %}
+        |     {% elsif tag.subtags%}
+        |       {% for subtag in tag.subtags %}
+        |         {% if subtag.subtag == item %}
         a.full_tour__breadcrumb.full_tour__breadcrumb--subtag(href='{{ subtag.url }}')
             .full_tour__breadcrumb__label
                 | {{ subtag.title }}
-        | {% endif %}
-        | {% endfor %}
-        | {% endif %}
-        | {% endfor %}
+        |         {% endif %}
+        |       {% endfor %}
+        |     {% endif %}
+        |   {% endfor %}
         | {% endfor %}
     //- /breadcrumbs }}}
     .full_tour__heading__left
 
         .full_tour__date
-            | {% if page.dates[0] | plus: 0 > 10 %} 
-            +LiquidRussianDate('page.dates[0]')
-            | {% else %} по заказу {% endif %}
+            +LiquidRussianDate('page.date')
 
         h1.full_tour__title
             | {{ page.title }}
