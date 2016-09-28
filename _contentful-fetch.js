@@ -87,9 +87,9 @@ function fetchTours() {
             this.imgpath = item.imgasset.fields.file.fileName
 
             if (item.dates) {
-                this.date = item.dates[0]
+                this.tourdate = item.dates[0]
             } else {
-                this.date = 'по заказу'
+                this.tourdate = 'по заказу'
             }
 
             if (item.prices) {
