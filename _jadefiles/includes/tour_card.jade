@@ -6,9 +6,7 @@ mixin TourCard(tour)
                     img.tour__image(sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px", srcset="/img/none.jpg 1w, /img/tours300/{{ #{tour}.imgpath }} 300w, /img/tours600/{{ #{tour}.imgpath }} 600w", src="/img/tours300/{{ #{tour}.imgpath }}", alt="{{ #{tour}.title | smartify }}")
 
                 .tour__date
-                    | {% if #{tour}.dates[0] | plus: 0 > 10 %} 
-                    +LiquidRussianDate('#{tour}.dates[0]')
-                    | {% else %} по заказу {% endif %}
+                    +LiquidRussianDate('#{tour}.date')
 
                 .tour__length
                     | {{ #{tour}.tourlength }}
