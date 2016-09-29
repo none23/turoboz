@@ -36,7 +36,7 @@ function fetchPosts() {
             this.title = item.title
             this.summary = item.summary
             this.imgasset = item.image.fields.file.url
-            this.imgpath = item.image.fields.file.fileName
+            this.image = item.image.fields.file.fileName
             this.body = item.content
         }
     }
