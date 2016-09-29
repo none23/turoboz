@@ -1,0 +1,137 @@
+mixin formNext(fieldValue='#')
+    input.hidden_field(
+        name = '_next',
+        type = 'hidden',
+        value = fieldValue,
+    )
+
+mixin formSubject(fieldId, fieldValue)
+    input.hidden_field(
+        id = fieldId,
+        name = '_subject',
+        type = 'hidden',
+        value = fieldValue,
+    )
+
+mixin formName(fieldId)
+    input.form__field(
+        id = fieldId,
+        name = 'clientName',
+        title = 'Имя',
+        type = 'text',
+        pattern = ".{2,}",
+        placeholder = 'Как к Вам обращаться?',
+        required,
+    )
+
+mixin formPhone(fieldId, fieldRequired=false)
+    input.form__field(
+        id = fieldId,
+        name = 'thePhoneNumber',
+        title = 'Телефонный номер',
+        type = 'tel',
+        pattern = '[0-9+-/s)(]{5,}',
+        placeholder = 'Ваш номер телефона',
+        if (fieldRequired)
+            required,
+    )
+
+mixin formMail(fieldId, fieldPlaceholder, fieldRequired=false)
+    input.form__field(
+        id = fieldId
+        title = "Электронная почта",
+        name = "theEmail",
+        type = "email",
+        pattern = ".*",
+        placeholder = fieldPlaceholder,
+        if (fieldRequired)
+            required,
+    )
+
+mixin CallBackForm()
+    form#call_back_form(
+        action = "https://formspree.io/{{ site.email }}",
+        method = 'POST',
+    )
+        +formSubject('call_back_form__subject', 'WaitingForACall')
+        +formName('call_back_form__name')
+        +formPhone('call_back_form__phone')
+        button#call_back_form__cancel_button.call_back_form__toggle(type = 'button')
+            | Отмена
+        button#call_back_form__button.form__button(type = 'submit')
+            | Заказать звонок
+
+mixin OrderForm()
+    form#order_form.order_form.form(
+        action = "https://formspree.io/{{ site.email }}",
+        method = 'POST',
+    )
+        +formSubject('order_form__subject', '{{ page.title }}')
+        +formNext('{{ page.url }}')
+        .form__input_group
+            label.form__input_label(for = 'order_form__name')
+                | Ваше имя
+            +formName('order_form__name')
+        .form__input_group
+            label.form__input_label(for = 'order_form__mail')
+                | Ваш email
+            +formMail('order_form__mail','example@mail.com')
+        .form__input_group
+            label.form__input_label(for = 'order_form__phone')
+                | Ваш номер телефона
+            +formPhone('order_form__phone', true)
+        button#order_form__button.form__button(type='submit')
+           | Заказать
+
+
+mixin ReviewForm()
+    form#review_form.review_form.form(
+        action="https://formspree.io/{{ site.email }}",
+        method='POST',
+    )
+        +formSubject('review_form__subject', 'Testimonial')
+        +formNext()
+        .form__input_group
+            label.form__input_label(for='review_form__name')
+                | Ваше имя
+            +formName('review_form__name')
+        .form__input_group
+            label.form__input_label(for='review_form__mail')
+                | Ваш email
+            +formMail('review_form__mail', true)
+        .form__input_group
+            label.form__input_label(for='review_form__question')
+                | Ваш отзыв
+            textarea#review_form__question.form__field.form__field--large(
+              title="Отзыв",
+              name="theReview",
+              minlength=8,
+              required)
+        button#review_form__button.form__button(type='submit')
+           | Отправить отзыв
+
+mixin ContactForm()
+    form#contact_form.contact_form.form(
+        action="https://formspree.io/{{ site.email }}",
+        method='POST',
+    )
+        +formSubject('contact_form__subject', 'Contact')
+        .form__input_group
+            label.form__input_label(for='contact_form__name')
+                | Как к Вам обращаться?
+            +formName('contact_form__name')
+        .form__input_group
+            label.form__input_label(for='contant_form__mail')
+                | Ваш email
+            +formMail('contant_form__mail', true)
+        .form__input_group
+            label.form__input_label(for='contact_form__question')
+                | Ваш вопрос
+            textarea#contact_form__question.form__field.form__field--large(
+              title="Вопрос",
+              name="theQuestion",
+              minlength=8,
+              required,
+              )
+        button#contact_form__button.form__button(type='submit')
+           | Отправить сообщение

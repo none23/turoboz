@@ -1,59 +1,6 @@
+include ../site_mixins
+
 section.order_form__wrap
     h2.section_header
        | Заказать экскурсию
-
-    form#order_form.order_form.form(
-      action="https://formspree.io/{{ site.email }}",
-      method='POST')
-
-        input#order_form__subject.hidden_field(
-          name='_subject',
-          type='hidden',
-          value='Testimonial')
-
-        input#order_form__next.hidden_field(
-          name='_next',
-          type='hidden',
-          value='#TODO:form_submit_fallback')
-        
-        input#order_form__next.hidden_field(
-          name='tour_title',
-          type='hidden',
-          value='{{ currentTour.title }}')
-
-        .form__input_group
-            label.form__input_label(for='order_form__name')
-                | Ваше имя
-            input#order_form__name.form__field(
-              name='clientName',
-              title='Имя',
-              type='text',
-              pattern=".{2,}",
-              placeholder='Имя',
-              required)
-        
-        .form__input_group
-            label.form__input_label(for='order_form__mail')
-                | Ваш email
-            input#order_form__mail.form__field(
-              title="Электронная  почта",
-              name="theEmail",
-              type="email",
-              pattern=".*",
-              placeholder="your@mail.com")
-
-        .form__input_group
-            label.form__input_label(for='order_form__phone')
-                | Ваш номер телефона
-            input#order_form__phone.form__field(
-              name='thePhoneNumber',
-              title='Телефонный номер',
-              type='tel',
-              pattern='[0-9+-/s)(]{5,}',
-              placeholder='89876543210',
-              required)
-
-        button#order_form__button.form__button(type='submit')
-           | Заказать
-
-
+    +OrderForm()
