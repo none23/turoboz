@@ -31,7 +31,7 @@ exclude: ["node_modules",
           "gulpfile.js",
           "gulpfile.coffee",
           "package.json",
-          "fetch-contentful.js"
+          "fetch-contentful.js",
           "fetch-vk.js"]
 collections:
   tours:
