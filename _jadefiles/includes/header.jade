@@ -1,4 +1,6 @@
 include ../mixins.jade
+include ../site_mixins.jade
+
 mixin SiteNav()
     | {% assign navpages = site.pages | sort: 'innav' %}
     | {% for p in navpages %}
@@ -30,37 +32,6 @@ mixin SiteContacts()
         | Заказать звонок
     a.site_header__vk_button(href='https://{{ site.vk_group }}', target='_blank')
         +iconVK('site_header__vk_icon')
-
-mixin CallBackForm()
-    form#call_back_form(
-      action="https://formspree.io/{{ site.email }}",
-      method='POST')
-        input#call_back_form__subject.hidden_field(
-          name='_subject',
-          type='hidden',
-          value='WaitingForACall')
-
-        input#call_back_form__name.form__field(
-          name='clientName',
-          title='Имя',
-          type='text',
-          pattern=".{2,}",
-          placeholder='Как к Вам обращаться?',
-          required)
-
-        input#call_back_form__phone.form__field(
-          name='thePhoneNumber',
-          title='Телефонный номер',
-          type='tel',
-          pattern='[0-9+-/s)(]{5,}',
-          placeholder='Ваш номер телефона',
-          required)
-
-        button#call_back_form__cancel_button.call_back_form__toggle(type='button')
-            | Отмена
-
-        button#call_back_form__button.form__button(type='submit')
-            | Заказать звонок
 
 header#site_header
     a#site_logo(href='/', tabindex = -1)
