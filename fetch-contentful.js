@@ -118,7 +118,7 @@ function fetchTours() {
             .then(() => {
                 const filename = './_data/tours.json'
 
-                assert.strictEqual(entriesCount, Object.keys(toursCatalogue).length)
+                assert.equal(entriesCount, Object.keys(toursCatalogue).length)
                 fs.writeFile(filename, JSON.stringify(toursCatalogue), 'utf8', function (err) {
                     if (err) { throw err }
                     console.log(`written ${filename}`)
@@ -160,7 +160,7 @@ function fetchNews() {
         })
             .then(() => {
                 const filename = './_data/newsposts.json'
-                assert.strictEqual(entriesCount, Object.keys(newsCatalogue).length)
+                assert.equal(entriesCount, Object.keys(newsCatalogue).length)
                 fs.writeFile(filename, JSON.stringify(newsCatalogue), 'utf8', function (err) {
                     if (err) { throw err }
                     console.log(`written ${filename}`)
@@ -206,7 +206,7 @@ function fetchTestim() {
 
 (() => {
     const args = process.argv.map(stripArgDash).slice(2)
-    assert.notStrictEqual(process.cwd().indexOf('turoboz'), -1)
+    if (!process.env.DOCKER) { assert.notEqual(process.cwd().indexOf('turoboz'), -1) } 
     if (args) {
         args.forEach(function (arg) {
             switch (arg) {
