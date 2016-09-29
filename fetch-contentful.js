@@ -1,76 +1,49 @@
+// Deps {{{
 const fs = require('fs')
 const contentful = require('contentful')
 const rmMd = require('remove-markdown')
 const yaml = require('js-yaml')
-
-const deMd = (ulMd) =>  {
-    rmMd( ulMd.replace(' *', '*')).split('\n ')
-}
-
-const accessToken = require('./_contentful_accessToken.json')
+const assert = require('assert')
+// }}}
+const accessToken = require('./.contentful-accessToken.json')
 const space = 'x9tc47a70skr'
-
+// Setup {{{
 const client = contentful.createClient({
     accessToken,
     space
 })
+const deMd = (ulMd) =>  {
+    rmMd( ulMd.replace(' *', '*')).split('\n ')
+}
+// }}}
+// Utils {{{
+function stripArgDash(arg) {
+    if (arg[0] === '-') {
+        if (arg[1] === '-') {
+            return arg.slice(2)
+        }
+        return arg.slice(1)
+    }
+    return arg
+}
 
 function saveCollection(objectToSave, collectionDir) {
     const frontMatter = yaml.dump(objectToSave)
     const collectionFile = `---\n${frontMatter}\n---\n`
     const filename = `./${collectionDir}/${objectToSave.id}.md`
-    fs.writeFile(filename, collectionFile, 'utf8', function(err) {
+    fs.writeFile(filename, collectionFile, 'utf8', function (err) {
         if (err) { throw err }
         console.log(`written ${filename}`)
     })
 }
-
-function fetchPosts() {
-// {{{
-    class Newspost {
-        constructor(item) {
-            this.layout = 'post'
-            this.id = item.id.toString()
-            this.post = item.id.toString()
-            this.permalink = `/news/${item.id.toString()}/`
-            this.title = item.title
-            this.summary = item.summary
-            this.imgasset = item.image.fields.file.url
-            this.image = item.image.fields.file.fileName
-            this.body = item.content
-        }
-    }
-
-    var newsCatalogue = {}
-
-    client.getEntries({
-        'content_type': 'news'
-    })
-        .then((entries) => {
-            const items = entries.items
-            for (const itemObj of items) {
-                const item = itemObj.fields
-
-                const newsItem = new Newspost(item)
-
-                saveCollection(newsItem, '_news')
-                newsCatalogue[newsItem.id] = newsItem
-            }
-        })
-            .then(() => {
-                const filename = './_data/newsposts.json'
-
-                fs.writeFile(filename, JSON.stringify(newsCatalogue), 'utf8', function(err) {
-                    if (err) { throw err }
-                    console.log(`written ${filename}`)
-                })
-            })
-}
 // }}}
-
+// Fetch tours {{{
 function fetchTours() {
-// {{{
+    var toursCatalogue = {}
+    var entriesCount = 0
+
     class Tour {
+        // {{{
         constructor(item) {
             this.layout = 'tour'
             this.id = item.tour.toString()
@@ -128,19 +101,16 @@ function fetchTours() {
                 this.details = []
             }
         }
+        // }}}
     }
-
-    var toursCatalogue = {}
 
     client.getEntries({
         'content_type': 'tour'
     })
         .then((entries) => {
-            const items = entries.items
-            for (const itemObj of items) {
-                const item = itemObj.fields
-
-                const tourItem = new Tour(item)
+            for (const item of entries.items) {
+                const tourItem = new Tour(item.fields)
+                entriesCount += 1
                 saveCollection(tourItem, '_tours')
                 toursCatalogue[tourItem.id] = tourItem
             }
@@ -148,43 +118,85 @@ function fetchTours() {
             .then(() => {
                 const filename = './_data/tours.json'
 
-                fs.writeFile(filename, JSON.stringify(toursCatalogue), 'utf8', function(err) {
+                assert.equal(entriesCount, Object.keys(toursCatalogue).length)
+                fs.writeFile(filename, JSON.stringify(toursCatalogue), 'utf8', function (err) {
                     if (err) { throw err }
                     console.log(`written ${filename}`)
                 })
             })
 }
 // }}}
+// Fetch news {{{
+function fetchNews() {
+    var newsCatalogue = {}
+    var entriesCount = 0
 
-function fetchTestimonials() {
-// {{{
-    class Testimonial {
+    class Newspost {
+        // {{{
+        constructor(item) {
+            this.layout = 'post'
+            this.id = item.id.toString()
+            this.post = item.id.toString()
+            this.permalink = `/news/${item.id.toString()}/`
+            this.title = item.title
+            this.summary = item.summary
+            this.imgasset = item.image.fields.file.url
+            this.image = item.image.fields.file.fileName
+            this.body = item.content
+        }
+        // }}}
+    }
+
+    client.getEntries({
+        'content_type': 'news'
+    })
+        .then((entries) => {
+            for (const item of entries.items) {
+                const newsItem = new Newspost(item.fields)
+                entriesCount += 1
+                saveCollection(newsItem, '_news')
+                newsCatalogue[newsItem.id] = newsItem
+            }
+        })
+            .then(() => {
+                const filename = './_data/newsposts.json'
+                assert.equal(entriesCount, Object.keys(newsCatalogue).length)
+                fs.writeFile(filename, JSON.stringify(newsCatalogue), 'utf8', function (err) {
+                    if (err) { throw err }
+                    console.log(`written ${filename}`)
+                })
+            })
+}
+// }}}
+// Fetch testim {{{
+function fetchTestim() {
+    var testimCatalogue = []
+    var entriesCount = 0
+
+    class Testim {
+        // {{{
         constructor(item) {
             this.date = item.date
             this.author = item.author
             this.message = item.message
         }
+        // }}}
     }
-
-    var testimCatalogue = []
 
     client.getEntries({
         'content_type': 'testimonial'
     })
         .then((entries) => {
-            console.log(entries)
-            const items = entries.items
-            for (const itemObj of items) {
-                const item = itemObj.fields
-
-                const testimItem = new Testimonial(item)
+            for (const item of entries.items) {
+                const testimItem = new Testim(item.fields)
+                entriesCount += 1
                 testimCatalogue.push(testimItem)
             }
         })
             .then(() => {
                 const filename = './_data/testimonials.json'
-
-                fs.writeFile(filename, JSON.stringify(testimCatalogue), 'utf8', function(err) {
+                assert.equal(entriesCount, testimCatalogue.length)
+                fs.writeFile(filename, JSON.stringify(testimCatalogue), 'utf8', function (err) {
                     if (err) { throw err }
                     console.log(`written ${filename}`)
                 })
@@ -192,9 +204,28 @@ function fetchTestimonials() {
 }
 // }}}
 
-
 (() => {
-    fetchPosts()
-    fetchTours()
-    fetchTestimonials()
+    const args = process.argv.map(stripArgDash).slice(2)
+    assert.notEqual(process.cwd().indexOf('turoboz'), -1)
+    if (args) {
+        args.forEach(function (arg) {
+            switch (arg) {
+            case 'tours':
+                fetchTours()
+                break
+            case 'news':
+                fetchNews()
+                break
+            case 'testim':
+                fetchTestim()
+                break
+            default:
+                throw new Error(`Unknown argument: '${arg}'`)
+            }
+        })
+    } else {
+        fetchTours()
+        fetchNews()
+        fetchTestim()
+    }
 })()

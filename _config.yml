@@ -25,16 +25,14 @@ markdown: kramdown
 
 # Custom settings
 exclude: ["node_modules",
-          ".board",
-          "board",
           "gh-pages",
           "Gemfile",
           "Gemfile.lock",
           "gulpfile.js",
           "gulpfile.coffee",
           "package.json",
-          "README.md",
-          "webpack.config.js"]
+          "fetch-contentful.js"
+          "fetch-vk.js"]
 collections:
   tours:
     output: true
