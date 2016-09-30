@@ -1,9 +1,0 @@
-section.news__section
-    h2.section_header
-        | События
-    ul.news__list
-        | {% for post in site.news reversed limit:5 %}
-        li.news__list__item
-            a.news__list__item__link(href='{{ post.url }}')
-                | {{ post.title | smartify }}
-        | {% endfor %}

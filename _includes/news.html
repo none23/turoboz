@@ -1,1 +1,0 @@
-<section class="news__section"><h2 class="section_header">События</h2><ul class="news__list">{% for post in site.news reversed limit:5 %}<li class="news__list__item"><a href="{{ post.url }}" class="news__list__item__link">{{ post.title | smartify }}</a></li>{% endfor %}</ul></section>
