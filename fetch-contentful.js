@@ -39,7 +39,7 @@ function saveCollection(objectToSave, collectionDir) {
 
 function parseTour(item) {
     // {{{
-    var newTour = []
+    var newTour = {}
     newTour.layout = 'tour'
     newTour.id = item.tour.toString()
     newTour.tour = item.tour.toString()
@@ -67,7 +67,7 @@ function parseTour(item) {
     }
 
     if (item.blueprint) {
-        newTour.blueprint = de)d(item.blueprint)
+        newTour.blueprint = deMd(item.blueprint)
     } else {
         newTour.blueprint = []
     }
@@ -98,6 +98,21 @@ function parseTour(item) {
 
     return newTour
     // }}}
+}
+function parseNews(item) {
+// {{{
+var newNews = {}
+newNews.layout = 'post'
+newNews.id = item.id.toString()
+newNews.post = item.id.toString()
+newNews.permalink = `/news/${item.id.toString()}/`
+newNews.title = item.title
+newNews.summary = item.summary
+newNews.imgasset = item.image.fields.file.url
+newNews.image = item.image.fields.file.fileName
+newNews.body = item.content
+return newNews
+// }}}
 }
 // }}}
 // Fetch tours {{{
@@ -130,27 +145,13 @@ function fetchNews() {
     var newsCatalogue = {}
     var entriesCount = 0
 
-    class parseNewspost {
-        // {{{
-        var newTour = []
-        newTour.layout = 'post'
-        newTour.id = item.id.toString()
-        newTour.post = item.id.toString()
-        newTour.permalink = `/news/${item.id.toString()}/`
-        newTour.title = item.title
-        newTour.summary = item.summary
-        newTour.imgasset = item.image.fields.file.url
-        newTour.image = item.image.fields.file.fileName
-        newTour.body = item.content
-        // }}}
-    }
 
     client.getEntries({
         'content_type': 'news'
     })
         .then((entries) => {
             for (const item of entries.items) {
-                const newsItem = new Newspost(item.fields)
+                const newsItem = parseNews(item.fields)
                 entriesCount += 1
                 saveCollection(newsItem, '_news')
                 newsCatalogue[newsItem.id] = newsItem
