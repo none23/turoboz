@@ -37,80 +37,18 @@ function saveCollection(objectToSave, collectionDir) {
     })
 }
 
-function parseTour(item) {
-    // {{{
-    var newTour = {}
-    newTour.layout = 'tour'
-    newTour.id = item.tour.toString()
-    newTour.tour = item.tour.toString()
-    newTour.permalink = `/tours/${item.tour.toString()}/`
-    newTour.hidden = item.hidden
-    newTour.title = item.title
-    newTour.subtitle = item.subtitle || ''
-    newTour.intro = item.intro
-    newTour.summary = item.summary || ''
-    newTour.length = item.length
-    newTour.tourlength = item.length
-    newTour.imgasset = item.imgasset.fields.file.url
-    newTour.imgpath = item.imgasset.fields.file.fileName
-
-    if (item.dates) {
-        newTour.tourdate = item.dates[0]
-    } else {
-        newTour.tourdate = 'по заказу'
-    }
-
-    if (item.prices) {
-        newTour.prices = deMd(item.prices)
-    } else {
-        newTour.prices = ['уточняйте при заказе']
-    }
-
-    if (item.blueprint) {
-        newTour.blueprint = deMd(item.blueprint)
-    } else {
-        newTour.blueprint = []
-    }
-
-    if (item.includes) {
-        newTour.includes = deMd(item.includes)
-    } else {
-        newTour.includes = []
-    }
-
-    if (item.additionalFees) {
-        newTour.additionalFees = deMd(item.additionalFees)
-    } else {
-        newTour.additionalFees = []
-    }
-
-    if (item.willLearn) {
-        newTour.willLearn = deMd(item.willLearn)
-    } else {
-        newTour.willLearn = []
-    }
-
-    if (item.details) {
-        newTour.details = item.details.split(' \n\n ')
-    } else {
-        newTour.details = []
-    }
-
-    return newTour
-    // }}}
-}
-function parseNews(item) {
+function parseNews(itemfields) {
 // {{{
 var newNews = {}
 newNews.layout = 'post'
-newNews.id = item.id.toString()
-newNews.post = item.id.toString()
-newNews.permalink = `/news/${item.id.toString()}/`
-newNews.title = item.title
-newNews.summary = item.summary
-newNews.imgasset = item.image.fields.file.url
-newNews.image = item.image.fields.file.fileName
-newNews.body = item.content
+newNews.id = itemfields.id.toString()
+newNews.post = itemfields.id.toString()
+newNews.permalink = `/news/${itemfields.id.toString()}/`
+newNews.title = itemfields.title
+newNews.summary = itemfields.summary
+newNews.imgasset = itemfields.image.fields.file.url
+newNews.image = itemfields.image.fields.file.fileName
+newNews.body = itemfields.content
 return newNews
 // }}}
 }
@@ -124,10 +62,40 @@ function fetchTours() {
     })
         .then((entries) => {
             for (const item of entries.items) {
-                const tourItem = parseTour(item.fields)
+                var newTour = {}
+                newTour.layout = 'tour'
+                newTour.id = item.fields.tour.toString()
+                newTour.tour = item.fields.tour.toString()
+                newTour.permalink = `/tours/${item.fields.tour.toString()}/`
+                newTour.hidden = item.fields.hidden
+                newTour.title = item.fields.title
+                newTour.subtitle = item.fields.subtitle || ''
+                newTour.intro = item.fields.intro
+                newTour.summary = item.fields.summary || ''
+                newTour.length = item.fields.length
+                newTour.tourlength = item.fields.length
+                newTour.imgasset = item.fields.imgasset.fields.file.url
+                newTour.imgpath = item.fields.imgasset.fields.file.fileName
+
+                newTour.tourdate = 'по заказу'
+                newTour.prices = ['уточняйте при заказе']
+                newTour.blueprint = []
+                newTour.includes = []
+                newTour.additionalFees = []
+                newTour.willLearn = []
+                newTour.details = []
+
+                if (item.fields.dates) { newTour.tourdate = item.fields.dates[0] }
+                if (item.fields.prices) { newTour.prices = deMd(item.fields.prices) }
+                if (item.fields.blueprint) { newTour.blueprint = deMd(item.fields.blueprint) }
+                if (item.fields.includes) { newTour.includes = deMd(item.fields.includes) }
+                if (item.fields.additionalFees) { newTour.additionalFees = deMd(item.fields.additionalFees) }
+                if (item.fields.willLearn) { newTour.willLearn = deMd(item.fields.willLearn) }
+                if (item.fields.details) { newTour.details = item.fields.details.split(' \n\n ') }
+
+                saveCollection(newTour, '_tours')
                 entriesCount += 1
-                saveCollection(tourItem, '_tours')
-                toursCatalogue[tourItem.id] = tourItem
+                toursCatalogue[newTour.id] = newTour
             }
         })
             .then(() => {
