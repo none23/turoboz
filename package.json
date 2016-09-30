@@ -4,7 +4,7 @@
   "description": "update control page",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch" : "pug -w index.pug -o site & stylus -w style.styl -o site & browser-sync start --server 'site' --port 4444 --no-open --no-notify"
   },
   "author": "none23",
   "license": "MIT",

@@ -1,16 +1,15 @@
 doctype html
 html(lang='ru-RU')
-    head
-        meta(charset='utf-8')
-        meta(name='robots', value='none')
-        title
-           | Turoboz Update
-        meta(http-equiv='X-UA-Compatible', content='IE=edge')
-        meta(name='viewport', content='width=device-width,initial-scale=1')
-        link(type='stylesheet', href='style.css')
-    body
-        form#update_form(
-            action = 'https://api.netlify.com/build_hooks/57ee1e8da7e2d26e8c6df2a7',
-            method = 'POST',
-        )
-            button(type = 'submit') Update
+  head
+    meta(charset='utf-8')
+    meta(name='robots', value='none')
+    title Turoboz Update
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width,initial-scale=1')
+    link(rel='stylesheet', href='/style.css')
+  body
+    form#update_form(
+      action = 'https://api.netlify.com/build_hooks/57ee1e8da7e2d26e8c6df2a7',
+      method = 'POST',
+    )
+      button(type = 'submit') Update

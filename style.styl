@@ -2,5 +2,50 @@ html
 body
     width: 100vw
     height: 100vh
-    background: black
-    color: green
+    position: relative
+    overflow-x: hidden !important
+    overflow-y: hidden !important
+    &
+    *
+        background: #333
+
+#update_form 
+    position: absolute
+    width: 100%
+    height: 100%
+
+form
+button
+    appearance: none !important
+    -webkit-appearance: none !important
+    outline: none !important
+
+form > button
+    position: absolute
+    top: 5vmin
+    left: 10vmin
+    width: 80vmin
+    height: 80vmin
+    appearance: none !important
+    background: radial-gradient(ellipse farthest-corner at 40% 40%, hsl(0,81%,43%), hsl(0,100%,20%))
+    border: ridge 1vmin hsla(0,80%,25%,.3) !important
+    box-shadow: inset .7vmin 1.6vmin .5vmin 0vmin hsla(0,70%,60%,.3), inset -.7vmin -1.6vmin 0vmin 0vmin hsla(0,100%,20%,.5), 1.5vmin 3vmin 3vmin -1vmin #222
+    border-radius: 50%
+    font-size: 12vmin
+    color mix(white,gray)
+    text-transform: uppercase
+    transitions: all 0.7s ease-out
+
+    &:hover
+    &:focus
+        background: radial-gradient(ellipse farthest-corner at 40% 40%, hsl(0,87%,50%), hsl(0,100%,28%))
+        box-shadow: inset .7vmin 1.6vmin .5vmin 0vmin hsla(0,80%,60%,.3), inset -.7vmin -1.6vmin 0vmin 0vmin hsla(0,100%,20%,.5), 1.5vmin 3vmin 3vmin -1vmin #222, 0 0 8vmin 2vmin hsla(0,100%,50%,.2)
+        color: white
+        font-weight: 500
+    &:active
+        background: radial-gradient(ellipse farthest-corner at 40% 30%, hsl(0,82%,45%), hsl(0,100%,28%))
+        box-shadow: inset .3vmin .5vmin .2vmin 0vmin hsla(0,100%,20%,.7), inset -.1vmin -0.2vmin .2vmin 0vmin hsla(0,100%,60%,.8), .5vmin 1vmin 2vmin -2vmin #222, 0 0 1vmin -2vmin hsla(0,100%,50%,.8)
+        border: ridge 1vmin hsla(0,80%,25%,.05) !important
+        transform: scale(.98,.98)
+
+
