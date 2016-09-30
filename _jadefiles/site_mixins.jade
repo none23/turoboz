@@ -38,7 +38,7 @@ mixin formPhone(fieldId, fieldRequired=false)
 
 mixin formMail(fieldId, fieldPlaceholder, fieldRequired=false)
     input.form__field(
-        id = fieldId
+        id = fieldId,
         title = "Электронная почта",
         name = "theEmail",
         type = "email",
@@ -47,6 +47,15 @@ mixin formMail(fieldId, fieldPlaceholder, fieldRequired=false)
         if (fieldRequired)
             required,
     )
+
+mixin formTextarea(fieldId, fieldTitle)
+        textarea.form__field.form__field--large(
+            id = fieldId,
+            title = fieldTitle,
+            name=fieldTitle,
+            minlength=8,
+            required,
+        )
 
 mixin CallBackForm()
     form#call_back_form(
@@ -102,11 +111,7 @@ mixin ReviewForm()
         .form__input_group
             label.form__input_label(for='review_form__question')
                 | Ваш отзыв
-            textarea#review_form__question.form__field.form__field--large(
-              title="Отзыв",
-              name="theReview",
-              minlength=8,
-              required)
+            +formTextarea('review_form__question','Отзыв')
         button#review_form__button.form__button(type='submit')
            | Отправить отзыв
 
@@ -127,11 +132,6 @@ mixin ContactForm()
         .form__input_group
             label.form__input_label(for='contact_form__question')
                 | Ваш вопрос
-            textarea#contact_form__question.form__field.form__field--large(
-              title="Вопрос",
-              name="theQuestion",
-              minlength=8,
-              required,
-              )
+            +formTextarea('contact_form__question', 'Вопрос')
         button#contact_form__button.form__button(type='submit')
            | Отправить сообщение

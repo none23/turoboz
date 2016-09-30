@@ -36,80 +36,80 @@ function saveCollection(objectToSave, collectionDir) {
         console.log(`written ${filename}`)
     })
 }
+
+function parseTour(item) {
+    // {{{
+    var newTour = []
+    newTour.layout = 'tour'
+    newTour.id = item.tour.toString()
+    newTour.tour = item.tour.toString()
+    newTour.permalink = `/tours/${item.tour.toString()}/`
+    newTour.hidden = item.hidden
+    newTour.title = item.title
+    newTour.subtitle = item.subtitle || ''
+    newTour.intro = item.intro
+    newTour.summary = item.summary || ''
+    newTour.length = item.length
+    newTour.tourlength = item.length
+    newTour.imgasset = item.imgasset.fields.file.url
+    newTour.imgpath = item.imgasset.fields.file.fileName
+
+    if (item.dates) {
+        newTour.tourdate = item.dates[0]
+    } else {
+        newTour.tourdate = 'по заказу'
+    }
+
+    if (item.prices) {
+        newTour.prices = deMd(item.prices)
+    } else {
+        newTour.prices = ['уточняйте при заказе']
+    }
+
+    if (item.blueprint) {
+        newTour.blueprint = de)d(item.blueprint)
+    } else {
+        newTour.blueprint = []
+    }
+
+    if (item.includes) {
+        newTour.includes = deMd(item.includes)
+    } else {
+        newTour.includes = []
+    }
+
+    if (item.additionalFees) {
+        newTour.additionalFees = deMd(item.additionalFees)
+    } else {
+        newTour.additionalFees = []
+    }
+
+    if (item.willLearn) {
+        newTour.willLearn = deMd(item.willLearn)
+    } else {
+        newTour.willLearn = []
+    }
+
+    if (item.details) {
+        newTour.details = item.details.split(' \n\n ')
+    } else {
+        newTour.details = []
+    }
+
+    return newTour
+    // }}}
+}
 // }}}
 // Fetch tours {{{
 function fetchTours() {
     var toursCatalogue = {}
     var entriesCount = 0
-
-    class Tour {
-        // {{{
-        constructor(item) {
-            this.layout = 'tour'
-            this.id = item.tour.toString()
-            this.tour = item.tour.toString()
-            this.permalink = `/tours/${item.tour.toString()}/`
-            this.hidden = item.hidden
-            this.title = item.title
-            this.subtitle = item.subtitle || ''
-            this.intro = item.intro
-            this.summary = item.summary || ''
-            this.length = item.length
-            this.tourlength = item.length
-            this.imgasset = item.imgasset.fields.file.url
-            this.imgpath = item.imgasset.fields.file.fileName
-
-            if (item.dates) {
-                this.tourdate = item.dates[0]
-            } else {
-                this.tourdate = 'по заказу'
-            }
-
-            if (item.prices) {
-                this.prices = deMd(item.prices)
-            } else {
-                this.prices = ['уточняйте при заказе']
-            }
-
-            if (item.blueprint) {
-                this.blueprint = deMd(item.blueprint)
-            } else {
-                this.blueprint = []
-            }
-
-            if (item.includes) {
-                this.includes = deMd(item.includes)
-            } else {
-                this.includes = []
-            }
-
-            if (item.additionalFees) {
-                this.additionalFees = deMd(item.additionalFees)
-            } else {
-                this.additionalFees = []
-            }
-
-            if (item.willLearn) {
-                this.willLearn = deMd(item.willLearn)
-            } else {
-                this.willLearn = []
-            }
-
-            if (item.details) {
-                this.details = item.details.split(' \n\n ')
-            } else {
-                this.details = []
-            }
-        }
-        // }}}
-    }
-
     client.getEntries({
         'content_type': 'tour'
     })
         .then((entries) => {
             for (const item of entries.items) {
-                const tourItem = new Tour(item.fields)
+                const tourItem = parseTour(item.fields)
                 entriesCount += 1
                 saveCollection(tourItem, '_tours')
                 toursCatalogue[tourItem.id] = tourItem
@@ -117,7 +117,6 @@ function fetchTours() {
         })
             .then(() => {
                 const filename = './_data/tours.json'
-
                 assert.equal(entriesCount, Object.keys(toursCatalogue).length)
                 fs.writeFile(filename, JSON.stringify(toursCatalogue), 'utf8', function (err) {
                     if (err) { throw err }
@@ -206,7 +205,7 @@ function fetchTestim() {
 
 (() => {
     const args = process.argv.map(stripArgDash).slice(2)
-    if (!process.env.DOCKER) { assert.notEqual(process.cwd().indexOf('turoboz'), -1) } 
+    if (!process.env.DOCKER) { assert.notEqual(process.cwd().indexOf('turoboz'), -1) }
     if (args) {
         args.forEach(function (arg) {
             switch (arg) {
