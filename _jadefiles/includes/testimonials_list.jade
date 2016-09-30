@@ -9,7 +9,7 @@ mixin Testimonial(tAuthor, tDate, tQuote)
                 | {% for p in #{tQuote} %}
                 p.testimonial__text
                     :markdown-it
-                        | {{ p }}
+                        {{ p }}
                 | {% endfor %}
 
             //-- /text }}}
