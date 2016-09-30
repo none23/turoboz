@@ -130,19 +130,18 @@ function fetchNews() {
     var newsCatalogue = {}
     var entriesCount = 0
 
-    class Newspost {
+    class parseNewspost {
         // {{{
-        constructor(item) {
-            this.layout = 'post'
-            this.id = item.id.toString()
-            this.post = item.id.toString()
-            this.permalink = `/news/${item.id.toString()}/`
-            this.title = item.title
-            this.summary = item.summary
-            this.imgasset = item.image.fields.file.url
-            this.image = item.image.fields.file.fileName
-            this.body = item.content
-        }
+        var newTour = []
+        newTour.layout = 'post'
+        newTour.id = item.id.toString()
+        newTour.post = item.id.toString()
+        newTour.permalink = `/news/${item.id.toString()}/`
+        newTour.title = item.title
+        newTour.summary = item.summary
+        newTour.imgasset = item.image.fields.file.url
+        newTour.image = item.image.fields.file.fileName
+        newTour.body = item.content
         // }}}
     }
 
