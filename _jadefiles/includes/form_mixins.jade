@@ -1,0 +1,128 @@
+// form fields {{{
+mixin formNext()
+    input.hidden_field(
+        name = '_next'
+        type = 'hidden'
+        value = '#'
+    )
+
+mixin formSubject(fieldId, fieldValue)
+    input.hidden_field(
+        id = fieldId
+        name = '_subject'
+        type = 'hidden'
+        value = fieldValue
+    )
+
+mixin formName(fieldId)
+    input.form__field(
+        id = fieldId
+        name = 'Name'
+        title = 'Имя'
+        type = 'text'
+        pattern = ".{2,}"
+        placeholder = 'Как к Вам обращаться?'
+        required
+    )
+
+mixin formPhone(fieldId)
+    input.form__field(
+        id = fieldId
+        name = 'Phone'
+        title = 'Телефонный номер'
+        type = 'tel'
+        pattern = '[0-9+-/s)(]{5,}'
+        placeholder = 'Ваш номер телефона'
+        required
+    )
+
+mixin formMail(fieldId) 
+        input.form__field(
+            id = fieldId
+            name = 'Email'
+            title = "Электронная почта"
+            type = "email"
+            pattern = ".*"
+            placeholder = "example@mail.com"
+        )
+
+mixin formTextarea(fieldId, fieldTitle)
+        textarea.form__field.form__field--large(
+            id = fieldId
+            title = fieldTitle
+            name=fieldTitle
+            minlength=8
+            required
+        )
+// }}}
+// form {{{
+mixin FormBody(formId, ...formClasses)
+    form(
+        id = formId
+        class = formClasses
+        action = "https://formspree.io/{{ site.email }}"
+        method = 'POST'
+    )
+        block
+
+// }}}
+
+mixin CallBackForm()
+    +FormBody('call_back_form')
+        +formNext()
+        +formSubject('call_back_form__subject', 'Заказ звонка')
+        +formName('call_back_form__name')
+        +formPhone('call_back_form__phone')
+
+        button#call_back_form__cancel_button.call_back_form__toggle(type = 'button') Отмена
+        button#call_back_form__button.form__button(type = 'submit') Заказать звонок
+
+mixin OrderForm()
+    +FormBody('order_form', 'order_form', 'form')
+        +formNext()
+        +formSubject('order_form__subject', 'Order: {{ page.url }}')
+        .form__input_group
+            label.form__input_label(for = 'order_form__name') Ваше имя
+            +formName('order_form__name')
+        .form__input_group
+            label.form__input_label(for = 'order_form__mail') Ваш email
+            +formMail('order_form__mail')
+        .form__input_group
+            label.form__input_label(for = 'order_form__phone') Ваш номер телефона
+            +formPhone('order_form__phone', true)
+        button#order_form__button.form__button(type='submit') Заказать
+
+
+mixin ReviewForm()
+    +FormBody('review_form', 'review_form', 'form')
+        +formNext()
+        +formSubject('review_form__subject', 'Отзыв')
+        .form__input_group
+            label.form__input_label(for='review_form__name') Ваше имя
+            +formName('review_form__name')
+        .form__input_group
+            label.form__input_label(for='review_form__mail') Ваш email
+            +formMail('review_form__mail')
+        .form__input_group
+            label.form__input_label(for='review_form__question') Ваш отзыв
+            +formTextarea('review_form__question','Review')
+        button#review_form__button.form__button(type='submit')
+           | Отправить отзыв
+
+mixin ContactForm()
+    +FormBody('contact_form', 'contact_form', 'form')
+        +formSubject('contact_form__subject', 'Вопрос')
+        .form__input_group
+            label.form__input_label(for='contact_form__name')
+                | Как к Вам обращаться?
+            +formName('contact_form__name')
+        .form__input_group
+            label.form__input_label(for='contant_form__mail')
+                | Ваш email
+            +formMail('contant_form__mail')
+        .form__input_group
+            label.form__input_label(for='contact_form__question')
+                | Ваш вопрос
+            +formTextarea('contact_form__question', 'Question')
+        button#contact_form__button.form__button(type='submit')
+           | Отправить сообщение

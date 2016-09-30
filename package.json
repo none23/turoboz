@@ -23,6 +23,7 @@
     "jade-babel": "^5.0.0",
     "jade-cli": "latest",
     "js-yaml": "^3.6.1",
+    "jstransformer-markdown-it": "^1.0.0",
     "node-fetch": "^1.6.3",
     "normalize.css": "^4.1.1",
     "postcss": "^5.1.2",
@@ -30,7 +31,7 @@
     "request": "^2.75.0",
     "request-promise": "^4.1.1",
     "stylus": "^0.54.5",
-    "uglify-js": "latest"
+    "uglify-js": "^2.7.3"
   },
   "devDependencies": {
     "browser-sync": "^2.14.0",
@@ -46,7 +47,7 @@
   },
   "scripts": {
     "build": "concurrently 'npm run build:jade' 'npm run build:styles' 'npm run build:scripts'",
-        "prebuild": "concurrently 'npm run fetch:vk' 'npm run fetch:contentful'",
+        "prebuild": "npm run fetch",
         "build:jade": "concurrently 'npm run build:jade:includes' 'npm run build:jade:layouts'",
             "build:jade:layouts": "jade -o _layouts/ _jadefiles/layouts/*.jade",
             "build:jade:includes": "jade -o _includes/ _jadefiles/includes/*.jade",
@@ -72,7 +73,6 @@
             "watch:styles:prefix": "watch 'npm run build:styles:prefix' _styles/unprefixed",
         "watch:scripts": "watch 'npm run build:scripts' _scripts/es6 ",
         "watch:browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open --no-notify",
-
     "fetch": "npm run fetch:contentful && npm run fetch:vk",
         "fetch:contentful": "npm run fetch:tours && npm run fetch:news && npm run fetch:testim",
         "fetch:vk": "node fetch-vk.js",

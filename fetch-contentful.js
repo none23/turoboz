@@ -37,21 +37,6 @@ function saveCollection(objectToSave, collectionDir) {
     })
 }
 
-function parseNews(itemfields) {
-// {{{
-var newNews = {}
-newNews.layout = 'post'
-newNews.id = itemfields.id.toString()
-newNews.post = itemfields.id.toString()
-newNews.permalink = `/news/${itemfields.id.toString()}/`
-newNews.title = itemfields.title
-newNews.summary = itemfields.summary
-newNews.imgasset = itemfields.image.fields.file.url
-newNews.image = itemfields.image.fields.file.fileName
-newNews.body = itemfields.content
-return newNews
-// }}}
-}
 // }}}
 // Fetch tours {{{
 function fetchTours() {
@@ -66,6 +51,7 @@ function fetchTours() {
                 newTour.layout = 'tour'
                 newTour.id = item.fields.tour.toString()
                 newTour.tour = item.fields.tour.toString()
+                newTour.tags = item.fields.tags
                 newTour.permalink = `/tours/${item.fields.tour.toString()}/`
                 newTour.hidden = item.fields.hidden
                 newTour.title = item.fields.title
@@ -77,24 +63,16 @@ function fetchTours() {
                 newTour.imgasset = item.fields.imgasset.fields.file.url
                 newTour.imgpath = item.fields.imgasset.fields.file.fileName
 
-                newTour.tourdate = 'по заказу'
-                newTour.prices = ['уточняйте при заказе']
-                newTour.blueprint = []
-                newTour.includes = []
-                newTour.additionalFees = []
-                newTour.willLearn = []
-                newTour.details = []
+                newTour.tourdate = item.fields.dates ? item.fields.dates[0] : 'по заказу'
+                newTour.prices = item.fields.prices ? deMd(item.fields.prices) : ['уточняйте при заказе']
+                newTour.blueprint = item.fields.blueprint ? deMd(item.fields.blueprint) : []
+                newTour.includes = item.fields.includes ? deMd(item.fields.includes) : []
+                newTour.additionalFees = item.fields.additionalFees ? deMd(item.fields.additionalFees) : []
+                newTour.willLearn = item.fields.willLearn ? deMd(item.fields.willLearn) : []
+                newTour.details = item.fields.details ? item.fields.details.split(' \n\n ') : []
 
-                if (item.fields.dates) { newTour.tourdate = item.fields.dates[0] }
-                if (item.fields.prices) { newTour.prices = deMd(item.fields.prices) }
-                if (item.fields.blueprint) { newTour.blueprint = deMd(item.fields.blueprint) }
-                if (item.fields.includes) { newTour.includes = deMd(item.fields.includes) }
-                if (item.fields.additionalFees) { newTour.additionalFees = deMd(item.fields.additionalFees) }
-                if (item.fields.willLearn) { newTour.willLearn = deMd(item.fields.willLearn) }
-                if (item.fields.details) { newTour.details = item.fields.details.split(' \n\n ') }
-
-                saveCollection(newTour, '_tours')
                 entriesCount += 1
+                saveCollection(newTour, '_tours')
                 toursCatalogue[newTour.id] = newTour
             }
         })
@@ -119,10 +97,20 @@ function fetchNews() {
     })
         .then((entries) => {
             for (const item of entries.items) {
-                const newsItem = parseNews(item.fields)
+                var newNews = {}
+                newNews.layout = 'post'
+                newNews.id = item.fields.id.toString()
+                newNews.post = item.fields.id.toString()
+                newNews.permalink = `/news/${item.fields.id.toString()}/`
+                newNews.title = item.fields.title
+                newNews.summary = item.fields.summary
+                newNews.imgasset = item.fields.image.fields.file.url
+                newNews.image = item.fields.image.fields.file.fileName
+                newNews.body = item.fields.content
+
                 entriesCount += 1
-                saveCollection(newsItem, '_news')
-                newsCatalogue[newsItem.id] = newsItem
+                saveCollection(newNews, '_news')
+                newsCatalogue[newNews.id] = newNews
             }
         })
             .then(() => {
@@ -140,24 +128,18 @@ function fetchTestim() {
     var testimCatalogue = []
     var entriesCount = 0
 
-    class Testim {
-        // {{{
-        constructor(item) {
-            this.date = item.date
-            this.author = item.author
-            this.message = item.message
-        }
-        // }}}
-    }
-
     client.getEntries({
         'content_type': 'testimonial'
     })
         .then((entries) => {
             for (const item of entries.items) {
-                const testimItem = new Testim(item.fields)
+                var newTestim = {}
+                newTestim.date = item.fields.date
+                newTestim.author = item.fields.author
+                newTestim.message = item.fields.message
+
                 entriesCount += 1
-                testimCatalogue.push(testimItem)
+                testimCatalogue.push(newTestim)
             }
         })
             .then(() => {

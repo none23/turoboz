@@ -231,7 +231,7 @@ function iSendAJAX(event, form, sendButton, successMsg) {
     var formData, request;
 
     request = new XMLHttpRequest();
-    request.open('POST', '//formspree.io/n.anisimov.23@gmail.com', true);
+    request.open('POST', '//formspree.io/info@turoboz.com', true);
     request.setRequestHeader('accept', 'application/json');
     formData = new FormData(form);
     request.send(formData);
