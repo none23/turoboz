@@ -215,6 +215,7 @@ function enableForm(form_prefix, success_msg) {
         if (TheForm) {
             TheForm.addEventListener('submit', function (event) {
                 event.preventDefault();
+                event.stopPropagation();
                 return iSendAJAX(event, TheForm, sendForm, success_msg);
             });
         }

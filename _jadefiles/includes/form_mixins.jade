@@ -17,7 +17,7 @@ mixin formSubject(fieldId, fieldValue)
 mixin formName(fieldId)
     input.form__field(
         id = fieldId
-        name = 'Name'
+        name = 'Имя'
         title = 'Имя'
         type = 'text'
         pattern = ".{2,}"
@@ -28,7 +28,7 @@ mixin formName(fieldId)
 mixin formPhone(fieldId)
     input.form__field(
         id = fieldId
-        name = 'Phone'
+        name = 'Tel'
         title = 'Телефонный номер'
         type = 'tel'
         pattern = '[0-9+-/s)(]{5,}'
@@ -36,7 +36,7 @@ mixin formPhone(fieldId)
         required
     )
 
-mixin formMail(fieldId) 
+mixin formMail(fieldId)
         input.form__field(
             id = fieldId
             name = 'Email'
@@ -80,7 +80,7 @@ mixin CallBackForm()
 mixin OrderForm()
     +FormBody('order_form', 'order_form', 'form')
         +formNext()
-        +formSubject('order_form__subject', 'Order: {{ page.url }}')
+        +formSubject('order_form__subject', 'Заказ {{ page.url }}')
         .form__input_group
             label.form__input_label(for = 'order_form__name') Ваше имя
             +formName('order_form__name')

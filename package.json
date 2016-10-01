@@ -36,12 +36,7 @@
   "devDependencies": {
     "browser-sync": "^2.14.0",
     "contentful-management": "^1.1.14",
-    "eslint": "^3.5.0",
-    "eslint-config-airbnb": "^11.0.0",
-    "eslint-plugin-import": "^1.14.0",
-    "eslint-plugin-jsx-a11y": "^2.2.1",
-    "eslint-plugin-react": "^6.2.0",
-    "html-validator": "^2.0.1",
+    "standard": "^8.3.0",
     "html-validator-cli": "^2.0.0",
     "watch": "latest"
   },

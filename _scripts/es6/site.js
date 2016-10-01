@@ -42,7 +42,7 @@ function changePage(url) {
                 ],
                 100
             ).onfinish = function() {
-                changePageContent(); 
+                changePageContent();
                 newPage.animate([
                     {opacity: 0},
                     {opacity: 1}
@@ -92,7 +92,6 @@ function changePage(url) {
                     window.ga('send', 'pageview');
                 }
                 return;
-
             }
         });
 
@@ -101,8 +100,6 @@ function changePage(url) {
                 changePage(window.location.href);
             };
         }, 500);
-
-
     }
 
 })();
@@ -136,7 +133,7 @@ function switchActiveNavLink(targetLink) {
 
 // /activeNavLinkTransition}}}
 // /page transitions }}}
-// service worker {{{
+// (off) service worker {{{
 // (function() {
 //     if ('serviceWorker' in navigator){
 //         navigator.serviceWorker.register('/serviceworker.js');
@@ -229,6 +226,7 @@ function enableForm(form_prefix, success_msg) {
         if (TheForm) {
             TheForm.addEventListener('submit', function(event) {
                 event.preventDefault();
+                event.stopPropagation();
                 return iSendAJAX(event, TheForm, sendForm, success_msg);
             });
         }

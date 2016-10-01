@@ -1,9 +1,9 @@
 // mixins {{{
 AltBG()
     //--{{{
-    background-image: url(/img/card.png) 
+    background-image: url(/img/card.png)
     background-color: $turbo_lightblue
-    background-repeat: repeat 
+    background-repeat: repeat
     background-blend-mode: soft-light
     //--}}}
 
@@ -36,8 +36,8 @@ Bullets()
         bottom: 75%
         right: calc(100% + 0.6rem)
         background: transparent
-        border-top: 0.32rem solid transparent 
-        border-bottom: 0.32rem solid transparent 
+        border-top: 0.32rem solid transparent
+        border-bottom: 0.32rem solid transparent
         border-left: 0.5rem solid $turbo_mixblue
         transition: all 0.2s ease-in-out
         transform: translateX(10%)
@@ -47,7 +47,7 @@ Bullets()
         transform: translateX(0%)
     //--}}}
 
-textLink(Color=$turbo_blue, Flag=false) 
+textLink(Color=$turbo_blue, Flag=false)
     //--{{{
     color: Color
     line-height: 1
@@ -98,7 +98,7 @@ $turbo_darkblue = hsl(198, 53%, 32%)
 $turbo_blue = hsl(198, 53%, 43%)
 $turbo_lightblue = hsl(198, 53%, 75%)
 $turbo_verylightblue = hsl(198, 13%, 92%)
-$turbo_mixblue = mix($turbo_lightblue, $turbo_blue) 
+$turbo_mixblue = mix($turbo_lightblue, $turbo_blue)
 $turbo_gray = hsl(30, 1%, 44%)
 $shadowy = hsl(0, 0, 20%, 0.4)
 $body_fg = $turbo_darkbrown
@@ -298,7 +298,7 @@ body
     font-size: 16px
     font-family: $the_font
     font-weight: 300
-    line-height: 1.5 
+    line-height: 1.5
 
 h1
 h2
@@ -313,7 +313,7 @@ th
 
 p
 li
-a 
+a
     font-size: 1rem
 
 input
@@ -329,16 +329,16 @@ textarea
 // site_header {{{
 // =========================================================================
 #site_header
-    height: $site_header_height 
+    height: $site_header_height
     flex: 0 0 @height
     position: relative
     display: flex
     flex-direction: row
     justify-content: space-between
     align-items: flex-start
-    background-image: url(/img/noise.png) 
+    background-image: url(/img/noise.png)
     background-blend-mode: lighten
-    background-color: $site_nav_bg 
+    background-color: $site_nav_bg
     background-repeat: repeat
     box-shadow: 0 0 0.75rem -0.25rem $shadowy
     border-bottom: 0.063rem solid $turbo_lightblue
@@ -386,12 +386,12 @@ textarea
     position: absolute
     height: 100%
     width: 100%
-    
+
 // /logo }}}
 // contacts_box {{{
 // ------------------------------------------------------------------------
 #site_contacts_wrap
-    flex: 0 0 $site_header_contacts_width 
+    flex: 0 0 $site_header_contacts_width
     position: relative
     height: $site_header_height - 1.5rem
     margin: 0.5rem 1.5rem 0.5rem 1rem
@@ -450,7 +450,7 @@ textarea
     position: absolute
     top: 100%
     right: 0
-    transform: rotateY(90deg) 
+    transform: rotateY(90deg)
     transform-origin: 100% 0
     transition: transform 0.2s ease-out
     z-index: 1002
@@ -496,7 +496,7 @@ textarea
         border-left: $border
         border-radius: 0
         -webkit-appearance: none
-        margin: 0 
+        margin: 0
         padding: 1.1rem 2rem 1.1rem 1rem
 
         &:hover
@@ -519,7 +519,7 @@ textarea
     white-space: nowrap
     color: $site_nav_link_fg
     transition: all 0.1s ease-in-out
-    
+
     &:active
     &.active
     &.active:hover
@@ -531,10 +531,10 @@ textarea
     &:focus
         color: $site_nav_link_hover_fg
         background: $site_nav_link_hover_bg
-        
+
 
 // desktop_nav {{{
-#desktop_nav 
+#desktop_nav
     flex: 1 0 20rem
     height: 100%
     display: flex
@@ -661,7 +661,7 @@ textarea
 @media(max-width: 349px)
     #site_logo
         flex 0 0 60vw
-        
+
 // /site_nav }}}
 // /site_header }}}
 // site_footer {{{
@@ -674,24 +674,24 @@ textarea
     justify-content: space-between
     align-items: flex-end
     flex-wrap: wrap
-    background-image: url(/img/blue.png) 
-    background-repeat: repeat 
+    background-image: url(/img/blue.png)
+    background-repeat: repeat
     background-blend-mode: color-dodge
-    background-color: $site_footer_bg 
-    color: $site_footer_fg 
+    background-color: $site_footer_bg
+    color: $site_footer_fg
     margin-top: 2rem
-    box-shadow: 0 0 0.75rem -0.063rem $shadowy 
+    box-shadow: 0 0 0.75rem -0.063rem $shadowy
     z-index: 700
 
 .f__contact,
 .f__corner_box
-    margin: 1rem 
+    margin: 1rem
     flex 1 0 13.5rem
 
 .f__contact
     text-align: center
     margin: 1rem 0.5rem
-    color: $site_footer_fg 
+    color: $site_footer_fg
     fill: @color
 
     &:hover,
@@ -710,7 +710,7 @@ textarea
 
 #f__developer,
 #f__developer__link
-    font-size: 0.7rem 
+    font-size: 0.7rem
 
 #f__developer__link
     color: $turbo_blue
@@ -736,7 +736,7 @@ textarea
 .page_content_wrap
     height: auto
     flex: 1 0 1
-    
+
 .page_heading
 .section_header
     font-size: 1.4rem
@@ -774,7 +774,7 @@ textarea
     background: $turbo_blue
     border-radius: $border-radius
     color: white
-    left: 0 
+    left: 0
     right: 0
     margin: 0 auto
     padding: 1rem
@@ -786,7 +786,7 @@ textarea
     width: 90%
     border: $border
     border-radius: $border-radius
-    margin: 1rem 0 
+    margin: 1rem 0
     background: white
     padding: 2% 5% 0
 
@@ -798,7 +798,7 @@ textarea
 
     .form__input_group &
         width: (100% - 2rem)
-        margin: 0.5rem 0 1rem 
+        margin: 0.5rem 0 1rem
 
 .form__field--large
     height: 7rem
@@ -807,7 +807,7 @@ textarea
     display: nane
 
 .form__input_label
-    margin: 0 
+    margin: 0
 
 .form__button--success
 .form__button--loading
@@ -885,7 +885,7 @@ textarea
 // first_glance {{{
 // ------------------------------------------------------------------------
 .first_glance
-    width: 100% 
+    width: 100%
     display: flex
     flex-direction: row
     justify-content: space-between
@@ -908,7 +908,7 @@ textarea
     background-repeat: no-repeat
 
 .main__heading__wrap
-    flex: 0 2 38rem 
+    flex: 0 2 38rem
     background: $main_heading_bg
     margin: 2rem
 
@@ -918,7 +918,7 @@ textarea
 
     @media(max-width: 739px)
         font-size: 1.4rem
-    
+
 
 // /heading }}}
 // news {{{
@@ -1075,7 +1075,7 @@ textarea
     font-size: 1.2rem
 
 .post__summary
-    padding: 0 1rem 1rem 
+    padding: 0 1rem 1rem
     font-size: 1rem
 
 // /blog }}}
@@ -1115,7 +1115,7 @@ textarea
     overflow: hidden
     flex: 0 1 20rem
     margin: -1rem -1rem 1rem
-    
+
     @media(max-width: 1000px)
         flex-basis: 17rem
 
@@ -1189,9 +1189,9 @@ textarea
     flex: 0 1 25vw
     min-width: 15rem
     margin-bottom: -2rem
-    background-image: url(/img/card.png) 
+    background-image: url(/img/card.png)
     background-blend-mode: lighten
-    background-repeat: repeat 
+    background-repeat: repeat
     background-color: snow
     box-shadow: 0 0 0.75rem -0.25rem $shadowy
 
@@ -1202,7 +1202,7 @@ textarea
     display: flex
     flex-direction: column
     justify-content: flex-start
-    margin: 0.5rem 0 
+    margin: 0.5rem 0
 
 .tours_nav__link
     text-align: right
@@ -1418,7 +1418,7 @@ textarea
 
     @media(max-width: 500px)
         font-size: 0.8rem
-    
+
 
 .full_tour__breadcrumb--top
     order:-1
@@ -1444,7 +1444,7 @@ textarea
 .full_post__breadcrumb
     transition: all 0.3s ease-in-out
     &:hover
-    &:focus 
+    &:focus
         .full_tour__breadcrumb__icon__svg
             fill: $turbo_brown
 
@@ -1543,7 +1543,7 @@ textarea
 
 .blogpost__image
     height: 100%
-    width: auto 
+    width: auto
 
 .blogpost__body
     margin: 2rem
@@ -1606,7 +1606,7 @@ textarea
         float: none
 
 .full_post__content__wrap
-    li 
+    li
         Bullets()
 
 // /full_tour/post }}}
@@ -1678,7 +1678,7 @@ textarea
 
 .services__payments
     column-count: 2
-    
+
 .services__payment
     break-inside: avoid
 
