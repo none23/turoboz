@@ -1,11 +1,4 @@
 // form fields {{{
-mixin formNext()
-    input.hidden_field(
-        name = '_next'
-        type = 'hidden'
-        value = '#'
-    )
-
 mixin formSubject(fieldId, fieldValue)
     input.hidden_field(
         id = fieldId
@@ -17,7 +10,7 @@ mixin formSubject(fieldId, fieldValue)
 mixin formName(fieldId)
     input.form__field(
         id = fieldId
-        name = 'Имя'
+        name = 'Name'
         title = 'Имя'
         type = 'text'
         pattern = ".{2,}"
@@ -56,20 +49,19 @@ mixin formTextarea(fieldId, fieldTitle)
         )
 // }}}
 // form {{{
-mixin FormBody(formId, ...formClasses)
+mixin FormBody(formId, formSubject, ...formClasses)
     form(
-        id = formId
+        action = formSubject
         class = formClasses
-        action = "https://formspree.io/{{ site.email }}"
+        id = formId
         method = 'POST'
-    )
+        )
         block
 
 // }}}
 
 mixin CallBackForm()
-    +FormBody('call_back_form')
-        +formNext()
+    +FormBody('call_back_form', `mailto:{{ 'Заказ звонка' | uri_escape }}`)
         +formSubject('call_back_form__subject', 'Заказ звонка')
         +formName('call_back_form__name')
         +formPhone('call_back_form__phone')
@@ -78,8 +70,7 @@ mixin CallBackForm()
         button#call_back_form__button.form__button(type = 'submit') Заказать звонок
 
 mixin OrderForm()
-    +FormBody('order_form', 'order_form', 'form')
-        +formNext()
+    +FormBody('order_form', `mailto:{{  page.title | prepend: 'Заказ ' | uri_escape }}`, 'order_form', 'form')
         +formSubject('order_form__subject', 'Заказ {{ page.url }}')
         .form__input_group
             label.form__input_label(for = 'order_form__name') Ваше имя
@@ -94,8 +85,7 @@ mixin OrderForm()
 
 
 mixin ReviewForm()
-    +FormBody('review_form', 'review_form', 'form')
-        +formNext()
+    +FormBody('review_form', `mailto:{{ 'Отзыв' | uri_escape }}`, 'review_form', 'form')
         +formSubject('review_form__subject', 'Отзыв')
         .form__input_group
             label.form__input_label(for='review_form__name') Ваше имя
@@ -110,7 +100,7 @@ mixin ReviewForm()
            | Отправить отзыв
 
 mixin ContactForm()
-    +FormBody('contact_form', 'contact_form', 'form')
+    +FormBody('contact_form', `mailto:{{ 'Вопрос' | uri_escape }}`, 'contact_form', 'form')
         +formSubject('contact_form__subject', 'Вопрос')
         .form__input_group
             label.form__input_label(for='contact_form__name')
