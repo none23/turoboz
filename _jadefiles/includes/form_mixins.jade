@@ -61,7 +61,7 @@ mixin FormBody(formId, formSubject, ...formClasses)
 // }}}
 
 mixin CallBackForm()
-    +FormBody('call_back_form', `mailto:{{ 'Заказ звонка' | uri_escape }}`)
+    +FormBody('call_back_form', `mailto:info@turoboz.com?Subject={{ 'Заказ звонка' | uri_escape }}`)
         +formSubject('call_back_form__subject', 'Заказ звонка')
         +formName('call_back_form__name')
         +formPhone('call_back_form__phone')
@@ -70,7 +70,7 @@ mixin CallBackForm()
         button#call_back_form__button.form__button(type = 'submit') Заказать звонок
 
 mixin OrderForm()
-    +FormBody('order_form', `mailto:{{  page.title | prepend: 'Заказ ' | uri_escape }}`, 'order_form', 'form')
+    +FormBody('order_form', `mailto:info@turoboz.com?Subject={{  page.title | prepend: 'Заказ ' | uri_escape }}`, 'order_form', 'form')
         +formSubject('order_form__subject', 'Заказ {{ page.url }}')
         .form__input_group
             label.form__input_label(for = 'order_form__name') Ваше имя
@@ -85,7 +85,7 @@ mixin OrderForm()
 
 
 mixin ReviewForm()
-    +FormBody('review_form', `mailto:{{ 'Отзыв' | uri_escape }}`, 'review_form', 'form')
+    +FormBody('review_form', `mailto:info@turoboz.com?Subject={{ 'Отзыв' | uri_escape }}`, 'review_form', 'form')
         +formSubject('review_form__subject', 'Отзыв')
         .form__input_group
             label.form__input_label(for='review_form__name') Ваше имя
@@ -100,7 +100,7 @@ mixin ReviewForm()
            | Отправить отзыв
 
 mixin ContactForm()
-    +FormBody('contact_form', `mailto:{{ 'Вопрос' | uri_escape }}`, 'contact_form', 'form')
+    +FormBody('contact_form', `mailto:info@turoboz.com?Subject={{ 'Вопрос' | uri_escape }}`, 'contact_form', 'form')
         +formSubject('contact_form__subject', 'Вопрос')
         .form__input_group
             label.form__input_label(for='contact_form__name')
