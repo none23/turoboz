@@ -1,8 +1,13 @@
+/index/o-nas/0-2/ https://www.turoboz.com/about/
+/index/0-3/ https://www.turoboz.com/contact/
 /index/o-nas/0-2.html https://www.turoboz.com/about/
 /index/0-3.html https://www.turoboz.com/contact/
 /gb.html https://www.turoboz.com/testimonials/
+/gb/ https://www.turoboz.com/testimonials/
 /index/0-6.html https://www.turoboz.com/services/
+/index/0-6/ https://www.turoboz.com/services/
 /index.html https://www.turoboz.com/
+/ https://www.turoboz.com/
 /board/ https://www.turoboz.com/tours/
 /board/index.html https://www.turoboz.com/tours/
 /board/ehkskursii_dlja_shkolnikov/1.html https://www.turoboz.com/tours/school/
@@ -13,7 +18,6 @@
 /board/prazdnichnye_tury/4.html https://www.turoboz.com/tours/holiday/
 /board/tury_vykhodnogo_dnja/6.html https://www.turoboz.com/tours/weekend/
 /board/1/2.html https://www.turoboz.com/tours/perm/
-/ https://www.turoboz.com/
 /board/*/*/*.html https://www.turoboz.com/tours/
 /board/*.html https://www.turoboz.com/tours/
 /news/*.html https://www.turoboz.com/
