@@ -26,6 +26,7 @@
 /board/tury_vykhodnogo_dnja/6/ https://www.turoboz.com/tours/weekend/
 /board/1/2.html https://www.turoboz.com/tours/perm/
 /board/1/2/ https://www.turoboz.com/tours/perm/
+/board/1/2 https://www.turoboz.com/tours/perm/
 /board/*/*/*.html https://www.turoboz.com/tours/
 /board/*.html https://www.turoboz.com/tours/
 /news/*.html https://www.turoboz.com/
@@ -36,3 +37,8 @@
 /news/*/ https://www.turoboz.com/
 /news/*/*/ https://www.turoboz.com/
 /news/*/*/*/ https://www.turoboz.com/
+/board/*/*/* https://www.turoboz.com/tours/
+/board/* https://www.turoboz.com/tours/
+/news/* https://www.turoboz.com/
+/news/*/* https://www.turoboz.com/
+/news/*/*/* https://www.turoboz.com/
