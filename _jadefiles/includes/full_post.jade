@@ -18,14 +18,15 @@ include ../mixins.jade
     .full_post__body
         .full_post__image__wrap
             img.full_post__image(srcset="/img/posts430/{{ page.image }} 1x, /img/posts800/{{ page.image }} 2x", src="/img/posts430/{{ page.image }}", alt="{{ page.title | smartify }}")
-        | {{ content }}
+        :markdown-it
+            | {{ page.content }}
     .full_post__breadcrumbs--bottom
         | {% unless page.previous == nil %}
         a.full_post__breadcrumb(href='{{ page.previous.url }}')
             .full_post__breadcrumb__icon
                 +iconArrowBack('full_post__breadcrumb__icon__svg')
             .full_tour__breadcrumb__label
-                | Предыдущая новость 
+                | Предыдущая новость
         | {% endunless %}
         | {% unless page.next == nil %}
         a.full_post__breadcrumb(href='{{ page.next.url }}')
