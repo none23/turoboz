@@ -42,3 +42,4 @@
 /news/* https://www.turoboz.com/
 /news/*/* https://www.turoboz.com/
 /news/*/*/* https://www.turoboz.com/
+/news/ https://www.turoboz.com/
