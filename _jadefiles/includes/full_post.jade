@@ -18,7 +18,7 @@ include ../mixins.jade
     .full_post__body
         .full_post__image__wrap
             img.full_post__image(srcset="/img/posts430/{{ page.image }} 1x, /img/posts800/{{ page.image }} 2x", src="/img/posts430/{{ page.image }}", alt="{{ page.title | smartify }}")
-        {{ page.body | markdownify}}
+        | {{ page.body | markdownify }}
     .full_post__breadcrumbs--bottom
         | {% unless page.previous == nil %}
         a.full_post__breadcrumb(href='{{ page.previous.url }}')
@@ -34,4 +34,3 @@ include ../mixins.jade
             .full_post__breadcrumb__icon
                 +iconArrowForward('full_post__breadcrumb__icon__svg')
         | {% endunless %}
-

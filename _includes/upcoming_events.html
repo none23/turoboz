@@ -5,10 +5,13 @@
         {% if upcoming_counter > 3 %}
             {% break %}
         {% else %}
-            {% assign upcoming_counter = upcoming_counter | plus: 1 %}{% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}<div class="tour__wrap"><a tabindex="1" href="{{ tour.permalink }}" class="tour__card"><div class="tour__image__wrap"><img sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px" srcset="/img/none.jpg 1w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours600/{{ tour.imgpath }} 600w" src="/img/tours300/{{ tour.imgpath }}" alt="{{ tour.title | smartify }}" class="tour__image"/></div><div class="tour__date">{% assign unixdate = #{tour}.tourdate | round | minus:25569 | times:86400 %}
+            {% assign upcoming_counter = upcoming_counter | plus: 1 %}{% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}<div class="tour__wrap"><a tabindex="1" href="{{ tour.permalink }}" class="tour__card"><div class="tour__image__wrap"><img sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px" srcset="/img/none.jpg 1w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours600/{{ tour.imgpath }} 600w" src="/img/tours300/{{ tour.imgpath }}" alt="{{ tour.title | smartify }}" class="tour__image"/></div><div class="tour__date">{% if tour.tourdate == '00.00.0000' %}
+по заказу
+{% else %}
+{% assign unixdate = tour.tourdate %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
-{% case m %} 
+{% case m %}
 {% when '1' %}января
 {% when '2' %}февраля
 {% when '3' %}марта
@@ -20,9 +23,10 @@
 {% when '9' %}сентября
 {% when '10' %}октября
 {% when '11' %}ноября
-{% when '12' %}декабя
-{% endcase %} 
-{{ unixdate | date: "%Y" }}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title">{{ tour.title }}
+{% when '12' %}декабря
+{% endcase %}
+{{ unixdate | date: "%Y" }}
+{% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title">{{ tour.title }}
 {{ tour.subtitle }}</h3><div class="tour__link">Подробнее</div></a></div>        {% endif %}
     {% endif %}
 {% endfor %}</div></section>

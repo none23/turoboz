@@ -8,9 +8,7 @@ const assert = require('assert')
 const accessToken = require('./.contentful-accessToken.json')
 const space = 'x9tc47a70skr'
 // Setup {{{
-const client = contentful.createClient({
-  accessToken,
-space})
+const client = contentful.createClient({accessToken, space})
 const deMd = (ulMd) => {
   rmMd(ulMd.replace(' *', '*')).split('\n ')
 }
@@ -65,7 +63,7 @@ function fetchTours () {
         newTour.imgasset = item.fields.imgasset.fields.file.url
         newTour.imgpath = item.fields.imgasset.fields.file.fileName
 
-        newTour.tourdate = item.fields.dates ? item.fields.dates[0] : 'по заказу'
+        newTour.tourdate = item.fields.dates ? `${item.fields.dates[0]}` : '00.00.0000'
         newTour.prices = item.fields.prices ? deMd(item.fields.prices) : ['уточняйте при заказе']
         newTour.blueprint = item.fields.blueprint ? deMd(item.fields.blueprint) : []
         newTour.includes = item.fields.includes ? deMd(item.fields.includes) : []
