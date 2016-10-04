@@ -37,7 +37,7 @@ header#site_header
     a#site_logo(href='/', tabindex = -1)
         include header_logo.jade
         | {{ site.title }}
-    a#mobile_nav_toggle(href='#')
+    a#mobile_nav_toggle.no_custom_transition(href='#')
         +iconSiteMenu()
     nav#desktop_nav
         +SiteNav()

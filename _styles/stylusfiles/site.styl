@@ -126,6 +126,7 @@ $modal_form_close_fg = maroon
 $modal_form_button_bg = $turbo_blue
 $modal_form_button_fg = white
 
+// /vars }}}
 // keyframes {{{
 // page_effects keyframes {{{
 @keyframes slideInLeft
@@ -222,17 +223,18 @@ $modal_form_button_fg = white
         fill: $turbo_darkbrown
     100%
         fill: $turbo_brown
+// /logo_effects keyframes }}}
 
 @keyframes form_button_submit
     0%
-        transform: scale(0)
+        transform: scale(1)
+    20%
+        transform: scale(0.9)
     80%
         transform: scale(1.1)
     100%
         transform: scale(1)
-// /logo_effects keyframes }}}
 // /keyframes }}}
-// /vars }}}
 // base {{{
 // =========================================================================
 html
@@ -804,7 +806,7 @@ textarea
     height: 7rem
 
 .hidden_field
-    display: nane
+    display: none
 
 .form__input_label
     margin: 0

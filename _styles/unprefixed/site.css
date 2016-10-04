@@ -759,7 +759,7 @@ textarea {
   height: 7rem;
 }
 .hidden_field {
-  display: nane;
+  display: none;
 }
 .form__input_label {
   margin: 0;
@@ -2439,7 +2439,10 @@ textarea {
 }
 @-moz-keyframes form_button_submit {
   0% {
-    transform: scale(0);
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.9);
   }
   80% {
     transform: scale(1.1);
@@ -2450,7 +2453,10 @@ textarea {
 }
 @-webkit-keyframes form_button_submit {
   0% {
-    transform: scale(0);
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.9);
   }
   80% {
     transform: scale(1.1);
@@ -2461,7 +2467,10 @@ textarea {
 }
 @-o-keyframes form_button_submit {
   0% {
-    transform: scale(0);
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.9);
   }
   80% {
     transform: scale(1.1);
@@ -2472,7 +2481,10 @@ textarea {
 }
 @keyframes form_button_submit {
   0% {
-    transform: scale(0);
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.9);
   }
   80% {
     transform: scale(1.1);
