@@ -1524,16 +1524,25 @@ textarea {
   padding: 1rem;
   margin: 0 1rem 1rem;
 }
+.blog__post__wrap {
+  max-height: 18rem;
+  overflow: hidden;
+}
 .blogpost__content,
 .full_post__summary {
   margin-top: 0;
+  height: 25rem;
+  max-height: 25rem;
 }
 .blogpost__image {
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
 }
 .blogpost__body {
   margin: 2rem;
+}
+.blogpost__vklink {
+  color: #3485a8;
 }
 .full_tour__intro__wrap,
 .full_tour__details__wrap,

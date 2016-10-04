@@ -16,18 +16,21 @@ include ../mixins.jade
             img.full_post__image(src="{{ page.image }}", alt="{{ page.body | smartify }}")
         .blogpost__content
             | {{ content }}
+            a.blogpost__vklink(href='{{ page.vklink }}', title='Оригинальная публикация (Вконтакте)')
+                | {{ page.vklink }}
+            //-- | Опубликовано: {{ page.vklink }}
     .full_post__breadcrumbs--bottom
         | {% unless page.previous == nil %}
         a.full_post__breadcrumb(href='{{ page.previous.url }}')
             .full_post__breadcrumb__icon
                 +iconArrowBack('full_post__breadcrumb__icon__svg')
             .full_tour__breadcrumb__label
-                | Предыдущая новость 
+                | Предыдущая запись
         | {% endunless %}
         | {% unless page.next == nil %}
         a.full_post__breadcrumb(href='{{ page.next.url }}')
             .full_tour__breadcrumb__label
-                | Следующая новость
+                | Следующая запись
             .full_post__breadcrumb__icon
                 +iconArrowForward('full_post__breadcrumb__icon__svg')
         | {% endunless %}

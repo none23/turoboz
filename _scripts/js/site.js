@@ -77,7 +77,7 @@ function changePage(url) {
           return;
         } else if (etarg.href.indexOf('mailto:') >= 0) {
           return;
-        } else if (etarg.id === 'mobile_nav_toggle') {
+        } else if (etarg.className.indexOf('no_custom_transition') >= 0) {
           return;
         }
         e.preventDefault();
@@ -184,37 +184,63 @@ function enableForm(formPrefix, successMsg, callback) {
   var theForm = document.getElementById(formId);
   var sendForm = document.getElementById(formButtonId);
   var iSendAJAX = function iSendAJAX(event, form, sendButton, successMsg) {
+    /* <temporaryhack>
+     * sendButton.className = 'form__button--loading'
+     * sendButton.textContent = 'Отправка...'
+     */ /* </temporaryhack> */
+    sendButton.textContent = successMsg;
+    sendButton.className = 'form__button--success';
+    sendButton.disabled = true;
     var request = new window.XMLHttpRequest();
-    request.open('POST', '//formspree.io/info@turoboz.com', true);
+    /*
+     * const checkStatus = () => {
+     *   if (request.status === 200) {
+     *     sendButton.textContent = successMsg
+     *     sendButton.className = 'form__button--success'
+     *     sendButton.disabled = true
+     *     if (callback) callback()
+     *   } else {
+     *     sendButton.textContent = 'Возникла ошибка при отправке. Нажмите, чтобы попробовать еще раз'
+     *     sendButton.className = 'form__button--failure'
+     *     form.addEventListener('submit', handleFallbackSubmit)
+     *   }
+     *   form.removeEventListener('submit', handleFirstSubmit)
+     * }
+     */
+    request.withCredentials = false;
+    request.open('POST', 'https://briskforms.com/go/61884eb4d90ed4de433bf106bd0aea9a', true);
     request.setRequestHeader('accept', 'application/json');
     var formData = new window.FormData(form);
+    /* <temporaryhack>
+     * request.onreadystatechange = function () {
+     *   if (request.readyState === 4) {
+     *     checkStatus()
+     *   }
+     * }
+     */
+    // request.onreadystatechange = checkStatus()
+
+    // request.onerror = checkStatus()
+    /* </temporaryhack> */
     request.send(formData);
-    sendButton.className = 'form__button--loading';
-    sendButton.textContent = 'Отправка...';
-    request.onreadystatechange = function () {
-      if (request.readyState === 4) {
-        if (request.status === 200) {
-          sendButton.textContent = successMsg;
-          sendButton.className = 'form__button--success';
-          if (callback) setTimeout(callback, 5000);
-        } else {
-          sendButton.textContent = 'Возникла ошибка при отправке. Нажмите еще раз, чтобы отправить по email';
-          sendButton.className = 'form__button--failure';
-        }
-        form.removeEventListener('submit', handleFormSubmit);
-      }
-    };
   };
 
-  var handleFormSubmit = function handleFormSubmit(event) {
+  var handleFirstSubmit = function handleFirstSubmit(event) {
     event.preventDefault();
     event.stopPropagation();
     return iSendAJAX(event, theForm, sendForm, successMsg);
   };
 
+  /* const handleFallbackSubmit = function (event) {
+   *   event.preventDefault()
+   *   event.stopPropagation()
+   *   return iSendAJAX(event, theForm, sendForm, successMsg)
+   * }
+   */
+
   return function () {
     if (theForm) {
-      theForm.addEventListener('submit', handleFormSubmit);
+      theForm.addEventListener('submit', handleFirstSubmit);
     }
   };
 }
@@ -222,7 +248,9 @@ function enableForm(formPrefix, successMsg, callback) {
 var enableContactForm = enableForm('contact', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.');
 var enableReviewForm = enableForm('review', 'Спасибо! Отзыв принят и будет опубликован после проверки.');
 var enableOrderForm = enableForm('order', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.');
-var enableCallForm = enableForm('call_back', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.', toggleCallFormState);
+var enableCallForm = enableForm('call_back', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.', function () {
+  setTimeout(toggleCallFormState, 5000);
+});
 // callFormToggle{{{
 function toggleCallFormState(event) {
   // prevent following the '#' href
@@ -244,6 +272,7 @@ function toggleCallFormState(event) {
     document.getElementById('call_back_form__name').focus();
   }
 }
+
 function callFormToggle() {
   for (var i = 0; i < callFormToggles.length; i++) {
     callFormToggles[i].addEventListener('click', toggleCallFormState);
