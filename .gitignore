@@ -40,3 +40,5 @@ _importdata.py
 .old_site
 .contentful-accessToken-management.json
 .users.yml
+
+_validation_report
