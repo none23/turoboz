@@ -22,7 +22,7 @@
 {% endcase %}
 {{ unixdate | date: "%Y" }}
 {% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title">{{ tour.title }}
-{{ tour.subtitle }}</h3><div class="tour__link">Подробнее</div></a></div>{% endfor %}</div><div class="tours__count"><span>Показано: </span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> / </span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>{% else %}
+{{ tour.subtitle }}</h3><div class="tour__link">Подробнее</div></a></div>{% endfor %}</div><div class="tours__count"><span>Показано:</span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> /</span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>{% else %}
  {% for tag in site.data.tags %}
   {% if purl == tag.url %}<div class="tours_list">{% for tour in site.tours %}
 {% assign tours_total_counter = tours_total_counter | plus: 1 %}{% for x in tour.tags %}
@@ -49,7 +49,7 @@
 {{ unixdate | date: "%Y" }}
 {% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title">{{ tour.title }}
 {{ tour.subtitle }}</h3><div class="tour__link">Подробнее</div></a></div>  {% endif %}
-{% endfor %}{% endfor %}</div><div class="tours__count"><span>Показано: </span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> / </span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>  {% endif %}
+{% endfor %}{% endfor %}</div><div class="tours__count"><span>Показано:</span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> /</span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>  {% endif %}
   {% if tag.subtags %}
    {% for subtag in tag.subtags %}
     {% if purl == subtag.url %}<div class="tours_list">{% for tour in site.tours %}
@@ -77,7 +77,7 @@
 {{ unixdate | date: "%Y" }}
 {% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title">{{ tour.title }}
 {{ tour.subtitle }}</h3><div class="tour__link">Подробнее</div></a></div>  {% endif %}
-{% endfor %}{% endfor %}</div><div class="tours__count"><span>Показано: </span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> / </span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>    {% endif %}
+{% endfor %}{% endfor %}</div><div class="tours__count"><span>Показано:</span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> /</span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>    {% endif %}
    {% endfor %}
   {% endif %}
  {% endfor %}

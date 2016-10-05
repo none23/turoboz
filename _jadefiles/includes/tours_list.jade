@@ -1,31 +1,5 @@
 include ../mixins.jade
-include tour_card.jade
-//-- tours_list {{{
-mixin ToursList( activeFilter='' )
-    .tours_list
-        | {% for tour in site.tours %}
-        | {% assign tours_total_counter = tours_total_counter | plus: 1 %}
-        if activeFilter
-            | {% for x in tour.tags %}
-            |   {% if x == #{activeFilter} %}
-            +TourCard('tour')
-            |   {% endif %}
-            | {% endfor %}
-        else
-            +TourCard('tour')
-        | {% endfor %}
-
-    .tours__count
-        span Показано: 
-        span.tours__on_page
-            |  {{ tours_on_page_counter }}
-        span  / 
-        span.tours__total
-            | {{ tours_total_counter }}
-        span  экскурсий
-
-
-//--/tours__list }}}
+include tour_mixins.jade
 //-- Page Logic {{{
 section.tours_list__wrap
     h2.section_header.tours__list__section_header

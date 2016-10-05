@@ -1,0 +1,44 @@
+mixin TourCard(tour)
+        | {% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}
+        .tour__wrap
+            a.tour__card(tabindex=1, href=`{{ ${tour}.permalink }}`)
+                .tour__image__wrap
+                    img.tour__image(sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px", srcset=`/img/none.jpg 1w, /img/tours300/{{ ${tour}.imgpath }} 300w, /img/tours600/{{ ${tour}.imgpath }} 600w`, src=`/img/tours300/{{ ${tour}.imgpath }}`, alt=`{{ ${tour}.title | smartify }}`)
+
+                .tour__date
+                    +LiquidRussianDate(`${tour}.tourdate`)
+
+                .tour__length
+                    | {{ #{tour}.tourlength }}
+
+                h3.tour__title
+                    | {{ #{tour}.title }}
+                    | {{ #{tour}.subtitle }}
+
+                .tour__link
+                    | Подробнее
+
+mixin ToursList(activeFilter='')
+    .tours_list
+        | {% for tour in site.tours %}
+        | {% assign tours_total_counter = tours_total_counter | plus: 1 %}
+        if activeFilter
+            | {% for x in tour.tags %}
+            |   {% if x == #{activeFilter} %}
+            +TourCard('tour')
+            |   {% endif %}
+            | {% endfor %}
+        else
+            +TourCard('tour')
+        | {% endfor %}
+
+    .tours__count
+        span Показано:
+        span.tours__on_page
+            |  {{ tours_on_page_counter }}
+        span  /
+        span.tours__total
+            | {{ tours_total_counter }}
+        span  экскурсий
+
+
