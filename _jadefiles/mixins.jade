@@ -1,3 +1,9 @@
+mixin space()
+    | &ensp;
+
+mixin nbsp()
+    | &nbsp;
+
 mixin phone(number1,number2,number3,number4='')
     if number4
         a.phone(href="tel:8#{number1}#{number2}#{number3}#{number4}")

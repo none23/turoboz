@@ -2,31 +2,40 @@ include ../mixins.jade
 
 section.contacts__wrap
     .c__textual(itemscope='', itemtype='http://schema.org/LocalBusiness')
-        h2.c__brand(itemprop='name') Туробоз
+        h2.c__brand(itemprop='name')
+            | Туробоз
         ul.c__list
             | {% for phone in site.phones %}
             li.c__contact.c__phone
-                a.phone(href="tel:{{ phone | remove: ' ' }}")
+                a.phone(href="tel:{{ phone | remove: ' ' }}", title='Позвонить нам')
                     span(itemprop='telephone')
                         | {{ phone }}
             | {% endfor %}
             li.c__contact.c__mail
                 a.mail(href='{{ site.email }}')
-                    span(itemprop='email') 
+                    span(itemprop='email')
                         | {{ site.email }}
 
         .c__address(itemprop='address', itemscope='', itemtype='http://schema.org/PostalAddress')
-            span(itemprop='postalCode') {{ page.postal_code}},
+            span(itemprop='postalCode') {{ page.postal_code}}
+            | ,
             br
-            span(itemprop='addressCountry') {{ page.country }}, 
-            span(itemprop='addressLocality') {{ page.city }},
+            span(itemprop='addressCountry')
+                | {{ page.country }}
+            | ,
+            +space()
+            span(itemprop='addressLocality')
+                | {{ page.city }}
+            | ,
             br
-            span(itemprop='streetAddress') {{ page.street_address }},
+            span(itemprop='streetAddress')
+                | {{ page.street_address }}
+            | ,
             br
             | {{ page.descriprion }},
             br
             | {{ page.entrance }}
 
     a.c__map__link(href='https://goo.gl/maps/FbLPyK1Y4sP2', target='_blank', title='открыть на Картах Гугл')
-        img.c__map__img(src='/img/map.jpg', alt='Туробоз - Карты Гугл') 
+        img.c__map__img(src='/img/map.jpg', alt='Туробоз - Карты Гугл')
         .tooltip.c__map__tooltip Открыть в Картах Гугл
