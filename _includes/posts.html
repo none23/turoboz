@@ -1,5 +1,5 @@
-<section id="posts__wrap" class="posts__wrap"><h2 class="section_header">Новости и спецпредложения</h2><ul class="posts__list">{% assign posts = site.news | sort: 'dateposted' %}
-{% for post in posts reversed %}<li class="post__wrap"><div class="post__image__wrap"><img sizes="(max-width: 659px) 1px, (min-width: 660px) and (max-width: 859px) 400px, 350px" srcset="/img/none.jpg 1w, /img/posts250/{{ post.image }} 250w, /img/posts350/{{ post.image }} 350w, /img/posts430/{{ post.image }} 430w, /img/posts600/{{ post.image }} 600w, /img/posts800/{{ post.image }} 800w" src="/img/posts350/{{ post.image }}" alt="{{ post.title | smartify }}" class="post__image"/></div><a href="{{ post.url }}" class="post__content__wrap"><div class="post__date">{% assign unixdate = post.dateposted %}
+<section id="newscards__wrap" class="newscards__wrap"><h2 class="section_header">Новости и спецпредложения</h2><ul class="news__list">{% assign posts = site.news | sort: 'dateposted' %}
+{% for post in posts reversed %}<li class="newspost__card card"><a href="{{ post.url }}" class="newspost__link card__link"><div class="newspost__image__wrap"><img sizes="(max-width: 659px) 1px, (min-width: 660px) and (max-width: 859px) 400px, 350px" srcset="/img/none.jpg 1w, /img/posts250/{{ post.image }} 250w, /img/posts350/{{ post.image }} 350w, /img/posts430/{{ post.image }} 430w, /img/posts600/{{ post.image }} 600w, /img/posts800/{{ post.image }} 800w" src="/img/posts350/{{ post.image }}" alt="{{ post.title | smartify }}" class="newspost__image card__image"/></div><div class="newspost__content__wrap card__content__wrap"><div class="newspost__date card__date">{% assign unixdate = post.dateposted %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %}
@@ -16,4 +16,4 @@
 {% when '11' %}ноября
 {% when '12' %}декабя
 {% endcase %}
-{{ unixdate | date: "%Y" }}</div><h3 class="post__title">{{ post.title | smartify }}</h3><p class="post__summary">{{ post.summary | smartify }}</p><footer class="post__footer">Читать далее</footer></a></li>{% endfor %}</ul></section>
+{{ unixdate | date: "%Y" }}</div><h3 class="newspost__title card__title">{{ post.title | smartify }}</h3><p class="newspost__summary card__summary">{{ post.summary | smartify }}</p><div class="newspost__button card__button">Читать далее</div></div></a></li>{% endfor %}</ul></section>

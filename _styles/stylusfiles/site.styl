@@ -269,6 +269,9 @@ img
     padding: 0
     border: none
 
+    &[jpg]
+        pointer-events: none
+
 ul
     margin: 0
     padding: 0
@@ -768,6 +771,7 @@ textarea
 .full_tour__content__wrap
 .full_post__content__wrap
 .full_tour__form__wrap
+.blogpost__body
     SectionWidth()
 
 .tooltip
@@ -972,21 +976,87 @@ textarea
         max-width: 16rem
 
 // /upcoming_events }}}
+// blog & news {{{
+// ------------------------------------------------------------------------
 
+.newscards__wrap
+.vkcards__wrap
+    width: 95vw
+    max-width: 1100px
+    margin: 1rem auto
 
-.post__date
-    text-align: right
+.card__link
+    width: 100%
+    position: relative
+    z-index: 20
+    overflow: none
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    justify-content: center
+    align-items: stretch
+    margin: 1rem 0 1rem
+    border: $border
+    border-radius: $border-radius
+    background: white
 
-.post__date
-.tour__date
+    &:hover
+    &:focus
+        z-index: 29
+
+.card__image__wrap
+    min-height: 100%
+    position: relative
+    z-index: 2
+    overflow: hidden
+    object-fit: cover
+
+    &.newspost__image__wrap
+    &.vkpost__image__wrap
+        flex 1 1 21.875rem
+        line-height: 0
+        max-height: 18rem
+
+        @media(max-width: 659px)
+            display: none
+
+.card__image
+    min-width: 100%
+    min-height: 100%
+    width: 100%
+    height: auto
+    object-fit: cover
+
+.card__content__wrap
+    flex 1 1 70%
+    position: relative
+    z-index: 1
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: stretch
+
+.card__date
     flex: 0 0 2.25rem
     font-size: 0.9rem
     line-height: 2.25rem
     color: $turbo_darkblue
     padding: 0 1rem
 
-.tour__link
-.post__footer
+    &.newspost__date
+    &.vkpost__date
+        text-align: right
+
+.card__title
+    flex 1 1 3rem
+    padding: 1rem 0.7rem
+    font-size: 1.2rem
+
+.card__summary
+    padding: 0 1rem 1rem
+    font-size: 1rem
+
+.card__button
     flex 0 0 2.5rem
     padding-left: 1rem
     border-radius: 0
@@ -995,93 +1065,24 @@ textarea
     outline: $border
     color: $turbo_darkblue
     background: white
-
-.post__footer
     transition: all 0.2s ease
-
-.post__footer
-    .post__wrap:hover &
-    .post__wrap:focus &
-    .post__wrap:active &
-        color: white
-        background: $turbo_blue
-    .post__wrap:active &
-        background: $turbo_brown
-
-.tour__link
-    .tour__wrap:hover &
-    .tour__wrap:focus &
-        color: white
-        background: $turbo_blue
-
-        &:hover
-        &:focus
-            background: $turbo_darkblue
-        &:active
-            background: $turbo_brown
-
-// blog {{{
-// ------------------------------------------------------------------------
-.posts__wrap
-    width: 95vw
-    max-width: 1100px
-    margin: 1rem auto
-
-.posts__list
-.post__wrap
-    width: 100%
-
-.post__wrap
-    display: flex
-    flex-direction: row
-    flex-wrap: nowrap
-    justify-content: center
-    align-items: stretch
-    border: $border
-    border-radius: $border-radius
-    margin: 1rem 0 1rem
-    position: relative
-    z-index: 20
-    background: white
 
     &:hover
     &:focus
-        z-index: 29
+        background: $turbo_darkblue
 
-.post__image__wrap
-    overflow: hidden
-    flex 1 1 21.875rem
-    line-height: 0
+    &:active
+        background: $turbo_brown
 
-    @media(max-width: 659px)
-        display: none
+    .card:hover &
+    .card:focus &
+        color: white
+        background: $turbo_blue
 
-.post__image
-    width: auto
-    height: auto
-    object-fit: cover
+    .card:active &
+        background: $turbo_brown
 
-    @media(max-width: 960px)
-        min-height: 100%
-
-.post__content__wrap
-    flex 1 1 70%
-    display: flex
-    flex-direction: column
-    justify-content: space-around
-    align-items: stretch
-
-.post__title
-    flex 1 1 3rem
-    padding: 1rem 0.7rem
-    font-size: 1.2rem
-
-.post__summary
-    padding: 0 1rem 1rem
-    font-size: 1rem
-
-// /blog }}}
-
+// /blog & news }}}
 
 // /main }}}
 // about {{{
@@ -1186,7 +1187,7 @@ textarea
 
 
 //// tours_nav {{{
-//// ------------------------------------------------------------------------
+//// ----.card__content__wrap--------------------------------------------------------------------
 .tours_nav__wrap
     flex: 0 1 25vw
     min-width: 15rem
@@ -1269,9 +1270,10 @@ textarea
 .tour__image
     width: 103.1%
     max-width: 300px
-    transition: all .5s ease-out
-    transform-origin: 0 0
     transform: scale(0.97, 0.97)
+    transform-origin: 0 0
+    transition: all .5s ease-out
+
     .tour__wrap:hover &
         transform: scale(1, 1)
 
@@ -1362,6 +1364,7 @@ textarea
 // =========================================================================
 .full_tour__heading
 .full_post__heading
+.blogpost__heading
     padding: 1.64rem 10vw 40vh
     margin-bottom: -35vh
     display: flex
@@ -1512,6 +1515,7 @@ textarea
 
 .full_tour__content__wrap
 .full_post__content__wrap
+.blogpost__body
     background-color: white
     border: $border
     display: flex
@@ -1531,34 +1535,36 @@ textarea
 .full_tour__details__wrap
 .full_post__summary
 .full_post__body
-.blogpost__content
-    padding: 1.75rem 2.75rem
+.blogpost__body
+    padding: 1.75rem
     width: auto
 
     @media(max-width: 660px)
         padding 0.75rem 1.75rem
 
-.blog__post__intro
-    padding: 1rem
-    margin: 0 1rem 1rem
-
-.blog__post__wrap
-    max-height: 18rem
-    overflow: hidden
-
-.blogpost__content
-    margin-top: 0
-    height: 25rem
-    max-height: 25rem
-
 .blogpost__image
-    // height: 100%
-    // width: auto
     height: auto
+    width: calc(50% - 3rem)
+    margin: 1rem
+    object-fit: cover
+    border-radius: $border-radius
+    float: right
+
+.blogpost__photo
+    padding: 1rem
+    height: auto
+    max-width: 85vw
+    max-height: 85vh
+    object-fit: scale-down
+    border-radius: $border-radius
+    display: inline
+
+.blogpost__gallery
     width: 100%
 
 .blogpost__body
-    margin: 2rem
+    margin: 0 auto
+    flex: 1 1 100%
 
 .blogpost__vklink
     color: $turbo_blue

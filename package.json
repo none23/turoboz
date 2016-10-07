@@ -23,6 +23,7 @@
     "jade-babel": "^5.0.0",
     "jade-cli": "latest",
     "js-yaml": "^3.6.1",
+    "node-fetch":"^1.6.3",
     "remove-markdown": "^0.1.0",
     "request": "^2.75.0",
     "stylus": "^0.54.5",

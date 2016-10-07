@@ -1,12 +1,12 @@
 include ../mixins.jade
-include tour_card.jade
+include tour_mixins.jade
 
 mixin EventWrap()
     a.event__wrap(href='/tours/{{ tour.tour }}')
         .event__image__wrap
             img.event__image( sizes="(max-width: 619px) 1px, (min-width: 720px) and (max-width: 1079px) 37vw, (min-width: 1080px) and (max-width: 1158px) 24vw, 263px", srcset="/img/none.jpg 1w, /img/tours200/{{ tour.imgpath }} 200w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours400/{{ tour.imgpath }} 400w", alt="{{ tour.title | smartify }}")
         .event__date
-            | {% if tour.dates[0] | plus: 0 > 10 %} 
+            | {% if tour.dates[0] | plus: 0 > 10 %}
             +LiquidRussianDate('tour.dates[0]')
             | {% else %} по заказу {% endif %}
 

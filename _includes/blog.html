@@ -1,4 +1,4 @@
-<section id="blog__wrap" class="blog__wrap posts__wrap"><h2 class="section_header">Блог</h2><ul class="blog posts__list">{% for post in site.vk_news reversed %}<li class="post__wrap blog__post__wrap"><div class="post__image__wrap blog__post__image__wrap"><img src="{{ post.image }}" alt="{{ post.title | truncatewords: 7 | smartify }}" class="post__image blogpost__image"/></div><a href="{{ post.url }}" class="post__content__wrap blog__post__content__wrap"><div class="post__date blog__post__date">{% assign unixdate = post.dateposted %}
+<section id="vkcards__wrap" class="vkcards__wrap"><h2 class="section_header">Блог</h2><ul class="vkblog__list">{% for post in site.vk_news reversed %}<li class="vkpost__card card"><a href="{{ post.url }}" class="vkpost__link card__link"><div class="vkpost__image__wrap card__image__wrap"><img src="{{ post.image }}" alt="{{ post.title | truncatewords: 7 | smartify }}" class="vkpost__image card__image"/></div><div class="vkpost__content__wrap card__content__wrap"><div class="vkpost__date card__date">{% assign unixdate = post.dateposted %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %}
@@ -15,4 +15,4 @@
 {% when '11' %}ноября
 {% when '12' %}декабя
 {% endcase %}
-{{ unixdate | date: "%Y" }}</div><h3 class="post__summary blog__post__intro">{{ post.content | truncatewords: 40 | smartify }}</h3><footer class="post__footer blog__post__footer">Читать далее</footer></a></li>{% endfor %}</ul></section>
+{{ unixdate | date: "%Y" }}</div><h3 class="vkpost__intro card__summary">{{ post.content | truncatewords: 40 | smartify }}</h3><div class="vkpost__button card__button">Читать далее</div></div></a></li>{% endfor %}</ul></section>

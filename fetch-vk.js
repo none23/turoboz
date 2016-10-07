@@ -3,7 +3,7 @@ const yaml = require('js-yaml')
 const fs = require('fs')
 const emojiStrip = require('emoji-strip')
 
-const postsCount = 20
+const postsCount = 10
 const groupId = 33948424
 const vkPostsDirPath = '_vk_news'
 
@@ -12,6 +12,7 @@ const requestURL = `https://api.vk.com/method/wall.get?owner_id=-${groupId}&coun
 function attachmentIsPhoto (attachment) {
   return attachment.type.indexOf('photo') >= 0
 }
+
 const readSynced = new Promise((resolve, reject) => {
   fs.readdir(vkPostsDirPath, function (err, files) {
     if (err) { reject() }
@@ -42,11 +43,12 @@ function savePost (post) {
   const postTitle = emojiStrip(post.text).split(' ').splice(0, 8).join(' ')
   const postVKLink = `https://vk.com/club${groupId}?w=wall-${groupId}_${post.id}`
   const frontMatterObj = {
-    'dateposted': `${postDateDay}.${postDateMonth}.${postDateYear}`,
-    'image': postImage,
-    'layout': 'blogpost',
-    'title': `${postTitle}...`,
-    'vklink': `${postVKLink}...`
+    dateposted: `${postDateDay}.${postDateMonth}.${postDateYear}`,
+    image: postImage,
+    layout: 'blogpost',
+    title: `${postTitle}...`,
+    photos: post.textPhotos,
+    vklink: `${postVKLink}`
   }
   const frontMatterYaml = yaml.dump(frontMatterObj)
   const fileName = `./${vkPostsDirPath}/${post.id}.md`
@@ -60,80 +62,65 @@ ${postBody}
     console.log(`written ${fileName}`)
   })
 }
-function saveJSON (post) {
-  const fileName = `./${vkPostsDirPath}/_${post.id}.json`
-
-  const fileContent = {
-    attachments: post.attachments,
-    date: post.date,
-    id: post.id,
-    text: post.text
-  }
-
-  const fileJSON = JSON.stringify(fileContent)
-  fs.writeFile(fileName, fileJSON, 'utf8', (err) => {
-    if (err) { throw err }
-    console.log(`written ${fileName}`)
-  })
-}
 
 const processData = Promise.all([
   fetchOnline,
   readSynced
 ])
-  .then((res) => {
-    const online = res[0]
-    const synced = res[1]
+  .then((value) => {
+    const online = value[0]
+    const synced = value[1]
     for (const post of online) {
       const postPromise = new Promise((resolve, reject) => {
-        if (!synced.includes(`${post.id}.md`)) {
-          // Posted by the community
-          if (post.from_id !== -groupId) {
-            console.log(`skipping ${post.id}: bad 'from_id'`)
-            reject()
-          }
+        // Not already saved
+        if (synced.includes(`${post.id}.md`)) {
+          reject(`skipping ${post.id}: already synched`)
+        }
+        // Posted by the community
+        if (post.from_id !== -groupId) {
+          reject(`skipping ${post.id}: bad 'from_id'`)
+        }
+        // Not a repost
+        if (post.copy_history) {
+          reject(`skipping ${post.id}: has copy_history`)
+        }
 
-          /* // Not signed
-           * if (post.signer_id) {
-           *     if (post.signer_id !== -groupId) {
-           *         console.log(`skipping ${post.id}: is signed`)
-           *         reject()
-           *     }
-           * }
-           */
+        // Text has at least 200 chars long
+        if (post.text.length < 200) {
+          reject(`skipping ${post.id}: text too short`)
+        }
 
-          // Not a repost
-          if (post.copy_history) {
-            console.log(`skipping ${post.id}: has copy_history`)
-            reject()
-          }
+        // Has at least one photo attachment
+        if (!post.attachments) {
+          reject(`skipping ${post.id}: no attachments`)
+        }
 
-          // Text has at least 200 chars long
-          if (post.text.length < 200) {
-            console.log(`skipping ${post.id}: text too short`)
-            reject()
-          }
-
-          // Has at least one photo attachment
-          if (!post.attachments) {
-            console.log(`skipping ${post.id}: no attachments`)
-            reject()
-          }
-          post.photos = post.attachments.filter(attachmentIsPhoto)
-          if (post.photos) {
-            resolve(post)
-          } else {
-            console.log(`skipping ${post.id}: no photo attachments`)
-            reject()
-          }
+        post.photos = post.attachments.filter(attachmentIsPhoto)
+        if (post.photos.length >= 1) {
+          resolve(post)
+        } else {
+          reject(`skipping ${post.id}: no photo attachments`)
         }
       })
-        .then((post) => {
-          saveJSON(post)
-          savePost(post)
-        })
-      postPromise.catch(() => console.log(`skipped ${post.id}`))
+        .then(
+          (post) => {
+            post.textPhotos = []
+            if (post.photos.length >= 2) {
+              for (const attachmentPhoto of post.photos.slice(1)) {
+                const photoImage = attachmentPhoto.photo.photo_1280 || attachmentPhoto.photo.photo_807 || attachmentPhoto.photo.photo_604 || undefined
+                if (photoImage) {
+                  post.textPhotos.push(photoImage)
+                }
+              }
+            }
+            savePost(post)
+          }
+          , (reason) => console.log(reason)
+      )
+      postPromise.catch((reason) => {
+        console.log(reason)
+      })
     }
-  })
-
+  }
+    , (reason) => console.log(reason))
 processData.catch((err) => console.log(err))

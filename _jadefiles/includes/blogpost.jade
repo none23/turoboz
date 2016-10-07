@@ -1,6 +1,6 @@
 include ../mixins.jade
 
-.full_post__heading
+.blogpost__heading
     .full_post__breadcrumbs
         a.full_post__breadcrumb(href='/#blog__wrap')
             .full_post__breadcrumb__icon
@@ -10,15 +10,19 @@ include ../mixins.jade
     .full_post__heading__left
         .full_post__date
               +LiquidRussianDateLite('{{ page.dateposted }}')
-.full_post__content__wrap
+.blogpost__body__wrap
     .blogpost__body
-        .full_post__image__wrap
-            img.full_post__image(src="{{ page.image }}", alt="{{ page.body | smartify }}")
         .blogpost__content
+            img.blogpost__image(src='{{ page.image }}', alt='{{ page.body | smartify }}')
             | {{ content }}
-            a.blogpost__vklink(href='{{ page.vklink }}', title='Оригинальная публикация (Вконтакте)')
-                | {{ page.vklink }}
-            //-- | Опубликовано: {{ page.vklink }}
+        .blogpost__gallery
+            | {% for image in page.photos %}
+            img.blogpost__photo(src='{{ image }}')
+            | {% endfor %}
+
+        a.blogpost__vklink(href='{{ page.vklink }}', target='_blank', title='Оригинальная публикация (Вконтакте)')
+            | {{ page.vklink }}
+
     .full_post__breadcrumbs--bottom
         | {% unless page.previous == nil %}
         a.full_post__breadcrumb(href='{{ page.previous.url }}')
