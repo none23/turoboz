@@ -6,7 +6,7 @@ section.newscards__wrap#newscards__wrap
         | {% assign posts = site.news | sort: 'dateposted' %}
         | {% for post in posts reversed %}
         li.newspost__card.card
-            a.newspost__link.card__link(href='{{ post.url }}')
+            a.newspost__link.card__link(href='{{ post.permalink }}')
                 .newspost__image__wrap
                     img.newspost__image.card__image( sizes="(max-width: 659px) 1px, (min-width: 660px) and (max-width: 859px) 400px, 350px", srcset="/img/none.jpg 1w, /img/posts250/{{ post.image }} 250w, /img/posts350/{{ post.image }} 350w, /img/posts430/{{ post.image }} 430w, /img/posts600/{{ post.image }} 600w, /img/posts800/{{ post.image }} 800w", src="/img/posts350/{{ post.image }}", alt="{{ post.title | smartify }}")
                 .newspost__content__wrap.card__content__wrap

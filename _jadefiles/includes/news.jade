@@ -1,9 +1,9 @@
-section.news__section
+section.recent_posts__wrap
     h2.section_header
         | События
-    ul.news__list
+    ul.recent_posts__list
         | {% for post in site.news reversed limit: 5 %}
-        li.news__list__item
-            a.news__list__item__link(href='{{ post.url }}')
+        li.recent_post
+            a.recent_post__link(href='{{ post.permalink }}')
                 | {{ post.title | smartify }}
         | {% endfor %}

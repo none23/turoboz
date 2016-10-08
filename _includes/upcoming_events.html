@@ -5,7 +5,7 @@
         {% if upcoming_counter > 3 %}
             {% break %}
         {% else %}
-            {% assign upcoming_counter = upcoming_counter | plus: 1 %}{% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}<div class="tour__wrap card"><a tabindex="1" href="{{ tour.permalink }}" class="tour__card card__link"><div class="tour__image__wrap card__image__wrap"><img sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px" srcset="/img/none.jpg 1w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours600/{{ tour.imgpath }} 600w" src="/img/tours300/{{ tour.imgpath }}" alt="{{ tour.title | smartify }}" class="tour__image card__image"/></div><div class="tour__date card__date">{% if tour.tourdate == '00.00.0000' %}
+            {% assign upcoming_counter = upcoming_counter | plus: 1 %}{% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}<div class="tour__wrap card__wrap"><a tabindex="1" href="{{ tour.permalink }}" class="card__link tour__card"><div class="tour__image__wrap card__image__wrap"><img sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px" srcset="/img/none.jpg 1w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours600/{{ tour.imgpath }} 600w" src="/img/tours300/{{ tour.imgpath }}" alt="{{ tour.title | smartify }}" class="tour__image card__image"/></div><div class="tour__date card__date">{% if tour.tourdate == '00.00.0000' %}
 по заказу
 {% else %}
 {% assign unixdate = tour.tourdate %}
@@ -26,7 +26,7 @@
 {% when '12' %}декабря
 {% endcase %}
 {{ unixdate | date: "%Y" }}
-{% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title card__title">{{ tour.title }}
+{% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title">{{ tour.title }}
 {{ tour.subtitle }}</h3><div class="card__button tour__button">Подробнее</div></a></div>        {% endif %}
     {% endif %}
 {% endfor %}</div></section>

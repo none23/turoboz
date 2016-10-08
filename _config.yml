@@ -40,5 +40,6 @@ collections:
     output: true
   vk_news:
     output: true
+permalink: pretty
 gems:
   - jekyll-sitemap

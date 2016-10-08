@@ -44,6 +44,7 @@ function savePost (post) {
   const postVKLink = `https://vk.com/club${groupId}?w=wall-${groupId}_${post.id}`
   const frontMatterObj = {
     dateposted: `${postDateDay}.${postDateMonth}.${postDateYear}`,
+    permalink: `/vk_news/${post.id}/`,
     image: postImage,
     layout: 'blogpost',
     title: `${postTitle}...`,

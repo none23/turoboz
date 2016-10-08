@@ -137,15 +137,16 @@ function fetchTestim () {
         newTestim.date = item.fields.date
         newTestim.author = item.fields.author
         newTestim.message = item.fields.message
+        newTestim.dateId = item.fields.date.split('.').reverse().join('_')
 
         entriesCount += 1
         testimCatalogue.push(newTestim)
       }
     })
     .then(() => {
-      const filename = './_data/testimonials.json'
+      const filename = './_data/testimonials.yml'
       assert.equal(entriesCount, testimCatalogue.length)
-      fs.writeFile(filename, JSON.stringify(testimCatalogue), 'utf8', function (err) {
+      fs.writeFile(filename, yaml.safeDump(testimCatalogue), function (err) {
         if (err) { throw err }
         console.log(`written ${filename}`)
       })

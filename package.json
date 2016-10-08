@@ -84,7 +84,7 @@
     "deploy": "netlify deploy",
         "predeploy": "npm run build",
     "validate": "npm run -s validate:loop > _validation_report",
-        "validate:loop": "for html in _site/{,/**,/**/**}/*.html; do echo $html; html-validator --file=$html; done"
+        "validate:loop": "for html in _site/{,/*,/*/*}/*.html; do echo $html; html-validator --file=$html; done"
   },
   "author": "none23",
   "license": "MIT License",

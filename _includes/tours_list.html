@@ -1,6 +1,5 @@
-<section class="tours_list__wrap"><h2 class="section_header tours__list__section_header"> Экскурсии{% unless page.url == '/tours/' %}: {% endunless %}{% for tag in site.data.tags %}{% if tag.url == page.url %}{{ tag.title }}{% elsif page.url contains tag.url %}{% for subtag in tag.subtags %}{% if subtag.url == page.url %}{{ subtag.title }}{% endif %}{% endfor %}{% endif %}{% endfor %}</h2>{% assign purl = page.url %}
-{% if purl == '/tours/'%}<div class="tours_list">{% for tour in site.tours %}
-{% assign tours_total_counter = tours_total_counter | plus: 1 %}{% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}<div class="tour__wrap card"><a tabindex="1" href="{{ tour.permalink }}" class="tour__card card__link"><div class="tour__image__wrap card__image__wrap"><img sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px" srcset="/img/none.jpg 1w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours600/{{ tour.imgpath }} 600w" src="/img/tours300/{{ tour.imgpath }}" alt="{{ tour.title | smartify }}" class="tour__image card__image"/></div><div class="tour__date card__date">{% if tour.tourdate == '00.00.0000' %}
+<section class="tours_list__wrap"><h2 class="section_header tours__list__section_header">Экскурсии{% unless page.url == '/tours/' %}: {% endunless %}{% for tag in site.data.tags %}{% if tag.url == page.url %}{{ tag.title }}{% elsif page.url contains tag.url %}{% for subtag in tag.subtags %}{% if subtag.url == page.url %}{{ subtag.title }}{% endif %}{% endfor %}{% endif %}{% endfor %}</h2>{% assign purl = page.url %}{% if purl == '/tours/'%}<div class="tours_list">{% for tour in site.tours %}
+{% assign tours_total_counter = tours_total_counter | plus: 1 %}{% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}<div class="tour__wrap card__wrap"><a tabindex="1" href="{{ tour.permalink }}" class="card__link tour__card"><div class="tour__image__wrap card__image__wrap"><img sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px" srcset="/img/none.jpg 1w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours600/{{ tour.imgpath }} 600w" src="/img/tours300/{{ tour.imgpath }}" alt="{{ tour.title | smartify }}" class="tour__image card__image"/></div><div class="tour__date card__date">{% if tour.tourdate == '00.00.0000' %}
 по заказу
 {% else %}
 {% assign unixdate = tour.tourdate %}
@@ -21,12 +20,10 @@
 {% when '12' %}декабря
 {% endcase %}
 {{ unixdate | date: "%Y" }}
-{% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title card__title">{{ tour.title }}
-{{ tour.subtitle }}</h3><div class="card__button tour__button">Подробнее</div></a></div>{% endfor %}</div><div class="tours__count"><span>Показано:</span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> /</span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>{% else %}
- {% for tag in site.data.tags %}
-  {% if purl == tag.url %}<div class="tours_list">{% for tour in site.tours %}
+{% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title">{{ tour.title }}
+{{ tour.subtitle }}</h3><div class="card__button tour__button">Подробнее</div></a></div>{% endfor %}</div><div class="tours__count"><span>Показано:</span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> /</span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>{% else %}{% for tag in site.data.tags %}{% if purl == tag.url %}<div class="tours_list">{% for tour in site.tours %}
 {% assign tours_total_counter = tours_total_counter | plus: 1 %}{% for x in tour.tags %}
-  {% if x == tag.tag %}{% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}<div class="tour__wrap card"><a tabindex="1" href="{{ tour.permalink }}" class="tour__card card__link"><div class="tour__image__wrap card__image__wrap"><img sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px" srcset="/img/none.jpg 1w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours600/{{ tour.imgpath }} 600w" src="/img/tours300/{{ tour.imgpath }}" alt="{{ tour.title | smartify }}" class="tour__image card__image"/></div><div class="tour__date card__date">{% if tour.tourdate == '00.00.0000' %}
+  {% if x == tag.tag %}{% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}<div class="tour__wrap card__wrap"><a tabindex="1" href="{{ tour.permalink }}" class="card__link tour__card"><div class="tour__image__wrap card__image__wrap"><img sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px" srcset="/img/none.jpg 1w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours600/{{ tour.imgpath }} 600w" src="/img/tours300/{{ tour.imgpath }}" alt="{{ tour.title | smartify }}" class="tour__image card__image"/></div><div class="tour__date card__date">{% if tour.tourdate == '00.00.0000' %}
 по заказу
 {% else %}
 {% assign unixdate = tour.tourdate %}
@@ -47,14 +44,11 @@
 {% when '12' %}декабря
 {% endcase %}
 {{ unixdate | date: "%Y" }}
-{% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title card__title">{{ tour.title }}
+{% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title">{{ tour.title }}
 {{ tour.subtitle }}</h3><div class="card__button tour__button">Подробнее</div></a></div>  {% endif %}
-{% endfor %}{% endfor %}</div><div class="tours__count"><span>Показано:</span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> /</span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>  {% endif %}
-  {% if tag.subtags %}
-   {% for subtag in tag.subtags %}
-    {% if purl == subtag.url %}<div class="tours_list">{% for tour in site.tours %}
+{% endfor %}{% endfor %}</div><div class="tours__count"><span>Показано:</span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> /</span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>{% endif %}{% if tag.subtags %}{% for subtag in tag.subtags %}{% if purl == subtag.url %}<div class="tours_list">{% for tour in site.tours %}
 {% assign tours_total_counter = tours_total_counter | plus: 1 %}{% for x in tour.tags %}
-  {% if x == subtag.subtag %}{% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}<div class="tour__wrap card"><a tabindex="1" href="{{ tour.permalink }}" class="tour__card card__link"><div class="tour__image__wrap card__image__wrap"><img sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px" srcset="/img/none.jpg 1w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours600/{{ tour.imgpath }} 600w" src="/img/tours300/{{ tour.imgpath }}" alt="{{ tour.title | smartify }}" class="tour__image card__image"/></div><div class="tour__date card__date">{% if tour.tourdate == '00.00.0000' %}
+  {% if x == subtag.subtag %}{% assign tours_on_page_counter = tours_on_page_counter | plus: 1 %}<div class="tour__wrap card__wrap"><a tabindex="1" href="{{ tour.permalink }}" class="card__link tour__card"><div class="tour__image__wrap card__image__wrap"><img sizes="(max-width: 449px) 1px, (min-width: 450px) and (-webkit-min-device-pixel-ratio: 2) 600px, (min-width: 450px) and (min-resolution: 190dpi) 600px, 300px" srcset="/img/none.jpg 1w, /img/tours300/{{ tour.imgpath }} 300w, /img/tours600/{{ tour.imgpath }} 600w" src="/img/tours300/{{ tour.imgpath }}" alt="{{ tour.title | smartify }}" class="tour__image card__image"/></div><div class="tour__date card__date">{% if tour.tourdate == '00.00.0000' %}
 по заказу
 {% else %}
 {% assign unixdate = tour.tourdate %}
@@ -75,10 +69,6 @@
 {% when '12' %}декабря
 {% endcase %}
 {{ unixdate | date: "%Y" }}
-{% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title card__title">{{ tour.title }}
+{% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title">{{ tour.title }}
 {{ tour.subtitle }}</h3><div class="card__button tour__button">Подробнее</div></a></div>  {% endif %}
-{% endfor %}{% endfor %}</div><div class="tours__count"><span>Показано:</span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> /</span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>    {% endif %}
-   {% endfor %}
-  {% endif %}
- {% endfor %}
-{% endif %}</section>
+{% endfor %}{% endfor %}</div><div class="tours__count"><span>Показано:</span><span class="tours__on_page"> {{ tours_on_page_counter }}</span><span> /</span><span class="tours__total">{{ tours_total_counter }}</span><span> экскурсий</span></div>{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}</section>
