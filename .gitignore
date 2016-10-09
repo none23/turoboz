@@ -23,22 +23,24 @@ jspm_packages
 .node_repl_history
 
 ### Jekyll ###
+_site
 _site/*
 .jekyll-metadata
 
 ### GitHubPages ###
+.gh-pages
 .gh-pages/
 .gh-pages/*
 
-### Python ###
-__pycache__/
-
-_importdata.py
-
-# Old site
-.old-site/
+# Utility Branches 
 .old_site
+.old-site/
+.old-site/*
+.update-page
+.update-page/
+.update-page/*
+
+# Content Management
 .contentful-accessToken-management.json
 .users.yml
-
 _validation_report
