@@ -1,65 +1,3 @@
-// mixins {{{
-AltBG()
-    //--{{{
-    background-image: url(/img/card.png)
-    background-color: $turbo_lightblue
-    background-repeat: repeat
-    background-blend-mode: soft-light
-    //--}}}
-
-SectionWidth()
-    //--{{{
-    width: 85vw
-    max-width: 56.25rem
-    min-width: 31.25rem
-    margin: 1rem auto
-
-    @media(max-width: 660px)
-        width: 92vw
-        max-width: @width
-        min-width: 0
-
-    @media(max-width: 480px)
-        max-width: @width
-    //--}}}
-
-Bullets()
-    //--{{{
-    margin: 0 1rem 1rem 2rem
-    position: relative
-    &:before
-        content: ''
-        display: block
-        position: absolute
-        left: -1.3rem
-        top: 25%
-        bottom: 75%
-        right: calc(100% + 0.6rem)
-        background: transparent
-        border-top: 0.32rem solid transparent
-        border-bottom: 0.32rem solid transparent
-        border-left: 0.5rem solid $turbo_mixblue
-        transition: all 0.2s ease-in-out
-        transform: translateX(10%)
-    &:hover:before
-    &:focus:before
-        border-left: 0.5rem solid $turbo_darkblue
-        transform: translateX(0%)
-    //--}}}
-
-textLink(Color=$turbo_blue, Flag=false)
-    //--{{{
-    color: Color
-    line-height: 1
-    text-decoration: underline
-
-    unless Flag==nohover
-        &:hover
-        &:focus
-            color: $turbo_brown
-    //--}}}
-
-// /mixins }}}
 // vars {{{
 // =========================================================================
 $site_header_height = 6rem
@@ -83,6 +21,8 @@ $site_footer_height = 8rem
 $site_footer_icon_width = 3rem
 $page_wrap_min-height = $tours_nav_min-height + $site_header_height + $site_footer_height
 
+$block-margins = 2rem
+$block-margins-both = $block-margins * 2
 
 $border-radius = 0.125rem
 $border = 0.063rem solid $turbo_lightblue
@@ -127,6 +67,79 @@ $modal_form_button_bg = $turbo_blue
 $modal_form_button_fg = white
 
 // /vars }}}
+// mixins {{{
+AltBG()
+    //--{{{
+    background-image: url(/img/card.png)
+    background-color: $turbo_lightblue
+    background-repeat: repeat
+    background-blend-mode: soft-light
+    //--}}}
+
+SectionWidth()
+    //--{{{
+    width: 85vw
+    max-width: 56.25rem
+    min-width: 31.25rem
+    margin: 1rem auto
+
+    @media(max-width: 660px)
+        width: 92vw
+        max-width: @width
+        min-width: 0
+
+    @media(max-width: 480px)
+        max-width: @width
+    //--}}}
+
+Bullets()
+    //--{{{
+    margin-bottom: 1rem
+    position: relative
+
+    &:last-of-type
+        margin-bottom: 0
+
+    &:before
+        content: ''
+        display: block
+        position: absolute
+        left: -1.3rem
+        top: 25%
+        bottom: 75%
+        right: calc(100% + 0.6rem)
+        background: transparent
+        border-top: 0.32rem solid transparent
+        border-bottom: 0.32rem solid transparent
+        border-left: 0.5rem solid $turbo_mixblue
+        transition: all 0.2s ease-in-out
+        transform: translateX(10%)
+
+    &:hover:before
+    &:focus:before
+        border-left: 0.5rem solid $turbo_darkblue
+        transform: translateX(0%)
+
+Bullets--dark()
+    Bullets()
+
+    &:before
+        border-left-color: $turbo_brown
+    //--}}}
+
+textLink(Color=$turbo_blue, Flag=false)
+    //--{{{
+    color: Color
+    line-height: 1
+    text-decoration: underline
+
+    unless Flag==nohover
+        &:hover
+        &:focus
+            color: $turbo_brown
+    //--}}}
+
+// /mixins }}}
 // keyframes {{{
 // page_effects keyframes {{{
 @keyframes slideInLeft
@@ -759,21 +772,6 @@ textarea
     &--404
         line-height: 2
 
-
-.s__payment_opts__wrap
-.s__overview
-.testimonials__wrap
-.about__wrap
-.contacts__wrap
-.contact_form__wrap
-.review_form__wrap
-.guides__wrap
-.full_tour__content__wrap
-.full_post__content__wrap
-.full_tour__form__wrap
-.blogpost__body
-    SectionWidth()
-
 .tooltip
     position: absolute
     opacity: 0
@@ -785,6 +783,27 @@ textarea
     margin: 0 auto
     padding: 1rem
     transition: all 0.2s ease-in
+
+.testimonials__wrap
+.contacts__wrap
+.contact_form__wrap
+.review_form__wrap
+.full_tour__content__wrap
+.full_post__content__wrap
+.full_tour__form__wrap
+.blogpost__body
+.content
+    SectionWidth()
+
+.td__unit
+    font-size: 0.9rem
+
+.td__left
+.td__right
+    text-align: right
+    white-space: nowrap
+    padding-left: 1.5rem
+    padding-right: @padding-left
 
 // forms {{{
 // ------------------------------------------------------------------------
@@ -886,6 +905,88 @@ textarea
 //
 // /page_effects }}}
 // /site_wide }}}
+// splits {{{
+.split
+    width: calc(100% - 3rem)
+    display: flex
+    flex-wrap: no-wrap
+    justify-content: space-around
+    align-items: stretch
+    margin-left: 1rem
+    margin-right: @margin-left
+
+.split__child
+    min-width: 25rem
+    margin-left: 1rem
+    margin-right: @margin-left
+    display: flex
+    lex-direction: column
+    justify-content: space-between
+
+    .content-block
+        height: 100%
+
+.split--even
+    flex: 1
+
+.split--uneven
+    .split__child--primary
+        flex: 2
+
+    .split__child--secondary
+        flex: 1
+
+.split--even
+.split--uneven
+    margin-bottom: 2rem
+
+// /splits }}}
+// blocks {{{
+.block--textual
+.block--bullets
+.block--table
+.block--textimg
+.block--cards
+    background: white
+    border-radius: $border-radius
+    border: $border
+
+.block--no-header
+    padding-top: 1rem
+
+.block__text
+.block__table
+.block__bullets
+    margin-left: $block-margins
+    margin-right: @margin-left
+
+    @media(max-width: 500px)
+        margin-left: 0.5rem
+        margin-right: @margin-left
+
+.block__bullets
+    margin-left: 3rem
+    margin-top: 1rem
+
+.block__text
+    text-align: justify
+    hyphens: auto
+
+.block__table
+    margin-top: 1rem
+    margin-left: auto
+    margin-right: auto
+
+.block__table__caption
+    margin-bottom: .3rem
+
+.content-block
+    max-width: 56.25rem
+    margin-bottom: 2rem
+    margin-left: auto
+    margin-right: auto
+
+// /blocks }}}
 // main {{{
 // =========================================================================
 // first_glance {{{
@@ -937,7 +1038,9 @@ textarea
         font-size: 1.4rem
 
 .recent_posts__list
-    margin: 0 0 1rem
+    margin: 0 1rem 1rem 2rem
+
+.recent_post
     Bullets()
 
 .recent_post__link
@@ -1050,20 +1153,34 @@ textarea
     padding: 1rem 0.7rem
     font-size: 1.2rem
 
+    &.guide__name
+        flex-basis: 1.5rem
+
 .card__summary
     padding: 0 1rem 1rem
     font-size: 1rem
 
+    &.guide__resume
+        padding-top: 0
+        padding-bottom: 1rem
+        text-align: justify
+        hyphens: auto
+
 .card__button
-    flex 0 0 2.5rem
+    flex 0 0 3rem
     padding-left: 1rem
     border-radius: 0
-    line-height: 2.5rem
+    line-height: 3rem
     text-transform: uppercase
     outline: $border
     color: $turbo_darkblue
     background: white
     transition: all 0.2s ease
+
+    &:hover
+    &:focus
+    &:active
+        color: white
 
     &:hover
     &:focus
@@ -1085,92 +1202,9 @@ textarea
 // /main }}}
 // about {{{
 // =========================================================================
-.about_info
-    margin-top: 0
-
-.guides
-    display: flex
-    flex-direction: row
-    justify-content: center
-    align-items: stretch
-    flex-wrap: nowrap
-
-    @media(max-width: 720px)
-        flex-wrap: wrap
-
-.guide
-    display: flex
-    flex: 0 1 25rem
-    flex-direction: column
-    justify-content: space-between
-    align-items: stretch
-    margin: 0.5rem
-    padding: 1rem
-    border: $border
-    border-radius: $border-radius
-    background: white
-    max-width: 25rem
-    min-width: 0
-
-.guide__img__wrap
-    overflow: hidden
-    flex: 0 1 20rem
-    margin: -1rem -1rem 1rem
-
-    @media(max-width: 1000px)
-        flex-basis: 17rem
-
-    @media(max-width: 860px)
-        flex-basis: 15rem
-
-    @media(max-width: 720px)
-        flex-basis: 20rem
-
-.guide__img
-    width: 100%
-    object-fit: contain
-
-.guide__name
-    flex: 0 1 2.4rem
-    font-size: 1.2rem
-    line-height: 2.4rem
-
-.guide__resume
-    flex: 0 2 14rem
-    padding: 0 0.6rem
-
-.guide__resume_p
-    margin: 1rem
-
-.guide__link
-    flex: 0 0 1rem
-    margin: 0 -1rem
-    padding: 1rem
-    border-top: $border
-    text-align: center
-    line-height: 1rem
-    color: $turbo_blue
-
-    &:hover
-    &:focus
-        background: $turbo_blue
-        color: white
-
-.guide__link--page
-    margin-bottom: -1rem
-    border-radius: 0 0 $border-radius $border-radius
-
-.advantages__list
-    background: white
-    border-radius: $border-radius
-    border: $border
-    padding: 3rem 2rem
-
-    @media(max-width: 500px)
-        padding: 0.5rem
-
 .advantage
     Bullets()
+
 
 // /about }}}
 //// tours {{{
@@ -1279,6 +1313,7 @@ textarea
     flex: 1 1 6rem
 
 .tour__card
+.guide__card
     display: flex
     flex-direction: column
     justify-content: space-between
@@ -1629,87 +1664,17 @@ textarea
 // /full_tour/post }}}
 // services {{{
 // =========================================================================
-.services__summary__wrap
-    margin-top: -4.5rem
-    padding: 5.2rem 0rem 5rem
-    display: flex
-    flex-direction: row
-    justify-content: flex-end
-    align-items: center
-    box-shadow: inset 0 -0.188rem 0.75rem -0.325rem $shadowy
-    AltBG()
-
-.services__summary
-    margin 0 4rem
-.services__summary__list
-    margin-left: -0.5rem
-
 .service__summary__item
-    Bullets()
-    margin-top: 1rem
-
-    &:before
-        border-left-color: $turbo_brown
-
-.services__sections_group
-    SectionWidth()
-    display: flex
-    flex-direction: row
-    justify-content: space-around
-    align-items: flex-start
-
-    @media(max-width: 720px)
-        flex-wrap: wrap
-
-.bespoke__wrap
-.bus__wrap
-    margin: 0.5rem
-
-.bus__wrap
-    flex: 3 0 0
-    text-align: left
-.bespoke__wrap
-    flex: 2 0 0
-
-.bespoke__info
-.bus__info
-    line-height: 1.7rem
-.bus__info
-    margin: 1rem
-
-.bus__rates__table
-    width: 17rem
-    text-align: center
-    margin: 0 auto
-
-.bus__rates__table__caption
-    background: $turbo_verylightblue
-    padding: 0.5rem
-
-.bus__rates__row
-    td
-        padding: 0.5rem
+    margin-top: 2rem
+    margin-left: 2rem
+    Bullets--dark()
 
 .services__payments__wrap
+    margin-top: 2rem
     SectionWidth()
 
-.services__payments
-    column-count: 2
-
 .services__payment
-    break-inside: avoid
-
-@media(max-width: 720px)
-
-    .services__payments
-        column-count: 1
-
-    .services__payment
-        margin-bottom: 2.5rem
-
-    .payment__title:after
-        content: ':'
-
+    Bullets--dark()
 
 // /services }}}
 // contact {{{
@@ -1842,3 +1807,4 @@ textarea
     color: white
 
 // /testimonials }}}
+

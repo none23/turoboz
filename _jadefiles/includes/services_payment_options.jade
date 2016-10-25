@@ -1,12 +1,11 @@
-include ../mixins.jade
-section.services__wrap.services__payments__wrap
+section.services__payments__wrap.block--bullets.content-block
     h2.section_header
         | Оплата экскурсий
-    ul.services__payments
+    ul.services__payments.block__bullets
         | {% for p_o in page.payment_opts %}
         li.services__payment
             h3.payment__title
                 | {{ p_o.title }}
             p.payment__details
-                | {{ p_o.details }}
+                | {{ p_o.details | markdownify }}
         | {% endfor %}

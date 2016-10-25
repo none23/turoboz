@@ -1,18 +1,20 @@
 mixin GuideCard(g)
-    .guide
-        .guide__img__wrap
-            img.guide__img(src='/img/{{ #{g}.photo }}', alt='{{ #{g}.name }}')
-        .guide__name
-            | {{ #{g}.name }}
-        .guide__resume
-            | {% for paragraph in #{g}.resume %}
-            p.guide__resume__p
-                | {{ paragraph }}
-            | {% endfor %}
-        //--a.guide__link.guide__link--reviews(href='{{ #{g}.page_link.url }}')
-        //--    | {{ #{g}.reviews_link.copy }}
-        a.guide__link.guide__link--page(href='{{ #{g}.page_link.url }}')
-            | {{ #{g}.page_link.copy }}
+        .guide__wrap.card__wrap
+            .guide__card
+                .card__image__wrap
+                    img.card__image(src='/img/{{ #{g}.photo }}', alt='{{ #{g}.name }}')
+
+                h3.guide__name.card__title
+                    | {{ #{g}.name }}
+
+                .guide__resume.card__summary
+                    | {% for paragraph in #{g}.resume %}
+                    p.guide__resume__p
+                        | {{ paragraph | markdownify }}
+                    | {% endfor %}
+
+                a.guide__link.guide__link--page.card__button(href='{{ #{g}.page_link.url }}')
+                    | {{ #{g}.page_link.copy }}
 
 section.about__wrap.guides__wrap
     h2.section_header

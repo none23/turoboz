@@ -1,16 +1,25 @@
-section.services__wrap.bus__wrap
+include ../mixins.jade
+section.bus__wrap.block--table.content-block
     h2.section_header
         | Заказ автобуса
-    .bus__rates__table__wrap
-        p.bus__info
+    table.bus__rates__table.block__table
+        p.block__text
             | Туристические автобусы, оснащенные телевизором, микрофоном,
             | откидывающимися сидениями.
-        table.bus__rates__table
-            caption.bus__rates__table__caption Стоимость аренды автобусов:
-            | {% for optn in site.data.bus_rates %}
-            tr.bus__rates__row
-                td {{ optn.seats }} мест
-                td {{ optn.rate }}руб/час
-            | {% endfor %}
+        caption.block__table__caption
+            | Стоимость аренды автобусов:
+        | {% for optn in site.data.bus_rates %}
+        tr.bus__rates__row
+            td.td__left
+                span.td__number
+                    | {{ optn.seats }}
+                span.td__unit
+                    |  мест
+            td.td__right
+                span.td__number
+                    | {{ optn.rate }}
+                span.td__unit
+                    |  руб/час
+        | {% endfor %}
 
 

@@ -681,57 +681,6 @@ textarea {
 .page_heading--404 {
   line-height: 2;
 }
-.s__payment_opts__wrap,
-.s__overview,
-.testimonials__wrap,
-.about__wrap,
-.contacts__wrap,
-.contact_form__wrap,
-.review_form__wrap,
-.guides__wrap,
-.full_tour__content__wrap,
-.full_post__content__wrap,
-.full_tour__form__wrap,
-.blogpost__body {
-  width: 85vw;
-  max-width: 56.25rem;
-  min-width: 31.25rem;
-  margin: 1rem auto;
-}
-@media (max-width: 660px) {
-  .s__payment_opts__wrap,
-  .s__overview,
-  .testimonials__wrap,
-  .about__wrap,
-  .contacts__wrap,
-  .contact_form__wrap,
-  .review_form__wrap,
-  .guides__wrap,
-  .full_tour__content__wrap,
-  .full_post__content__wrap,
-  .full_tour__form__wrap,
-  .blogpost__body {
-    width: 92vw;
-    max-width: 92vw;
-    min-width: 0;
-  }
-}
-@media (max-width: 480px) {
-  .s__payment_opts__wrap,
-  .s__overview,
-  .testimonials__wrap,
-  .about__wrap,
-  .contacts__wrap,
-  .contact_form__wrap,
-  .review_form__wrap,
-  .guides__wrap,
-  .full_tour__content__wrap,
-  .full_post__content__wrap,
-  .full_tour__form__wrap,
-  .blogpost__body {
-    max-width: 85vw;
-  }
-}
 .tooltip {
   position: absolute;
   opacity: 0;
@@ -743,6 +692,48 @@ textarea {
   margin: 0 auto;
   padding: 1rem;
   transition: all 0.2s ease-in;
+}
+.testimonials__wrap,
+.contacts__wrap,
+.contact_form__wrap,
+.review_form__wrap,
+.full_tour__content__wrap,
+.full_post__content__wrap,
+.full_tour__form__wrap,
+.blogpost__body,
+.content {
+  width: 85vw;
+  max-width: 56.25rem;
+  min-width: 31.25rem;
+  margin: 1rem auto;
+}
+@media (max-width: 660px) {
+  .testimonials__wrap,
+  .contacts__wrap,
+  .contact_form__wrap,
+  .review_form__wrap,
+  .full_tour__content__wrap,
+  .full_post__content__wrap,
+  .full_tour__form__wrap,
+  .blogpost__body,
+  .content {
+    width: 92vw;
+    max-width: 92vw;
+    min-width: 0;
+  }
+}
+@media (max-width: 480px) {
+  .testimonials__wrap,
+  .contacts__wrap,
+  .contact_form__wrap,
+  .review_form__wrap,
+  .full_tour__content__wrap,
+  .full_post__content__wrap,
+  .full_tour__form__wrap,
+  .blogpost__body,
+  .content {
+    max-width: 85vw;
+  }
 }
 .form {
   width: 90%;
@@ -814,6 +805,57 @@ textarea {
 .form__button--failure {
   background: #610505 !important;
 }
+.split {
+  width: calc(100% - 3rem);
+  display: flex;
+  flex-wrap: no-wrap;
+  justify-content: space-around;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.split__child {
+  min-width: 25rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.split__child {
+  flex-basis: 50%;
+}
+.split--uneven .split__child--primary {
+  flex: 2;
+}
+.split--uneven .split__child--secondary {
+  flex: 1;
+}
+.block--textual,
+.block--bullets,
+.block--table,
+.block--textimg {
+  background: #fff;
+  border-radius: 0.125rem;
+  border: 0.063rem solid #9dcde1;
+  padding-bottom: 2rem;
+}
+.block--no-header {
+  padding-top: 1rem;
+}
+.block__text,
+.block__bullets {
+  text-align: justify;
+  hyphens: auto;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+@media (max-width: 32rem) {
+  .block__text,
+  .block__bullets {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+.content-block {
+  margin-bottom: 2rem;
+}
 .first_glance {
   width: 100%;
   display: flex;
@@ -862,9 +904,9 @@ textarea {
   font-size: 1.4rem;
 }
 .recent_posts__list {
-  margin: 0 0 1rem;
   margin: 0 1rem 1rem 2rem;
   position: relative;
+  margin: 0 1rem 1rem 2rem;
 }
 .recent_posts__list:before {
   content: '';
@@ -993,9 +1035,18 @@ textarea {
   padding: 1rem 0.7rem;
   font-size: 1.2rem;
 }
+.card__title.guide__name {
+  flex-basis: 1.5rem;
+}
 .card__summary {
   padding: 0 1rem 1rem;
   font-size: 1rem;
+}
+.card__summary.guide__resume {
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: justify;
+  hyphens: auto;
 }
 .card__button {
   flex: 0 0 2.5rem;
@@ -1007,6 +1058,11 @@ textarea {
   color: #26637d;
   background: #fff;
   transition: all 0.2s ease;
+}
+.card__button:hover,
+.card__button:focus,
+.card__button:active {
+  color: #fff;
 }
 .card__button:hover,
 .card__button:focus {
@@ -1022,100 +1078,6 @@ textarea {
 }
 .card:active .card__button {
   background: #613b23;
-}
-.about_info {
-  margin-top: 0;
-}
-.guides {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
-  flex-wrap: nowrap;
-}
-@media (max-width: 720px) {
-  .guides {
-    flex-wrap: wrap;
-  }
-}
-.guide {
-  display: flex;
-  flex: 0 1 25rem;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  margin: 0.5rem;
-  padding: 1rem;
-  border: 0.063rem solid #9dcde1;
-  border-radius: 0.125rem;
-  background: #fff;
-  max-width: 25rem;
-  min-width: 0;
-}
-.guide__img__wrap {
-  overflow: hidden;
-  flex: 0 1 20rem;
-  margin: -1rem -1rem 1rem;
-}
-@media (max-width: 1000px) {
-  .guide__img__wrap {
-    flex-basis: 17rem;
-  }
-}
-@media (max-width: 860px) {
-  .guide__img__wrap {
-    flex-basis: 15rem;
-  }
-}
-@media (max-width: 720px) {
-  .guide__img__wrap {
-    flex-basis: 20rem;
-  }
-}
-.guide__img {
-  width: 100%;
-  object-fit: contain;
-}
-.guide__name {
-  flex: 0 1 2.4rem;
-  font-size: 1.2rem;
-  line-height: 2.4rem;
-}
-.guide__resume {
-  flex: 0 2 14rem;
-  padding: 0 0.6rem;
-}
-.guide__resume_p {
-  margin: 1rem;
-}
-.guide__link {
-  flex: 0 0 1rem;
-  margin: 0 -1rem;
-  padding: 1rem;
-  border-top: 0.063rem solid #9dcde1;
-  text-align: center;
-  line-height: 1rem;
-  color: #3485a8;
-}
-.guide__link:hover,
-.guide__link:focus {
-  background: #3485a8;
-  color: #fff;
-}
-.guide__link--page {
-  margin-bottom: -1rem;
-  border-radius: 0 0 0.125rem 0.125rem;
-}
-.advantages__list {
-  background: #fff;
-  border-radius: 0.125rem;
-  border: 0.063rem solid #9dcde1;
-  padding: 3rem 2rem;
-}
-@media (max-width: 500px) {
-  .advantages__list {
-    padding: 0.5rem;
-  }
 }
 .advantage {
   margin: 0 1rem 1rem 2rem;
@@ -1236,7 +1198,8 @@ textarea {
   padding: 0.6rem;
   flex: 1 1 6rem;
 }
-.tour__card {
+.tour__card,
+.guide__card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
