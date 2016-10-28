@@ -97,9 +97,6 @@ Bullets()
     margin-bottom: 1rem
     position: relative
 
-    &:last-of-type
-        margin-bottom: 0
-
     &:before
         content: ''
         display: block
@@ -920,7 +917,7 @@ textarea
     margin-left: 1rem
     margin-right: @margin-left
     display: flex
-    lex-direction: column
+    flex-direction: column
     justify-content: space-between
 
     .content-block
@@ -936,7 +933,6 @@ textarea
     .split__child--secondary
         flex: 1
 
-.split--even
 .split--uneven
     margin-bottom: 2rem
 
@@ -967,6 +963,10 @@ textarea
 .block__bullets
     margin-left: 3rem
     margin-top: 1rem
+
+.block__bullets
+.block__table
+    margin-bottom: 2rem
 
 .block__text
     text-align: justify
@@ -1202,6 +1202,9 @@ textarea
 // /main }}}
 // about {{{
 // =========================================================================
+.advantages__wrap
+    margin-bottom: 0
+
 .advantage
     Bullets()
 
@@ -1670,8 +1673,8 @@ textarea
     Bullets--dark()
 
 .services__payments__wrap
-    margin-top: 2rem
     SectionWidth()
+    margin-top: 0
 
 .services__payment
     Bullets--dark()

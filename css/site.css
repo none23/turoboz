@@ -974,7 +974,10 @@ textarea {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  lex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -997,7 +1000,6 @@ textarea {
       -ms-flex: 1;
           flex: 1;
 }
-.split--even,
 .split--uneven {
   margin-bottom: 2rem;
 }
@@ -1030,6 +1032,10 @@ textarea {
 .block__bullets {
   margin-left: 3rem;
   margin-top: 1rem;
+}
+.block__bullets,
+.block__table {
+  margin-bottom: 2rem;
 }
 .block__text {
   text-align: justify;
@@ -1131,9 +1137,6 @@ textarea {
 .recent_post {
   margin-bottom: 1rem;
   position: relative;
-}
-.recent_post:last-of-type {
-  margin-bottom: 0;
 }
 .recent_post:before {
   content: '';
@@ -1355,12 +1358,12 @@ textarea {
 .card:active .card__button {
   background: #613b23;
 }
+.advantages__wrap {
+  margin-bottom: 0;
+}
 .advantage {
   margin-bottom: 1rem;
   position: relative;
-}
-.advantage:last-of-type {
-  margin-bottom: 0;
 }
 .advantage:before {
   content: '';
@@ -1946,12 +1949,6 @@ textarea {
   margin-bottom: 1rem;
   position: relative;
 }
-.full_tour__blueprint__list__item:last-of-type,
-.full_tour__includes__list__item:last-of-type,
-.full_tour__additional_fees__list__item:last-of-type,
-.full_tour__will_learn__list__item:last-of-type {
-  margin-bottom: 0;
-}
 .full_tour__blueprint__list__item:before,
 .full_tour__includes__list__item:before,
 .full_tour__additional_fees__list__item:before,
@@ -2027,9 +2024,6 @@ textarea {
   margin-bottom: 1rem;
   position: relative;
 }
-.full_post__content__wrap li:last-of-type {
-  margin-bottom: 0;
-}
 .full_post__content__wrap li:before {
   content: '';
   display: block;
@@ -2059,9 +2053,6 @@ textarea {
   margin-bottom: 1rem;
   position: relative;
 }
-.service__summary__item:last-of-type {
-  margin-bottom: 0;
-}
 .service__summary__item:before {
   content: '';
   display: block;
@@ -2089,11 +2080,11 @@ textarea {
   border-left-color: #613b23;
 }
 .services__payments__wrap {
-  margin-top: 2rem;
   width: 85vw;
   max-width: 56.25rem;
   min-width: 31.25rem;
   margin: 1rem auto;
+  margin-top: 0;
 }
 @media (max-width: 660px) {
   .services__payments__wrap {
@@ -2110,9 +2101,6 @@ textarea {
 .services__payment {
   margin-bottom: 1rem;
   position: relative;
-}
-.services__payment:last-of-type {
-  margin-bottom: 0;
 }
 .services__payment:before {
   content: '';
