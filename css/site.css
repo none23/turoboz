@@ -2076,9 +2076,6 @@ textarea {
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
 }
-.service__summary__item:before {
-  border-left-color: #613b23;
-}
 .services__payments__wrap {
   width: 85vw;
   max-width: 56.25rem;
@@ -2124,9 +2121,6 @@ textarea {
   border-left: 0.5rem solid #26637d;
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
-}
-.services__payment:before {
-  border-left-color: #613b23;
 }
 .contacts__wrap {
   display: -webkit-box;
