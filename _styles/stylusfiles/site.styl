@@ -936,6 +936,25 @@ textarea
 .split--uneven
     margin-bottom: 2rem
 
+SplitWrapped()
+    display: block
+    width: 100%
+    margin: 0
+
+    &__child
+        SectionWidth()
+        margin-top: 0
+        margin-bottom: 0
+
+@media(max-width: 900px)
+    .split--even
+        SplitWrapped()
+
+@media(max-width: 1000px)
+    .split--uneven
+        SplitWrapped()
+
+
 // /splits }}}
 // blocks {{{
 .block--textual
@@ -966,11 +985,15 @@ textarea
 
 .block__bullets
 .block__table
+.block__text:last-child
     margin-bottom: 2rem
 
 .block__text
-    text-align: justify
     hyphens: auto
+    text-align: justify
+
+    @media(max-width: 1100px)
+        text-align: left
 
 .block__table
     margin-top: 1rem
@@ -1668,12 +1691,18 @@ textarea
 // services {{{
 // =========================================================================
 .service__summary__item
-    margin-top: 2rem
-    margin-left: 2rem
+    margin-top: 1rem
     Bullets()
 
+.service__summary__item
+    margin-left: 2rem
+
+.services__intro__wrap
 .services__payments__wrap
     SectionWidth()
+    margin-bottom: 2rem
+
+.services__payments__wrap
     margin-top: 0
 
 .services__payment

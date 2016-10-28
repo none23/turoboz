@@ -12,14 +12,10 @@ section.newscards__wrap#newscards__wrap
                 .newspost__content__wrap.card__content__wrap
                     .newspost__date.card__date
                         +LiquidRussianDateLite('post.dateposted')
-
                     h3.newspost__title.card__title
                         | {{ post.title | smartify }}
-
                     p.newspost__summary.card__summary
                         | {{ post.summary | smartify }}
-
                     .newspost__button.card__button
                         | Читать далее
-
         | {% endfor %}

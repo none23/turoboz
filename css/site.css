@@ -1003,6 +1003,36 @@ textarea {
 .split--uneven {
   margin-bottom: 2rem;
 }
+@media (max-width: 900px) {
+  .split--even {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+  .split--even__child {
+    width: 85vw;
+    max-width: 56.25rem;
+    min-width: 31.25rem;
+    margin: 1rem auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 1000px) {
+  .split--uneven {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+  .split--uneven__child {
+    width: 85vw;
+    max-width: 56.25rem;
+    min-width: 31.25rem;
+    margin: 1rem auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
 .block--textual,
 .block--bullets,
 .block--table,
@@ -1034,14 +1064,20 @@ textarea {
   margin-top: 1rem;
 }
 .block__bullets,
-.block__table {
+.block__table,
+.block__text:last-child {
   margin-bottom: 2rem;
 }
 .block__text {
-  text-align: justify;
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
           hyphens: auto;
+  text-align: justify;
+}
+@media (max-width: 1100px) {
+  .block__text {
+    text-align: left;
+  }
 }
 .block__table {
   margin-top: 1rem;
@@ -2048,8 +2084,7 @@ textarea {
           transform: translateX(0%);
 }
 .service__summary__item {
-  margin-top: 2rem;
-  margin-left: 2rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   position: relative;
 }
@@ -2076,14 +2111,19 @@ textarea {
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
 }
+.service__summary__item {
+  margin-left: 2rem;
+}
+.services__intro__wrap,
 .services__payments__wrap {
   width: 85vw;
   max-width: 56.25rem;
   min-width: 31.25rem;
   margin: 1rem auto;
-  margin-top: 0;
+  margin-bottom: 2rem;
 }
 @media (max-width: 660px) {
+  .services__intro__wrap,
   .services__payments__wrap {
     width: 92vw;
     max-width: 92vw;
@@ -2091,9 +2131,13 @@ textarea {
   }
 }
 @media (max-width: 480px) {
+  .services__intro__wrap,
   .services__payments__wrap {
     max-width: 85vw;
   }
+}
+.services__payments__wrap {
+  margin-top: 0;
 }
 .services__payment {
   margin-bottom: 1rem;
@@ -2608,5 +2652,29 @@ textarea {
   100% {
     -webkit-transform: scale(1);
             transform: scale(1);
+  }
+}
+@media (max-width: 900px) and (max-width: 660px) {
+  __child {
+    width: 92vw;
+    max-width: 92vw;
+    min-width: 0;
+  }
+}
+@media (max-width: 900px) and (max-width: 480px) {
+  __child {
+    max-width: 85vw;
+  }
+}
+@media (max-width: 1000px) and (max-width: 660px) {
+  __child {
+    width: 92vw;
+    max-width: 92vw;
+    min-width: 0;
+  }
+}
+@media (max-width: 1000px) and (max-width: 480px) {
+  __child {
+    max-width: 85vw;
   }
 }
