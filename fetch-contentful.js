@@ -1,7 +1,6 @@
 // Deps {{{
 const fs = require('fs')
 const contentful = require('contentful')
-const rmMd = require('remove-markdown')
 const yaml = require('js-yaml')
 const assert = require('assert')
 // }}}
@@ -9,9 +8,12 @@ const accessToken = require('./.contentful-accessToken.json')
 const space = 'x9tc47a70skr'
 // Setup {{{
 const client = contentful.createClient({accessToken, space})
+/*
+const rmMd = require('remove-markdown')
 const deMd = (ulMd) => {
   rmMd(ulMd.replace(' *', '*')).split('\n ')
 }
+*/
 // }}}
 // Utils {{{
 function stripArgDash (arg) {
@@ -64,12 +66,19 @@ function fetchTours () {
         newTour.imgpath = item.fields.imgasset.fields.file.fileName
 
         newTour.tourdate = item.fields.dates ? `${item.fields.dates[0]}` : '00.00.0000'
-        newTour.prices = item.fields.prices ? deMd(item.fields.prices) : ['уточняйте при заказе']
-        newTour.blueprint = item.fields.blueprint ? deMd(item.fields.blueprint) : []
-        newTour.includes = item.fields.includes ? deMd(item.fields.includes) : []
-        newTour.additionalFees = item.fields.additionalFees ? deMd(item.fields.additionalFees) : []
-        newTour.willLearn = item.fields.willLearn ? deMd(item.fields.willLearn) : []
-        newTour.details = item.fields.details ? item.fields.details.split(' \n\n ') : []
+        newTour.prices = item.fields.prices ? item.fields.prices.split(' * ').slice(1) : ['уточняйте при заказе']
+        newTour.blueprint = item.fields.blueprint ? item.fields.blueprint.split(' * ').slice(1) : []
+        newTour.includes = item.fields.includes ? item.fields.includes.split(' * ').slice(1) : []
+        newTour.additionalFees = item.fields.additionalFees ? item.fields.additionalFees.split(' * ').slice(1) : []
+        newTour.willLearn = item.fields.willLearn ? item.fields.willLearn.split(' * ').slice(1) : []
+        newTour.details = item.fields.details ? item.fields.details.split('\n\n') : []
+        /*
+        // newTour.prices = item.fields.prices ? deMd(item.fields.prices) : ['уточняйте при заказе']
+        // newTour.blueprint = item.fields.blueprint ? deMd(item.fields.blueprint) : []
+        // newTour.includes = item.fields.includes ? deMd(item.fields.includes) : []
+        // newTour.additionalFees = item.fields.additionalFees ? deMd(item.fields.additionalFees) : []
+        // newTour.willLearn = item.fields.willLearn ? deMd(item.fields.willLearn) : []
+        */
 
         entriesCount += 1
         saveCollection(newTour, '_tours')

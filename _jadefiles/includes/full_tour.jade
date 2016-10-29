@@ -52,6 +52,7 @@ include ../mixins.jade
 //- /heading }}}
 .full_tour__content__wrap
     //- introduction {{{
+
     section.full_tour__intro__wrap
         .full_tour__image__wrap
             img.full_tour__image(srcset="/img/tours400/{{ page.imgpath }} 1x, /img/tours800/{{ page.imgpath }} 2x", src="/img/tours400/{{ page.imgpath }}",  alt="{{ page.title | smartify }}")
@@ -59,9 +60,11 @@ include ../mixins.jade
             | {{ page.intro | smartify }}
         p.full_tour__summary
             | {{ page.summary | smartify }}
+
     //- /introduction }}}
     //- blueprint {{{
-    | {% if page.blueprint[0] > '' %}
+    | {% if page.blueprint.size >= 1 %}
+
     section.full_tour__blueprint__wrap
         h2.section_header
             | Программа:
@@ -70,10 +73,12 @@ include ../mixins.jade
             li.full_tour__blueprint__list__item
                 | {{ item | smartify }}
             | {% endfor %}
+
     | {% endif %}
     //- /blueprint }}}
     //- includes {{{
-    | {% if page.includes[0] > '' %}
+    | {% if page.includes.size >= 1 %}
+
     section.full_tour__includes__wrap
         h2.section_header
             | в стоимость входят:
@@ -82,19 +87,23 @@ include ../mixins.jade
             li.full_tour__includes__list__item
                 | {{ item | smartify }}
             | {% endfor %}
+
     | {% endif %}
     //- /includes }}}
     //- details {{{
-    | {% if page.details[0] > '' %}
+    | {% if page.details.size >= 1 %}
+
     section.full_tour__details__wrap
         | {% for d in page.details %}
         p.full_tour__details
             | {{ d | smartify }}
         | {% endfor %}
+
     | {% endif %}
     //- /details }}}
     //- additional_fees {{{
-    | {% if page.additional_fees[0] > '' %}
+    | {% if page.additionalFees.size >= 1 %}
+
     section.full_tour__additional_fees__wrap
         h2.section_header
             | Дополнительно оплачиваемые услуги:
@@ -103,10 +112,12 @@ include ../mixins.jade
             li.full_tour__additional_fees__list__item
                 | {{ item | smartify }}
             | {% endfor %}
+
     | {% endif %}
     //- /additional_fees }}}
     //- will_learn {{{
-    | {% if page.will_learn[0] > '' %}
+    | {% if page.willLearn.size >= 1 %}
+
     section.full_tour__will_learn__wrap
         h2.section_header
             | Вы узнаете:
@@ -115,6 +126,7 @@ include ../mixins.jade
         li.full_tour__will_learn__list__item
             | {{ item | smartify }}
         | {% endfor %}
+
     | {% endif %}
     //- /will_learn }}}
 //- form {{{
