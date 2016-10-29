@@ -87,9 +87,6 @@ SectionWidth()
         width: 92vw
         max-width: @width
         min-width: 0
-
-    @media(max-width: 480px)
-        max-width: @width
     //--}}}
 
 Bullets()
@@ -946,12 +943,12 @@ SplitWrapped()
         margin-top: 0
         margin-bottom: 0
 
-@media(max-width: 900px)
-    .split--even
+.split--even
+    @media(max-width: 900px)
         SplitWrapped()
 
-@media(max-width: 1000px)
-    .split--uneven
+.split--uneven
+    @media(max-width: 1000px)
         SplitWrapped()
 
 
@@ -1137,10 +1134,13 @@ SplitWrapped()
 
     &.newspost__image__wrap
     &.vkpost__image__wrap
+    &.guide__image__wrap
         flex 1 1 21.875rem
         line-height: 0
         max-height: 18rem
 
+    &.newspost__image__wrap
+    &.vkpost__image__wrap
         @media(max-width: 659px)
             display: none
 
@@ -1223,18 +1223,8 @@ SplitWrapped()
 // /blog & news }}}
 
 // /main }}}
-// about {{{
+// tours {{{
 // =========================================================================
-.advantages__wrap
-    margin-bottom: 0
-
-.advantage
-    Bullets()
-
-
-// /about }}}
-//// tours {{{
-//// =========================================================================
 
 .tours__wrap
     width: 100%
@@ -1242,8 +1232,8 @@ SplitWrapped()
     justify-content: space-between
     min-height: $tours_nav_min-height
 
-//// tours_nav {{{
-//// ----.card__content__wrap--------------------------------------------------------------------
+// tours_nav {{{
+// ----.card__content__wrap--------------------------------------------------------------------
 .tours_nav__wrap
     flex: 0 1 25vw
     min-width: 15rem
@@ -1297,10 +1287,10 @@ SplitWrapped()
 .tours_nav__link--subtag--last
     padding-bottom: 1.5em
 
-//// /tours_nav }}}
+// /tours_nav }}}
 
-//// tours_list {{{
-//// ------------------------------------------------------------------------
+// tours_list {{{
+// ------------------------------------------------------------------------
 .tours_list__wrap
     flex: 0 1 75vw
     position: relative
@@ -1356,7 +1346,7 @@ SplitWrapped()
     color: $turbo_darkblue
     padding: 0 1rem
 
-//// /tours_list }}}
+// /tours_list }}}
 
 .tours__count
     position: absolute
@@ -1364,8 +1354,8 @@ SplitWrapped()
     top: 2rem
     color: $turbo_blue
 
-//// tours media {{{
-//// ------------------------------------------------------------------------
+// tours media {{{
+// ------------------------------------------------------------------------
 @media(max-width: 1139px)
     .tours_nav
         margin-top: 2.5rem
@@ -1415,8 +1405,25 @@ SplitWrapped()
     .tour__image
         display: none
 
-//// /tours media }}}
-//// /tours }}}
+// /tours media }}}
+// /tours }}}
+// about {{{
+// =========================================================================
+.advantages__wrap
+    margin-bottom: 0
+
+.advantage
+    Bullets()
+
+.guide__card
+    @media(max-width: 1000px)
+        @media(min-width: 740px)
+            flex-direction: row
+
+
+
+
+// /about }}}
 // full_tour/post {{{
 // =========================================================================
 .full_tour__heading
@@ -1691,9 +1698,14 @@ SplitWrapped()
 // services {{{
 // =========================================================================
 .service__summary__item
-    margin-left: 2rem
     margin-top: 1rem
     Bullets()
+
+.service__summary__item
+    margin-left: 2rem
+
+    @media(max-width: 500px)
+        margin-left: 0
 
 .services__intro__wrap
 .services__payments__wrap

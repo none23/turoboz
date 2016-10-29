@@ -852,19 +852,6 @@ textarea {
     min-width: 0;
   }
 }
-@media (max-width: 480px) {
-  .testimonials__wrap,
-  .contacts__wrap,
-  .contact_form__wrap,
-  .review_form__wrap,
-  .full_tour__content__wrap,
-  .full_post__content__wrap,
-  .full_tour__form__wrap,
-  .blogpost__body,
-  .content {
-    max-width: 85vw;
-  }
-}
 .td__unit {
   font-size: 0.9rem;
 }
@@ -1018,6 +1005,13 @@ textarea {
     margin-bottom: 0;
   }
 }
+@media (max-width: 900px) and (max-width: 660px) {
+  .split--even__child {
+    width: 92vw;
+    max-width: 92vw;
+    min-width: 0;
+  }
+}
 @media (max-width: 1000px) {
   .split--uneven {
     display: block;
@@ -1031,6 +1025,13 @@ textarea {
     margin: 1rem auto;
     margin-top: 0;
     margin-bottom: 0;
+  }
+}
+@media (max-width: 1000px) and (max-width: 660px) {
+  .split--uneven__child {
+    width: 92vw;
+    max-width: 92vw;
+    min-width: 0;
   }
 }
 .block--textual,
@@ -1283,7 +1284,8 @@ textarea {
      object-fit: cover;
 }
 .card__image__wrap.newspost__image__wrap,
-.card__image__wrap.vkpost__image__wrap {
+.card__image__wrap.vkpost__image__wrap,
+.card__image__wrap.guide__image__wrap {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 21.875rem;
           flex: 1 1 21.875rem;
@@ -1393,36 +1395,6 @@ textarea {
 }
 .card:active .card__button {
   background: #613b23;
-}
-.advantages__wrap {
-  margin-bottom: 0;
-}
-.advantage {
-  margin-bottom: 1rem;
-  position: relative;
-}
-.advantage:before {
-  content: '';
-  display: block;
-  position: absolute;
-  left: -1.3rem;
-  top: 25%;
-  bottom: 75%;
-  right: calc(100% + 0.6rem);
-  background: transparent;
-  border-top: 0.32rem solid transparent;
-  border-bottom: 0.32rem solid transparent;
-  border-left: 0.5rem solid #68a9c4;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -webkit-transform: translateX(10%);
-          transform: translateX(10%);
-}
-.advantage:hover:before,
-.advantage:focus:before {
-  border-left: 0.5rem solid #26637d;
-  -webkit-transform: translateX(0%);
-          transform: translateX(0%);
 }
 .tours__wrap {
   width: 100%;
@@ -1636,6 +1608,44 @@ textarea {
   .tour__image__wrap,
   .tour__image {
     display: none;
+  }
+}
+.advantages__wrap {
+  margin-bottom: 0;
+}
+.advantage {
+  margin-bottom: 1rem;
+  position: relative;
+}
+.advantage:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -1.3rem;
+  top: 25%;
+  bottom: 75%;
+  right: calc(100% + 0.6rem);
+  background: transparent;
+  border-top: 0.32rem solid transparent;
+  border-bottom: 0.32rem solid transparent;
+  border-left: 0.5rem solid #68a9c4;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-transform: translateX(10%);
+          transform: translateX(10%);
+}
+.advantage:hover:before,
+.advantage:focus:before {
+  border-left: 0.5rem solid #26637d;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+@media (max-width: 1000px) and (min-width: 740px) {
+  .guide__card {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
   }
 }
 .full_tour__heading,
@@ -2084,7 +2094,6 @@ textarea {
           transform: translateX(0%);
 }
 .service__summary__item {
-  margin-left: 2rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
   position: relative;
@@ -2112,6 +2121,14 @@ textarea {
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
 }
+.service__summary__item {
+  margin-left: 2rem;
+}
+@media (max-width: 500px) {
+  .service__summary__item {
+    margin-left: 0;
+  }
+}
 .services__intro__wrap,
 .services__payments__wrap {
   width: 85vw;
@@ -2126,12 +2143,6 @@ textarea {
     width: 92vw;
     max-width: 92vw;
     min-width: 0;
-  }
-}
-@media (max-width: 480px) {
-  .services__intro__wrap,
-  .services__payments__wrap {
-    max-width: 85vw;
   }
 }
 .services__payments__wrap {
@@ -2650,29 +2661,5 @@ textarea {
   100% {
     -webkit-transform: scale(1);
             transform: scale(1);
-  }
-}
-@media (max-width: 900px) and (max-width: 660px) {
-  __child {
-    width: 92vw;
-    max-width: 92vw;
-    min-width: 0;
-  }
-}
-@media (max-width: 900px) and (max-width: 480px) {
-  __child {
-    max-width: 85vw;
-  }
-}
-@media (max-width: 1000px) and (max-width: 660px) {
-  __child {
-    width: 92vw;
-    max-width: 92vw;
-    min-width: 0;
-  }
-}
-@media (max-width: 1000px) and (max-width: 480px) {
-  __child {
-    max-width: 85vw;
   }
 }
