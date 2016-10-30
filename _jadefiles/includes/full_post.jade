@@ -1,8 +1,8 @@
 include ../mixins.jade
 
+.block--breadcrumbs
+    +BreadcrumbWithIcon('/', 'Вернуться на главную')
 .full_post__heading
-    .block--breadcrumbs
-        +BreadcrumbWithIcon('/', 'Вернуться на главную')
     .full_post__heading__left
         .full_post__date
               +LiquidRussianDateLite('{{ page.dateposted }}')
@@ -15,18 +15,12 @@ include ../mixins.jade
         .full_post__image__wrap
             img.full_post__image(srcset="/img/posts430/{{ page.image }} 1x, /img/posts800/{{ page.image }} 2x", src="/img/posts430/{{ page.image }}", alt="{{ page.title | smartify }}")
         | {{ page.body | markdownify }}
-    .full_post__breadcrumbs--bottom
-        | {% unless page.previous == nil %}
-        a.full_post__breadcrumb(href='{{ page.previous.url }}')
-            .full_post__breadcrumb__icon
-                +iconArrowBack('full_post__breadcrumb__icon__svg')
-            .full_tour__breadcrumb__label
-                | Предыдущая новость
-        | {% endunless %}
-        | {% unless page.next == nil %}
-        a.full_post__breadcrumb(href='{{ page.next.url }}')
-            .full_tour__breadcrumb__label
-                | Следующая новость
-            .full_post__breadcrumb__icon
-                +iconArrowForward('full_post__breadcrumb__icon__svg')
-        | {% endunless %}
+
+.block--breadcrumbs.breadcrumbs--prev-next
+    | {% unless page.previous == nil %}
+    +BreadcrumbWithIcon('{{ page.previous.url }}', 'Предыдущая новость')
+    | {% endunless %}
+
+    | {% unless page.next == nil %}
+    +BreadcrumbWithIconRev('{{ page.next.url }}', 'Следующая новость')
+    | {% endunless %}

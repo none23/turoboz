@@ -1433,7 +1433,6 @@ SplitWrapped()
     justify-content: space-between
     flex-wrap: wrap
     align-items: baseline
-    AltBG()
 
     @media(max-width: 700px)
         flex-direction: column
@@ -1460,8 +1459,7 @@ SplitWrapped()
     flex-direction: row
     justify-content: flex-start
     flex-wrap: wrap
-    margin: -1rem -5vw 1rem
-
+    margin: 1rem 5vw
 
 .breadcrumb
     display: flex
@@ -1477,7 +1475,6 @@ SplitWrapped()
 
     @media(max-width: 500px)
         font-size: 0.8rem
-
 
 .breadcrumb--icon
     order:-1
@@ -1507,19 +1504,9 @@ SplitWrapped()
         .breadcrumb__label
             textLink($turbo_brown, nohover)
 
-// old {{{
-
-.full_post__breadcrumbs--bottom
-    flex: 0 0 100%
-    display: flex
-    flex-direction: row
-    justify-content: flex-start
-    flex-wrap: wrap
-
-.full_post__breadcrumbs--bottom
+.breadcrumbs--prev-next
     justify-content: space-around
 
-// /old}}}
 //- /breadcrumbs }}}
 
 .full_tour__date

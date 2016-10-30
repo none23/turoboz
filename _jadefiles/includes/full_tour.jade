@@ -1,28 +1,28 @@
 include ../mixins.jade
+//- breadcrumbs {{{
+.block--breadcrumbs
+    +BreadcrumbWithIcon('/tours', 'К списку экскурсий')
+
+    | {% for item in page.tags %}
+    |   {% for tag in site.data.tags %}
+    |     {% if tag.tag == item %}
+
+    +Breadcrumb('{{ tag.url }}', '{{ tag.title }}')
+
+    |     {% elsif tag.subtags%}
+    |       {% for subtag in tag.subtags %}
+    |         {% if subtag.subtag == item %}
+
+    +Breadcrumb('{{ subtag.url }}', '{{ subtag.title }}', 'breadcrumb--subtag')
+
+    |         {% endif %}
+    |       {% endfor %}
+    |     {% endif %}
+    |   {% endfor %}
+    | {% endfor %}
+
+//- /breadcrumbs }}}
 .full_tour__heading
-    //- breadcrumbs {{{
-    .block--breadcrumbs
-        +BreadcrumbWithIcon('/tours', 'К списку экскурсий')
-
-        | {% for item in page.tags %}
-        |   {% for tag in site.data.tags %}
-        |     {% if tag.tag == item %}
-
-        +Breadcrumb('{{ tag.url }}', '{{ tag.title }}')
-
-        |     {% elsif tag.subtags%}
-        |       {% for subtag in tag.subtags %}
-        |         {% if subtag.subtag == item %}
-
-        +Breadcrumb('{{ subtag.url }}', '{{ subtag.title }}', 'breadcrumb--subtag')
-
-        |         {% endif %}
-        |       {% endfor %}
-        |     {% endif %}
-        |   {% endfor %}
-        | {% endfor %}
-
-    //- /breadcrumbs }}}
     //- heading-left {{{
     .full_tour__heading__left
 
