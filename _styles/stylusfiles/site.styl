@@ -1,5 +1,5 @@
 // vars {{{
-// =========================================================================
+
 $site_header_height = 6rem
 $site_header_logo_width = 14rem
 $site_header_logo_height = 5.25rem
@@ -28,7 +28,6 @@ $border-radius = 0.125rem
 $border = 0.063rem solid $turbo_lightblue
 
 $the_font = Ubuntu, Arial, Helvetica, sans-serif
-
 
 $turbo_cancel = hsl(0, 53%, 42%)
 $turbo_cancel_active = hsl(0, 53%, 33%)
@@ -68,16 +67,14 @@ $modal_form_button_fg = white
 
 // /vars }}}
 // mixins {{{
+
 AltBG()
-    //--{{{
     background-image: url(/img/card.png)
     background-color: $turbo_lightblue
     background-repeat: repeat
     background-blend-mode: soft-light
-    //--}}}
 
 SectionWidth()
-    //--{{{
     width: 85vw
     max-width: 56.25rem
     min-width: 31.25rem
@@ -87,10 +84,8 @@ SectionWidth()
         width: 92vw
         max-width: @width
         min-width: 0
-    //--}}}
 
 Bullets()
-    //--{{{
     margin-bottom: 1rem
     position: relative
 
@@ -114,15 +109,7 @@ Bullets()
         border-left: 0.5rem solid $turbo_darkblue
         transform: translateX(0%)
 
-Bullets--dark()
-    Bullets()
-
-    &:before
-        border-left-color: $turbo_brown
-    //--}}}
-
 textLink(Color=$turbo_blue, Flag=false)
-    //--{{{
     color: Color
     line-height: 1
     text-decoration: underline
@@ -131,11 +118,11 @@ textLink(Color=$turbo_blue, Flag=false)
         &:hover
         &:focus
             color: $turbo_brown
-    //--}}}
 
 // /mixins }}}
 // keyframes {{{
 // page_effects keyframes {{{
+
 @keyframes slideInLeft
     0%
         transform: translateX(100%)
@@ -162,6 +149,7 @@ textLink(Color=$turbo_blue, Flag=false)
 
 // /page_effects keyframes }}}
 // logo_effects keyframes {{{
+
 @keyframes logo_animate_gray
     0%
         transform: rotate(0deg) scale(1)
@@ -230,6 +218,7 @@ textLink(Color=$turbo_blue, Flag=false)
         fill: $turbo_darkbrown
     100%
         fill: $turbo_brown
+
 // /logo_effects keyframes }}}
 
 @keyframes form_button_submit
@@ -241,9 +230,10 @@ textLink(Color=$turbo_blue, Flag=false)
         transform: scale(1.1)
     100%
         transform: scale(1)
+
 // /keyframes }}}
 // base {{{
-// =========================================================================
+
 html
 body
     width: 100vw
@@ -270,6 +260,9 @@ h6
 a
     color: $body_fg
     text-decoration: none
+
+    p &
+        textLink()
 
 img
     margin: 0
@@ -339,7 +332,7 @@ textarea
 // /typography }}}
 // /base }}}
 // site_header {{{
-// =========================================================================
+
 #site_header
     height: $site_header_height
     flex: 0 0 @height
@@ -357,7 +350,7 @@ textarea
     z-index: 700
 
 // logo {{{
-// ------------------------------------------------------------------------
+
 #site_logo
     flex: 0 0 $site_header_logo_width
     height: $site_header_logo_height
@@ -401,7 +394,7 @@ textarea
 
 // /logo }}}
 // contacts_box {{{
-// ------------------------------------------------------------------------
+
 #site_contacts_wrap
     flex: 0 0 $site_header_contacts_width
     position: relative
@@ -457,7 +450,7 @@ textarea
 
 // /contacts_box }}}
 // header_form {{{
-// ------------------------------------------------------------------------
+
 .header_form__wrap
     position: absolute
     top: 100%
@@ -525,7 +518,7 @@ textarea
 
 // /header_form }}}
 // site_nav {{{
-// ------------------------------------------------------------------------
+
 .site_nav__link
     padding: 0.5rem
     white-space: nowrap
@@ -677,7 +670,7 @@ textarea
 // /site_nav }}}
 // /site_header }}}
 // site_footer {{{
-// =========================================================================
+
 #site_footer
     order: 2
     display: flex
@@ -729,7 +722,7 @@ textarea
 
 // /site_footer }}}
 // site_wide {{{
-// =========================================================================
+
 .page_wrap
     min-height: $page_wrap_min-height
     display: flex
@@ -782,11 +775,7 @@ textarea
 .contacts__wrap
 .contact_form__wrap
 .review_form__wrap
-.full_tour__content__wrap
-.full_post__content__wrap
 .full_tour__form__wrap
-.blogpost__body
-.content
     SectionWidth()
 
 .td__unit
@@ -800,15 +789,14 @@ textarea
     padding-right: @padding-left
 
 // forms {{{
-// ------------------------------------------------------------------------
-.form
+
+.order-form__wrap
     width: 90%
     border: $border
     border-radius: $border-radius
     margin: 1rem 0
     background: white
     padding: 2% 5% 0
-
 
 .form__field
     outline: $border
@@ -832,7 +820,7 @@ textarea
 .form__button--loading
 .form__button--failure
 .form__button
-    -webkit-appearance: none
+    appearance: none
     width: 111%
     margin: 2rem -5.5% 0
     padding: 1rem
@@ -873,33 +861,9 @@ textarea
     background: hsl(0,90%,20%) !important
 
 // /forms }}}
-// page_effects {{{
-//.page_content_wrap
-//    animation-duration: 0.25s
-//    transition-timing-function: ease-out
-//    animation-fill-mode: both
-//    animation-name: slideInRight
-//
-//    .is_exiting &
-//        animation-direction: alternate-reverse
-//
-//.page_content_wrap--
-//    &main
-//        animation-name: slideInUp
-//
-//    &page
-//        animation-name: slideInRight
-//
-//    &tours
-//        animation-name: slideInLeft
-//
-//    &post
-//    &tour
-//        animation-name: slideInLeft
-//
-// /page_effects }}}
 // /site_wide }}}
 // splits {{{
+
 .split
     width: calc(100% - 3rem)
     display: flex
@@ -920,7 +884,7 @@ textarea
     .content-block
         height: 100%
 
-.split--even
+.split--even__child
     flex: 1
 
 .split--uneven
@@ -954,11 +918,13 @@ SplitWrapped()
 
 // /splits }}}
 // blocks {{{
+
 .block--textual
 .block--bullets
 .block--table
 .block--textimg
 .block--cards
+.block--gallery
     background: white
     border-radius: $border-radius
     border: $border
@@ -969,6 +935,7 @@ SplitWrapped()
 .block__text
 .block__table
 .block__bullets
+.block__gallery
     margin-left: $block-margins
     margin-right: @margin-left
 
@@ -980,8 +947,12 @@ SplitWrapped()
     margin-left: 3rem
     margin-top: 1rem
 
+.bullet
+    Bullets()
+
 .block__bullets
 .block__table
+.block__gallery
 .block__text:last-child
     margin-bottom: 2rem
 
@@ -992,6 +963,28 @@ SplitWrapped()
     @media(max-width: 1100px)
         text-align: left
 
+.block--textual__image__wrap
+    float: right
+    margin: 2rem
+    width: 50%
+    max-height: auto
+    max-width: 25rem
+    overflow: hidden
+
+    @media(max-width: 700px)
+        width: 45%
+
+    @media(max-width: 600px)
+        width: 100%
+        margin: 0 auto
+        float: none
+
+.block--textual__image
+    width: 100%
+    height: 100%
+    object-fit: contain
+    border-radius: $border-radius
+
 .block__table
     margin-top: 1rem
     margin-left: auto
@@ -999,6 +992,9 @@ SplitWrapped()
 
 .block__table__caption
     margin-bottom: .3rem
+
+.gallery__image
+    width: 50%
 
 .content-block
     max-width: 56.25rem
@@ -1008,7 +1004,6 @@ SplitWrapped()
 
 // /blocks }}}
 // main {{{
-// =========================================================================
 // first_glance {{{
 // ------------------------------------------------------------------------
 .first_glance
@@ -1221,10 +1216,8 @@ SplitWrapped()
         background: $turbo_brown
 
 // /blog & news }}}
-
 // /main }}}
 // tours {{{
-// =========================================================================
 
 .tours__wrap
     width: 100%
@@ -1233,7 +1226,7 @@ SplitWrapped()
     min-height: $tours_nav_min-height
 
 // tours_nav {{{
-// ----.card__content__wrap--------------------------------------------------------------------
+
 .tours_nav__wrap
     flex: 0 1 25vw
     min-width: 15rem
@@ -1288,9 +1281,7 @@ SplitWrapped()
     padding-bottom: 1.5em
 
 // /tours_nav }}}
-
 // tours_list {{{
-// ------------------------------------------------------------------------
 .tours_list__wrap
     flex: 0 1 75vw
     position: relative
@@ -1355,7 +1346,7 @@ SplitWrapped()
     color: $turbo_blue
 
 // tours media {{{
-// ------------------------------------------------------------------------
+
 @media(max-width: 1139px)
     .tours_nav
         margin-top: 2.5rem
@@ -1408,12 +1399,9 @@ SplitWrapped()
 // /tours media }}}
 // /tours }}}
 // about {{{
-// =========================================================================
+
 .advantages__wrap
     margin-bottom: 0
-
-.advantage
-    Bullets()
 
 .guide__card
     @media(max-width: 1000px)
@@ -1422,8 +1410,7 @@ SplitWrapped()
 
 // /about }}}
 // full_tour/post {{{
-// =========================================================================
-//- breadcrumbs {{{
+// breadcrumbs {{{
 
 .block--breadcrumbs
     flex: 0 0 100%
@@ -1538,132 +1525,46 @@ SplitWrapped()
         text-align: center
 
 // /heading }}}
-// body {{{
 
-.full_tour__content__wrap
-.full_post__content__wrap
-.blogpost__body
-    background-color: white
-    border: $border
-    display: flex
-    flex-direction: row
-    flex-wrap: wrap
-    align-items: stretch
+.full_tour__description
+.includes__wrap
+.additional-fees__wrap
+.will-learn__wrap
+.blueprint__wrap
+    SectionWidth()
+    margin-bottom: 2rem
 
-    a
-        color: $turbo_darkblue
-        text-decoration: underline
+.vk__source__link
+    white-space: nowrap
+    textLink()
+    margin-bottom: 2rem
 
-.full_tour__intro__wrap
-.full_tour__blueprint__wrap
-.full_tour__includes__wrap
-.full_tour__additional_fees__wrap
-.full_tour__will_learn__wrap
-.full_tour__details__wrap
-.full_post__summary
-.full_post__body
-.blogpost__body
-    padding: 1.75rem
-    width: auto
+.full-post__description > p
+.full-vkpost__description > p
+.vk__source
+    margin-left: $block-margins
+    margin-right: @margin-left
 
-    @media(max-width: 660px)
-        padding 0.75rem 1.75rem
+    &:last-child
+        margin-bottom: 2rem
 
-.blogpost__image
-    height: auto
-    width: calc(50% - 3rem)
-    margin: 1rem
-    object-fit: cover
-    border-radius: $border-radius
-    float: right
+    @media(max-width: 500px)
+        margin-left: 0.5rem
+        margin-right: @margin-left
 
-.blogpost__photo
-    padding: 1rem
-    height: auto
-    max-width: 85vw
-    max-height: 85vh
-    object-fit: scale-down
-    border-radius: $border-radius
-    display: inline
+.full-post__description > p
+.full-vkpost__description > p
+    hyphens: auto
+    text-align: justify
 
-.blogpost__gallery
-    width: 100%
+    @media(max-width: 1100px)
+        text-align: left
 
-.blogpost__body
-    margin: 0 auto
-    flex: 1 1 100%
-
-.blogpost__vklink
-    color: $turbo_blue
-
-.full_tour__intro__wrap
-.full_tour__details__wrap
-.full_tour__blueprint__wrap
-    flex: 1 1 100%
-
-.full_tour__includes__wrap
-.full_tour__additional_fees__wrap
-.full_tour__will_learn__wrap
-    flex: 1 1 35%
-
-.full_tour__intro__wrap
-    display: block
-    flex-direction: column
-    justify-content: flex-start
-    align-items: stretch
-    margin-top: 0
-
-    @media(max-width: 700px)
-        display: flex
-
-
-.full_tour__blueprint__list__item
-.full_tour__includes__list__item
-.full_tour__additional_fees__list__item
-.full_tour__will_learn__list__item
-    Bullets()
-
-.full_post__body
-    width: 100%
-
-.full_post__image
-.full_tour__image
-    width: 100%
-    height: 100%
-    object-fit: contain
-    border-radius: $border-radius
-
-.full_tour__intro
-    order: -1
-
-.full_post__image__wrap
-.full_tour__image__wrap
-    float: right
-    margin: 1rem 0 1rem 1rem
-    width: 50%
-    max-height: auto
-    max-width: 25rem
-    overflow: hidden
-
-    @media(max-width: 700px)
-        width: 45%
-
-    @media(max-width: 600px)
-        width: 100%
-        margin: 0 auto
-        float: none
-
-.full_post__content__wrap
-    li
-        Bullets()
-
-// /body }}}
 // /full_tour/post }}}
 // services {{{
-// =========================================================================
+
 .service__summary__item
     margin-top: 1rem
-    Bullets()
     margin-left: 2rem
 
     @media(max-width: 500px)
@@ -1682,7 +1583,6 @@ SplitWrapped()
 
 // /services }}}
 // contact {{{
-// =========================================================================
 
 .contacts__wrap
     display: flex
@@ -1722,7 +1622,6 @@ SplitWrapped()
         display: block
         text-align: center
 
-
 .c__brand
 .c__list
 .c__address
@@ -1751,7 +1650,7 @@ SplitWrapped()
 
 // /contact }}}
 // testimonials {{{
-// =========================================================================
+
 .testimonial
     width: 100%
     position: relative

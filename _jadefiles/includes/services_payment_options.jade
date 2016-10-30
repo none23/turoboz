@@ -3,5 +3,6 @@ section.services__payments__wrap.block--bullets.content-block
         | Оплата экскурсий
     ul.services__payments.block__bullets
         | {% for p_o in page.payment_opts %}
-        li.services__payment {{ p_o | markdownify }}
+        li.services__payment.bullet
+            | {{ p_o | markdownify }}
         | {% endfor %}

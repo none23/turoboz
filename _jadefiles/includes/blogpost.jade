@@ -8,19 +8,21 @@ include ../mixins.jade
         .heading__date
             +LiquidRussianDateLite('page.dateposted')
 
-.blogpost__body__wrap
-    .blogpost__body
-        .blogpost__content
-            img.blogpost__image(src='{{ page.image }}', alt='{{ page.body | smartify }}')
-            | {{ content }}
+section.full-vkpost__description.block--textual.block--no-header.content-block
+    .block--textual__image__wrap
+        img.block--textual__image(src='{{ page.image }}', alt='{{ page.body | smartify }}')
 
-        .blogpost__gallery
-            | {% for image in page.photos %}
-            img.blogpost__photo(src='{{ image }}')
-            | {% endfor %}
+    | {{ content }}
 
-        a.blogpost__vklink(href='{{ page.vklink }}', target='_blank', title='Оригинальная публикация (Вконтакте)')
-            | {{ page.vklink }}
+    .block__gallery
+        | {% for image in page.photos %}
+        img.gallery__image(src='{{ image }}')
+        | {% endfor %}
+
+    .vk__source
+        | Оригинальная публикация:
+        a.vk__source__link(href='{{ page.vklink }}', target='_blank', title='Оригинальная публикация (Вконтакте)')
+            |  {{ page.vklink }}
 
 .block--breadcrumbs.breadcrumbs--prev-next
     | {% unless page.previous == nil %}

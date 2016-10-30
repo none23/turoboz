@@ -3,6 +3,6 @@ section.advantages__wrap.block--bullets.content-block
         | Экскурсии с компанией «Туробоз» - это всегда:
     ul.advantages__list.block__bullets
         | {% for advantage in page.advantages %}
-        li.advantage
+        li.advantage.bullet
             | {{ advantage }}
         | {% endfor %}

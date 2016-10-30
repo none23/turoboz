@@ -7,17 +7,18 @@ include ../mixins.jade
     .heading__left
         .heading__date
             +LiquidRussianDateLite('page.dateposted')
+
         h1.heading__title
             | {{ page.title | smartify }}
 
-.full_post__content__wrap
-    .full_post__summary
+section.full-post__description.block--textual.block--no-header.content-block
+    .block--textual__image__wrap
+        img.block--textual__image(srcset="/img/posts430/{{ page.image }} 1x, /img/posts800/{{ page.image }} 2x", src="/img/posts430/{{ page.image }}", alt="{{ page.title | smartify }}")
+
+    p.full-post__summary.block__text
         | {{ page.summary | smartify }}
 
-    .full_post__body
-        .full_post__image__wrap
-            img.full_post__image(srcset="/img/posts430/{{ page.image }} 1x, /img/posts800/{{ page.image }} 2x", src="/img/posts430/{{ page.image }}", alt="{{ page.title | smartify }}")
-        | {{ page.body | markdownify }}
+    | {{ page.body | markdownify }}
 
 .block--breadcrumbs.breadcrumbs--prev-next
     | {% unless page.previous == nil %}

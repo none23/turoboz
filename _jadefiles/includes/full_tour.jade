@@ -1,27 +1,19 @@
 include ../mixins.jade
-//- breadcrumbs {{{
 .block--breadcrumbs
     +BreadcrumbWithIcon('/tours', 'К списку экскурсий')
-
     | {% for item in page.tags %}
     |   {% for tag in site.data.tags %}
     |     {% if tag.tag == item %}
-
     +Breadcrumb('{{ tag.url }}', '{{ tag.title }}')
-
     |     {% elsif tag.subtags%}
     |       {% for subtag in tag.subtags %}
     |         {% if subtag.subtag == item %}
-
     +Breadcrumb('{{ subtag.url }}', '{{ subtag.title }}', 'breadcrumb--subtag')
-
     |         {% endif %}
     |       {% endfor %}
     |     {% endif %}
     |   {% endfor %}
     | {% endfor %}
-
-//- /breadcrumbs }}}
 
 .block--heading
     .heading__left
@@ -31,6 +23,7 @@ include ../mixins.jade
             | {{ page.title }}
         .heading__subtitle
             | {{ page.subtitle }}
+
     .heading__right
         .heading__details__label
             | Продолжительность:
@@ -44,86 +37,79 @@ include ../mixins.jade
             | {{ item }}
         | {% endfor %}
 
-.full_tour__content__wrap
-    //- introduction {{{
+section.full_tour__description.block--textual.block--no-header.content-block
+    .block--textual__image__wrap
+        img.block--textual__image(srcset="/img/tours400/{{ page.imgpath }} 1x, /img/tours800/{{ page.imgpath }} 2x", src="/img/tours400/{{ page.imgpath }}",  alt="{{ page.title | smartify }}")
+    p.full_tour__intro.block__text
+        | {{ page.intro | smartify }}
+    p.full_tour__summary.block__text
+        | {{ page.summary | smartify }}
 
-    section.full_tour__intro__wrap
-        .full_tour__image__wrap
-            img.full_tour__image(srcset="/img/tours400/{{ page.imgpath }} 1x, /img/tours800/{{ page.imgpath }} 2x", src="/img/tours400/{{ page.imgpath }}",  alt="{{ page.title | smartify }}")
-        p.full_tour__intro
-            | {{ page.intro | smartify }}
-        p.full_tour__summary
-            | {{ page.summary | smartify }}
-
-    //- /introduction }}}
-    //- blueprint {{{
-    | {% if page.blueprint.size >= 1 %}
-
-    section.full_tour__blueprint__wrap
-        h2.section_header
-            | Программа:
-        ul.full_tour__blueprint__list
-            | {% for item in page.blueprint %}
-            li.full_tour__blueprint__list__item
-                | {{ item | smartify }}
-            | {% endfor %}
-
-    | {% endif %}
-    //- /blueprint }}}
-    //- includes {{{
-    | {% if page.includes.size >= 1 %}
-
-    section.full_tour__includes__wrap
-        h2.section_header
-            | в стоимость входят:
-        ul.full_tour__includes__list
-            | {% for item in page.includes %}
-            li.full_tour__includes__list__item
-                | {{ item | smartify }}
-            | {% endfor %}
-
-    | {% endif %}
-    //- /includes }}}
     //- details {{{
     | {% if page.details.size >= 1 %}
-
-    section.full_tour__details__wrap
-        | {% for d in page.details %}
-        p.full_tour__details
-            | {{ d | smartify }}
-        | {% endfor %}
+    | {% for d in page.details %}
+    p.details.block__text
+        | {{ d | smartify }}
+    | {% endfor %}
 
     | {% endif %}
     //- /details }}}
-    //- additional_fees {{{
-    | {% if page.additionalFees.size >= 1 %}
+//- includes {{{
+| {% if page.includes.size >= 1 %}
 
-    section.full_tour__additional_fees__wrap
-        h2.section_header
-            | Дополнительно оплачиваемые услуги:
-        ul.full_tour__additional_fees__list
-            | {% for item in page.additionalFees %}
-            li.full_tour__additional_fees__list__item
-                | {{ item | smartify }}
-            | {% endfor %}
-
-    | {% endif %}
-    //- /additional_fees }}}
-    //- will_learn {{{
-    | {% if page.willLearn.size >= 1 %}
-
-    section.full_tour__will_learn__wrap
-        h2.section_header
-            | Вы узнаете:
-        ul.full_tour__will_learn_list
-            | {% for item in page.willLearn %}
-        li.full_tour__will_learn__list__item
+section.includes__wrap.block--bullets.content-block
+    h2.section_header
+        | в стоимость входят:
+    ul.full_tour__includes.block__bullets
+        | {% for item in page.includes %}
+        li.includes__item.bullet
             | {{ item | smartify }}
         | {% endfor %}
 
-    | {% endif %}
-    //- /will_learn }}}
-//- form {{{
+| {% endif %}
+//- /includes }}}
+//- additional_fees {{{
+| {% if page.additionalFees.size >= 1 %}
+
+section.additional-fees__wrap.block--bullets.content-block
+    h2.section_header
+        | Дополнительно оплачиваемые услуги:
+    ul.additional-fees.block__bullets
+        | {% for item in page.additionalFees %}
+        li.additional-fees__item.bullet
+            | {{ item | smartify }}
+        | {% endfor %}
+
+| {% endif %}
+//- /additional_fees }}}
+//- blueprint {{{
+| {% if page.blueprint.size >= 1 %}
+
+section.blueprint__wrap.block--bullets.content-block
+    h2.section_header
+        | Программа:
+    ul.full_tour__blueprint.block__bullets
+        | {% for item in page.blueprint %}
+        li.blueprint__item.bullet
+            | {{ item | smartify }}
+        | {% endfor %}
+
+| {% endif %}
+//- /blueprint }}}
+//- will_learn {{{
+| {% if page.willLearn.size >= 1 %}
+
+section.will-learn__wrap.block--bullets.content-block
+    h2.section_header
+        | Вы узнаете:
+    ul.will-learn.block__bullets
+        | {% for item in page.willLearn %}
+        li.will-learn__item.bullet
+        | {{ item | smartify }}
+    | {% endfor %}
+
+| {% endif %}
+//- /will_learn }}}
+
 .full_tour__form__wrap.order_form__wrap
     include order_form.jade
-//- /form }}}
