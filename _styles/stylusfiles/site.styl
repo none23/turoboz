@@ -1483,8 +1483,7 @@ SplitWrapped()
 // heading {{{
 
 .block--heading
-    padding: 1.64rem 10vw 40vh
-    margin-bottom: -35vh
+    margin: 1rem 10vw
     display: flex
     flex-direction: row
     justify-content: space-between
@@ -1497,14 +1496,10 @@ SplitWrapped()
         flex-wrap: nowrap
         align-items: stretch
 
+// left {{{
 .heading__left
     flex: 2 1 65%
-
-    @media(max-width: 700px)
-        margin-bottom: 1rem
-
-.heading__right
-    flex: 1 2 35%
+    margin-bottom: 1rem
 
 .heading__date
     color: $turbo_darkblue
@@ -1528,6 +1523,12 @@ SplitWrapped()
 .heading__subtitle
 .heading__date
     margin-left: 1rem
+
+// /left }}}
+// right {{{
+
+.heading__right
+    flex: 1 2 35%
 
 .full_tour__len
     font-size: 1.1rem
@@ -1560,6 +1561,7 @@ SplitWrapped()
 .full_tour__price
     white-space: nowrap
 
+// /right }}}
 // /heading }}}
 // body {{{
 
@@ -1687,8 +1689,6 @@ SplitWrapped()
 .service__summary__item
     margin-top: 1rem
     Bullets()
-
-.service__summary__item
     margin-left: 2rem
 
     @media(max-width: 500px)
