@@ -32,15 +32,18 @@ include ../mixins.jade
         .heading__subtitle
             | {{ page.subtitle }}
     .heading__right
-        .full_tour__len
+        .heading__details__label
+            | Продолжительность:
+        .heading__details__value.full-tour-length
             | {{ page.tourlength }}
-        .full_tour__prices
-            | {% for item in page.prices %}
-            .full_tour__price
-                | {{ item }}
-            | {% endfor %}
 
-    //- /heading-right }}}
+        .heading__details__label
+            | Стоимость:
+        | {% for item in page.prices %}
+        .heading__details__value.full-tour-price
+            | {{ item }}
+        | {% endfor %}
+
 .full_tour__content__wrap
     //- introduction {{{
 

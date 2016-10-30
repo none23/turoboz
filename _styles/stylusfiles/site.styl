@@ -1490,16 +1490,10 @@ SplitWrapped()
     flex-wrap: wrap
     align-items: baseline
 
-    @media(max-width: 700px)
-        flex-direction: column
-        justify-content: space-between
-        flex-wrap: nowrap
-        align-items: stretch
-
 // left {{{
+
 .heading__left
     flex: 2 1 65%
-    margin-bottom: 1rem
 
 .heading__date
     color: $turbo_darkblue
@@ -1508,60 +1502,41 @@ SplitWrapped()
     font-size: 2rem
     line-height: 1.3
 
+    @media(max-width: 500px)
+        font-size: 1.4rem
+
 .heading__subtitle
     font-size: 1.6rem
     line-height: 1.6
 
-@media(max-width: 500px)
-    .heading__title
-        font-size: 1.4rem
-
-    .heading__subtitle
+    @media(max-width: 500px)
         font-size: 1.2rem
-
-.heading__title
-.heading__subtitle
-.heading__date
-    margin-left: 1rem
 
 // /left }}}
 // right {{{
 
 .heading__right
     flex: 1 2 35%
-
-.full_tour__len
-    font-size: 1.1rem
-
-    &:before
-        content:"Продолжительность:"
-        color: $turbo_darkblue
-        font-size: 1rem
-        display: block
-
-.full_tour__prices
-    font-size: 1.1rem
-    align-self: flex-end
-
-.full_tour__prices
-    &:before
-        content:"Стоимость:"
-        color: $turbo_darkblue
-        font-size: 1rem
-        display: block
-
-.full_tour__prices
-.full_tour__len
     text-align: right
-    margin-right: 1rem
 
-    @media(max-width: 700px)
-        text-align: center
+.heading__details__label
+    color: $turbo_darkblue
+    font-size: 1rem
 
-.full_tour__price
+.heading__details__value
+    font-size: 1.1rem
     white-space: nowrap
 
 // /right }}}
+
+@media(max-width: 700px)
+    .block--heading
+        display: block
+
+    .heading__left
+    .heading__right
+        text-align: center
+
 // /heading }}}
 // body {{{
 
