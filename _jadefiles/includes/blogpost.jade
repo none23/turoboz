@@ -8,7 +8,7 @@ include ../mixins.jade
         .heading__date
             +LiquidRussianDateLite('page.dateposted')
 
-section.full-vkpost__description.block--textual.block--no-header.content-block
+section.full-vkpost__description.block--textual.block--textimg.block--no-header.content-block
     .block--textual__image__wrap
         img.block--textual__image(src='{{ page.image }}', alt='{{ page.body | smartify }}')
 
