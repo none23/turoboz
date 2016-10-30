@@ -22,26 +22,18 @@ include ../mixins.jade
     | {% endfor %}
 
 //- /breadcrumbs }}}
-.full_tour__heading
-    //- heading-left {{{
-    .full_tour__heading__left
 
-        .full_tour__date
+.block--heading
+    .heading__left
+        .heading__date
             +LiquidRussianDate('page.tourdate')
-
-        h1.full_tour__title
+        h1.heading__title
             | {{ page.title }}
-
-        .full_tour__subtitle
+        .heading__subtitle
             | {{ page.subtitle }}
-
-    //- /heading-left }}}
-    //- heading-right {{{
-    .full_tour__heading__right
-
+    .heading__right
         .full_tour__len
             | {{ page.tourlength }}
-
         .full_tour__prices
             | {% for item in page.prices %}
             .full_tour__price

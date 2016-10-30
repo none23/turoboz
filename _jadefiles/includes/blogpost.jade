@@ -2,15 +2,18 @@ include ../mixins.jade
 
 .block--breadcrumbs
     +BreadcrumbWithIcon('/', 'Вернуться на главную')
-.blogpost__heading
-    .full_post__heading__left
-        .full_post__date
-              +LiquidRussianDateLite('{{ page.dateposted }}')
+
+.block--heading
+    .heading__left
+        .heading__date
+            +LiquidRussianDateLite('page.dateposted')
+
 .blogpost__body__wrap
     .blogpost__body
         .blogpost__content
             img.blogpost__image(src='{{ page.image }}', alt='{{ page.body | smartify }}')
             | {{ content }}
+
         .blogpost__gallery
             | {% for image in page.photos %}
             img.blogpost__photo(src='{{ image }}')

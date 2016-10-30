@@ -2,15 +2,18 @@ include ../mixins.jade
 
 .block--breadcrumbs
     +BreadcrumbWithIcon('/', 'Вернуться на главную')
-.full_post__heading
-    .full_post__heading__left
-        .full_post__date
-              +LiquidRussianDateLite('{{ page.dateposted }}')
-          h1.full_post__title
-              | {{ page.title | smartify }}
+
+.block--heading
+    .heading__left
+        .heading__date
+            +LiquidRussianDateLite('page.dateposted')
+        h1.heading__title
+            | {{ page.title | smartify }}
+
 .full_post__content__wrap
     .full_post__summary
         | {{ page.summary | smartify }}
+
     .full_post__body
         .full_post__image__wrap
             img.full_post__image(srcset="/img/posts430/{{ page.image }} 1x, /img/posts800/{{ page.image }} 2x", src="/img/posts430/{{ page.image }}", alt="{{ page.title | smartify }}")

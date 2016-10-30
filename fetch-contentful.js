@@ -112,7 +112,7 @@ function fetchNews () {
         newNews.permalink = `/news/${item.fields.id.toString()}/`
         newNews.title = item.fields.title
         newNews.summary = item.fields.summary
-        newNews.dateposted = item.fields.dateposted
+        newNews.dateposted = item.fields.dateposted.split('-').reverse().join('.').toString()
         newNews.imgasset = item.fields.image.fields.file.url
         newNews.image = item.fields.image.fields.file.fileName
         newNews.body = item.fields.content
