@@ -11,7 +11,7 @@ include ../mixins.jade
         h1.heading__title
             | {{ page.title | smartify }}
 
-section.full-post__description.block--textual.block--no-header.content-block
+section.full-post__description.block--textual.block--textimg.block--no-header.content-block
     .block--textual__image__wrap
         img.block--textual__image(srcset="/img/posts430/{{ page.image }} 1x, /img/posts800/{{ page.image }} 2x", src="/img/posts430/{{ page.image }}", alt="{{ page.title | smartify }}")
 

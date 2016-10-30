@@ -774,7 +774,7 @@ textarea
 .testimonials__wrap
 .contacts__wrap
 .contact_form__wrap
-.review_form__wrap
+.review-form__wrap
 .full_tour__form__wrap
     SectionWidth()
 
@@ -790,11 +790,11 @@ textarea
 
 // forms {{{
 
-.order-form__wrap
+.form
     width: 90%
     border: $border
     border-radius: $border-radius
-    margin: 1rem 0
+    margin: 1rem auto
     background: white
     padding: 2% 5% 0
 
@@ -922,7 +922,6 @@ SplitWrapped()
 .block--textual
 .block--bullets
 .block--table
-.block--textimg
 .block--cards
 .block--gallery
     background: white
@@ -962,6 +961,9 @@ SplitWrapped()
 
     @media(max-width: 1100px)
         text-align: left
+
+.block--textimg
+    overflow: auto
 
 .block--textual__image__wrap
     float: right
