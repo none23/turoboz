@@ -1,4 +1,4 @@
-<div class="blogpost__heading"><div class="full_post__breadcrumbs"><a href="/#blog__wrap" class="full_post__breadcrumb"><div class="full_post__breadcrumb__icon"><svg viewbox="0 0 20 20"><title>назад</title><path d="M2.5,10L9,3.5V7h8v6H9v3.5L2.5,10z" class="full_post__breadcrumb__icon__svg"></path></svg></div><div class="full_tour__breadcrumb__label">вернуться на главную</div></a></div><div class="full_post__heading__left"><div class="full_post__date">{% assign unixdate = {{ page.dateposted }} %}
+<div class="blogpost__heading"><div class="block--breadcrumbs"><a href="/" class="breadcrumb--icon breadcrumb"><div class="breadcrumb__icon"><svg viewbox="0 0 20 20"><title>назад</title><path d="M2.5,10L9,3.5V7h8v6H9v3.5L2.5,10z" class="breadcrumb__icon__svg"></path></svg></div><div class="breadcrumb__icon-label breadcrumb__label">Вернуться на главную</div></a></div><div class="full_post__heading__left"><div class="full_post__date">{% assign unixdate = {{ page.dateposted }} %}
 {% assign m = unixdate | date: "%-m" %}
 {{ unixdate | date: "%-d" }}
 {% case m %}

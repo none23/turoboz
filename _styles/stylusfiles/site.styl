@@ -1452,32 +1452,25 @@ SplitWrapped()
 .full_post__heading__right
     flex: 1 2 35%
 
-.full_tour__breadcrumbs
-.full_post__breadcrumbs
-.full_post__breadcrumbs--bottom
+//- breadcrumbs {{{
+
+.block--breadcrumbs
     flex: 0 0 100%
     display: flex
     flex-direction: row
     justify-content: flex-start
     flex-wrap: wrap
-
-.full_tour__breadcrumbs
-.full_post__breadcrumbs
     margin: -1rem -5vw 1rem
 
-.full_post__breadcrumbs--bottom
-    justify-content: space-around
 
-.full_tour__breadcrumb
-.full_post__breadcrumb
+.breadcrumb
     display: flex
     flex-direction: row
     justify-content: flex-start
     align-items: center
     margin: 0 0.5rem
 
-.full_tour__breadcrumb__label
-.full_post__breadcrumb__label
+.breadcrumb__label
     textLink($turbo_blue, nohover)
     white-space: nowrap
     padding: 0.75rem 0
@@ -1486,36 +1479,48 @@ SplitWrapped()
         font-size: 0.8rem
 
 
-.full_tour__breadcrumb--top
+.breadcrumb--icon
     order:-1
     margin-right: 1.5rem
 
-.full_tour__breadcrumb--subtag
+.breadcrumb--subtag
     order:2
     margin-left: 1.5rem
     margin-right: -1rem
 
-.full_tour__breadcrumb__icon
-.full_post__breadcrumb__icon
+.breadcrumb__icon
     flex: 0 0 3rem
     display: block
     width: 3rem
     height: @width
 
-.full_tour__breadcrumb__icon__svg
-.full_post__breadcrumb__icon__svg
+.breadcrumb__icon__svg
     fill: $turbo_blue
 
-.full_tour__breadcrumb
-.full_post__breadcrumb
+.breadcrumb
     transition: all 0.3s ease-in-out
     &:hover
     &:focus
-        .full_tour__breadcrumb__icon__svg
+        .breadcrumb__icon__svg
             fill: $turbo_brown
 
-        .full_tour__breadcrumb__label
+        .breadcrumb__label
             textLink($turbo_brown, nohover)
+
+// old {{{
+
+.full_post__breadcrumbs--bottom
+    flex: 0 0 100%
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    flex-wrap: wrap
+
+.full_post__breadcrumbs--bottom
+    justify-content: space-around
+
+// /old}}}
+//- /breadcrumbs }}}
 
 .full_tour__date
 .full_post__date

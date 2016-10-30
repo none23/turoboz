@@ -1709,8 +1709,90 @@ textarea {
       -ms-flex: 1 2 35%;
           flex: 1 2 35%;
 }
-.full_tour__breadcrumbs,
-.full_post__breadcrumbs,
+.block--breadcrumbs {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: -1rem -5vw 1rem;
+}
+.breadcrumb {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 0.5rem;
+}
+.breadcrumb__label {
+  color: #3485a8;
+  line-height: 1;
+  text-decoration: underline;
+  white-space: nowrap;
+  padding: 0.75rem 0;
+}
+@media (max-width: 500px) {
+  .breadcrumb__label {
+    font-size: 0.8rem;
+  }
+}
+.breadcrumb--icon {
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
+  margin-right: 1.5rem;
+}
+.breadcrumb--subtag {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  margin-left: 1.5rem;
+  margin-right: -1rem;
+}
+.breadcrumb__icon {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 3rem;
+          flex: 0 0 3rem;
+  display: block;
+  width: 3rem;
+  height: 3rem;
+}
+.breadcrumb__icon__svg {
+  fill: #3485a8;
+}
+.breadcrumb {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.breadcrumb:hover .breadcrumb__icon__svg,
+.breadcrumb:focus .breadcrumb__icon__svg {
+  fill: #613b23;
+}
+.breadcrumb:hover .breadcrumb__label,
+.breadcrumb:focus .breadcrumb__label {
+  color: #613b23;
+  line-height: 1;
+  text-decoration: underline;
+}
 .full_post__breadcrumbs--bottom {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
@@ -1728,89 +1810,9 @@ textarea {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
-.full_tour__breadcrumbs,
-.full_post__breadcrumbs {
-  margin: -1rem -5vw 1rem;
-}
 .full_post__breadcrumbs--bottom {
   -ms-flex-pack: distribute;
       justify-content: space-around;
-}
-.full_tour__breadcrumb,
-.full_post__breadcrumb {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 0 0.5rem;
-}
-.full_tour__breadcrumb__label,
-.full_post__breadcrumb__label {
-  color: #3485a8;
-  line-height: 1;
-  text-decoration: underline;
-  white-space: nowrap;
-  padding: 0.75rem 0;
-}
-@media (max-width: 500px) {
-  .full_tour__breadcrumb__label,
-  .full_post__breadcrumb__label {
-    font-size: 0.8rem;
-  }
-}
-.full_tour__breadcrumb--top {
-  -webkit-box-ordinal-group: 0;
-      -ms-flex-order: -1;
-          order: -1;
-  margin-right: 1.5rem;
-}
-.full_tour__breadcrumb--subtag {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
-  margin-left: 1.5rem;
-  margin-right: -1rem;
-}
-.full_tour__breadcrumb__icon,
-.full_post__breadcrumb__icon {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 3rem;
-          flex: 0 0 3rem;
-  display: block;
-  width: 3rem;
-  height: 3rem;
-}
-.full_tour__breadcrumb__icon__svg,
-.full_post__breadcrumb__icon__svg {
-  fill: #3485a8;
-}
-.full_tour__breadcrumb,
-.full_post__breadcrumb {
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-.full_tour__breadcrumb:hover .full_tour__breadcrumb__icon__svg,
-.full_post__breadcrumb:hover .full_tour__breadcrumb__icon__svg,
-.full_tour__breadcrumb:focus .full_tour__breadcrumb__icon__svg,
-.full_post__breadcrumb:focus .full_tour__breadcrumb__icon__svg {
-  fill: #613b23;
-}
-.full_tour__breadcrumb:hover .full_tour__breadcrumb__label,
-.full_post__breadcrumb:hover .full_tour__breadcrumb__label,
-.full_tour__breadcrumb:focus .full_tour__breadcrumb__label,
-.full_post__breadcrumb:focus .full_tour__breadcrumb__label {
-  color: #613b23;
-  line-height: 1;
-  text-decoration: underline;
 }
 .full_tour__date,
 .full_post__date {

@@ -1,8 +1,8 @@
-<div class="full_tour__heading"><div class="full_tour__breadcrumbs"><a href="/tours" class="full_tour__breadcrumb full_tour__breadcrumb--top"><div class="full_tour__breadcrumb__icon"><svg viewbox="0 0 20 20"><title>назад</title><path d="M2.5,10L9,3.5V7h8v6H9v3.5L2.5,10z" class="full_tour__breadcrumb__icon__svg"></path></svg></div><div class="full_tour__breadcrumb__label">К списку экскурсий</div></a>{% for item in page.tags %}
+<div class="full_tour__heading"><div class="block--breadcrumbs"><a href="/tours" class="breadcrumb--icon breadcrumb"><div class="breadcrumb__icon"><svg viewbox="0 0 20 20"><title>назад</title><path d="M2.5,10L9,3.5V7h8v6H9v3.5L2.5,10z" class="breadcrumb__icon__svg"></path></svg></div><div class="breadcrumb__icon-label breadcrumb__label">К списку экскурсий</div></a>{% for item in page.tags %}
   {% for tag in site.data.tags %}
-    {% if tag.tag == item %}<a href="{{ tag.url }}" class="full_tour__breadcrumb"><div class="full_tour__breadcrumb__label">{{ tag.title }}</div></a>    {% elsif tag.subtags%}
+    {% if tag.tag == item %}<a href="{{ tag.url }}" class="breadcrumb--no-icon breadcrumb"><div class="breadcrumb__label">{{ tag.title }}</div></a>    {% elsif tag.subtags%}
       {% for subtag in tag.subtags %}
-        {% if subtag.subtag == item %}<a href="{{ subtag.url }}" class="full_tour__breadcrumb full_tour__breadcrumb--subtag"><div class="full_tour__breadcrumb__label">{{ subtag.title }}</div></a>        {% endif %}
+        {% if subtag.subtag == item %}<a href="{{ subtag.url }}" class="breadcrumb--no-icon breadcrumb breadcrumb--subtag"><div class="breadcrumb__label">{{ subtag.title }}</div></a>        {% endif %}
       {% endfor %}
     {% endif %}
   {% endfor %}

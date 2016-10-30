@@ -1,32 +1,29 @@
 include ../mixins.jade
-//- heading {{{
 .full_tour__heading
     //- breadcrumbs {{{
-    .full_tour__breadcrumbs
-        a.full_tour__breadcrumb.full_tour__breadcrumb--top(href='/tours')
-            .full_tour__breadcrumb__icon
-                +iconArrowBack('full_tour__breadcrumb__icon__svg')
-            .full_tour__breadcrumb__label
-                | К списку экскурсий
+    .block--breadcrumbs
+        +BreadcrumbWithIcon('/tours', 'К списку экскурсий')
 
         | {% for item in page.tags %}
         |   {% for tag in site.data.tags %}
         |     {% if tag.tag == item %}
-        a.full_tour__breadcrumb(href='{{ tag.url }}')
-            .full_tour__breadcrumb__label
-                | {{ tag.title }}
+
+        +Breadcrumb('{{ tag.url }}', '{{ tag.title }}')
+
         |     {% elsif tag.subtags%}
         |       {% for subtag in tag.subtags %}
         |         {% if subtag.subtag == item %}
-        a.full_tour__breadcrumb.full_tour__breadcrumb--subtag(href='{{ subtag.url }}')
-            .full_tour__breadcrumb__label
-                | {{ subtag.title }}
+
+        +Breadcrumb('{{ subtag.url }}', '{{ subtag.title }}', 'breadcrumb--subtag')
+
         |         {% endif %}
         |       {% endfor %}
         |     {% endif %}
         |   {% endfor %}
         | {% endfor %}
+
     //- /breadcrumbs }}}
+    //- heading-left {{{
     .full_tour__heading__left
 
         .full_tour__date
@@ -38,6 +35,8 @@ include ../mixins.jade
         .full_tour__subtitle
             | {{ page.subtitle }}
 
+    //- /heading-left }}}
+    //- heading-right {{{
     .full_tour__heading__right
 
         .full_tour__len
@@ -49,7 +48,7 @@ include ../mixins.jade
                 | {{ item }}
             | {% endfor %}
 
-//- /heading }}}
+    //- /heading-right }}}
 .full_tour__content__wrap
     //- introduction {{{
 

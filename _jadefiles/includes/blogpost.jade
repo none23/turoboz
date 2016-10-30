@@ -1,12 +1,8 @@
 include ../mixins.jade
 
 .blogpost__heading
-    .full_post__breadcrumbs
-        a.full_post__breadcrumb(href='/#blog__wrap')
-            .full_post__breadcrumb__icon
-                +iconArrowBack('full_post__breadcrumb__icon__svg')
-            .full_tour__breadcrumb__label
-                | вернуться на главную
+    .block--breadcrumbs
+        +BreadcrumbWithIcon('/', 'Вернуться на главную')
     .full_post__heading__left
         .full_post__date
               +LiquidRussianDateLite('{{ page.dateposted }}')
