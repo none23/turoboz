@@ -43,6 +43,7 @@ ${frontMatter}
 // Fetch tours {{{
 function fetchTours () {
   var toursCatalogue = {}
+  var upcomingTours = []
   var entriesCount = 0
   client.getEntries({
     'content_type': 'tour'
@@ -83,7 +84,27 @@ function fetchTours () {
         entriesCount += 1
         saveCollection(newTour, '_tours')
         toursCatalogue[newTour.id] = newTour
+
+        if (newTour.tourdate !== '00.00.0000') {
+          var jsDate = Date.parse(newTour.tourdate.split('.').reverse().join('-'))
+          if (jsDate > Date.now()) {
+            upcomingTours.push([newTour.id, jsDate])
+          }
+        }
       }
+    })
+    .then(() => {
+      const filename = './_data/upcoming.json'
+      const upcomingPairs = upcomingTours.sort(function (a, b) {
+        return a[1] - b[1]
+      })
+      var upcomings = upcomingPairs.map(function (pair) {
+        return pair[0]
+      })
+      fs.writeFile(filename, JSON.stringify(upcomings.slice(0, 4)), 'utf8', function (err) {
+        if (err) { throw err }
+        console.log(`written ${filename}`)
+      })
     })
     .then(() => {
       const filename = './_data/tours.json'

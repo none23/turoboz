@@ -1,5 +1,5 @@
-<section class="upcoming_events__wrap"><h2 class="section_header">Ближайшие туры</h2><div class="upcoming_events__list">{% assign upcoming_counter = 0 %}
-{% for x in site.data.upcoming%}
+{% if site.data.upcoming.size != 0 %}<section class="upcoming_events__wrap"><h2 class="section_header">Ближайшие туры</h2><div class="upcoming_events__list">{% assign upcoming_counter = 0 %}
+{% for x in site.data.upcoming %}
     {% assign tour = site.data.tours[x] %}
     {% if tour.dates[0] != 0 %}
         {% if upcoming_counter > 3 %}
@@ -29,4 +29,4 @@
 {% endif %}</div><div class="tour__length">{{ tour.tourlength }}</div><h3 class="tour__title">{{ tour.title }}
 {{ tour.subtitle }}</h3><div class="card__button tour__button">Подробнее</div></a></div>        {% endif %}
     {% endif %}
-{% endfor %}</div></section>
+{% endfor %}</div></section>{% endif %}
