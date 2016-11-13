@@ -68,10 +68,10 @@ function fetchTours () {
 
         newTour.tourdate = item.fields.dates ? `${item.fields.dates[0]}` : '00.00.0000'
         newTour.prices = item.fields.prices ? item.fields.prices.split('* ').slice(1) : ['уточняйте при заказе']
-        newTour.blueprint = item.fields.blueprint ? item.fields.blueprint.split(' * ').slice(1) : []
+        newTour.blueprint = item.fields.blueprint ? item.fields.blueprint.split('* ').slice(1) : []
         newTour.includes = item.fields.includes ? item.fields.includes.split(' * ').slice(1) : []
-        newTour.additionalFees = item.fields.additionalFees ? item.fields.additionalFees.split(' * ').slice(1) : []
-        newTour.willLearn = item.fields.willLearn ? item.fields.willLearn.split(' * ').slice(1) : []
+        newTour.additionalFees = item.fields.additionalFees ? item.fields.additionalFees.split('* ').slice(1) : []
+        newTour.willLearn = item.fields.willLearn ? item.fields.willLearn.split('* ').slice(1) : []
         newTour.details = item.fields.details ? item.fields.details.split('\n\n') : []
         /*
         // newTour.prices = item.fields.prices ? deMd(item.fields.prices) : ['уточняйте при заказе']
@@ -84,6 +84,9 @@ function fetchTours () {
         entriesCount += 1
         saveCollection(newTour, '_tours')
         toursCatalogue[newTour.id] = newTour
+
+        // Save the image
+        // TODO fs.writeFile(`./img/_tours/${newTour.imgpath}`, JSON.stringify(upcomings.slice(0, 4)), 'utf8', function (err) {
 
         if (newTour.tourdate !== '00.00.0000') {
           var jsDate = Date.parse(newTour.tourdate.split('.').reverse().join('-'))
