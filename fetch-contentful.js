@@ -67,7 +67,7 @@ function fetchTours () {
         newTour.imgpath = item.fields.imgasset.fields.file.fileName
 
         newTour.tourdate = item.fields.dates ? `${item.fields.dates[0]}` : '00.00.0000'
-        newTour.prices = item.fields.prices ? item.fields.prices.split(' * ').slice(1) : ['уточняйте при заказе']
+        newTour.prices = item.fields.prices ? item.fields.prices.split('* ').slice(1) : ['уточняйте при заказе']
         newTour.blueprint = item.fields.blueprint ? item.fields.blueprint.split(' * ').slice(1) : []
         newTour.includes = item.fields.includes ? item.fields.includes.split(' * ').slice(1) : []
         newTour.additionalFees = item.fields.additionalFees ? item.fields.additionalFees.split(' * ').slice(1) : []
