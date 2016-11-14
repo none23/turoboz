@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# TODO: fix if loops syntax
+# Generate sizes for tours {{{
+
+TOURS_CHECKSUM_NOW="$(md5sum img/_tours/*.jpg | md5sum)"
+TOURS_CHECKSUM_SAVED="$(cat img/_tours/.checksum)"
+if [ "$TOURS_CHECKSUM_NOW" = "$TOURS_CHECKSUM_SAVED" ] ; then
+    echo 'Tours images unchanged'
+else 
+    for res in 300 400 600 800 ; do
+        [[ -a ./img/tours"$res" ]] && rm -rf ./img/tours"$res"px 
+        mkdir ./img/tours"$res" 
+
+        vert_res=$((res*3/4))
+
+        cd ./img/_tours
+        for file in *.jpg ; do 
+            mogrify -path ../tours"$res" -filter Triangle -define filter:support=2 -resize "$res"x"$vert_res"^ -extent "$res"x"$vert_res" -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file
+        done
+        cd ../..
+    done
+    md5sum img/_tours/*.jpg | md5sum > img/_tours/.checksum
+    echo 'tours images ready'
+fi
+
+# }}}
+# Generate sizes for posts {{{
+
+POSTS_CHECKSUM_NOW="$(md5sum img/_posts/*.jpg | md5sum)"
+POSTS_CHECKSUM_SAVED="$(cat img/_posts/.checksum)"
+if [ "$POSTS_CHECKSUM_NOW" = "$POSTS_CHECKSUM_SAVED" ] ; then 
+    echo 'Posts images unchanged'
+else 
+    for res in 200 350 430 600 800 ; do
+        [[ -a ./img/posts"$res" ]] && rm -rf ./img/posts"$res"px 
+        mkdir ./img/posts"$res" 
+
+        vert_res=$((res*3/4))
+
+        cd ./img/_posts
+        for file in *.jpg ; do 
+            mogrify -path ../posts"$res" -filter Triangle -define filter:support=2 -resize "$res"x"$vert_res"^ -extent "$res"x"$vert_res" -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 $file
+        done
+        cd ../..
+    done
+    md5sum img/_posts/*.jpg | md5sum > img/_posts/.checksum
+    echo 'posts images ready'
+fi
+
+# }}}
+# vim:set filetype=bash
