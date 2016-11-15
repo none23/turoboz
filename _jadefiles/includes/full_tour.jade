@@ -18,7 +18,17 @@ include ../mixins.jade
 .block--heading
     .heading__left
         .heading__date
+            | {% if page.tourdate != page.tourlastdate %}
+            |   {% assign datefirstarray = page.tourdate | split:"-" %}
+            |   {% assign datelastarray =  page.tourlastdate | split:"-" %}
+            |   {% if datemonthfirst[1] == datelastarray[1] %}
+            +LiquidDateSingleMonth('page.tourdate')
+            |   {% else %}
+            +LiquidDateMonthsRange('page.tourdate', 'page.tourlastdate')
+            |   {% endif %}
+            | {% else %}
             +LiquidRussianDate('page.tourdate')
+            | {% endif %}
         h1.heading__title
             | {{ page.title }}
         .heading__subtitle
