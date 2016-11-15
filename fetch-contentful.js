@@ -1,6 +1,6 @@
 // Deps {{{
 const fs = require('fs')
-const request = require('request')
+const fetch = require('node-fetch')
 const contentful = require('contentful')
 const yaml = require('js-yaml')
 const assert = require('assert')
@@ -123,13 +123,11 @@ function fetchTours () {
     .then(() => {
       for (const tourLinksPair of toursAssets) {
         const localFile = './img/_tours/' + tourLinksPair[1]
-        request.get(tourLinksPair[0], function (response) {
-          if (response.statusCode === 200) {
-            fs.write(localFile, response.body, function () {
-              console.log('downloaded' + localFile)
-            })
-          }
-        })
+        fetch(tourLinksPair[0])
+          .then(function (res) {
+            var dest = fs.createWriteStream(localFile)
+            res.body.pipe(dest)
+          })
       }
     })
 }
@@ -174,13 +172,11 @@ function fetchNews () {
     .then(() => {
       for (const newsLinksPair of newsAssets) {
         const localFile = './img/_posts/' + newsLinksPair[1]
-        request.get(newsLinksPair[0], function (response) {
-          if (response.statusCode === 200) {
-            fs.write(localFile, response.body, function () {
-              console.log('downloaded' + localFile)
-            })
-          }
-        })
+        fetch(newsLinksPair[0])
+          .then(function (res) {
+            var dest = fs.createWriteStream(localFile)
+            res.body.pipe(dest)
+          })
       }
     })
 }
