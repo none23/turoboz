@@ -1,5 +1,6 @@
 // Deps {{{
 const fs = require('fs')
+const request = require('request')
 const contentful = require('contentful')
 const yaml = require('js-yaml')
 const assert = require('assert')
@@ -44,6 +45,7 @@ ${frontMatter}
 function fetchTours () {
   var toursCatalogue = {}
   var upcomingTours = []
+  var toursAssets = []
   var entriesCount = 0
   client.getEntries({
     'content_type': 'tour'
@@ -83,6 +85,7 @@ function fetchTours () {
 
         entriesCount += 1
         saveCollection(newTour, '_tours')
+        toursAssets.push([newTour.imgasset, newTour.imgpath])
         toursCatalogue[newTour.id] = newTour
 
         // Save the image
@@ -117,11 +120,24 @@ function fetchTours () {
         console.log(`written ${filename}`)
       })
     })
+    .then(() => {
+      for (const tourLinksPair of toursAssets) {
+        const localFile = './img/_tours/' + tourLinksPair[1]
+        request.get(tourLinksPair[0], function (response) {
+          if (response.statusCode === 200) {
+            fs.write(localFile, response.body, function () {
+              console.log('downloaded' + localFile)
+            })
+          }
+        })
+      }
+    })
 }
 // }}}
 // Fetch news {{{
 function fetchNews () {
   var newsCatalogue = {}
+  var newsAssets = []
   var entriesCount = 0
 
   client.getEntries({
@@ -143,6 +159,7 @@ function fetchNews () {
 
         entriesCount += 1
         saveCollection(newNews, '_news')
+        newsAssets.push([newNews.imgasset, newNews.image])
         newsCatalogue[newNews.id] = newNews
       }
     })
@@ -153,6 +170,18 @@ function fetchNews () {
         if (err) { throw err }
         console.log(`written ${filename}`)
       })
+    })
+    .then(() => {
+      for (const newsLinksPair of newsAssets) {
+        const localFile = './img/_posts/' + newsLinksPair[1]
+        request.get(newsLinksPair[0], function (response) {
+          if (response.statusCode === 200) {
+            fs.write(localFile, response.body, function () {
+              console.log('downloaded' + localFile)
+            })
+          }
+        })
+      }
     })
 }
 // }}}
