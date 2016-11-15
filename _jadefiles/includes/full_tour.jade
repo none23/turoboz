@@ -54,6 +54,20 @@ section.full_tour__description.block--textual.block--textimg.block--no-header.co
 
     | {% endif %}
     //- /details }}}
+//- blueprint {{{
+| {% if page.blueprint.size >= 1 %}
+
+section.blueprint__wrap.block--bullets.content-block
+    h2.section_header
+        | Программа:
+    ul.full_tour__blueprint.block__bullets
+        | {% for item in page.blueprint %}
+        li.blueprint__item.bullet
+            | {{ item | smartify }}
+        | {% endfor %}
+
+| {% endif %}
+//- /blueprint }}}
 //- includes {{{
 | {% if page.includes.size >= 1 %}
 
@@ -82,20 +96,6 @@ section.additional-fees__wrap.block--bullets.content-block
 
 | {% endif %}
 //- /additional_fees }}}
-//- blueprint {{{
-| {% if page.blueprint.size >= 1 %}
-
-section.blueprint__wrap.block--bullets.content-block
-    h2.section_header
-        | Программа:
-    ul.full_tour__blueprint.block__bullets
-        | {% for item in page.blueprint %}
-        li.blueprint__item.bullet
-            | {{ item | smartify }}
-        | {% endfor %}
-
-| {% endif %}
-//- /blueprint }}}
 //- will_learn {{{
 | {% if page.willLearn.size >= 1 %}
 

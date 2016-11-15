@@ -123,7 +123,8 @@ function fetchTours () {
     .then(() => {
       for (const tourLinksPair of toursAssets) {
         const localFile = './img/_tours/' + tourLinksPair[1]
-        fetch(tourLinksPair[0])
+        const remoteFile = 'http:' + tourLinksPair[0]
+        fetch(remoteFile)
           .then(function (res) {
             var dest = fs.createWriteStream(localFile)
             res.body.pipe(dest)
@@ -172,7 +173,8 @@ function fetchNews () {
     .then(() => {
       for (const newsLinksPair of newsAssets) {
         const localFile = './img/_posts/' + newsLinksPair[1]
-        fetch(newsLinksPair[0])
+        const remoteFile = 'http:' + newsLinksPair[0]
+        fetch(remoteFile)
           .then(function (res) {
             var dest = fs.createWriteStream(localFile)
             res.body.pipe(dest)
