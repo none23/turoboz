@@ -8,6 +8,7 @@ const assert = require('assert')
 const accessToken = require('./.contentful-accessToken.json')
 const space = 'x9tc47a70skr'
 // Setup {{{
+
 const client = contentful.createClient({accessToken, space})
 /*
 const rmMd = require('remove-markdown')
@@ -15,8 +16,10 @@ const deMd = (ulMd) => {
   rmMd(ulMd.replace(' *', '*')).split('\n ')
 }
 */
+
 // }}}
 // Utils {{{
+
 function stripArgDash (arg) {
   if (arg[0] === '-') {
     if (arg[1] === '-') {
@@ -42,6 +45,7 @@ ${frontMatter}
 
 // }}}
 // Fetch tours {{{
+
 function fetchTours () {
   var toursCatalogue = {}
   var upcomingTours = []
@@ -69,6 +73,7 @@ function fetchTours () {
         newTour.imgpath = item.fields.imgasset.fields.file.fileName
 
         newTour.tourdate = item.fields.dates ? `${item.fields.dates[0]}` : '00.00.0000'
+        newTour.tourlastdate = item.fields.dates ? `${item.fields.dates[-1]}` : newTour.tourdate
         newTour.prices = item.fields.prices ? item.fields.prices.split('* ').slice(1) : ['уточняйте при заказе']
         newTour.blueprint = item.fields.blueprint ? item.fields.blueprint.split('* ').slice(1) : []
         newTour.includes = item.fields.includes ? item.fields.includes.split(' * ').slice(1) : []
@@ -134,6 +139,7 @@ function fetchTours () {
 }
 // }}}
 // Fetch news {{{
+
 function fetchNews () {
   var newsCatalogue = {}
   var newsAssets = []
@@ -184,6 +190,7 @@ function fetchNews () {
 }
 // }}}
 // Fetch testim {{{
+
 function fetchTestim () {
   var testimCatalogue = []
   var entriesCount = 0
