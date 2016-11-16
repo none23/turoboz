@@ -7,13 +7,7 @@ mixin TourCard(tour)
 
                 .tour__date.card__date
                     | {% if #{tour}.tourdate != #{tour}.tourlastdate %}
-                    |   {% assign datefirstarray = #{tour}.tourdate | split:"-" %}
-                    |   {% assign datelastarray =  #{tour}.tourlastdate | split:"-" %}
-                    |   {% if datemonthfirst[1] == datelastarray[1] %}
                     +LiquidDateSingleMonth(`${tour}.tourdate`)
-                    |   {% else %}
-                    +LiquidDateMonthsRange(`${tour}.tourdate`, `${tour}.tourlastdate`)
-                    |   {% endif %}
                     | {% else %}
                     +LiquidRussianDate(`${tour}.tourdate`)
                     | {% endif %}
