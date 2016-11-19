@@ -26,7 +26,7 @@
                     , "html-validator-cli": "^2.0.0"
                     , "watch": "latest"
                     }
-, "scripts": { "build": "concurrently 'npm run build:jade' 'npm run build:styles' 'npm run build:scripts'"
+, "scripts": { "build": "concurrently 'npm run build:jade' 'npm run build:styles' 'npm run build:scripts' 'npm run build:images'"
                  , "prebuild": "npm run fetch"
                  , "build:jade": "concurrently 'npm run build:jade:includes' 'npm run build:jade:layouts'"
                      , "build:jade:layouts": "jade -o _layouts/ _jadefiles/layouts/*.jade"
@@ -40,7 +40,9 @@
                          , "postbuild:scripts:compile": "echo 'scripts ready'"
                      , "build:scripts:uglify": "(cd _scripts/js && for file in *.js; do ( uglifyjs -c -m -o ../../js/$file $file); done)"
                          , "postbuild:scripts:uglified": "echo 'scripts minimized'"
+                     , "build:images": "./generate-images"
                  , "build:jekyll": "bundle exec jekyll build"
+
                  , "postbuild": "npm run build:jekyll"
 
              , "watch": "concurrently 'npm run watch:jekyll' 'npm run watch:jade' 'npm run watch:styles' 'npm run watch:scripts' 'npm run watch:browser-sync'"
@@ -68,8 +70,8 @@
                      , "fetch:testim": "node fetch-contentful.js --testim"
                  , "fetch:vk": "node fetch-vk.js"
 
-             , "images": "./generate-images"
-
+             , "autobuild": "concurrently 'npm run build:jade' 'npm run build:styles' 'npm run build:scripts'"
+                 , "postautobuild": "npm run build:jekyll"
              , "deploy": "netlify deploy"
                  , "predeploy": "npm run build"
 
