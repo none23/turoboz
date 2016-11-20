@@ -1,19 +1,2 @@
-<div class="block--breadcrumbs"><a href="/" class="breadcrumb--icon breadcrumb"><div class="breadcrumb__icon"><svg viewbox="0 0 20 20"><title>назад</title><path d="M2.5,10L9,3.5V7h8v6H9v3.5L2.5,10z" class="breadcrumb__icon__svg"></path></svg></div><div class="breadcrumb__icon-label breadcrumb__label">Вернуться на главную</div></a></div><div class="block--heading"><div class="heading__left"><div class="heading__date">{% assign unixdate = page.dateposted %}
-{% assign m = unixdate | date: "%-m" %}
-{{ unixdate | date: "%-d" }}
-{% case m %}
-{% when '1' %}января
-{% when '2' %}февраля
-{% when '3' %}марта
-{% when '4' %}апреля
-{% when '5' %}мая
-{% when '6' %}июня
-{% when '7' %}июля
-{% when '8' %}августа
-{% when '9' %}сентября
-{% when '10' %}октября
-{% when '11' %}ноября
-{% when '12' %}декабя
-{% endcase %}
-{{ unixdate | date: "%Y" }}</div><h1 class="heading__title">{{ page.title | smartify }}</h1></div></div><section class="full-post__description block--textual block--textimg block--no-header content-block"><div class="block--textual__image__wrap"><img srcset="/img/posts430/{{ page.image }} 1x, /img/posts800/{{ page.image }} 2x" src="/img/posts430/{{ page.image }}" alt="{{ page.title | smartify }}" class="block--textual__image"/></div><p class="full-post__summary block__text">{{ page.summary | smartify }}</p>{{ page.body | markdownify }}</section><div class="block--breadcrumbs breadcrumbs--prev-next">{% unless page.previous == nil %}<a href="{{ page.previous.url }}" class="breadcrumb--icon breadcrumb"><div class="breadcrumb__icon"><svg viewbox="0 0 20 20"><title>назад</title><path d="M2.5,10L9,3.5V7h8v6H9v3.5L2.5,10z" class="breadcrumb__icon__svg"></path></svg></div><div class="breadcrumb__icon-label breadcrumb__label">Предыдущая новость</div></a>{% endunless %}
+<div class="block--breadcrumbs"><a href="/" class="breadcrumb--icon breadcrumb"><div class="breadcrumb__icon"><svg viewbox="0 0 20 20"><title>назад</title><path d="M2.5,10L9,3.5V7h8v6H9v3.5L2.5,10z" class="breadcrumb__icon__svg"></path></svg></div><div class="breadcrumb__icon-label breadcrumb__label">Вернуться на главную</div></a></div><div class="block--heading"><div class="heading__left"><div class="heading__date">{% assign unixdate = page.dateposted %}{% assign m = unixdate | date: "%-m" %}{{ unixdate | date: "%-d" }} {% case m %}{% when '1' %}января{% when '2' %}февраля{% when '3' %}марта{% when '4' %}апреля{% when '5' %}мая{% when '6' %}июня{% when '7' %}июля{% when '8' %}августа{% when '9' %}сентября{% when '10' %}октября{% when '11' %}ноября{% when '12' %}декабря{% endcase %} {{ unixdate | date: "%Y" }}</div><h1 class="heading__title">{{ page.title | smartify }}</h1></div></div><section class="full-post__description block--textual block--textimg block--no-header content-block"><div class="block--textual__image__wrap"><img srcset="/img/posts430/{{ page.image }} 1x, /img/posts800/{{ page.image }} 2x" src="/img/posts430/{{ page.image }}" alt="{{ page.title | smartify }}" class="block--textual__image"/></div><p class="full-post__summary block__text">{{ page.summary | smartify }}</p>{{ page.body | markdownify }}</section><div class="block--breadcrumbs breadcrumbs--prev-next">{% unless page.previous == nil %}<a href="{{ page.previous.url }}" class="breadcrumb--icon breadcrumb"><div class="breadcrumb__icon"><svg viewbox="0 0 20 20"><title>назад</title><path d="M2.5,10L9,3.5V7h8v6H9v3.5L2.5,10z" class="breadcrumb__icon__svg"></path></svg></div><div class="breadcrumb__icon-label breadcrumb__label">Предыдущая новость</div></a>{% endunless %}
 {% unless page.next == nil %}<a href="{{ page.next.url }}" class="breadcrumb--icon breadcrumb"><div class="breadcrumb__icon-label breadcrumb__label">Следующая новость</div><div class="breadcrumb__icon"><svg viewbox="0 0 20 20"><title>назад</title><path d="M17.25 10l-6.5-6.5V7h-8v6h8v3.5l6.5-6.5z" class="breadcrumb__icon__svg"></path></svg></div></a>{% endunless %}</div>

@@ -1,65 +1,14 @@
 mixin LiquidRussianDate(dateVariable)
     | {% if #{dateVariable} == '00.00.0000' %}
     | по заказу
-    | {% else %}
-    | {% assign unixdate = #{dateVariable} %}
-    | {% assign m = unixdate | date: "%-m" %}
-    | {{ unixdate | date: "%-d" }}
-    | {% case m %}
-    | {% when '1' %}января
-    | {% when '2' %}февраля
-    | {% when '3' %}марта
-    | {% when '4' %}апреля
-    | {% when '5' %}мая
-    | {% when '6' %}июня
-    | {% when '7' %}июля
-    | {% when '8' %}августа
-    | {% when '9' %}сентября
-    | {% when '10' %}октября
-    | {% when '11' %}ноября
-    | {% when '12' %}декабря
-    | {% endcase %}
-    | {{ unixdate | date: "%Y" }}
+    | {% else %}{% assign unixdate = #{dateVariable} %}{% assign m = unixdate | date: "%-m" %}{{ unixdate | date: "%-d" }} {% case m %}{% when '1' %}января{% when '2' %}февраля{% when '3' %}марта{% when '4' %}апреля{% when '5' %}мая{% when '6' %}июня{% when '7' %}июля{% when '8' %}августа{% when '9' %}сентября{% when '10' %}октября{% when '11' %}ноября{% when '12' %}декабря{% endcase %} {{ unixdate | date: "%Y" }}
     | {% endif %}
 
 mixin LiquidRussianDateLite(dateVariable)
-    | {% assign unixdate = #{dateVariable} %}
-    | {% assign m = unixdate | date: "%-m" %}
-    | {{ unixdate | date: "%-d" }}
-    | {% case m %}
-    | {% when '1' %}января
-    | {% when '2' %}февраля
-    | {% when '3' %}марта
-    | {% when '4' %}апреля
-    | {% when '5' %}мая
-    | {% when '6' %}июня
-    | {% when '7' %}июля
-    | {% when '8' %}августа
-    | {% when '9' %}сентября
-    | {% when '10' %}октября
-    | {% when '11' %}ноября
-    | {% when '12' %}декабя
-    | {% endcase %}
-    | {{ unixdate | date: "%Y" }}
+    | {% assign unixdate = #{dateVariable} %}{% assign m = unixdate | date: "%-m" %}{{ unixdate | date: "%-d" }} {% case m %}{% when '1' %}января{% when '2' %}февраля{% when '3' %}марта{% when '4' %}апреля{% when '5' %}мая{% when '6' %}июня{% when '7' %}июля{% when '8' %}августа{% when '9' %}сентября{% when '10' %}октября{% when '11' %}ноября{% when '12' %}декабря{% endcase %} {{ unixdate | date: "%Y" }}
 
 mixin LiquidDateSingleMonth(dateVariable)
-    | {% assign unixdate = #{dateVariable} %}
-    | {% assign m = unixdate | date: "%-m" %}
-    | {% case m %}
-    | {% when '1' %}январь
-    | {% when '2' %}февраль
-    | {% when '3' %}март
-    | {% when '4' %}апрель
-    | {% when '5' %}май
-    | {% when '6' %}июнь
-    | {% when '7' %}июль
-    | {% when '8' %}август
-    | {% when '9' %}сентябрь
-    | {% when '10' %}октябрь
-    | {% when '11' %}ноябрь
-    | {% when '12' %}декабрь
-    | {% endcase %}
-    | {{ unixdate | date: "%Y" }}
+    | {% assign unixdate = #{dateVariable} %}{% assign m = unixdate | date: "%-m" %} {% case m %}{% when '1' %}январь{% when '2' %}февраль{% when '3' %}март{% when '4' %}апрель{% when '5' %}май{% when '6' %}июнь{% when '7' %}июль{% when '8' %}август{% when '9' %}сентябрь{% when '10' %}октябрь{% when '11' %}ноябрь{% when '12' %}декабрь{% endcase %} {{ unixdate | date: "%Y" }}
 
 mixin LiquidDateMonthsRange(dateFirst, dateLast)
     | {% assign unixdate = #{dateFirst} %}

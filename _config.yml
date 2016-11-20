@@ -16,9 +16,9 @@ phones:
  - 8 342 281 15 25
  - 8 342 268 03 62
 vk_group: vk.com/club33948424
+forms_url: https://briskforms.com/go/61884eb4d90ed4de433bf106bd0aea9a
 company_legal:  Туробоз
 copyright_dates: 2013-2016
-
 github_username:  none23
 # Build settings
 markdown: kramdown
@@ -29,8 +29,10 @@ exclude: ["node_modules",
           "Gemfile",
           "Gemfile.lock",
           "gulpfile.js",
+          "generate-images",
           "gulpfile.coffee",
           "package.json",
+          "fetch-contentful.js",
           "fetch-contentful.js",
           "fetch-vk.js"]
 collections:

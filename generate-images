@@ -6,15 +6,15 @@ TOURS_CHECKSUM_NOW="$(md5sum img/_tours/*.jpg | md5sum)"
 TOURS_CHECKSUM_SAVED="$(cat img/_tours/.checksum)"
 if [ "$TOURS_CHECKSUM_NOW" == "$TOURS_CHECKSUM_SAVED" ] ; then
     echo 'Tours images unchanged'
-else 
+else
     for res in 300 400 600 800 ; do
         [[ -a ./img/tours"$res" ]] && rm -rf ./img/tours"$res"
-        mkdir ./img/tours"$res" 
+        mkdir ./img/tours"$res"
 
         vert_res=$((res*3/4))
 
         cd ./img/_tours || exit "cd ./img/_tours failed"
-        for file in *.jpg ; do 
+        for file in *.jpg ; do
             mogrify -path ../tours"$res" -filter Triangle -define filter:support=2 -resize "$res"x"$vert_res"^ -extent "$res"x"$vert_res" -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 "$file"
         done
         cd ../.. || exit "cd ../.. (from $(pwd)) failed"
@@ -28,17 +28,17 @@ fi
 
 POSTS_CHECKSUM_NOW="$(md5sum img/_posts/*.jpg | md5sum)"
 POSTS_CHECKSUM_SAVED="$(cat img/_posts/.checksum)"
-if [ "$POSTS_CHECKSUM_NOW" == "$POSTS_CHECKSUM_SAVED" ] ; then 
+if [ "$POSTS_CHECKSUM_NOW" == "$POSTS_CHECKSUM_SAVED" ] ; then
     echo 'Posts images unchanged'
-else 
+else
     for res in 200 350 430 600 800 ; do
         [[ -a ./img/posts"$res" ]] && rm -rf ./img/posts"$res"
-        mkdir ./img/posts"$res" 
+        mkdir ./img/posts"$res"
 
         vert_res=$((res*3/4))
 
         cd ./img/_posts || exit "cd ./img/_posts failed"
-        for file in *.jpg ; do 
+        for file in *.jpg ; do
             mogrify -path ../posts"$res" -filter Triangle -define filter:support=2 -resize "$res"x"$vert_res"^ -extent "$res"x"$vert_res" -gravity Center -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 "$file"
         done
         cd ../.. || exit "cd ../.. (from $(pwd)) failed"
