@@ -11,37 +11,7 @@ mixin LiquidDateSingleMonth(dateVariable)
     | {% assign unixdate = #{dateVariable} %}{% assign m = unixdate | date: "%-m" %} {% case m %}{% when '1' %}январь{% when '2' %}февраль{% when '3' %}март{% when '4' %}апрель{% when '5' %}май{% when '6' %}июнь{% when '7' %}июль{% when '8' %}август{% when '9' %}сентябрь{% when '10' %}октябрь{% when '11' %}ноябрь{% when '12' %}декабрь{% endcase %} {{ unixdate | date: "%Y" }}
 
 mixin LiquidDateMonthsRange(dateFirst, dateLast)
-    | {% assign unixdate = #{dateFirst} %}
-    | {% assign unixlast = #{dateLast} %}
-    | {% assign m = unixdate | date: "%-m" %}
-    | {% assign z = unixlast | date: "%-m" %}
-    | {% case m %}
-    | {% when '1' %}январь—
-    | {% when '2' %}февраль—
-    | {% when '3' %}март—
-    | {% when '4' %}апрель—
-    | {% when '5' %}май—
-    | {% when '6' %}июнь—
-    | {% when '7' %}июль—
-    | {% when '8' %}август—
-    | {% when '9' %}сентябрь—
-    | {% when '10' %}октябрь—
-    | {% when '11' %}ноябрь—
-    | {% when '12' %}декабрь—
-    | {% endcase %}
-    | {% case z %}
-    | {% when '1' %}январь
-    | {% when '2' %}февраль
-    | {% when '3' %}март
-    | {% when '4' %}апрель
-    | {% when '5' %}май
-    | {% when '6' %}июнь
-    | {% when '7' %}июль
-    | {% when '8' %}август
-    | {% when '9' %}сентябрь
-    | {% when '10' %}октябрь
-    | {% when '11' %}ноябрь
-    | {% when '12' %}декабрь
-    | {% endcase %}
-    | {{ unixdate | date: "%Y" }}
+    | {% assign unixdate = #{dateFirst} %}{% assign unixlast = #{dateLast} %}{% assign m = unixdate | date: "%-m" %}{% assign z = unixlast | date: "%-m" %}
+    | {% case m %}{% when '1' %}январь—{% when '2' %}февраль—{% when '3' %}март—{% when '4' %}апрель—{% when '5' %}май—{% when '6' %}июнь—{% when '7' %}июль—{% when '8' %}август—{% when '9' %}сентябрь—{% when '10' %}октябрь—{% when '11' %}ноябрь—{% when '12' %}декабрь—{% endcase %}
+    | {% case z %}{% when '1' %}январь{% when '2' %}февраль{% when '3' %}март{% when '4' %}апрель{% when '5' %}май{% when '6' %}июнь{% when '7' %}июль{% when '8' %}август{% when '9' %}сентябрь{% when '10' %}октябрь{% when '11' %}ноябрь{% when '12' %}декабрь{% endcase %} {{ unixdate | date: "%Y" }}
 
