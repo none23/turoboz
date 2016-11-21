@@ -73,7 +73,7 @@
                      , "fetch:testim": "node fetch-contentful.js --testim"
                  , "fetch:vk": "node fetch-vk.js"
 
-             , "autobuild": "concurrently 'npm run build:jade' 'npm run build:styles' 'npm run build:scripts'"
+             , "autobuild": "concurrently 'npm run build:jade' 'npm run build:styles:alt' 'npm run build:scripts'"
                  , "postautobuild": "npm run build:jekyll"
              , "deploy": "netlify deploy"
                  , "predeploy": "npm run build"
