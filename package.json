@@ -22,7 +22,8 @@
                   , "stylus": "^0.54.5"
                   , "uglify-js": "^2.7.3"
                   }
-, "devDependencies":{ "browser-sync": "^2.14.0"
+, "devDependencies":{ "autoprefixer-stylus": "^0.11.0"
+                    , "browser-sync": "^2.14.0"
                     , "contentful-management": "^1.1.14"
                     , "standard": "^8.3.0"
                     , "html-validator-cli": "^2.0.0"

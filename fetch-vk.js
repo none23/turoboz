@@ -6,6 +6,7 @@ const emojiStrip = require('emoji-strip')
 const postsCount = 10
 const groupId = 33948424
 const vkPostsDirPath = '_vk_news'
+const excludedPostsList = vkPostsDirPath + '/_excluded.json'
 
 const requestURL = `https://api.vk.com/method/wall.get?owner_id=-${groupId}&count=${postsCount}&extended=1&filter=owner&https=1&v=5.53`
 
@@ -13,18 +14,28 @@ function attachmentIsPhoto (attachment) {
   return attachment.type.indexOf('photo') >= 0
 }
 
+const readExcluded = new Promise((resolve, reject) => {
+  fs.readFile(excludedPostsList, function (err, data) {
+    if (err) { reject(err) }
+    resolve(data)
+  })
+})
+  .then(JSON.parse)
+  .then(data => data.excludedPosts)
+  .catch(err => console.log(err))
+
 const readSynced = new Promise((resolve, reject) => {
   fs.readdir(vkPostsDirPath, function (err, files) {
-    if (err) { reject() }
+    if (err) { reject(err) }
     resolve(files)
   })
 })
-readSynced.catch((err) => console.log(err))
+  .catch((err) => console.log(err))
 
 const fetchOnline = fetch(requestURL)
-  .then((res) => res.json())
-  .then((res) => res.response.items)
-  .catch((err) => console.log(err))
+  .then(res => res.json())
+  .then(res => res.response.items)
+  .catch(err => console.log(err))
 
 fetchOnline.catch((err) => console.log(err))
 
@@ -58,7 +69,7 @@ ${frontMatterYaml}
 ---
 ${postBody}
 `
-  fs.writeFile(fileName, postMarkdown, 'utf8', (err) => {
+  fs.writeFile(fileName, postMarkdown, 'utf8', err => {
     if (err) { throw err }
     console.log(`written ${fileName}`)
   })
@@ -66,13 +77,19 @@ ${postBody}
 
 const processData = Promise.all([
   fetchOnline,
-  readSynced
+  readSynced,
+  readExcluded
 ])
-  .then((value) => {
+  .then(value => {
     const online = value[0]
     const synced = value[1]
+    const exclud = value[2]
     for (const post of online) {
       const postPromise = new Promise((resolve, reject) => {
+        // Not explicitly excluded
+        if (exclud.includes(`${post.id}.md`)) {
+          reject(`skipping ${post.id}: explicitly excluded`)
+        }
         // Not already saved
         if (synced.includes(`${post.id}.md`)) {
           reject(`skipping ${post.id}: already synched`)
@@ -103,25 +120,22 @@ const processData = Promise.all([
           reject(`skipping ${post.id}: no photo attachments`)
         }
       })
-        .then(
-          (post) => {
-            post.textPhotos = []
-            if (post.photos.length >= 2) {
-              for (const attachmentPhoto of post.photos.slice(1)) {
-                const photoImage = attachmentPhoto.photo.photo_1280 || attachmentPhoto.photo.photo_807 || attachmentPhoto.photo.photo_604 || undefined
-                if (photoImage) {
-                  post.textPhotos.push(photoImage)
-                }
+        .then(post => {
+          post.textPhotos = []
+          if (post.photos.length >= 2) {
+            for (const attachmentPhoto of post.photos.slice(1)) {
+              const photoImage = attachmentPhoto.photo.photo_1280 || attachmentPhoto.photo.photo_807 || attachmentPhoto.photo.photo_604 || undefined
+              if (photoImage) {
+                post.textPhotos.push(photoImage)
               }
             }
-            savePost(post)
           }
-          , (reason) => console.log(reason)
-      )
-      postPromise.catch((reason) => {
+          savePost(post)
+        }, reason => console.log(reason))
+      postPromise.catch(reason => {
         console.log(reason)
       })
     }
   }
-    , (reason) => console.log(reason))
-processData.catch((err) => console.log(err))
+    , reason => console.log(reason))
+processData.catch(err => console.log(err))
