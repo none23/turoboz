@@ -3,7 +3,8 @@ section.vkcards__wrap#vkcards__wrap
     h2.section_header
         | Блог
     ul.vkblog__list
-        | {% for post in site.vk_news reversed %}
+        | {% assign top_vk_posts = site.vk_news | reverse %}
+        | {% for post in top_vk_posts limit: 5 %}
         li.vkpost__card.card
             a.vkpost__link.card__link(href='{{ post.url }}')
                 .vkpost__image__wrap.card__image__wrap
