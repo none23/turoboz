@@ -1576,8 +1576,7 @@ textarea {
   -webkit-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }
-.tour__wrap:hover .tour__image,
-.tour__wrap:focus .tour__image {
+.tour__wrap:hover .tour__image {
   -webkit-transform: scale(1, 1);
           transform: scale(1, 1);
 }
@@ -2064,8 +2063,7 @@ textarea {
 .c__map__tooltip {
   top: 0;
 }
-.c__map__link:hover .c__map__tooltip,
-.c__map__link:focus .c__map__tooltip {
+.c__map__link:hover .c__map__tooltip {
   opacity: 1;
 }
 .testimonial {
