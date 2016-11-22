@@ -36,7 +36,7 @@
                  , "build:styles": "stylus -u autoprefixer-stylus -o css/site.css _styles/styles/site.styl"
                      , "postbuild:styles": "echo 'styles ready'"
                      , "build:styles:alt": "stylus -o _styles/unprefixed/site.css _styles/styles/site.styl"
-                         , "postbuild:styles:alt": "postcss --use autoprefixer _styles/unprefixed/site.css -o css/site_3.css"
+                         , "postbuild:styles:alt": "postcss --use autoprefixer _styles/unprefixed/site.css -o css/site.css"
                  , "build:scripts": "npm run build:scripts:compile && npm run build:scripts:uglify"
                      , "build:scripts:compile": "babel _scripts/es6 -d _scripts/js"
                          , "postbuild:scripts:compile": "echo 'scripts ready'"
