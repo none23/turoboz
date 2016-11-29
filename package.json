@@ -2,8 +2,8 @@
 , "version": "1.8.0"
 , "description": "Turoboz website"
 , "babel": { "presets": [ "es2015" ] }
-, "dependencies": { "autoprefixer": "^0.11.0"
-                  , "autoprefixer": "^6.5.3"
+, "dependencies": { "autoprefixer": "^6.5.3"
+                  , "autoprefixer-stylus": "^0.11.0"
                   , "babel-cli": "^6.14.0"
                   , "babel-core": "^6.14.0"
                   , "babel-polyfill": "^6.13.0"
