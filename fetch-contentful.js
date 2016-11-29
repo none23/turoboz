@@ -73,7 +73,7 @@ function fetchTours () {
         newTour.imgpath = item.fields.imgasset.fields.file.fileName
 
         newTour.tourdate = item.fields.dates ? `${item.fields.dates[0]}` : '00.00.0000'
-        newTour.tourlastdate = item.fields.dates ? `${item.fields.dates[-1]}` : newTour.tourdate
+        newTour.tourlastdate = item.fields.dates && item.fields.dates[1] ? `${item.fields.dates[1]}` : '00.00.0000'
         newTour.prices = item.fields.prices ? item.fields.prices.split('* ').slice(1) : ['уточняйте при заказе']
         newTour.blueprint = item.fields.blueprint ? item.fields.blueprint.split('* ').slice(1) : []
         newTour.includes = item.fields.includes ? item.fields.includes.split(' * ').slice(1) : []
@@ -96,6 +96,7 @@ function fetchTours () {
         // Save the image
         // TODO fs.writeFile(`./img/_tours/${newTour.imgpath}`, JSON.stringify(upcomings.slice(0, 4)), 'utf8', function (err) {
 
+        console.log(`${newTour.tourlastdate} - ${newTour.tourdate}`)
         if (newTour.tourdate !== '00.00.0000') {
           var jsDate = Date.parse(newTour.tourdate.split('.').reverse().join('-'))
           if (jsDate > Date.now()) {

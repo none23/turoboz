@@ -15,3 +15,10 @@ mixin LiquidDateMonthsRange(dateFirst, dateLast)
     | {% case m %}{% when '1' %}январь—{% when '2' %}февраль—{% when '3' %}март—{% when '4' %}апрель—{% when '5' %}май—{% when '6' %}июнь—{% when '7' %}июль—{% when '8' %}август—{% when '9' %}сентябрь—{% when '10' %}октябрь—{% when '11' %}ноябрь—{% when '12' %}декабрь—{% endcase %}
     | {% case z %}{% when '1' %}январь{% when '2' %}февраль{% when '3' %}март{% when '4' %}апрель{% when '5' %}май{% when '6' %}июнь{% when '7' %}июль{% when '8' %}август{% when '9' %}сентябрь{% when '10' %}октябрь{% when '11' %}ноябрь{% when '12' %}декабрь{% endcase %} {{ unixdate | date: "%Y" }}
 
+mixin DateRangeOrNot(tour)
+    | {% if #{tour}.tourlastdate == '00.00.0000' %}
+    +LiquidRussianDate(`${tour}.tourdate`)
+    | {% else %}
+    +LiquidDateSingleMonth(`${tour}.tourdate`)
+    | {% endif %}
+

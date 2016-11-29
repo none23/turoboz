@@ -2,7 +2,8 @@
 , "version": "1.8.0"
 , "description": "Turoboz website"
 , "babel": { "presets": [ "es2015" ] }
-, "dependencies": { "autoprefixer": "^6.5.3"
+, "dependencies": { "autoprefixer": "^0.11.0"
+                  , "autoprefixer": "^6.5.3"
                   , "babel-cli": "^6.14.0"
                   , "babel-core": "^6.14.0"
                   , "babel-polyfill": "^6.13.0"
@@ -11,6 +12,8 @@
                   , "contentful": "^3.6.4"
                   , "csso": "^2.3.0"
                   , "emoji-strip": "^0.0.3"
+                  , "eslint": "^3.11.0"
+                  , "eslint-config-nwsome": "^0.0.1"
                   , "jade": "latest"
                   , "jade-babel": "^5.0.0"
                   , "jade-cli": "^0.1.1"
