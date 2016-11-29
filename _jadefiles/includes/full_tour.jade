@@ -33,8 +33,14 @@ include ../mixins.jade
         .heading__details__label
             | Стоимость:
         | {% for item in page.prices %}
+        | {% assign isCategory = item | rstrip | slice: -1 %}
+        | {% if isCategory == ':' %}
+        .heading__details__category.full-tour-category
+            | {{ item }}
+        | {% else %}
         .heading__details__value.full-tour-price
             | {{ item }}
+        | {% endif %}
         | {% endfor %}
 
 section.full_tour__description.block--textual.block--textimg.block--no-header.content-block

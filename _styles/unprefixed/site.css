@@ -1466,14 +1466,9 @@ textarea {
 }
 .block--heading {
   margin: 1rem 10vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: baseline;
 }
 .heading__left {
-  flex: 2 1 65%;
+  float: left;
 }
 .heading__date {
   color: #26637d;
@@ -1497,7 +1492,6 @@ textarea {
   }
 }
 .heading__right {
-  flex: 1 2 35%;
   text-align: right;
 }
 .heading__details__label {
@@ -1506,6 +1500,11 @@ textarea {
 }
 .heading__details__value {
   font-size: 1.1rem;
+  white-space: nowrap;
+}
+.heading__details__category {
+  font-size: 1rem;
+  font-style: italic;
   white-space: nowrap;
 }
 @media (max-width: 700px) {
