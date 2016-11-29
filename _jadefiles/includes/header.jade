@@ -30,7 +30,7 @@ mixin SiteContacts()
         | {{ site.phones | first }}
     a.call_back_form__toggle.site_header__call_back(href='#')
         | Заказать звонок
-    a.site_header__vk_button(href='https://{{ site.vk_group }}', target='_blank')
+    a.site_header__vk_button(href='https://{{ site.vk_group }}', target='_blank', rel='noopener')
         +iconVK('site_header__vk_icon')
 
 header#site_header
