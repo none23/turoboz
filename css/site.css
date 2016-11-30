@@ -1782,8 +1782,8 @@ textarea {
   max-height: 18rem;
 }
 @media (max-width: 659px) {
-  .card__image__wrap.newspost__image__wrap,
-  .card__image__wrap.vkpost__image__wrap {
+  .newspost__image__wrap,
+  .vkpost__image__wrap {
     display: none;
   }
 }

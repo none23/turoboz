@@ -1267,11 +1267,15 @@ textarea {
   justify-content: flex-start;
   margin: 0.5rem 0;
 }
+.tours_nav__tours-count {
+  opacity: 0.5;
+}
 .tours_nav__link {
   text-align: right;
   text-transform: uppercase;
   line-height: 1;
-  padding: 1em 12%;
+  padding: 1em 12% 1em 3%;
+  white-space: nowrap;
 }
 .tours_nav__link:hover,
 .tours_nav__link:focus {
