@@ -5,23 +5,52 @@ section.tours_nav__wrap
         | Категории
     nav.tours_nav
         | {% for tag in site.data.tags %}
-        |   {% assign is_empty = 1 %}
-        |   {% for tour in site.tours %}
-        |     {% if tour.tags contains tag.tag %} {% assign is_empty = 0 %} {% endif %}
-        |   {% endfor %}
-        |   {% if is_empty == 0 %}
-        a(href='{{ tag.url }}', class='tours_nav__link tours_nav__link--tag {% if page.url contains tag.url %}active{% endif %}') 
+        //-- for each tag {{{
+
+        //-- count tours with that tag {{{
+        |     {% assign has_tours = 0 %}
+        |     {% for tour in site.tours %}
+        |         {% if tour.tags contains tag.tag %} {% assign has_tours = has_tours | plus:1 %} {% endif %}
+        |     {% endfor %}
+        //-- }}}
+
+        |     {% unless has_tours == 0 %}
+        //-- if tag is not empty... {{{
+
+        //-- ...add it to the nav... {{{
+        a(href='{{ tag.url }}', class='tours_nav__link tours_nav__link--tag {% if page.url contains tag.url %}active{% endif %}')
+            span.tours_nav__tours-count--tag.tours_nav__tours-count
+                | ({{ has_tours }})
+            +space()
             | {{ tag.title }}
-        |     {% if tag.subtags %} {% for subtag in tag.subtags %}
-        |       {% assign subtag_is_empty = 1 %}
-        |       {% for tour in site.tours %}
-        |         {% if tour.tags contains subtag.subtag %} {% assign subtag_is_empty = 0 %} {% endif %}
-        |       {% endfor %}
-        |       {% if subtag_is_empty == 0 %}
+        //-- }}}
+
+        |         {% if tag.subtags %}{% for subtag in tag.subtags %}
+        //-- ...and for each of its subtags (if any) {{{
+
+        //-- count tours with that subtag {{{
+        |                 {% assign subtag_has_tours = 0 %}
+        |                 {% for tour in site.tours %}
+        |                     {% if tour.tags contains subtag.subtag %} {% assign subtag_has_tours = subtag_has_tours | plus:1 %} {% endif %}
+        |                 {% endfor %}
+        //-- }}}
+
+        |             {% unless subtag_has_tours == 0 %}
+        //-- if subtag is not empty, add it to nav {{{
         a(href='{{ subtag.url }}', class='tours_nav__link tours_nav__link--subtag {% if forloop.last %}tours_nav__link--subtag--last {% else %}{% endif %}tours_nav__link--subtag--notlast {% if page.url contains tag.url %}visible{% if page.url contains subtag.url %} active{% endif %}{% endif %}')
+            span.tours_nav__tours-count--subtag.tours_nav__tours-count
+                | ({{ subtag_has_tours }})
+            +space()
             | {{ subtag.title }}
-        |       {% endif %}
-        |     {% endfor %} {% endif %}
-        |   {% endif %}
+        //-- }}}
+        |             {% endunless %}
+
+        //-- }}}
+        |         {% endfor %}{% endif %}
+
+        //-- }}}
+        |     {% endunless %}
+
+        //-- }}}
         | {% endfor %}
 

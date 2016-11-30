@@ -68,12 +68,6 @@ $modal_form_button_fg = white
 // /vars }}}
 // mixins {{{
 
-AltBG()
-    background-image: url(/img/card.png)
-    background-color: $turbo_lightblue
-    background-repeat: repeat
-    background-blend-mode: soft-light
-
 SectionWidth()
     width: 85vw
     max-width: 56.25rem
@@ -118,6 +112,17 @@ textLink(Color=$turbo_blue, Flag=false)
         &:hover
         &:focus
             color: $turbo_brown
+
+SplitWrapped()
+    display: block
+    width: 100%
+    margin: 0
+
+    &__child
+        SectionWidth()
+        margin-top: 0
+        margin-bottom: 0
+
 
 // /mixins }}}
 // keyframes {{{
@@ -721,7 +726,7 @@ textarea
     color: $turbo_blue
 
 // /site_footer }}}
-// site_wide {{{
+// misc {{{
 
 .page_wrap
     min-height: $page_wrap_min-height
@@ -788,6 +793,7 @@ textarea
     padding-left: 1.5rem
     padding-right: @padding-left
 
+// /misc }}}
 // forms {{{
 
 .form
@@ -861,7 +867,6 @@ textarea
     background: hsl(0,90%,20%) !important
 
 // /forms }}}
-// /site_wide }}}
 // splits {{{
 
 .split
@@ -896,16 +901,6 @@ textarea
 
 .split--uneven
     margin-bottom: 2rem
-
-SplitWrapped()
-    display: block
-    width: 100%
-    margin: 0
-
-    &__child
-        SectionWidth()
-        margin-top: 0
-        margin-bottom: 0
 
 .split--even
     @media(max-width: 900px)
@@ -1005,295 +1000,14 @@ SplitWrapped()
     margin-right: auto
 
 // /blocks }}}
-// main {{{
-// first_glance {{{
-// ------------------------------------------------------------------------
-.first_glance
-    width: 100%
+// tour cards {{{
+.tour__card
     display: flex
-    flex-direction: row
+    flex-direction: column
     justify-content: space-between
-    align-items: stretch
-    align-content: flex-start
-    flex-wrap: wrap
-
-// site_heading {{{
-.site_heading__wrap
-    flex: 5 2 34rem
-    min-height: 25rem
-    display: flex
-    flex-direction: row
-    justify-content: center
-    align-items: center
-    flex-wrap: nowrap
-    background-image: url(/img/main_bg.jpg)
-    background-size: cover
-    background-position: 80% 0%
-    background-repeat: no-repeat
-
-.site_heading__text_box
-    flex: 0 2 38rem
-    background: $main_heading_bg
-    margin: 2rem
-
-.site_heading
-    font-size: 1.6rem
-    padding: 2rem 3rem 3rem
-
-    @media(max-width: 739px)
-        font-size: 1.4rem
-
-
-// /site_heading }}}
-// recent_posts {{{
-.recent_posts__wrap
-    flex: 1 0 19rem
-    box-shadow: inset 0 -0.188rem 0.75rem -0.375rem $shadowy
-    AltBG()
-
-    .section_header
-        font-size: 1.4rem
-
-.recent_posts__list
-    margin: 0 1rem 1rem 2rem
-
-.recent_post
-    Bullets()
-
-.recent_post__link
-    color: $body_fg
-
-// /recent_posts }}}
-// /first_glance }}}
-// upcoming_events {{{
-// ------------------------------------------------------------------------
-.upcoming_events__wrap
-    width: 95vw
-    max-width: 68.75rem
-    margin: 1rem auto
-
-.upcoming_events__list
-    width: 100%
-    display: flex
-    flex-direction: row
-    flex-wrap: nowrap
-    justify-content: center
-    align-items: stretch
-
-@media(max-width: 1239px)
-    .upcoming_events__wrap
-        width: 38rem
-        max-width: @width
-
-    .upcoming_events__list
-        flex-wrap: wrap
-
-@media(max-width: 564px)
-    .upcoming_events__wrap
-        width: 16rem
-        max-width: @width
-
-// /upcoming_events }}}
-// blog & news {{{
-// ------------------------------------------------------------------------
-
-.newscards__wrap
-.vkcards__wrap
-    width: 95vw
-    max-width: 1100px
-    margin: 1rem auto
-
-.card__link
-    width: 100%
-    position: relative
-    z-index: 20
-    overflow: none
-    display: flex
-    flex-direction: row
-    flex-wrap: nowrap
-    justify-content: center
-    align-items: stretch
-    margin: 1rem 0 1rem
+    background: white
     border: $border
     border-radius: $border-radius
-    background: white
-
-    &:hover
-    &:focus
-        z-index: 29
-
-.card__image__wrap
-    min-height: 100%
-    position: relative
-    z-index: 2
-    overflow: hidden
-    object-fit: cover
-
-    &.newspost__image__wrap
-    &.vkpost__image__wrap
-    &.guide__image__wrap
-        flex 1 1 21.875rem
-        line-height: 0
-        max-height: 18rem
-
-    &.newspost__image__wrap
-    &.vkpost__image__wrap
-        @media(max-width: 659px)
-            display: none
-
-.card__image
-    min-width: 100%
-    min-height: 100%
-    width: 100%
-    height: auto
-    object-fit: cover
-
-.card__content__wrap
-    flex 1 1 70%
-    position: relative
-    z-index: 1
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-    align-items: stretch
-
-.card__date
-    flex: 0 0 2.25rem
-    font-size: 0.9rem
-    line-height: 2.25rem
-    color: $turbo_darkblue
-    padding: 0 1rem
-
-    &.newspost__date
-    &.vkpost__date
-        text-align: right
-
-.card__title
-    flex 1 1 3rem
-    padding: 1rem 0.7rem
-    font-size: 1.2rem
-
-    &.guide__name
-        flex-basis: 1.5rem
-
-.card__summary
-    padding: 0 1rem 1rem
-    font-size: 1rem
-
-    &.guide__resume
-        padding-top: 0
-        padding-bottom: 1rem
-        text-align: justify
-        hyphens: auto
-
-.card__button
-    flex 0 0 3rem
-    padding-left: 1rem
-    border-radius: 0
-    line-height: 3rem
-    outline: $border
-    color: $turbo_darkblue
-    background: white
-    transition: all 0.2s ease
-
-    &:hover
-    &:focus
-    &:active
-        color: white
-
-    &:hover
-    &:focus
-        background: $turbo_darkblue
-
-    &:active
-        background: $turbo_brown
-
-    .card:hover &
-    .card:focus &
-        color: white
-        background: $turbo_blue
-
-    .card:active &
-        background: $turbo_brown
-
-// /blog & news }}}
-// /main }}}
-// tours {{{
-
-.tours__wrap
-    width: 100%
-    display: flex
-    justify-content: space-between
-    min-height: $tours_nav_min-height
-
-// tours_nav {{{
-
-.tours_nav__wrap
-    flex: 0 1 25vw
-    min-width: 15rem
-    margin-bottom: -2rem
-    background-image: url(/img/card.png)
-    background-blend-mode: lighten
-    background-repeat: repeat
-    background-color: snow
-    box-shadow: 0 0 0.75rem -0.25rem $shadowy
-
-.tours_nav__section_header
-    color: $turbo_brown
-
-.tours_nav
-    display: flex
-    flex-direction: column
-    justify-content: flex-start
-    margin: 0.5rem 0
-
-.tours_nav__link
-    text-align: right
-    text-transform: uppercase
-    line-height: 1
-    padding: 1em 12%
-
-    &:hover
-    &:focus
-        background: $turbo_blue
-
-    &:active
-    &.active
-        background: $turbo_brown
-
-    &:hover
-    &:focus
-    &:active
-    &.active
-        color: white
-
-    &.active
-        z-index: 500
-
-.tours_nav__link--subtag
-    padding-right: 18%
-    background-color: $turbo_lightblue
-    display: none
-
-    &.visible
-        display: block
-
-.tours_nav__link--subtag--last
-    padding-bottom: 1.5em
-
-// /tours_nav }}}
-// tours_list {{{
-.tours_list__wrap
-    flex: 0 1 75vw
-    position: relative
-
-.tours_list
-    display: flex
-    justify-content: space-around
-    flex-wrap: wrap
-    align-items: stretch
-    align-content: flex-start
-    margin: 1.5rem 1.5rem
 
 .tour__wrap
     flex: 0 0 285px
@@ -1316,19 +1030,9 @@ SplitWrapped()
     .tour__wrap:focus &
         transform: scale(1, 1)
 
-
 .tour__title
     padding: 0.6rem
     flex: 1 1 6rem
-
-.tour__card
-.guide__card
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-    background: white
-    border: $border
-    border-radius: $border-radius
 
 .tour__length
     display: inline
@@ -1338,40 +1042,6 @@ SplitWrapped()
     margin-top: -2.25rem
     color: $turbo_darkblue
     padding: 0 1rem
-
-// /tours_list }}}
-
-.tours__count
-    position: absolute
-    right: 1.6rem
-    top: 2rem
-    color: $turbo_blue
-
-// tours media {{{
-
-@media(max-width: 1139px)
-    .tours_nav
-        margin-top: 2.5rem
-
-    .tours_list
-        margin-top: 3.5rem
-
-    .tours__count
-        top: 4rem
-
-@media(max-width: 899px)
-    .tours__wrap
-        display: block
-
-    .tours_nav__wrap
-        margin-bottom: 0
-        padding-bottom: 1rem
-
-    .tours_nav
-        margin-top: 0
-
-    .tours_nav__link
-        text-align: center
 
 @media(max-width: 659px) and (min-width: 565px)
     .tour__wrap
@@ -1398,20 +1068,9 @@ SplitWrapped()
     .tour__image
         display: none
 
-// /tours media }}}
-// /tours }}}
-// about {{{
+// tour cards }}}
 
-.advantages__wrap
-    margin-bottom: 0
-
-.guide__card
-    @media(max-width: 1000px)
-        @media(min-width: 740px)
-            flex-direction: row
-
-// /about }}}
-// full_tour/post {{{
+// full_tour / full_post / full_vkpost pages {{{
 // breadcrumbs {{{
 
 .block--breadcrumbs
@@ -1568,8 +1227,359 @@ SplitWrapped()
     @media(max-width: 1100px)
         text-align: left
 
-// /full_tour/post }}}
-// services {{{
+// /full_tour / full_post / full_vk_post pages }}}
+// tours page {{{
+
+.tours__wrap
+    width: 100%
+    display: flex
+    justify-content: space-between
+    min-height: $tours_nav_min-height
+
+// tours page nav {{{
+
+.tours_nav__wrap
+    flex: 0 1 25vw
+    min-width: 15rem
+    margin-bottom: -2rem
+    background-image: url(/img/card.png)
+    background-blend-mode: lighten
+    background-repeat: repeat
+    background-color: snow
+    box-shadow: 0 0 0.75rem -0.25rem $shadowy
+
+.tours_nav__section_header
+    color: $turbo_brown
+
+.tours_nav
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    margin: 0.5rem 0
+
+.tours_nav__tours-count
+    opacity: 0.5
+
+.tours_nav__link
+    text-align: right
+    text-transform: uppercase
+    line-height: 1
+    padding: 1em 12% 1em 3%
+    white-space: nowrap
+
+    &:hover
+    &:focus
+        background: $turbo_blue
+
+    &:active
+    &.active
+        background: $turbo_brown
+
+    &:hover
+    &:focus
+    &:active
+    &.active
+        color: white
+
+    &.active
+        z-index: 500
+
+.tours_nav__link--subtag
+    padding-right: 18%
+    background-color: $turbo_lightblue
+    display: none
+
+    &.visible
+        display: block
+
+.tours_nav__link--subtag--last
+    padding-bottom: 1.5em
+
+// /tours page nav }}}
+// tours list {{{
+
+.tours_list__wrap
+    flex: 0 1 75vw
+    position: relative
+
+.tours_list
+    display: flex
+    justify-content: space-around
+    flex-wrap: wrap
+    align-items: stretch
+    align-content: flex-start
+    margin: 1.5rem 1.5rem
+
+// /tours list }}}
+
+.tours__count
+    position: absolute
+    right: 1.6rem
+    top: 2rem
+    color: $turbo_blue
+
+// tours page media {{{
+
+@media(max-width: 1139px)
+    .tours_nav
+        margin-top: 2.5rem
+
+    .tours_list
+        margin-top: 3.5rem
+
+    .tours__count
+        top: 4rem
+
+@media(max-width: 899px)
+    .tours__wrap
+        display: block
+
+    .tours_nav__wrap
+        margin-bottom: 0
+        padding-bottom: 1rem
+
+    .tours_nav
+        margin-top: 0
+
+    .tours_nav__link
+        text-align: center
+
+// /tours page media }}}
+// /tours page }}}
+// main page {{{
+// first_glance {{{
+.first_glance
+    width: 100%
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: stretch
+    align-content: flex-start
+    flex-wrap: wrap
+
+// site_heading {{{
+.site_heading__wrap
+    flex: 5 2 34rem
+    min-height: 25rem
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    flex-wrap: nowrap
+    background-image: url(/img/main_bg.jpg)
+    background-size: cover
+    background-position: 80% 0%
+    background-repeat: no-repeat
+
+.site_heading__text_box
+    flex: 0 2 38rem
+    background: $main_heading_bg
+    margin: 2rem
+
+.site_heading
+    font-size: 1.6rem
+    padding: 2rem 3rem 3rem
+
+    @media(max-width: 739px)
+        font-size: 1.4rem
+
+
+// /site_heading }}}
+// /first_glance }}}
+// recent_posts {{{
+.recent_posts__wrap
+    flex: 1 0 19rem
+    box-shadow: inset 0 -0.188rem 0.75rem -0.375rem $shadowy
+    background-image: url(/img/card.png)
+    background-color: $turbo_lightblue
+    background-repeat: repeat
+    background-blend-mode: soft-light
+
+
+    .section_header
+        font-size: 1.4rem
+
+.recent_posts__list
+    margin: 0 1rem 1rem 2rem
+
+.recent_post
+    Bullets()
+
+.recent_post__link
+    color: $body_fg
+
+// /recent_posts }}}
+// upcoming_events {{{
+// ------------------------------------------------------------------------
+.upcoming_events__wrap
+    width: 95vw
+    max-width: 68.75rem
+    margin: 1rem auto
+
+.upcoming_events__list
+    width: 100%
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    justify-content: center
+    align-items: stretch
+
+@media(max-width: 1239px)
+    .upcoming_events__wrap
+        width: 38rem
+        max-width: @width
+
+    .upcoming_events__list
+        flex-wrap: wrap
+
+@media(max-width: 564px)
+    .upcoming_events__wrap
+        width: 16rem
+        max-width: @width
+
+// /upcoming_events }}}
+// news / vknews cards {{{
+
+.newscards__wrap
+.vkcards__wrap
+    width: 95vw
+    max-width: 1100px
+    margin: 1rem auto
+
+.card__link
+    width: 100%
+    position: relative
+    z-index: 20
+    overflow: none
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    justify-content: center
+    align-items: stretch
+    margin: 1rem 0 1rem
+    border: $border
+    border-radius: $border-radius
+    background: white
+
+    &:hover
+    &:focus
+        z-index: 29
+
+.card__image__wrap
+    min-height: 100%
+    position: relative
+    z-index: 2
+    overflow: hidden
+    object-fit: cover
+
+    &.newspost__image__wrap
+    &.vkpost__image__wrap
+    &.guide__image__wrap
+        flex 1 1 21.875rem
+        line-height: 0
+        max-height: 18rem
+
+    &.newspost__image__wrap
+    &.vkpost__image__wrap
+        @media(max-width: 659px)
+            display: none
+
+.card__image
+    min-width: 100%
+    min-height: 100%
+    width: 100%
+    height: auto
+    object-fit: cover
+
+.card__content__wrap
+    flex 1 1 70%
+    position: relative
+    z-index: 1
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: stretch
+
+.card__date
+    flex: 0 0 2.25rem
+    font-size: 0.9rem
+    line-height: 2.25rem
+    color: $turbo_darkblue
+    padding: 0 1rem
+
+    &.newspost__date
+    &.vkpost__date
+        text-align: right
+
+.card__title
+    flex 1 1 3rem
+    padding: 1rem 0.7rem
+    font-size: 1.2rem
+
+    &.guide__name
+        flex-basis: 1.5rem
+
+.card__summary
+    padding: 0 1rem 1rem
+    font-size: 1rem
+
+    &.guide__resume
+        padding-top: 0
+        padding-bottom: 1rem
+        text-align: justify
+        hyphens: auto
+
+.card__button
+    flex 0 0 3rem
+    padding-left: 1rem
+    border-radius: 0
+    line-height: 3rem
+    outline: $border
+    color: $turbo_darkblue
+    background: white
+    transition: all 0.2s ease
+
+    &:hover
+    &:focus
+    &:active
+        color: white
+
+    &:hover
+    &:focus
+        background: $turbo_darkblue
+
+    &:active
+        background: $turbo_brown
+
+    .card:hover &
+    .card:focus &
+        color: white
+        background: $turbo_blue
+
+    .card:active &
+        background: $turbo_brown
+
+// /news / vknews cards }}}
+// /main page }}}
+// about page {{{
+
+.advantages__wrap
+    margin-bottom: 0
+
+.guide__card
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    background: white
+    border: $border
+    border-radius: $border-radius
+
+    @media(max-width: 1000px)
+        @media(min-width: 740px)
+            flex-direction: row
+
+// /about page }}}
+// services page {{{
 
 .service__summary__item
     margin-top: 1rem
@@ -1589,8 +1599,8 @@ SplitWrapped()
 .services__payment
     Bullets()
 
-// /services }}}
-// contact {{{
+// /services page }}}
+// contact page {{{
 
 .contacts__wrap
     display: flex
@@ -1657,8 +1667,8 @@ SplitWrapped()
     .c__map__link:focus &
         opacity: 1
 
-// /contact }}}
-// testimonials {{{
+// /contact page }}}
+// testimonials page {{{
 
 .testimonial
     width: 100%
@@ -1718,5 +1728,5 @@ SplitWrapped()
     white-space: nowrap
     color: white
 
-// /testimonials }}}
+// /testimonials page }}}
 
