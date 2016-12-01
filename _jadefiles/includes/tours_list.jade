@@ -1,12 +1,19 @@
 include ../mixins.jade
 include tour_mixins.jade
+
 section.tours_list__wrap
-    h2.section_header.tours__list__section_header
+    h2.section_header.tours__section_header
         | Экскурсии{% unless page.url == '/tours/' %}: {% endunless %}{% for tag in site.data.tags %}{% if tag.url == page.url %}{{ tag.title }}{% elsif page.url contains tag.url %}{% for subtag in tag.subtags %}{% if subtag.url == page.url %}{{ subtag.title }}{% endif %}{% endfor %}{% endif %}{% endfor %}
     | {% assign purl = page.url %}{% if purl == '/tours/'%}
     +ToursList()
-    | {% else %}{% for tag in site.data.tags %}{% if purl == tag.url %}
+    | {% else %}{% for tag in site.data.tags %}{% if purl == tag.url %}{% if tag.description.size >= 1 %}
+    .tours-tag-info
+        | {{ tag.description | markdownify }}{% endif %}
     +ToursList('tag.tag')
-    | {% endif %}{% if tag.subtags %}{% for subtag in tag.subtags %}{% if purl == subtag.url %}
+    | {% endif %}{% if tag.subtags %}{% for subtag in tag.subtags %}{% if purl == subtag.url %}{% if subtag.description.size >= 1 %}
+    .tours-tag-info
+        | {{ subtag.description | markdownify }}{% elsif tag.description.size >= 1 %}
+    .tours-tag-info
+        | {{ tag.description | markdownify }}{% endif %}
     +ToursList('subtag.subtag')
     | {% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}

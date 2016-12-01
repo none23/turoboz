@@ -10,7 +10,7 @@ mixin GuideCard(g)
 
                     .guide__resume.card__summary
                         | {% for paragraph in #{g}.resume %}
-                        p.guide__resume__p
+                        .guide__resume__p
                             | {{ paragraph | markdownify }}
                         | {% endfor %}
 

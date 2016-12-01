@@ -111,8 +111,8 @@ section.will-learn__wrap.block--bullets.content-block
     ul.will-learn.block__bullets
         | {% for item in page.willLearn %}
         li.will-learn__item.bullet
-        | {{ item | smartify }}
-    | {% endfor %}
+            | {{ item | smartify }}
+        | {% endfor %}
 
 | {% endif %}
 //- /will_learn }}}

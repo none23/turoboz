@@ -18,6 +18,42 @@ mixin phone(number1,number2,number3,number4='')
 mixin mail(address)
     a.mail(href=`mailto:${address}`) #{address}
 
+mixin SiteNav()
+    | {% assign navpages = site.pages | sort: 'innav' %}
+    | {% for p in navpages %}
+    //-- {{{
+    |   {% if p.innav %}{% if p.url > '/' %}
+    //-- {{{
+    |         {% if page.url contains p.url %}
+    //-- {{{
+    a.site_nav__link.active(href='{{ p.url | prepend: site.baseurl }}')
+        | {{ p.title }}
+    //-- }}}
+    |         {% else %}
+    //-- {{{
+    a.site_nav__link(href='{{ p.url | prepend: site.baseurl }}')
+        | {{ p.title }}
+    //-- }}}
+    |         {% endif %}
+    //-- }}}
+    |   {% else %}
+    //-- {{{
+    |       {% if p.url == page.url %}
+    //-- {{{
+    a.site_nav__link.active(href='{{ p.url | prepend: site.baseurl }}')
+        | {{ p.title }}
+    //-- }}}
+    |       {% else %}
+    //-- {{{
+    a.site_nav__link(href='{{ p.url | prepend: site.baseurl }}')
+        | {{ p.title }}
+    //-- }}}
+    |       {% endif %}
+    //-- }}}
+    |   {% endif %}{% endif %}
+    //-- }}}
+    | {% endfor %}
+
 mixin Breadcrumb(breadcrumbHref, breadcrumbCopy,breadcrumbClass='')
     a.breadcrumb--no-icon.breadcrumb(href=`${breadcrumbHref}`, class=`${breadcrumbClass}`)
         .breadcrumb__label
