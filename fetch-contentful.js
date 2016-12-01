@@ -96,7 +96,6 @@ function fetchTours () {
         // Save the image
         // TODO fs.writeFile(`./img/_tours/${newTour.imgpath}`, JSON.stringify(upcomings.slice(0, 4)), 'utf8', function (err) {
 
-        console.log(`${newTour.tourlastdate} - ${newTour.tourdate}`)
         if (newTour.tourdate !== '00.00.0000') {
           var jsDate = Date.parse(newTour.tourdate.split('.').reverse().join('-'))
           if (jsDate > Date.now()) {
