@@ -884,6 +884,9 @@ textarea {
   border-radius: 0.125rem;
   box-shadow: 0 0.2rem 1rem -0.25rem #26170d;
 }
+.block__gallery {
+  min-height: 4rem;
+}
 .block--no-header {
   padding-top: 1rem;
 }
@@ -1218,7 +1221,6 @@ textarea {
   color: #3485a8;
   line-height: 1;
   text-decoration: underline;
-  margin-bottom: 2rem;
 }
 .vk__source__link:hover,
 .vk__source__link:focus {
