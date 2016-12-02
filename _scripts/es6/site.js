@@ -192,29 +192,10 @@ function enableForm (formPrefix, successMsg, callback) {
   const theForm = document.getElementById(formId)
   const sendForm = document.getElementById(formButtonId)
   const iSendAJAX = (event, form, sendButton, successMsg) => {
-    /* <temporaryhack>
-     * sendButton.className = 'form__button--loading'
-     * sendButton.textContent = 'Отправка...'
-     */ /* </temporaryhack> */
     sendButton.textContent = successMsg
     sendButton.className = 'form__button--success'
     sendButton.disabled = true
     const request = new window.XMLHttpRequest()
-    /*
-     * const checkStatus = () => {
-     *   if (request.status === 200) {
-     *     sendButton.textContent = successMsg
-     *     sendButton.className = 'form__button--success'
-     *     sendButton.disabled = true
-     *     if (callback) callback()
-     *   } else {
-     *     sendButton.textContent = 'Возникла ошибка при отправке. Нажмите, чтобы попробовать еще раз'
-     *     sendButton.className = 'form__button--failure'
-     *     form.addEventListener('submit', handleFallbackSubmit)
-     *   }
-     *   form.removeEventListener('submit', handleFirstSubmit)
-     * }
-     */
     request.withCredentials = false
     request.open('POST'
       , 'https://briskforms.com/go/61884eb4d90ed4de433bf106bd0aea9a'
@@ -224,55 +205,26 @@ function enableForm (formPrefix, successMsg, callback) {
       , 'application/json'
     )
     const formData = new window.FormData(form)
-    /* <temporaryhack>
-     * request.onreadystatechange = function () {
-     *   if (request.readyState === 4) {
-     *     checkStatus()
-     *   }
-     * }
-     */
-    // request.onreadystatechange = checkStatus()
-
-    // request.onerror = checkStatus()
-    /* </temporaryhack> */
     request.send(formData)
   }
 
-  const handleFirstSubmit = function (event) {
-    event.preventDefault()
-    event.stopPropagation()
-    return iSendAJAX(event, theForm, sendForm, successMsg)
-  }
-
-  /* const handleFallbackSubmit = function (event) {
-   *   event.preventDefault()
-   *   event.stopPropagation()
-   *   return iSendAJAX(event, theForm, sendForm, successMsg)
-   * }
-   */
-
   return function () {
     if (theForm) {
-      theForm.addEventListener('submit', handleFirstSubmit)
+      theForm.addEventListener('submit', function (event) {
+        event.preventDefault()
+        event.stopPropagation()
+        return iSendAJAX(event, theForm, sendForm, successMsg)
+      })
     }
   }
 }
 
-const enableContactForm = enableForm('contact'
-  , 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.'
-)
-const enableReviewForm = enableForm('review'
-  , 'Спасибо! Отзыв принят и будет опубликован после проверки.'
-)
-const enableOrderForm = enableForm('order'
-  , 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.'
-)
-const enableCallForm = enableForm('call_back'
-  , 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.'
-  , () => {
-    setTimeout(toggleCallFormState, 5000)
-  }
-)
+const enableContactForm = enableForm('contact', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.')
+const enableGuideForm = enableForm('guide', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.')
+const enableReviewForm = enableForm('review', 'Спасибо! Отзыв принят и будет опубликован после проверки.')
+const enableOrderForm = enableForm('order', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.')
+const enableCallForm = enableForm('call_back', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.', function () { return setTimeout(toggleCallFormState, 5000) })
+
 // callFormToggle{{{
 function toggleCallFormState (event) {
   // prevent following the '#' href
@@ -307,6 +259,7 @@ function callFormToggle () {
   window.addEventListener('DOMContentLoaded', function () {
     callFormToggle()
     enableCallForm()
+    enableGuideForm()
     enableContactForm()
     enableReviewForm()
     enableOrderForm()

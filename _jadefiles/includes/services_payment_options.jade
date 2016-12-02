@@ -1,8 +1,0 @@
-section.services__payments__wrap.block--bullets.content-block
-    h2.section_header
-        | Оплата экскурсий
-    ul.services__payments.block__bullets
-        | {% for p_o in page.payment_opts %}
-        li.services__payment.bullet
-            | {{ p_o | markdownify }}
-        | {% endfor %}

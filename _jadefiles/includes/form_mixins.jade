@@ -126,3 +126,21 @@ mixin ContactForm()
             +formTextarea('contact_form__question', 'Question')
         button#contact_form__button.form__button(type='submit')
            | Отправить сообщение
+
+mixin GuideForm()
+    +FormBody('guide_form', 'guide_form', 'form')
+        +formSubject('guide_form__subject', 'Заказ индивидуального тура')
+        .form__input_group
+            label.form__input_label(for='guide_form__name')
+                | Как к Вам обращаться?
+            +formName('guide_form__name')
+        .form__input_group
+            label.form__input_label(for='guide_form__phone')
+                | Ваш номер телефона
+            +formPhone('call_back_form__phone')
+        //--.form__input_group
+            label.form__input_label(for='guide_form__question')
+                | Дополнительная информация
+            +formTextarea('guide_form__question', 'Question')
+        button#guide_form__button.form__button(type='submit')
+           | Заказать

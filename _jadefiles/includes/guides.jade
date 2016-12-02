@@ -21,11 +21,5 @@ section.about__wrap.guides__wrap
     h2.section_header
         | Наши экскурсоводы
     .guides
-        | {% if page.guides | first >= '' %}
-        | {% for g in page.guides %}
-        +GuideCard('g')
-        | {% endfor %}
-        | {% else %}
-        +GuideCard('page.guide')
-        | {% endif %}
+        +GuideCard('site.data.guides')
 
