@@ -78,7 +78,6 @@
                      , "fetch:tours": "node fetch-contentful.js --tours"
                      , "fetch:news": "node fetch-contentful.js --news"
                      , "fetch:testim": "node fetch-contentful.js --testim"
-                     , "postfetch:contentful": "./generate-images"
                  , "fetch:vk": "node fetch-vk.js"
 
              , "autobuild": "concurrently 'npm run build:jade' 'npm run build:styles' 'npm run build:scripts'"
