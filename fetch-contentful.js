@@ -64,11 +64,11 @@ function fetchTags () {
           newTag.subtags = []
           for (let st of item.fields.subtags) {
             let newSubtag = {}
-            newSubtag.subtag = st.abbreviation
-            newSubtag.title = st.title
-            newSubtag.url = `/tours/${newTag.tag}/${newSubtag.subtag}/`
-            newSubtag.description = st.description || ''
-            newSubtag.pageTitle = st.pageTitle
+            newSubtag.subtag = st.fields.abbreviation
+            newSubtag.title = st.fields.title
+            newSubtag.url = `/tours/${item.fields.abbreviation}/${st.fields.abbreviation}/`
+            newSubtag.description = st.fields.description || ''
+            newSubtag.pageTitle = st.fields.pageTitle
             newTag.subtags.push(newSubtag)
           }
         }
@@ -78,16 +78,17 @@ function fetchTags () {
     })
     .then(tagsCatalogue => {
       for (let tag of tagsCatalogue) {
-        if (!fs.existsSync(tag.url)) {
-          fs.mkdirSync(tag.url)
+        if (!fs.existsSync(`.${tag.url}`)) {
+          fs.mkdirSync(`.${tag.url}`)
         }
-        let tagIndex = `${tag.url}index.html`
+        let tagIndex = `.${tag.url}index.html`
         let tagIndexContent = `---
-        layout: tours
-        title: ${tag.pageTitle}
-        description: >-
-          ${tag.description}
-        ---`
+layout: tours
+title: ${tag.pageTitle}
+description: >-
+  ${tag.description}
+---
+`
         fs.writeFile(tagIndex, tagIndexContent, 'utf8', function (err) {
           if (err) { throw err }
           console.log(`written ${tagIndex}`)
@@ -95,16 +96,17 @@ function fetchTags () {
 
         if (tag.subtags) {
           for (let subtag of tag.subtags) {
-            if (!fs.existsSync(subtag.url)) {
-              fs.mkdirSync(subtag.url)
+            if (!fs.existsSync(`.${subtag.url}`)) {
+              fs.mkdirSync(`.${subtag.url}`)
             }
-            let subtagIndex = `${subtag.url}index.html`
+            let subtagIndex = `.${subtag.url}index.html`
             let subtagIndexContent = `---
-            layout: tours
-            title: ${subtag.pageTitle}
-            description: >-
-              ${subtag.description}
-            ---`
+layout: tours
+title: ${subtag.pageTitle}
+description: >-
+  ${subtag.description}
+---
+`
             fs.writeFile(subtagIndex, subtagIndexContent, 'utf8', function (err) {
               if (err) { throw err }
               console.log(`written ${subtagIndex}`)
