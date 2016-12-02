@@ -1603,6 +1603,9 @@ textarea {
 .card:active .card__button {
   background: #613b23;
 }
+.about_info {
+  margin-top: 1.5rem;
+}
 .advantages__wrap {
   margin-bottom: 0;
 }
@@ -1633,57 +1636,11 @@ textarea {
   text-align: justify;
   hyphens: auto;
 }
-.service__summary__item {
-  margin-top: 1rem;
-  margin-left: 2rem;
+.guide_page__content {
+  margin-top: 1.5rem;
 }
-@media (max-width: 500px) {
-  .service__summary__item {
-    margin-left: 0;
-  }
-}
-.services__intro__wrap,
-.services__payments__wrap {
-  width: 85vw;
-  max-width: 56.25rem;
-  min-width: 31.25rem;
-  margin: 1rem auto;
-  margin-bottom: 2rem;
-}
-@media (max-width: 660px) {
-  .services__intro__wrap,
-  .services__payments__wrap {
-    width: 92vw;
-    max-width: 92vw;
-    min-width: 0;
-  }
-}
-.services__payments__wrap {
-  margin-top: 0;
-}
-.services__payment {
-  margin-bottom: 1rem;
-  position: relative;
-}
-.services__payment:before {
-  content: '';
-  display: block;
-  position: absolute;
-  left: -1.3rem;
-  top: 25%;
-  bottom: 75%;
-  right: calc(100% + 0.6rem);
-  background: transparent;
-  border-top: 0.32rem solid transparent;
-  border-bottom: 0.32rem solid transparent;
-  border-left: 0.5rem solid #68a9c4;
-  transition: all 0.2s ease-in-out;
-  transform: translateX(10%);
-}
-.services__payment:hover:before,
-.services__payment:focus:before {
-  border-left: 0.5rem solid #26637d;
-  transform: translateX(0%);
+.guide_form__wrap {
+  margin-top: -1rem;
 }
 .contacts__wrap {
   display: flex;
