@@ -74,6 +74,7 @@
 
              , "fetch": "npm run fetch:contentful && npm run fetch:vk"
                  , "fetch:contentful": "npm run fetch:tours && npm run fetch:news && npm run fetch:testim"
+                     , "fetch:tags": "node fetch-contentful.js --tags"
                      , "fetch:tours": "node fetch-contentful.js --tours"
                      , "fetch:news": "node fetch-contentful.js --news"
                      , "fetch:testim": "node fetch-contentful.js --testim"

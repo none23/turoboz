@@ -44,6 +44,88 @@ ${frontMatter}
 }
 
 // }}}
+// Fetch tags {{{
+
+function fetchTags () {
+  client.getEntries({
+    'content_type': 'tourTag'
+  })
+    .then(entries => {
+      var tagsCatalogue = []
+      console.log(JSON.stringify(entries.items))
+      for (let item of entries.items) {
+        let newTag = {}
+        newTag.tag = item.fields.abbreviation
+        newTag.title = item.fields.title
+        newTag.url = `/tours/${newTag.tag}/`
+        newTag.description = item.fields.description
+        newTag.pageTitle = item.fields.pageTitle
+        if (item.fields.subtags) {
+          newTag.subtags = []
+          for (let st of item.fields.subtags) {
+            let newSubtag = {}
+            newSubtag.subtag = st.abbreviation
+            newSubtag.title = st.title
+            newSubtag.url = `/tours/${newTag.tag}/${newSubtag.subtag}/`
+            newSubtag.description = st.description || ''
+            newSubtag.pageTitle = st.pageTitle
+            newTag.subtags.push(newSubtag)
+          }
+        }
+        if (!item.fields.isSubtag) { tagsCatalogue.push(newTag) }
+      }
+      return tagsCatalogue
+    })
+    .then(tagsCatalogue => {
+      for (let tag of tagsCatalogue) {
+        if (!fs.existsSync(tag.url)) {
+          fs.mkdirSync(tag.url)
+        }
+        let tagIndex = `${tag.url}index.html`
+        let tagIndexContent = `---
+        layout: tours
+        title: ${tag.pageTitle}
+        description: >-
+          ${tag.description}
+        ---`
+        fs.writeFile(tagIndex, tagIndexContent, 'utf8', function (err) {
+          if (err) { throw err }
+          console.log(`written ${tagIndex}`)
+        })
+
+        if (tag.subtags) {
+          for (let subtag of tag.subtags) {
+            if (!fs.existsSync(subtag.url)) {
+              fs.mkdirSync(subtag.url)
+            }
+            let subtagIndex = `${subtag.url}index.html`
+            let subtagIndexContent = `---
+            layout: tours
+            title: ${subtag.pageTitle}
+            description: >-
+              ${subtag.description}
+            ---`
+            fs.writeFile(subtagIndex, subtagIndexContent, 'utf8', function (err) {
+              if (err) { throw err }
+              console.log(`written ${subtagIndex}`)
+            })
+          }
+        }
+      }
+      return tagsCatalogue
+    })
+    .then(tagsCatalogue => {
+      let filename = './_data/tags.json'
+      fs.writeFile(filename, JSON.stringify(tagsCatalogue), 'utf8', function (err) {
+        if (err) { throw err }
+        console.log(`written ${filename}`)
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+// }}}
 // Fetch tours {{{
 
 function fetchTours () {
@@ -73,20 +155,13 @@ function fetchTours () {
         newTour.imgpath = item.fields.imgasset.fields.file.fileName
 
         newTour.tourdate = item.fields.dates ? `${item.fields.dates[0]}` : '00.00.0000'
-        newTour.tourlastdate = item.fields.dates && item.fields.dates[1] ? `${item.fields.dates[1]}` : '00.00.0000'
+        newTour.tourlastdate = item.fields.dates && item.fields.dates[1] ? `${item.fields.dates[item.fields.dates.length - 1]}` : '00.00.0000'
         newTour.prices = item.fields.prices ? item.fields.prices.split('* ').slice(1) : ['уточняйте при заказе']
         newTour.blueprint = item.fields.blueprint ? item.fields.blueprint.split('* ').slice(1) : []
         newTour.includes = item.fields.includes ? item.fields.includes.split(' * ').slice(1) : []
         newTour.additionalFees = item.fields.additionalFees ? item.fields.additionalFees.split('* ').slice(1) : []
         newTour.willLearn = item.fields.willLearn ? item.fields.willLearn.split('* ').slice(1) : []
         newTour.details = item.fields.details ? item.fields.details.split('\n\n') : []
-        /*
-        // newTour.prices = item.fields.prices ? deMd(item.fields.prices) : ['уточняйте при заказе']
-        // newTour.blueprint = item.fields.blueprint ? deMd(item.fields.blueprint) : []
-        // newTour.includes = item.fields.includes ? deMd(item.fields.includes) : []
-        // newTour.additionalFees = item.fields.additionalFees ? deMd(item.fields.additionalFees) : []
-        // newTour.willLearn = item.fields.willLearn ? deMd(item.fields.willLearn) : []
-        */
 
         entriesCount += 1
         saveCollection(newTour, '_tours')
@@ -227,6 +302,9 @@ function fetchTestim () {
   if (args) {
     args.forEach(function (arg) {
       switch (arg) {
+        case 'tags':
+          fetchTags()
+          break
         case 'tours':
           fetchTours()
           break
@@ -241,6 +319,7 @@ function fetchTestim () {
       }
     })
   } else {
+    fetchTags()
     fetchTours()
     fetchNews()
     fetchTestim()
