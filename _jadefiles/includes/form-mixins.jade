@@ -1,0 +1,146 @@
+// form fields {{{
+mixin formNext()
+    input(
+        name = '_next'
+        type = 'hidden'
+        value = "{{ site.url | remove: 'https:' }}{{ page.url }}"
+    )
+
+mixin formSubject(fieldId, fieldValue)
+    input.hidden_field(
+        id = fieldId
+        name = '_subject'
+        type = 'hidden'
+        value = fieldValue
+    )
+
+mixin formName(fieldId)
+    input.form__field(
+        id = fieldId
+        name = 'Name'
+        title = 'Имя'
+        type = 'text'
+        pattern = ".{2,}"
+        placeholder = 'Как к Вам обращаться?'
+        required
+    )
+
+mixin formPhone(fieldId)
+    input.form__field(
+        id = fieldId
+        name = 'Tel'
+        title = 'Телефонный номер'
+        type = 'tel'
+        pattern = '[0-9+-/s)(]{5,}'
+        placeholder = 'Ваш номер телефона'
+        required
+    )
+
+mixin formMail(fieldId)
+        input.form__field(
+            id = fieldId
+            name = 'Email'
+            title = "Электронная почта"
+            type = "email"
+            pattern = ".*"
+            placeholder = "example@mail.com"
+        )
+
+mixin formTextarea(fieldId, fieldTitle)
+        textarea.form__field.form__field--large(
+            id = fieldId
+            title = fieldTitle
+            name=fieldTitle
+            minlength=8
+            required
+        )
+// }}}
+// form {{{
+mixin FormBody(formId, ...formClasses)
+    form(
+        id = formId
+        class = formClasses
+        action = '{{ site.forms_url }}'
+        method = 'POST'
+    )
+        block
+
+// }}}
+
+mixin CallBackForm()
+    +FormBody('call-back-form')
+        +formNext()
+        +formSubject('call-back-form__subject', 'Заказ звонка')
+        +formName('call-back-form__name')
+        +formPhone('call-back-form__phone')
+
+        button#call-back-form__cancel_button.call-back-form__toggle(type = 'button') Отмена
+        button#call-back-form__button.form__button(type = 'submit') Заказать звонок
+
+mixin OrderForm()
+    +FormBody('order-form', 'order-form', 'form')
+        +formNext()
+        +formSubject('order-form__subject', 'Заказ {{ page.url }}')
+        .form__input_group
+            label.form__input_label(for = 'order-form__name') Ваше имя
+            +formName('order-form__name')
+        .form__input_group
+            label.form__input_label(for = 'order-form__mail') Ваш email
+            +formMail('order-form__mail')
+        .form__input_group
+            label.form__input_label(for = 'order-form__phone') Ваш номер телефона
+            +formPhone('order-form__phone', true)
+        button#order-form__button.form__button(type='submit') Заказать
+
+
+mixin ReviewForm()
+    +FormBody('review-form', 'review-form', 'form')
+        +formNext()
+        +formSubject('review-form__subject', 'Отзыв')
+        .form__input_group
+            label.form__input_label(for='review-form__name') Ваше имя
+            +formName('review-form__name')
+        .form__input_group
+            label.form__input_label(for='review-form__mail') Ваш email
+            +formMail('review-form__mail')
+        .form__input_group
+            label.form__input_label(for='review-form__question') Ваш отзыв
+            +formTextarea('review-form__question','Review')
+        button#review-form__button.form__button(type='submit')
+           | Отправить отзыв
+
+mixin ContactForm()
+    +FormBody('contact-form', 'contact-form', 'form')
+        +formSubject('contact-form__subject', 'Вопрос')
+        .form__input_group
+            label.form__input_label(for='contact-form__name')
+                | Как к Вам обращаться?
+            +formName('contact-form__name')
+        .form__input_group
+            label.form__input_label(for='contant-form__mail')
+                | Ваш email
+            +formMail('contant-form__mail')
+        .form__input_group
+            label.form__input_label(for='contact-form__question')
+                | Ваш вопрос
+            +formTextarea('contact-form__question', 'Question')
+        button#contact-form__button.form__button(type='submit')
+           | Отправить сообщение
+
+mixin GuideForm()
+    +FormBody('guide-form', 'guide-form', 'form')
+        +formSubject('guide-form__subject', 'Заказ индивидуального тура')
+        .form__input_group
+            label.form__input_label(for='guide-form__name')
+                | Как к Вам обращаться?
+            +formName('guide-form__name')
+        .form__input_group
+            label.form__input_label(for='guide-form__phone')
+                | Ваш номер телефона
+            +formPhone('call-back-form__phone')
+        //--.form__input_group
+            label.form__input_label(for='guide-form__question')
+                | Дополнительная информация
+            +formTextarea('guide-form__question', 'Question')
+        button#guide-form__button.form__button(type='submit')
+           | Заказать

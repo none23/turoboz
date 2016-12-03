@@ -1,0 +1,21 @@
+include ../mixins.jade
+include tour-mixins.jade
+
+section.tours_list__wrap
+    h2.section_header.tours__section_header
+        | Экскурсии{% unless page.url == '/tours/' %}: {% endunless %}{% for tag in site.data.tags %}{% if tag.url == page.url %}{{ tag.title }}{% elsif page.url contains tag.url %}{% for subtag in tag.subtags %}{% if subtag.url == page.url %}{{ subtag.title }}{% endif %}{% endfor %}{% endif %}{% endfor %}
+    | {% assign purl = page.url %}{% if purl == '/tours/'%}
+
+    +ToursList()
+
+    | {% else %}{% for tag in site.data.tags %}{% if purl == tag.url %}
+
+    +TagInfo('tag')
+    +ToursList('tag.tag')
+
+    | {% endif %}{% if tag.subtags %}{% for subtag in tag.subtags %}{% if purl == subtag.url %}
+
+    +TagInfo('subtag', 'tag')
+    +ToursList('subtag.subtag')
+
+    | {% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}

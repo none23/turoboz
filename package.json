@@ -3,7 +3,6 @@
 , "description": "Turoboz website"
 , "babel": { "presets": [ "es2015" ] }
 , "dependencies": { "autoprefixer": "^6.5.3"
-                  , "autoprefixer-stylus": "^0.11.0"
                   , "babel-cli": "^6.14.0"
                   , "babel-core": "^6.14.0"
                   , "babel-polyfill": "^6.13.0"
@@ -12,8 +11,6 @@
                   , "contentful": "^3.6.4"
                   , "csso": "^2.3.0"
                   , "emoji-strip": "^0.0.3"
-                  , "eslint": "^3.11.0"
-                  , "eslint-config-nwsome": "^0.0.1"
                   , "jade": "latest"
                   , "jade-babel": "^5.0.0"
                   , "jade-cli": "^0.1.1"
@@ -27,7 +24,10 @@
                   }
 , "devDependencies":{ "autoprefixer-stylus": "^0.11.0"
                     , "browser-sync": "^2.14.0"
+                    , "casperjs": "^1.1.3"
                     , "contentful-management": "^1.1.14"
+                    , "phantomcss": "^1.1.4"
+                    , "phantomjs-prebuilt": "^2.1.13"
                     , "standard": "^8.3.0"
                     , "html-validator-cli": "^2.0.0"
                     , "watch": "^1.0.1"
@@ -86,6 +86,7 @@
              , "deploy": "netlify deploy"
                  , "predeploy": "npm run build"
 
+             , "test": "casperjs test _test.js"
              , "validate": "npm run -s validate:loop > _validation_report"
                  , "validate:loop": "for html in _site/{,/*,/*/*}/*.html; do echo $html; html-validator --file=$html; done"
              }

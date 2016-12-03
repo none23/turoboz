@@ -21,6 +21,7 @@ $site_footer_height = 8rem
 $site_footer_icon_width = 3rem
 $page_wrap_min-height = $tours_nav_min-height + $site_header_height + $site_footer_height
 
+$block-width = 56.25rem
 $block-margins = 2rem
 $block-margins-both = $block-margins * 2
 
@@ -65,7 +66,7 @@ $site_footer_icons_fg = white
 
 SectionWidth()
     width: 85vw
-    max-width: 56.25rem
+    max-width: $block-width
     min-width: 31.25rem
     margin: 1rem auto
 
@@ -107,17 +108,6 @@ textLink(Color=$turbo_blue, Flag=false)
         &:hover
         &:focus
             color: $turbo_brown
-
-SplitWrapped()
-    display: block
-    width: 100%
-    margin: 0
-
-    &__child
-        SectionWidth()
-        margin-top: 0
-        margin-bottom: 0
-
 
 // /mixins }}}
 // keyframes {{{
@@ -409,7 +399,7 @@ textarea
     flex-wrap: wrap
 
 .site_header__phone
-.site_header__call_back
+.site_header__call-back
     flex: 0 0 2rem
 
 .site_header__phone
@@ -424,7 +414,7 @@ textarea
     fill: $turbo_blue
     margin-left: 1rem
 
-.site_header__call_back
+.site_header__call-back
     font-size: 0.9rem
     line-height: 2.3
     color: $site_contacts_modal_opener_fg
@@ -451,7 +441,7 @@ textarea
 // /contacts box }}}
 // header form {{{
 
-.header_form__wrap
+.header-form__wrap
     position: absolute
     top: 100%
     right: 0
@@ -467,19 +457,19 @@ textarea
     &.is_open
         transform: rotateY(0)
 
-    #call_back_form
+    #call-back-form
         justify-content: flex-start
         flex-direction: row
         flex-wrap: wrap
         max-width: $header_form_field_width * 2 + 2rem + 6rem
         margin-right: -1rem
 
-    #call_back_form__name
-    #call_back_form__phone
+    #call-back-form__name
+    #call-back-form__phone
         order: 0
         flex: 2 2 $header_form_field_width
 
-    #call_back_form__button
+    #call-back-form__button
         order: 2
         flex: 4 4  $header_form_field_width * 2
         margin: 0
@@ -492,7 +482,7 @@ textarea
             color: @background
             background: $turbo_brown
 
-    #call_back_form__cancel_button
+    #call-back-form__cancel_button
         order: 1
         flex: 1 0 3rem
         background: white
@@ -574,7 +564,7 @@ textarea
     box-shadow: 0 0.063rem 0.875rem -0.25rem $shadowy
 
     .site_header__phone,
-    .site_header__call_back
+    .site_header__call-back
         width: 100%
         height: 3rem
         min-height: 3rem
@@ -593,7 +583,7 @@ textarea
         padding: 0.1rem 7.975rem
 
     .site_header__phone,
-    .site_header__call_back,
+    .site_header__call-back,
     .site_header__vk_button
         display: none
 
@@ -659,7 +649,7 @@ textarea
 
     #mobile_nav
         .site_header__phone,
-        .site_header__call_back,
+        .site_header__call-back,
         .site_header__vk_button
             display: block
 
@@ -777,7 +767,7 @@ textarea
 
 .testimonials__wrap
 .contacts__wrap
-.contact_form__wrap
+.contact-form__wrap
 .review-form__wrap
 .full_tour__form__wrap
     SectionWidth()
@@ -797,7 +787,6 @@ textarea
 
 .form
     width: 90%
-    //border: $border
     box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
     border-radius: $border-radius
     margin: 1rem auto
@@ -805,7 +794,6 @@ textarea
     padding: 2% 5% 0
 
 .form__field
-    //outline: $border
     box-shadow: inset 0 0.1rem 0.6rem -0.2rem $shadowy
     border-radius: $border-radius
     background-color: $turbo_verylightblue
@@ -868,73 +856,23 @@ textarea
     background: hsl(0,90%,20%) !important
 
 // /forms }}}
-// splits {{{
-
-.split
-    width: calc(100% - 3rem)
-    display: flex
-    flex-wrap: no-wrap
-    justify-content: space-around
-    align-items: stretch
-    margin-left: 1rem
-    margin-right: @margin-left
-
-.split__child
-    min-width: 25rem
-    margin-left: 1rem
-    margin-right: @margin-left
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-
-    .content-block
-        height: 100%
-
-.split--even__child
-    flex: 1
-
-.split--uneven
-    .split__child--primary
-        flex: 2
-
-    .split__child--secondary
-        flex: 1
-
-.split--uneven
-    margin-bottom: 2rem
-
-.split--even
-    @media(max-width: 900px)
-        SplitWrapped()
-
-.split--uneven
-    @media(max-width: 1000px)
-        SplitWrapped()
-
-
-// /splits }}}
 // blocks {{{
 
 .block--textual
+.block--textimg
 .block--bullets
-.block--table
-.block--cards
-.block__gallery
+.block--gallery
+.block--form
+    max-width: $block-width
+    margin: 0 auto
+    padding-bottom: 1rem
     background: white
     border-radius: $border-radius
-    //border: $border
     box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
 
-.block__gallery
-    min-height: 4rem
-
-.block--no-header
-    padding-top: 1rem
-
-.block__text
-.block__table
-.block__bullets
-.block__gallery
+.block--textual > *
+.block--textimg > *
+.block--bullets > ul
     margin-left: $block-margins
     margin-right: @margin-left
 
@@ -942,28 +880,8 @@ textarea
         margin-left: 0.5rem
         margin-right: @margin-left
 
-.block__bullets
-    margin-left: 3rem
-    margin-top: 1rem
-    padding-bottom: 1rem
-
-.bullet
-    Bullets()
-
-.block__bullets
-.block__table
-.block__gallery
-.block__text:last-child
-    margin-bottom: 2rem
-
-.block__text
-    hyphens: auto
-    text-align: justify
-
-    @media(max-width: 1100px)
-        text-align: left
-
 .block--textimg
+.block--gallery
     overflow: auto
 
     &::after
@@ -973,7 +891,19 @@ textarea
         width: 100%
         clear: both
 
-.block--textual__image__wrap
+.block--textual > p
+.block--textimg > p
+    hyphens: auto
+    text-align: justify
+
+    @media(max-width: 1100px)
+        text-align: left
+
+.block--bullets > ul > li
+    margin-left: 1rem
+    Bullets()
+
+.block--textimg__image__wrap
     float: right
     margin: 2rem
     width: 50%
@@ -989,32 +919,22 @@ textarea
         margin: 0 auto
         float: none
 
-.block--textual__image
+.block--textimg__image
     width: 100%
     height: 100%
     object-fit: contain
     border-radius: $border-radius
 
-.block__table
-    margin-top: 1rem
-    margin-left: auto
-    margin-right: auto
-
-.block__table__caption
-    margin-bottom: .3rem
-
-.block__gallery
+.block--gallery
+    margin-top: 2rem
     column-count: 2
 
-.gallery__image
-    max-width: calc(100% - 2rem)
-    margin: 1rem
+    img
+        max-width: calc(100% - 2rem)
+        margin: 1rem
 
-.content-block
-    max-width: 56.25rem
-    margin-bottom: 2rem
-    margin-left: auto
-    margin-right: auto
+.block--no-header
+    padding-top: 1rem
 
 // /blocks }}}
 // tour cards {{{
@@ -1215,6 +1135,7 @@ textarea
 .additional-fees__wrap
 .will-learn__wrap
 .blueprint__wrap
+.order-form__wrap
     SectionWidth()
     margin-bottom: 2rem
 
@@ -1595,25 +1516,63 @@ textarea
 
 // /news / vknews cards }}}
 // /main page }}}
-// about page {{{
+// about / guide page {{{
 
-.about_info
-    margin-top: 1.5rem
-
+.about-info
 .advantages__wrap
-    margin-bottom: 0
+.guide-text
+.guide-form__wrap
+    margin: 1rem 1rem 1rem 2rem
+    float: left
 
+.guide-info__wrap
+    width: "calc(100% - %s - 6rem)" % $block-width
+    max-width: @width
+    min-width: calc(100% - 2rem)
+    margin: 1rem 2rem 1rem 1rem
+    background: white
+    border-radius: $border-radius
+    box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
+    float: right
+
+@media (max-width: 1298px)
+    .about-info
+    .advantages__wrap
+    .guide-text
+    .guide-form__wrap
+    .guide-info__wrap
+        float: none
+        margin 1rem auto
+
+    .guide-info__wrap
+        width: calc(100% - 2rem)
+        max-width: @width
+
+@media (max-width: 698px)
+    .about-info
+    .advantages__wrap
+    .guide-text
+    .guide-form__wrap
+    .guide-info__wrap
+        min-width: calc(100vw - 2rem)
+
+.guide-form__wrap
+    max-width: $block-width
+    background: white
+    border-radius: $border-radius
+    box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
+    float: left
+    margin: 0 auto
+
+    .form
+        box-shadow: none
+
+// guide card[s] {{{
 .guide__card
     display: flex
     flex-direction: column
     justify-content: space-between
-    background: white
-    //border: $border
-    box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
     border-radius: $border-radius
-
-    @media (min-width: 740px) and (max-width: 1000px)
-        flex-direction: row
 
 .guide__image__wrap
     flex 1 1 21.875rem
@@ -1629,16 +1588,8 @@ textarea
     text-align: justify
     hyphens: auto
 
-// /about page }}}
-// guide page {{{
-
-.guide_page__content
-    margin-top: 1.5rem
-
-.guide_form__wrap
-    margin-top: -1rem
-
-// /guide page }}}
+// /guide card[s] }}}
+// /about / guide page }}}
 // contact page {{{
 
 .contacts__wrap
@@ -1647,7 +1598,6 @@ textarea
     flex-wrap: nowrap
     justify-content: center
     border-radius: $border-radius
-    //border: $border
     box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
     background: white
     margin-bottom: -0.5rem
@@ -1714,7 +1664,6 @@ textarea
     width: 100%
     position: relative
     border-radius: $border-radius
-    //border: $border
     box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
     background: white
     margin 0

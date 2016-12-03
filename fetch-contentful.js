@@ -51,24 +51,27 @@ function fetchTags () {
     'content_type': 'tourTag'
   })
     .then(entries => {
+      return entries
+    })
+    .then(entries => {
       var tagsCatalogue = []
-      console.log(JSON.stringify(entries.items))
       for (let item of entries.items) {
         let newTag = {}
-        newTag.tag = item.fields.abbreviation
-        newTag.title = item.fields.title
+        newTag.tag = item.fields.id
+        newTag.text = item.fields.text ? item.fields.text : ''
+        newTag.title = item.fields.pageTitle
         newTag.url = `/tours/${newTag.tag}/`
-        newTag.description = item.fields.description
-        newTag.pageTitle = item.fields.pageTitle
+        newTag.description = item.fields.pageDescription
+        newTag.title = item.fields.pageTitle
         if (item.fields.subtags) {
           newTag.subtags = []
           for (let st of item.fields.subtags) {
             let newSubtag = {}
-            newSubtag.subtag = st.fields.abbreviation
-            newSubtag.title = st.fields.title
+            newSubtag.subtag = st.fields.id
+            newSubtag.text = st.fields.text
             newSubtag.url = `/tours/${item.fields.abbreviation}/${st.fields.abbreviation}/`
-            newSubtag.description = st.fields.description || ''
-            newSubtag.pageTitle = st.fields.pageTitle
+            newSubtag.description = st.fields.pageDescription ? st.fields.pageDescription : ''
+            newSubtag.title = st.fields.pageTitle
             newTag.subtags.push(newSubtag)
           }
         }
@@ -84,14 +87,24 @@ function fetchTags () {
         let tagIndex = `.${tag.url}index.html`
         let tagIndexContent = `---
 layout: tours
-title: ${tag.pageTitle}
+title: ${tag.title}
 description: >-
   ${tag.description}
+
+text: >-
+  ${tag.text}
+
 ---
 `
         fs.writeFile(tagIndex, tagIndexContent, 'utf8', function (err) {
-          if (err) { throw err }
-          console.log(`written ${tagIndex}`)
+          if (err) {
+            throw err
+          }
+          console.log(`written
+          ---------------------
+          ${tagIndexContent}
+          ---------------------
+          to file: ${tagIndex}`)
         })
 
         if (tag.subtags) {
@@ -102,14 +115,24 @@ description: >-
             let subtagIndex = `.${subtag.url}index.html`
             let subtagIndexContent = `---
 layout: tours
-title: ${subtag.pageTitle}
+title: ${subtag.title}
 description: >-
   ${subtag.description}
+
+text: >-
+  ${subtag.text}
+
 ---
 `
             fs.writeFile(subtagIndex, subtagIndexContent, 'utf8', function (err) {
-              if (err) { throw err }
-              console.log(`written ${subtagIndex}`)
+              if (err) {
+                throw err
+              }
+              console.log(`written
+              ---------------------
+              ${subtagIndexContent}
+              ---------------------
+              to file: ${subtagIndex}`)
             })
           }
         }

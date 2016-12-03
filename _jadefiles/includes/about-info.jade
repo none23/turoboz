@@ -1,0 +1,5 @@
+section.about-info.block--textual.block--no-header
+    | {% for paragraph in page.intro_paragraphs %}
+    p
+        | {{ paragraph }}
+    | {% endfor %}

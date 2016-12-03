@@ -1,0 +1,24 @@
+mixin GuideCard(g)
+        .guide-info.card__wrap
+            .guide__card
+                .guide__image__wrap.card__image__wrap
+                    img.guide__image.card__image(src='/img/{{ #{g}.photo }}', alt='{{ #{g}.name }}')
+
+                .guide__content__wrap.card__content__wrap
+                    h3.guide__name.card__title
+                        | {{ #{g}.name }}
+
+                    .guide__resume.card__summary
+                        | {% for paragraph in #{g}.resume %}
+                        .guide__resume__p__wrap
+                            | {{ paragraph | markdownify }}
+                        | {% endfor %}
+
+                    a.guide__link.guide__link--page.card__button(href='{{ #{g}.page_link.url }}')
+                        | {{ #{g}.page_link.copy }}
+
+.guide-info__wrap
+    h2.section_header
+        | Наши экскурсоводы
+    +GuideCard('site.data.guides')
+

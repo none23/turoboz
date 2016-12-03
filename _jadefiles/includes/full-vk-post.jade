@@ -1,0 +1,35 @@
+include ../mixins.jade
+
+.block--breadcrumbs
+    +BreadcrumbWithIcon('/', 'Вернуться на главную')
+
+.block--heading
+    .heading__left
+        .heading__date
+            +LiquidRussianDateLite('page.dateposted')
+
+.full-vkpost__description.block--textual.block--textimg.block--no-header
+    .block--textimg__image__wrap
+        img.block--textimg__image(src='{{ page.image }}', alt='{{ page.image | smartify }}')
+    | {{ content }}
+
+.block--gallery.block--no-header
+    | {% assign image_number = 1 %}
+    | {% for image in page.photos %}
+    img.gallery__image(src='{{ image }}', alt='Фото №{{ image_number }}')
+    |     {% assign image_number = image_number | plus:1 %}
+    | {% endfor %}
+
+    .vk__source
+        | Оригинальная публикация:
+        a.vk__source__link(href='{{ page.vklink }}', target='_blank', title='Оригинальная публикация (Вконтакте)')
+            |  {{ page.vklink }}
+
+.block--breadcrumbs.breadcrumbs--prev-next
+    | {% unless page.previous == nil %}
+    +BreadcrumbWithIcon('{{ page.previous.url }}', 'Предыдущая запись')
+    | {% endunless %}
+
+    | {% unless page.next == nil %}
+    +BreadcrumbWithIconRev('{{ page.next.url }}', 'Следующая запись')
+    | {% endunless %}
