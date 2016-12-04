@@ -158,11 +158,12 @@ function fetchTours () {
         newTour.tour = item.fields.tour.toString()
         newTour.tags = item.fields.tags
         newTour.permalink = `/tours/${item.fields.tour.toString()}/`
-        newTour.hidden = item.fields.hidden
+        newTour.hidden = true
+        // newTour.hidden = item.fields.hidden
         newTour.title = item.fields.title
-        newTour.subtitle = item.fields.subtitle || ''
+        newTour.subtitle = item.fields.subtitle ? item.fields.subtitle : ''
         newTour.intro = item.fields.intro
-        newTour.summary = item.fields.summary || ''
+        newTour.summary = item.fields.summary ? item.fields.summary : ''
         newTour.length = item.fields.length
         newTour.tourlength = item.fields.length
         newTour.imgasset = item.fields.imgasset.fields.file.url
@@ -171,10 +172,11 @@ function fetchTours () {
         newTour.tourlastdate = item.fields.dates && item.fields.dates[1] ? `${item.fields.dates[item.fields.dates.length - 1]}` : '00.00.0000'
         newTour.prices = item.fields.prices ? item.fields.prices.split('* ').slice(1) : ['уточняйте при заказе']
         newTour.blueprint = item.fields.blueprint ? item.fields.blueprint.split('* ').slice(1) : []
-        newTour.includes = item.fields.includes ? item.fields.includes.split(' * ').slice(1) : []
+        newTour.includes = item.fields.includes ? item.fields.includes.split('* ').slice(1) : []
         newTour.additionalFees = item.fields.additionalFees ? item.fields.additionalFees.split('* ').slice(1) : []
         newTour.willLearn = item.fields.willLearn ? item.fields.willLearn.split('* ').slice(1) : []
-        newTour.details = item.fields.details ? item.fields.details.split('\n\n') : []
+        newTour.details = item.fields.details ? item.fields.details : []
+        // newTour.details = item.fields.details ? item.fields.details.split('\n\n') : []
 
         toursData[newTour.id] = newTour
         entriesCount += 1
