@@ -53,13 +53,8 @@ section.full_tour__description.block--textual.block--textimg.block--no-header
         | {{ page.summary | smartify }}
 
     //- details {{{
-    | {% if page.details.size >= 1 %}
-    | {% for d in page.details %}
-    p.details
-        | {{ d | smartify }}
-    | {% endfor %}
+    | {% if page.details.size >= 1 %}{{ page.details | markdownify }}{% endif %}
 
-    | {% endif %}
     //- /details }}}
 //- blueprint {{{
 | {% if page.blueprint.size >= 1 %}
