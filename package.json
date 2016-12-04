@@ -1,5 +1,5 @@
 { "name": "turoboz"
-, "version": "1.8.0"
+, "version": "1.8.1"
 , "description": "Turoboz website"
 , "babel": { "presets": [ "es2015" ] }
 , "dependencies": { "autoprefixer": "^6.5.3"

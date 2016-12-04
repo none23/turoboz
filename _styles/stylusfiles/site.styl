@@ -870,13 +870,18 @@ textarea
     border-radius: $border-radius
     box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
 
+    @media (max-width: 931px)
+        max-width: calc(100vw - 2rem)
+        margin-left: 1rem
+        margin-right: @margin-left + 1rem
+
 .block--textual > *
 .block--textimg > *
 .block--bullets > ul
     margin-left: $block-margins
     margin-right: @margin-left
 
-    @media(max-width: 500px)
+    @media (max-width: 500px)
         margin-left: 0.5rem
         margin-right: @margin-left
 
@@ -1519,42 +1524,11 @@ textarea
 // about / guide page {{{
 
 .about-info
-.advantages__wrap
 .guide-text
+.advantages__wrap
 .guide-form__wrap
     margin: 1rem 1rem 1rem 2rem
     float: left
-
-.guide-info__wrap
-    width: "calc(100% - %s - 6rem)" % $block-width
-    max-width: @width
-    min-width: calc(100% - 2rem)
-    margin: 1rem 2rem 1rem 1rem
-    background: white
-    border-radius: $border-radius
-    box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
-    float: right
-
-@media (max-width: 1298px)
-    .about-info
-    .advantages__wrap
-    .guide-text
-    .guide-form__wrap
-    .guide-info__wrap
-        float: none
-        margin 1rem auto
-
-    .guide-info__wrap
-        width: calc(100% - 2rem)
-        max-width: @width
-
-@media (max-width: 698px)
-    .about-info
-    .advantages__wrap
-    .guide-text
-    .guide-form__wrap
-    .guide-info__wrap
-        min-width: calc(100vw - 2rem)
 
 .guide-form__wrap
     max-width: $block-width
@@ -1566,6 +1540,54 @@ textarea
 
     .form
         box-shadow: none
+
+.guide-info__wrap
+    width: "calc(100vw - %s - 6.5rem)" % $block-width
+    max-width: 500px
+    min-width: 320px
+    margin: 1rem 2rem 1rem 1rem
+    background: white
+    border-radius: $border-radius
+    box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
+    float: right
+
+@media (max-width: 1316px)
+    .about-info
+    .advantages__wrap
+    .guide-text
+    .guide-form__wrap
+        width: calc(100vw - 320px - 6rem)
+        max-width: @width
+
+    .guide-info__wrap
+        width: 320px
+        max-width: @width
+
+@media (max-width: 996px)
+    .about-info
+    .guide-text
+        clear: both
+        float: none
+        SectionWidth()
+
+    .advantages__wrap
+    .guide-form__wrap
+        min-width: 330px
+
+@media (max-width: 745px)
+    .advantages__wrap
+    .guide-form__wrap
+    .guide-info__wrap
+        clear: both
+        float: none
+
+    .advantages__wrap
+    .guide-form__wrap
+        SectionWidth()
+
+    .guide-info__wrap
+        margin-left: auto
+        margin-right: @margin-left
 
 // guide card[s] {{{
 .guide__card
