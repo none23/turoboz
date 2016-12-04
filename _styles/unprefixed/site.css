@@ -802,13 +802,25 @@ textarea {
 .block--textual,
 .block--textimg,
 .block--bullets,
-.block--gallery {
+.block--gallery,
+.block--form {
   max-width: 56.25rem;
   margin: 0 auto;
   padding-bottom: 1rem;
   background: #fff;
   border-radius: 0.125rem;
   box-shadow: 0 0.2rem 1rem -0.25rem #26170d;
+}
+@media (max-width: 931px) {
+  .block--textual,
+  .block--textimg,
+  .block--bullets,
+  .block--gallery,
+  .block--form {
+    max-width: calc(100vw - 2rem);
+    margin-left: 1rem;
+    margin-right: 2rem;
+  }
 }
 .block--textual > *,
 .block--textimg > *,
@@ -1100,7 +1112,8 @@ textarea {
 .includes__wrap,
 .additional-fees__wrap,
 .will-learn__wrap,
-.blueprint__wrap {
+.blueprint__wrap,
+.order-form__wrap {
   width: 85vw;
   max-width: 56.25rem;
   min-width: 31.25rem;
@@ -1112,7 +1125,8 @@ textarea {
   .includes__wrap,
   .additional-fees__wrap,
   .will-learn__wrap,
-  .blueprint__wrap {
+  .blueprint__wrap,
+  .order-form__wrap {
     width: 92vw;
     max-width: 92vw;
     min-width: 0;
@@ -1508,30 +1522,79 @@ textarea {
   background: #613b23;
 }
 .about-info,
+.guide-text,
 .advantages__wrap,
-.guide-text {
-  margin: 1rem 2rem;
+.guide-form__wrap {
+  margin: 1rem 1rem 1rem 2rem;
   float: left;
 }
-.guide-info__wrap {
-  max-width: 300px;
-  width: 300px;
+.guide-form__wrap {
+  max-width: 56.25rem;
+  background: #fff;
+  border-radius: 0.125rem;
+  box-shadow: 0 0.2rem 1rem -0.25rem #26170d;
+  float: left;
   margin: 0 auto;
+}
+.guide-form__wrap .form {
+  box-shadow: none;
+}
+.guide-info__wrap {
+  width: calc(100vw - 56.25rem - 6.5rem);
+  max-width: 500px;
+  min-width: 320px;
+  margin: 1rem 2rem 1rem 1rem;
   background: #fff;
   border-radius: 0.125rem;
   box-shadow: 0 0.2rem 1rem -0.25rem #26170d;
   float: right;
 }
-.guide-form__wrap {
-  max-width: 56.25rem;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 0.125rem;
-  box-shadow: 0 0.2rem 1rem -0.25rem #26170d;
-  float: left;
+@media (max-width: 1316px) {
+  .about-info,
+  .advantages__wrap,
+  .guide-text,
+  .guide-form__wrap {
+    width: calc(100vw - 320px - 6rem);
+    max-width: calc(100vw - 320px - 6rem);
+  }
+  .guide-info__wrap {
+    width: 320px;
+    max-width: 320px;
+  }
 }
-.guide-form__wrap .form {
-  box-shadow: none;
+@media (max-width: 996px) {
+  .about-info,
+  .guide-text {
+    clear: both;
+    float: none;
+    width: 85vw;
+    max-width: 56.25rem;
+    min-width: 31.25rem;
+    margin: 1rem auto;
+  }
+  .advantages__wrap,
+  .guide-form__wrap {
+    min-width: 330px;
+  }
+}
+@media (max-width: 745px) {
+  .advantages__wrap,
+  .guide-form__wrap,
+  .guide-info__wrap {
+    clear: both;
+    float: none;
+  }
+  .advantages__wrap,
+  .guide-form__wrap {
+    width: 85vw;
+    max-width: 56.25rem;
+    min-width: 31.25rem;
+    margin: 1rem auto;
+  }
+  .guide-info__wrap {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 .guide__card {
   display: flex;
@@ -2252,5 +2315,21 @@ textarea {
   }
   100% {
     transform: scale(1);
+  }
+}
+@media (max-width: 996px) and (max-width: 660px) {
+  .about-info,
+  .guide-text {
+    width: 92vw;
+    max-width: 92vw;
+    min-width: 0;
+  }
+}
+@media (max-width: 745px) and (max-width: 660px) {
+  .advantages__wrap,
+  .guide-form__wrap {
+    width: 92vw;
+    max-width: 92vw;
+    min-width: 0;
   }
 }

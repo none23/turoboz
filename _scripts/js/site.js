@@ -7,9 +7,9 @@
 var mobileNavToggle = document.getElementById('mobile_nav_toggle');
 var mobileNav = document.getElementById('mobile_nav');
 var desktopNav = document.getElementById('desktop_nav');
-var callFormToggles = document.getElementsByClassName('call_back_form__toggle');
-var callFormWrap = document.getElementById('call_back_form__wrap');
-var callFormMainToggle = document.querySelector('#site_contacts_wrap .call_back_form__toggle');
+var callFormToggles = document.getElementsByClassName('call-back-form__toggle');
+var callFormWrap = document.getElementById('call-back-form__wrap');
+var callFormMainToggle = document.querySelector('#site_contacts_wrap .call-back-form__toggle');
 
 // page transitions {{{
 function changePage(url) {
@@ -179,8 +179,8 @@ function toggleMobileNav() {
 // /mobileNav}}}
 // forms{{{
 function enableForm(formPrefix, successMsg, callback) {
-  var formId = formPrefix + '_form';
-  var formButtonId = formPrefix + '_form__button';
+  var formId = formPrefix + '-form';
+  var formButtonId = formPrefix + '-form__button';
   var theForm = document.getElementById(formId);
   var sendForm = document.getElementById(formButtonId);
   var iSendAJAX = function iSendAJAX(event, form, sendButton, successMsg) {
@@ -210,7 +210,7 @@ var enableContactForm = enableForm('contact', 'Форма успешно отп�
 var enableGuideForm = enableForm('guide', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.');
 var enableReviewForm = enableForm('review', 'Спасибо! Отзыв принят и будет опубликован после проверки.');
 var enableOrderForm = enableForm('order', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время для уточнения деталей.');
-var enableCallForm = enableForm('call_back', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.', function () {
+var enableCallForm = enableForm('call-back', 'Форма успешно отправлена! Мы свяжемся с Вами в ближайшее время.', function () {
   return setTimeout(toggleCallFormState, 5000);
 });
 
@@ -232,7 +232,7 @@ function toggleCallFormState(event) {
 
   // when the form appears, set focus to its first field
   if (callFormWrap.classList.contains('is_open')) {
-    document.getElementById('call_back_form__name').focus();
+    document.getElementById('call-back-form__name').focus();
   }
 }
 
