@@ -146,7 +146,7 @@ function switchActiveNavLink (targetLink) {
 //  /service worker }}}
 //  appcache {{{
 
-// apply only if manifest is set (which means no serviseWorker support)
+// apply only if manifest is set (i.e. no serviseWorker support)
 ;(function useAppCache () {
   const appcache = window.applicationCache
 
