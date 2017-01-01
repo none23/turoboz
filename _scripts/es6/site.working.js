@@ -43,15 +43,15 @@ function changePage (url) {
       oldPage.opacity = 0
       oldPage.animate(
         [
-          { opacity: 1 },
-          { opacity: 0 }
+          {opacity: 1},
+          {opacity: 0}
         ],
         100
       ).onfinish = function () {
         changePageContent()
         newPage.animate([
-          { opacity: 0 },
-          { opacity: 1 }
+          {opacity: 0},
+          {opacity: 1}
         ],
           100
         ).onfinish = function () {
@@ -268,4 +268,3 @@ function callFormToggle () {
 
 // /initiate on page load}}}
 // /forms}}}
-// vim:foldmethod=marker
