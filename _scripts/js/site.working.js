@@ -257,4 +257,3 @@ function callFormToggle() {
 
 // /initiate on page load}}}
 // /forms}}}
-// vim:foldmethod=marker
