@@ -2,9 +2,9 @@
     {% for tour in site.tours %}
         {% if tour.tags contains tag.tag %} {% assign has_tours = has_tours | plus:1 %} {% endif %}
     {% endfor %}
-    {% unless has_tours == 0 %}<a href="{{ tag.url }}" class="tours_nav__link tours_nav__link--tag {% if page.url contains tag.url %}active{% endif %}"><span class="tours_nav__tours-count--tag tours_nav__tours-count">({{ has_tours }})</span>&ensp;{{ tag.title }}</a>
+    {% unless has_tours == 0 %}<a href="{{ tag.url }}" class="tours_nav__link tours_nav__link--tag {% if page.url contains tag.url %}active{% endif %}"><span class="tours_nav__tours-count--tag tours_nav__tours-count">({{ has_tours }})</span>&ensp;{{ tag.menuCopy }}</a>
         {% if tag.subtags %}{% for subtag in tag.subtags %}                {% assign subtag_has_tours = 0 %}
                 {% for tour in site.tours %}
                     {% if tour.tags contains subtag.subtag %} {% assign subtag_has_tours = subtag_has_tours | plus:1 %} {% endif %}
                 {% endfor %}
-            {% unless subtag_has_tours == 0 %}<a href="{{ subtag.url }}" class="tours_nav__link tours_nav__link--subtag {% if forloop.last %}tours_nav__link--subtag--last {% else %}tours_nav__link--subtag--notlast{% endif %} {% if page.url contains tag.url %}visible{% if page.url contains subtag.url %} active{% endif %}{% endif %}"><span class="tours_nav__tours-count--subtag tours_nav__tours-count">({{ subtag_has_tours }})</span>&ensp;{{ subtag.title }}</a>            {% endunless %}        {% endfor %}{% endif %}    {% endunless %}{% endfor %}</nav></section>
+            {% unless subtag_has_tours == 0 %}<a href="{{ subtag.url }}" class="tours_nav__link tours_nav__link--subtag {% if forloop.last %}tours_nav__link--subtag--last {% else %}tours_nav__link--subtag--notlast{% endif %} {% if page.url contains tag.url %}visible{% if page.url contains subtag.url %} active{% endif %}{% endif %}"><span class="tours_nav__tours-count--subtag tours_nav__tours-count">({{ subtag_has_tours }})</span>&ensp;{{ subtag.menuCopy }}</a>            {% endunless %}        {% endfor %}{% endif %}    {% endunless %}{% endfor %}</nav></section>

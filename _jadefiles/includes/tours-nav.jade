@@ -22,7 +22,7 @@ section.tours_nav__wrap
             span.tours_nav__tours-count--tag.tours_nav__tours-count
                 | ({{ has_tours }})
             +space()
-            | {{ tag.title }}
+            | {{ tag.menuCopy }}
         //-- }}}
 
         |         {% if tag.subtags %}{% for subtag in tag.subtags %}
@@ -41,7 +41,7 @@ section.tours_nav__wrap
             span.tours_nav__tours-count--subtag.tours_nav__tours-count
                 | ({{ subtag_has_tours }})
             +space()
-            | {{ subtag.title }}
+            | {{ subtag.menuCopy }}
         //-- }}}
         |             {% endunless %}
 
