@@ -80,7 +80,7 @@ function fetchTags () {
             newSubtag.pageTitle = st.fields.pageTitle
             newSubtag.menuCopy = st.fields.title
             newSubtag.text = st.fields.text
-            newSubtag.url = `/tours/${item.fields.abbreviation}/${st.fields.abbreviation}/`
+            newSubtag.url = `/tours/${item.fields.id}/${st.fields.id}/`
 
             newTag.subtags.push(newSubtag)
           }
