@@ -2,12 +2,8 @@
  * v1.0.3
  */
 
-const mobileNavToggle = document.getElementById('mobile_nav_toggle')
 const mobileNav = document.getElementById('mobile_nav')
 const desktopNav = document.getElementById('desktop_nav')
-const callFormToggles = document.getElementsByClassName('call-back-form__toggle')
-const callFormWrap = document.getElementById('call-back-form__wrap')
-const callFormMainToggle = document.querySelector('#site_contacts_wrap .call-back-form__toggle')
 
 // page transitions {{{
 function changePage (url) {
@@ -171,6 +167,11 @@ function switchActiveNavLink (targetLink) {
 
 // /appcache }}}
 // mobileNav{{{
+
+const mobileNavToggle = document.getElementById('mobile_nav_toggle')
+const callFormToggles = document.getElementsByClassName('call-back-form__toggle')
+const callFormWrap = document.getElementById('call-back-form__wrap')
+const callFormMainToggle = document.querySelector('#site_contacts_wrap .call-back-form__toggle')
 
 function toggleMobileNav () {
   mobileNavToggle.classList.toggle('is_open')

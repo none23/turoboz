@@ -4,12 +4,8 @@
  * v1.0.3
  */
 
-var mobileNavToggle = document.getElementById('mobile_nav_toggle');
 var mobileNav = document.getElementById('mobile_nav');
 var desktopNav = document.getElementById('desktop_nav');
-var callFormToggles = document.getElementsByClassName('call-back-form__toggle');
-var callFormWrap = document.getElementById('call-back-form__wrap');
-var callFormMainToggle = document.querySelector('#site_contacts_wrap .call-back-form__toggle');
 
 // page transitions {{{
 function changePage(url) {
@@ -163,6 +159,11 @@ function switchActiveNavLink(targetLink) {
 
 // /appcache }}}
 // mobileNav{{{
+
+var mobileNavToggle = document.getElementById('mobile_nav_toggle');
+var callFormToggles = document.getElementsByClassName('call-back-form__toggle');
+var callFormWrap = document.getElementById('call-back-form__wrap');
+var callFormMainToggle = document.querySelector('#site_contacts_wrap .call-back-form__toggle');
 
 function toggleMobileNav() {
   mobileNavToggle.classList.toggle('is_open');
