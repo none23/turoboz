@@ -962,6 +962,7 @@ textarea {
 .tour__title {
   padding: 0.6rem;
   flex: 1 1 6rem;
+  max-height: calc(4.5em + 2 * 0.6rem);
 }
 .tour__length {
   display: inline;

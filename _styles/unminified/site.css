@@ -1194,6 +1194,7 @@ textarea {
   -webkit-flex: 1 1 6rem;
       -ms-flex: 1 1 6rem;
           flex: 1 1 6rem;
+  max-height: calc(4.5em + 2 * 0.6rem);
 }
 .tour__length {
   display: inline;
