@@ -317,7 +317,8 @@ textarea
     justify-content: space-between
     align-items: flex-start
     background-image: url(/img/noise.png)
-    background-blend-mode: lighten
+    background-size: 40px
+    background-blend-mode: hard-light
     background-color: $site_nav_bg
     background-repeat: repeat
     box-shadow: 0 0 0.8rem -0.2rem $shadowy
@@ -346,6 +347,7 @@ textarea
     &:hover
     &:focus
         outline: none !important
+
         .logo_gray
         .logo_brown
         .logo_blue
@@ -357,12 +359,18 @@ textarea
         .logo_gray
             transform-origin: 1.52rem 1.50rem
             animation-name: logo_animate_gray
+
             &.logo_gray_a
                 animation-name: logo_animate_gray_a
+                animation-delay: 0.3s
+
             &.logo_gray_b
                 animation-name: logo_animate_gray_b
+                animation-delay: 0.6s
+
         .logo_brown
             animation-name: logo_animate_brown
+
         .logo_blue
             animation-name: logo_animate_blue
 
