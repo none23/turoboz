@@ -304,8 +304,8 @@ textarea {
       -ms-flex-align: start;
           align-items: flex-start;
   background-image: url("/img/noise.png");
-  background-size: 50%;
-  background-blend-mode: lighten;
+  background-size: 40px;
+  background-blend-mode: hard-light;
   background-color: #f0f0f0;
   background-repeat: repeat;
   box-shadow: 0 0 0.8rem -0.2rem #26170d;
@@ -362,11 +362,15 @@ textarea {
 #site_logo:focus .logo_gray.logo_gray_a {
   -webkit-animation-name: logo_animate_gray_a;
           animation-name: logo_animate_gray_a;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
 }
 #site_logo:hover .logo_gray.logo_gray_b,
 #site_logo:focus .logo_gray.logo_gray_b {
   -webkit-animation-name: logo_animate_gray_b;
           animation-name: logo_animate_gray_b;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
 }
 #site_logo:hover .logo_brown,
 #site_logo:focus .logo_brown {
