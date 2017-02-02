@@ -25,14 +25,12 @@ markdown: kramdown
 
 # Custom settings
 exclude: ["node_modules",
+          "npm-shrinkwrap.json",
+          "package.json",
           "gh-pages",
           "Gemfile",
           "Gemfile.lock",
-          "gulpfile.js",
-          "generate-images",
-          "gulpfile.coffee",
-          "package.json",
-          "fetch-contentful.js",
+          "generate-images.js",
           "fetch-contentful.js",
           "fetch-vk.js"]
 collections:
