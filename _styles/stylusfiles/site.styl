@@ -255,11 +255,10 @@ ul
 input
 select
 textarea
-    border-radius: 0.125rem
     border-radius: $border-radius
     margin: 1rem
+    padding: .4rem
     padding-right: 0
-    padding-left: 1rem
     border: none
 
 textarea
@@ -783,21 +782,40 @@ textarea
 // forms {{{
 
 .form
-    width: 90%
-    box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
+    max-width: 90%
+    width: auto
     border-radius: $border-radius
-    margin: 1rem auto
+    margin: 1rem auto 0
     background: white
-    padding: 2% 5% 0
+    padding: 0 5%
+
+.form__input_group
+    margin: 0 0 .5rem
+    width: 100%
+    display: flex
+    justify-content: flex-start
+    align-items: stretch
+
+    @media (max-width: 551px)
+        flex-direction: column
+
+    input
+    textarea
+        margin-left: 1.4rem
+        flex-grow: 1
+
+.form__input_label
+    margin: 1.4rem
+    margin-right: 0
 
 .form__field
     box-shadow: inset 0 0.1rem 0.6rem -0.2rem $shadowy
     border-radius: $border-radius
     background-color: $turbo_verylightblue
 
-    .form__input_group &
-        width: (100% - 2rem)
-        margin: 0.5rem 0 1rem
+//  .form__input_group &
+//      width: (100% - 2rem)
+//      margin: 0.5rem 0 1rem
 
 .form__field--large
     height: 7rem
@@ -805,8 +823,13 @@ textarea
 .hidden_field
     display: none
 
-.form__input_label
-    margin: 0
+#order-form
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: stretch
+
+// form-buttons {{{
 
 .form__button--success
 .form__button--loading
@@ -814,7 +837,7 @@ textarea
 .form__button
     appearance: none
     width: 111%
-    margin: 2rem -5.5% 0
+    margin: 1rem -5.5% 0
     padding: 1rem
     color: $turbo_blue
     border-radius: $border-radius
@@ -852,6 +875,7 @@ textarea
 .form__button--failure
     background: hsl(0,90%,20%) !important
 
+// /form-buttons }}}
 // /forms }}}
 // blocks {{{
 
@@ -862,7 +886,6 @@ textarea
 .block--form
     max-width: $block-width
     margin: 0 auto
-    padding-bottom: 1rem
     background: white
     border-radius: $border-radius
     box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
@@ -871,6 +894,12 @@ textarea
         max-width: calc(100vw - 2rem)
         margin-left: 1rem
         margin-right: @margin-left + 1rem
+
+.block--textual
+.block--textimg
+.block--bullets
+.block--gallery
+    padding-bottom: 1rem
 
 .block--textual > *
 .block--textimg > *
@@ -1619,7 +1648,7 @@ textarea
     border-radius: $border-radius
     box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
     background: white
-    margin-bottom: -0.5rem
+    margin-bottom: 2rem
     overflow: hidden
 
 .c__textual

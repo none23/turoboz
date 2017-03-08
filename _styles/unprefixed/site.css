@@ -231,10 +231,9 @@ input,
 select,
 textarea {
   border-radius: 0.125rem;
-  border-radius: 0.125rem;
   margin: 1rem;
+  padding: 0.4rem;
   padding-right: 0;
-  padding-left: 1rem;
   border: none;
 }
 textarea {
@@ -743,21 +742,38 @@ textarea {
   padding-right: 1.5rem;
 }
 .form {
-  width: 90%;
-  box-shadow: 0 0.2rem 1rem -0.25rem #26170d;
+  max-width: 90%;
+  width: auto;
   border-radius: 0.125rem;
-  margin: 1rem auto;
+  margin: 1rem auto 0;
   background: #fff;
-  padding: 2% 5% 0;
+  padding: 0 5%;
+}
+.form__input_group {
+  margin: 0 0 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+@media (max-width: 551px) {
+  .form__input_group {
+    flex-direction: column;
+  }
+}
+.form__input_group input,
+.form__input_group textarea {
+  margin-left: 1.4rem;
+  flex-grow: 1;
+}
+.form__input_label {
+  margin: 1.4rem;
+  margin-right: 0;
 }
 .form__field {
   box-shadow: inset 0 0.1rem 0.6rem -0.2rem #26170d;
   border-radius: 0.125rem;
   background-color: #e8eced;
-}
-.form__input_group .form__field {
-  width: 98%;
-  margin: 0.5rem 0 1rem;
 }
 .form__field--large {
   height: 7rem;
@@ -765,8 +781,11 @@ textarea {
 .hidden_field {
   display: none;
 }
-.form__input_label {
-  margin: 0;
+#order-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
 }
 .form__button--success,
 .form__button--loading,
@@ -774,7 +793,7 @@ textarea {
 .form__button {
   appearance: none;
   width: 111%;
-  margin: 2rem -5.5% 0;
+  margin: 1rem -5.5% 0;
   padding: 1rem;
   color: #3485a8;
   border-radius: 0.125rem;
@@ -818,7 +837,6 @@ textarea {
 .block--form {
   max-width: 56.25rem;
   margin: 0 auto;
-  padding-bottom: 1rem;
   background: #fff;
   border-radius: 0.125rem;
   box-shadow: 0 0.2rem 1rem -0.25rem #26170d;
@@ -833,6 +851,12 @@ textarea {
     margin-left: 1rem;
     margin-right: 2rem;
   }
+}
+.block--textual,
+.block--textimg,
+.block--bullets,
+.block--gallery {
+  padding-bottom: 1rem;
 }
 .block--textual > *,
 .block--textimg > *,
@@ -1636,7 +1660,7 @@ textarea {
   border-radius: 0.125rem;
   box-shadow: 0 0.2rem 1rem -0.25rem #26170d;
   background: #fff;
-  margin-bottom: -0.5rem;
+  margin-bottom: 2rem;
   overflow: hidden;
 }
 .c__textual {
