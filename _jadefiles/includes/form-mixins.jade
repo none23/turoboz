@@ -1,146 +1,117 @@
 // form fields {{{
-mixin formNext()
-    input(
-        name = '_next'
-        type = 'hidden'
-        value = "{{ site.url | remove: 'https:' }}{{ page.url }}"
-    )
-
 mixin formSubject(fieldId, fieldValue)
-    input.hidden_field(
-        id = fieldId
-        name = '_subject'
-        type = 'hidden'
-        value = fieldValue
-    )
+  input.hidden_field( id = fieldId
+                    , name = '_subject'
+                    , type = 'hidden'
+                    , value = fieldValue
+                    )
 
 mixin formName(fieldId)
-    input.form__field(
-        id = fieldId
-        name = 'Name'
-        title = 'Имя'
-        type = 'text'
-        pattern = ".{2,}"
-        placeholder = 'Как к Вам обращаться?'
-        required
-    )
+  .form__input_group
+    label.form__label( for = fieldId )
+      | Ваше имя:
+    input.form__input( id = fieldId
+                     , name = 'Name'
+                     , type = 'text'
+                     , placeholder = 'Как к Вам обращаться?'
+                     , required
+                     )
 
 mixin formPhone(fieldId)
-    input.form__field(
-        id = fieldId
-        name = 'Tel'
-        title = 'Телефонный номер'
-        type = 'tel'
-        pattern = '[0-9+-/s)(]{5,}'
-        placeholder = 'Ваш номер телефона'
-        required
-    )
+  .form__input_group
+    label.form__label( for = fieldId )
+      | Ваш номер телефона:
+    input.form__input( id = fieldId
+                     , name = 'Tel'
+                     , type = 'tel'
+                     , pattern = '[0-9+-/s)(]{5,}'
+                     , placeholder = 'Ваш номер телефона'
+                     , required
+                     )
 
 mixin formMail(fieldId)
-        input.form__field(
-            id = fieldId
-            name = 'Email'
-            title = 'Электронная почта'
-            type = 'email'
-            pattern = ".*"
-            placeholder = 'Ваш email'
-        )
+  .form__input_group
+    label.form__label( for = fieldId )
+      | Ваш email:
+    input.form__input( id = fieldId
+                     , name = 'Email'
+                     , type = 'email'
+                     , placeholder = 'Ваш email'
+                     )
 
-mixin formTextarea(fieldId, fieldTitle)
-        textarea.form__field.form__field--large(
-            id = fieldId
-            title = fieldTitle
-            name=fieldTitle
-            minlength=8
-            required
-        )
+mixin formText(fieldId, fieldLabel, fieldPlaceholder)
+  .form__input_group
+    label.form__label( for = fieldId )= fieldLabel
+    textarea.form__input.form__textarea( id = fieldId
+                                       , placeholder = fieldPlaceholder
+                                       , name = 'Message'
+                                       , required
+                                       )
 // }}}
 // form {{{
-mixin FormBody(formId, ...formClasses)
-    form(
-        id = formId
-        class = formClasses
-        action = '{{ site.forms_url }}'
-        method = 'POST'
-    )
-        block
+mixin FormBody(formId, buttonCopy, ...formClasses)
+  - formClasses.push(formId)
+  - formClasses.push('form')
+  form( id = formId
+      , class = formClasses
+      , action = '{{ site.forms_url }}'
+      , method = 'POST'
+      )
+    block
+    button.form__button( id = `${formId}__button`
+                       , type = 'submit'
+                       )= buttonCopy
 
 // }}}
 
-mixin CallBackForm()
-    +FormBody('call-back-form')
-        +formNext()
-        +formSubject('call-back-form__subject', 'Заказ звонка')
-        +formName('call-back-form__name')
-        +formPhone('call-back-form__phone')
-
-        button#call-back-form__cancel_button.call-back-form__toggle(type = 'button') Отмена
-        button#call-back-form__button.form__button(type = 'submit') Заказать звонок
-
 mixin OrderForm()
-    +FormBody('order-form', 'order-form', 'form')
-        +formNext()
-        +formSubject('order-form__subject', 'Заказ {{ page.url }}')
-        .form__input_group
-            label.form__input_label(for = 'order-form__name') Ваше имя
-            +formName('order-form__name')
-        .form__input_group
-            label.form__input_label(for = 'order-form__mail') Ваш email
-            +formMail('order-form__mail')
-        .form__input_group
-            label.form__input_label(for = 'order-form__phone') Ваш номер телефона
-            +formPhone('order-form__phone', true)
-        button#order-form__button.form__button(type='submit') Заказать
+  +FormBody('order-form', 'Заказать')
+    +formSubject('order-form__subject', 'Заказ {{ page.title }}')
+    +formName('order-form__name')
+    +formMail('order-form__mail')
+    +formPhone('order-form__phone', true)
 
 
 mixin ReviewForm()
-    +FormBody('review-form', 'review-form', 'form')
-        +formNext()
-        +formSubject('review-form__subject', 'Отзыв')
-        .form__input_group
-            label.form__input_label(for='review-form__name') Ваше имя
-            +formName('review-form__name')
-        .form__input_group
-            label.form__input_label(for='review-form__mail') Ваш email
-            +formMail('review-form__mail')
-        .form__input_group
-            label.form__input_label(for='review-form__question') Ваш отзыв
-            +formTextarea('review-form__question','Review')
-        button#review-form__button.form__button(type='submit')
-           | Отправить отзыв
+  +FormBody('review-form', 'Отправить отзыв')
+    +formSubject('review-form__subject', 'Отзыв')
+    +formName('review-form__name')
+    +formMail('review-form__mail')
+    +formText('review-form__question', 'Отзыв', 'Ваш отзыв')
 
 mixin ContactForm()
-    +FormBody('contact-form', 'contact-form', 'form')
-        +formSubject('contact-form__subject', 'Вопрос')
-        .form__input_group
-            label.form__input_label(for='contact-form__name')
-                | Как к Вам обращаться?
-            +formName('contact-form__name')
-        .form__input_group
-            label.form__input_label(for='contant-form__mail')
-                | Ваш email
-            +formMail('contant-form__mail')
-        .form__input_group
-            label.form__input_label(for='contact-form__question')
-                | Ваш вопрос
-            +formTextarea('contact-form__question', 'Question')
-        button#contact-form__button.form__button(type='submit')
-           | Отправить сообщение
+  +FormBody('contact-form', 'Отправить сообщение')
+    +formSubject('contact-form__subject')
+    +formName('contact-form__name')
+    +formMail('contant-form__mail')
+    +formText('contact-form__question', 'Вопрос', 'Что вас интересует?')
 
 mixin GuideForm()
-    +FormBody('guide-form', 'guide-form', 'form')
-        +formSubject('guide-form__subject', 'Заказ индивидуального тура')
-        .form__input_group
-            label.form__input_label(for='guide-form__name')
-                | Как к Вам обращаться?
-            +formName('guide-form__name')
-        .form__input_group
-            label.form__input_label(for='guide-form__phone')
-                | Ваш номер телефона
-            +formPhone('guide-form__phone')
-        //--.form__input_group
-            label.form__input_label(for='guide-form__question')
-                | Дополнительная информация
-            +formTextarea('guide-form__question', 'Question')
-        button#guide-form__button.form__button(type='submit')
-           | Заказать
+  +FormBody('guide-form', 'Заказать')
+    +formSubject('guide-form__subject', 'Заказ индивидуального тура')
+    +formName('guide-form__name')
+    +formPhone('guide-form__phone')
+    +formText('guide-form__question', 'Сообщение', 'Что вас интересует?')
+
+mixin CallBackForm()
+  form#call-back-form.call-back-form( action = '{{ site.forms_url }}'
+                                    , method = 'POST'
+                                    )
+    +formSubject('call-back-form__subject', 'Заказ звонка')
+    input.call-back-form__name.call-back-form__input( name = 'Tel'
+                                                    , type = 'tel'
+                                                    , pattern = '[0-9+-/s)(]{5,}'
+                                                    , placeholder = 'Ваш номер телефона'
+                                                    , required
+                                                    )
+    input.call-back-form__phone.call-back-form__input( name = 'Tel'
+                                                     , type = 'tel'
+                                                     , pattern = '[0-9+-/s)(]{5,}'
+                                                     , placeholder = 'Ваш номер телефона'
+                                                     , required
+                                                     )
+    button#call-back-form__cancel.call-back-form__button.call-back-form__toggle(type = 'button')
+      | Отмена
+    button#call-back-form__button.call-back-form__button(type = 'submit')
+      | Заказать звонок
+
