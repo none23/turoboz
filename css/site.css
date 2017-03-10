@@ -910,7 +910,13 @@ textarea {
 .page_content_wrap--post,
 .page_content_wrap--tour {
   margin: 0 auto;
+}
+.page_content_wrap--page {
   max-width: 1520px;
+}
+.page_content_wrap--post,
+.page_content_wrap--tour {
+  max-width: 1920px;
 }
 .page_heading,
 .section_header {
@@ -1313,7 +1319,7 @@ textarea {
           justify-content: flex-start;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin: 1rem 5vw;
+  margin: 1rem 0;
 }
 .breadcrumb {
   display: -webkit-box;
@@ -1379,7 +1385,7 @@ textarea {
       justify-content: space-around;
 }
 .block--heading {
-  margin: 1rem 10vw;
+  margin: 1rem 1vw;
 }
 .block--heading::after {
   content: '';

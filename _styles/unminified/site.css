@@ -965,6 +965,18 @@ textarea {
       -ms-flex: 1 0 1;
           flex: 1 0 1;
 }
+.page_content_wrap--page,
+.page_content_wrap--post,
+.page_content_wrap--tour {
+  margin: 0 auto;
+}
+.page_content_wrap--page {
+  max-width: 1520px;
+}
+.page_content_wrap--post,
+.page_content_wrap--tour {
+  max-width: 1920px;
+}
 .page_heading,
 .section_header {
   position: relative;
