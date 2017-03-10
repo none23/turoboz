@@ -876,38 +876,22 @@ textarea
 
 // form-buttons {{{
 
-.form__button--success
-.form__button--loading
-.form__button--failure
 .form__button
-    appearance: none
     width: 111%
     margin: 0 -5.5%
     padding: 1.2rem
-    color: $turbo_blue
-    border-radius: $border-radius
     font-size: 1.1rem
-    //outline: $border
-
-.form__button--success
-.form__button--loading
-.form__button--failure
-    transition: transform 0.1s ease-out
-    animation: form_button_submit 0.3s ease-out forwards
-
-.form__button--success
-.form__button--failure
-    animation-direction: normal
-
-.form__button--loading
-    transition: all 0.1s ease-out
-    animation-direction: reverse
 
 .form__button
+    appearance: none
     background: white
+    color: $turbo_blue
+    border-radius: $border-radius
+    transition: transform 0.3s ease-out
+    animation: form_button_submit 0.3s ease-out forwards
 
-    .form:hover &
-    .form:focus &
+    &:hover
+    &:focus
         background: $turbo_blue
         color: white
 

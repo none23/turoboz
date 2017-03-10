@@ -1,4 +1,28 @@
-// form fields {{{
+// header form {{{
+mixin CallBackForm()
+  form#call-back-form.call-back-form( action = '{{ site.forms_url }}'
+                                    , method = 'POST'
+                                    )
+    +formSubject('call-back-form__subject', 'Заказ звонка')
+    input#call-back-form__name.call-back-form__name.call-back-form__input( name = 'Name'
+                                                                         , type = 'text'
+                                                                         , placeholder = 'Как к Вам обращаться?'
+                                                                         , required
+                                                                         )
+    input#call-back-form__phone.call-back-form__phone.call-back-form__input( name = 'Tel'
+                                                                           , type = 'tel'
+                                                                           , pattern = '[0-9+-/s)(]{5,}'
+                                                                           , placeholder = 'Ваш номер телефона'
+                                                                           , required
+                                                                           )
+    button#call-back-form__cancel.call-back-form__button.call-back-form__toggle(type = 'button')
+      | Отмена
+    button#call-back-form__button.call-back-form__button(type = 'submit')
+      | Заказать звонок
+
+// }}}
+
+// fields {{{
 mixin formSubject(fieldId, fieldValue)
   input.hidden_field( id = fieldId
                     , name = '_subject'
@@ -48,7 +72,7 @@ mixin formText(fieldId, fieldLabel, fieldPlaceholder)
                                        , required
                                        )
 // }}}
-// form {{{
+// base {{{
 mixin FormBody(formId, buttonCopy, ...formClasses)
   - formClasses.push(formId)
   - formClasses.push('form')
@@ -71,7 +95,6 @@ mixin OrderForm()
     +formMail('order-form__mail')
     +formPhone('order-form__phone', true)
 
-
 mixin ReviewForm()
   +FormBody('review-form', 'Отправить отзыв')
     +formSubject('review-form__subject', 'Отзыв')
@@ -92,26 +115,4 @@ mixin GuideForm()
     +formName('guide-form__name')
     +formPhone('guide-form__phone')
     +formText('guide-form__question', 'Сообщение', 'Что вас интересует?')
-
-mixin CallBackForm()
-  form#call-back-form.call-back-form( action = '{{ site.forms_url }}'
-                                    , method = 'POST'
-                                    )
-    +formSubject('call-back-form__subject', 'Заказ звонка')
-    input.call-back-form__name.call-back-form__input( name = 'Tel'
-                                                    , type = 'tel'
-                                                    , pattern = '[0-9+-/s)(]{5,}'
-                                                    , placeholder = 'Ваш номер телефона'
-                                                    , required
-                                                    )
-    input.call-back-form__phone.call-back-form__input( name = 'Tel'
-                                                     , type = 'tel'
-                                                     , pattern = '[0-9+-/s)(]{5,}'
-                                                     , placeholder = 'Ваш номер телефона'
-                                                     , required
-                                                     )
-    button#call-back-form__cancel.call-back-form__button.call-back-form__toggle(type = 'button')
-      | Отмена
-    button#call-back-form__button.call-back-form__button(type = 'submit')
-      | Заказать звонок
 

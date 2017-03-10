@@ -194,17 +194,17 @@ function enableForm (formPrefix, successMsg, callback) {
   const sendForm = document.getElementById(formButtonId)
   const iSendAJAX = (event, form, sendButton, successMsg) => {
     sendButton.textContent = successMsg
-    sendButton.className = 'form__button--success'
+    sendButton.classList.add('form__button--success')
     sendButton.disabled = true
     const request = new window.XMLHttpRequest()
     request.withCredentials = false
     request.open('POST'
-      , 'https://briskforms.com/go/61884eb4d90ed4de433bf106bd0aea9a'
-      , true
-    )
+                , 'https://briskforms.com/go/61884eb4d90ed4de433bf106bd0aea9a'
+                , true
+                )
     request.setRequestHeader('accept'
-      , 'application/json'
-    )
+                            , 'application/json'
+                            )
     const formData = new window.FormData(form)
     request.send(formData)
   }
