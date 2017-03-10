@@ -186,7 +186,7 @@ function enableForm(formPrefix, successMsg, callback) {
   var sendForm = document.getElementById(formButtonId);
   var iSendAJAX = function iSendAJAX(event, form, sendButton, successMsg) {
     sendButton.textContent = successMsg;
-    sendButton.className = 'form__button--success';
+    sendButton.classList.add('form__button--success');
     sendButton.disabled = true;
     var request = new window.XMLHttpRequest();
     request.withCredentials = false;
