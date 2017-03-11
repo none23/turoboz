@@ -1,28 +1,28 @@
 include ../mixins.jade
 
-mixin Testimonial(tAuthor, tDate, tQuote)
-    li.testimonial__wrap
-        blockquote.testimonial
-            .testimonial__text__wrap
-                | {% for para in #{tQuote} %}{{ para | markdownify }}{% endfor %}
+mixin Testimonial(tAuthor, tDate, tQuote, tNumber)
+    blockquote.testimonial(class=`testimonial--${tNumber}` )
+      .testimonial__text
+        | {% for paragraph in #{tQuote} %}{{ paragraph | markdownify }}{% endfor %}
+      .testimonial__svg
+        +iconQuote('testimonial__svg__path')
+      footer.testimonial__footer
+        .testimonial__date
+          | {% assign m = #{tDate} | date: "%-m" %}{{ #{tDate} | date: "%-d" }}{% case m %}{% when '1' %} января {% when '2' %} февраля {% when '3' %} марта {% when '4' %} апреля {% when '5' %} мая {% when '6' %} июня {% when '7' %} июля {% when '8' %} августа {% when '9' %} сентября {% when '10' %} октября {% when '11' %} ноября {% when '12' %} декабя {% endcase %}{{ #{tDate} | date: "%Y" }}
+        cite.testimonial__name
+          | {{ #{tAuthor} }}
 
-            .testimonial__svg__wrap
-                +iconQuote('testimonial__svg__path')
-
-            footer.testimonial__footer
-                .testimonial__date
-                    | {% assign m = #{tDate} | date: "%-m" %}{{ #{tDate} | date: "%-d" }}{% case m %}{% when '1' %} января {% when '2' %} февраля {% when '3' %} марта {% when '4' %} апреля {% when '5' %} мая {% when '6' %} июня {% when '7' %} июля {% when '8' %} августа {% when '9' %} сентября {% when '10' %} октября {% when '11' %} ноября {% when '12' %} декабя {% endcase %}{{ #{tDate} | date: "%Y" }}
-
-                cite.testimonial__name
-                    | {{ #{tAuthor} }}
-
-section.testimonials__wrap
-    ul.testimonials__list
-        | {% assign testimonials = site.data.testimonials | sort: 'dateId' %}{% for tsm in testimonials %}
-        +Testimonial(
-            'tsm.author',
-            'tsm.date',
-            'tsm.message')
-        | {% endfor %}
+section.testimonials
+  | {% assign testimonials = site.data.testimonials | sort: 'dateId' %}{% for tsm in testimonials reversed %}
+  +Testimonial( 'tsm.author'
+              , 'tsm.date'
+              , 'tsm.message'
+              , '{{ forloop.index }}'
+              )
+  | {% if forloop.index == 5 %}
+  button#testimonials__spoiler.testimonials__spoiler.no_custom_transition(type='button')
+    | Показать все
+  | {% endif %}
+  | {% endfor %}
 
 

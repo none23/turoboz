@@ -271,6 +271,9 @@ input
 textarea
     font-size: 1rem
 
+button
+    font-size: 1.1rem
+
 .page_heading
 .section_header
     font-size: 1.4rem
@@ -341,8 +344,10 @@ textarea
     font-size: 1.1rem
     line-height: 1rem
 
-.testimonial__text__wrap
+.testimonial__text
     font-style: italic
+    line-height: 1.7
+    text-align: justify
 
 .breadcrumb__label
     font-size: 1rem
@@ -807,7 +812,7 @@ textarea
     padding: 1rem
     transition: all 0.2s ease-in
 
-.testimonials__wrap
+.testimonials
 .contacts__wrap
 .contact-form__wrap
 .review-form__wrap
@@ -874,7 +879,6 @@ textarea
     width: 111%
     margin: 0 -5.5%
     padding: 1.2rem
-    font-size: 1.1rem
 
 .form__button
     appearance: none
@@ -882,12 +886,17 @@ textarea
     color: $turbo_blue
     border-radius: $border-radius
     transition: transform 0.3s ease-out
-    animation: form_button_submit 0.3s ease-out forwards
 
     &:hover
     &:focus
+        animation: form_button_submit 0.3s ease-out forwards
         background: $turbo_blue
         color: white
+
+.form__button--success
+.form__button--loading
+.form__button--failure
+    animation: form_button_submit 0.3s ease-out forwards
 
 .form__button--success
     background: hsl(120,90%,15%) !important
@@ -1684,24 +1693,30 @@ textarea
 // testimonials page {{{
 
 .testimonial
-    width: 100%
     position: relative
+    margin: 0 0 2rem
+    padding-top: .5rem
+    display: none
+    transform: scaleY(0)
+
+    &--1
+    &--2
+    &--3
+    &--4
+    &--5
+    &--visible
+        display: block
+        transform: scaleY(1)
+
+.testimonial
     border-radius: $border-radius
     box-shadow: 0 0.2rem 1rem -0.25rem $shadowy
     background: white
-    margin 0
-    padding-top: 0.1rem
 
-.testimonial__wrap
-    margin: 0 0 2rem
-    &:last-child
-        margin-bottom: 0
-
-.testimonial__text__wrap
-    margin: 3rem 4rem
+.testimonial__text
+    margin: 2rem
     position: relative
     z-index: 100
-    line-height: 1.7
 
     @media(max-width: 800px)
         margin: 3rem 3rem
@@ -1709,7 +1724,7 @@ textarea
     @media(max-width: 480px)
         margin: 3rem 2rem 3rem 1rem
 
-.testimonial__svg__wrap
+.testimonial__svg
     position: absolute
     top: 1rem
     left: 1rem
@@ -1721,7 +1736,7 @@ textarea
     fill: $turbo_lightblue
 
 .testimonial__footer
-    background: mix($turbo_blue, $turbo_lightblue)
+    background: $turbo_blue
     padding: .7rem 2rem
     display: flex
     justify-content: space-between
@@ -1738,6 +1753,26 @@ textarea
     display: inline
     white-space: nowrap
     color: white
+
+.testimonials__spoiler
+    width: 100%
+    margin: 0 0 1rem
+    padding: 1rem 0
+    text-align: center
+
+.testimonials__spoiler
+    box-shadow: 0 0 0.8rem -0.2rem $shadowy
+    background: white
+    color: $turbo_blue
+    transition: all .1s ease-in-out
+
+    &:hover
+    &:focus
+        background: $turbo_blue
+        color: white
+
+    &.hidden
+        display: none
 
 // /testimonials page }}}
 
