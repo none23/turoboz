@@ -96,7 +96,6 @@ function changePage(url) {
 })();
 
 // activeNavLinkTransition{{{
-
 function switchActiveNavLink(targetLink) {
   // do nothing if the link clicked is already active
   if (targetLink.className.indexOf('active') === -1) {
@@ -122,19 +121,9 @@ function switchActiveNavLink(targetLink) {
 
 // /activeNavLinkTransition}}}
 // /page transitions }}}
-// (off) service worker {{{
-// ;(function() {
-//     if ('serviceWorker' in navigator){
-//         navigator.serviceWorker.register('/serviceworker.js')
-//     } else {
-//         html.setAttribute('manifest', '/turoboz.appcache')
-//         useAppCache()
-//     }
-// })()
-//  /service worker }}}
 //  appcache {{{
 
-// apply only if manifest is set (i.e. no serviseWorker support)
+// apply only if manifest is set
 ;(function useAppCache() {
   var appcache = window.applicationCache;
 
@@ -254,8 +243,27 @@ function callFormToggle() {
     enableReviewForm();
     enableOrderForm();
   });
-})();
+})()
 
 // /initiate on page load}}}
 // /forms}}}
+// testimonials{{{
+;(function () {
+  window.addEventListener('DOMContentLoaded', function () {
+    var spoilerButton = document.getElementById('testimonials__spoiler');
+    if (spoilerButton) {
+      spoilerButton.addEventListener('click', function () {
+        var testimonials = document.getElementsByClassName('testimonial');
+        if (testimonials) {
+          for (var i = 5; i < testimonials.length; i++) {
+            testimonials[i].classList.add('testimonial--visible');
+          }
+        }
+        spoilerButton.classList.add('hidden');
+      });
+    }
+  });
+})();
+
+// /testimonials}}}
 // vim:foldmethod=marker

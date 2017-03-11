@@ -1818,16 +1818,15 @@ button {
   box-shadow: 0 0 0.8rem -0.2rem #26170d;
   background: #fff;
   color: #3485a8;
-  transition: all 50s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 .testimonials__spoiler:hover,
 .testimonials__spoiler:focus {
   background: #3485a8;
   color: #fff;
 }
-.testimonials__spoiler:active {
-  transform: scaleY(0);
-  transition: all 0.05s ease-in-out;
+.testimonials__spoiler.hidden {
+  display: none;
 }
 @-moz-keyframes logo_animate_gray {
   0% {

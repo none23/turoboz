@@ -2363,20 +2363,16 @@ button {
   box-shadow: 0 0 0.8rem -0.2rem #26170d;
   background: #fff;
   color: #3485a8;
-  -webkit-transition: all 50s ease-in-out;
-  transition: all 50s ease-in-out;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 .testimonials__spoiler:hover,
 .testimonials__spoiler:focus {
   background: #3485a8;
   color: #fff;
 }
-.testimonials__spoiler:active {
-  -webkit-transform: scaleY(0);
-      -ms-transform: scaleY(0);
-          transform: scaleY(0);
-  -webkit-transition: all 0.05s ease-in-out;
-  transition: all 0.05s ease-in-out;
+.testimonials__spoiler.hidden {
+  display: none;
 }
 @-webkit-keyframes logo_animate_gray {
   0% {
