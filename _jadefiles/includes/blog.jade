@@ -14,7 +14,7 @@ section.vkcards__wrap#vkcards__wrap
                         +LiquidRussianDateLite('post.dateposted')
 
                     .vkpost__intro.card__summary
-                        | {{ post.content | truncatewords: 40 | smartify }}
+                        | {{ post.content | smartify | truncatewords: 30 }}
 
                     .vkpost__button.card__button
                         | Читать далее
