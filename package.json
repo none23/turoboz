@@ -70,6 +70,8 @@
                      , "watch:scripts:compile": "babel _scripts/es6 -d js"
                  , "watch:browser-sync": "browser-sync start --server '_site' --port 3000 --files '_site/*/*' --no-open --no-notify"
 
+             , "autoreplace": "node _autoreplace.js"
+
              , "fetch": "npm run fetch:contentful && npm run fetch:vk"
                  , "fetch:contentful": "npm run fetch:tours && npm run fetch:news && npm run fetch:testim"
                      , "fetch:tags": "node fetch-contentful.js --tags"
@@ -77,6 +79,7 @@
                      , "fetch:news": "node fetch-contentful.js --news"
                      , "fetch:testim": "node fetch-contentful.js --testim"
                  , "fetch:vk": "node fetch-vk.js"
+                 , "postfetch": "npm run autoreplace"
 
              , "autobuild": "npm run build"
              , "deploy": "netlify deploy"
