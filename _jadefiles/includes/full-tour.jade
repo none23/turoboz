@@ -48,7 +48,7 @@ section.full_tour__description.block--textual.block--textimg.block--no-header
     .block--textimg__image__wrap
         img.block--textimg__image(srcset="/img/tours400/{{ page.imgpath }} 1x, /img/tours800/{{ page.imgpath }} 2x", src="/img/tours400/{{ page.imgpath }}",  alt="{{ page.title | smartify }}")
     p.full_tour__intro
-        | {{ page.intro | smartify }}
+        | {{ page.intro | smartify | markdownify }}
     p.full_tour__summary
         | {{ page.summary | smartify }}
 
