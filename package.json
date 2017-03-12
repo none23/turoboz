@@ -79,7 +79,6 @@
                      , "fetch:news": "node fetch-contentful.js --news"
                      , "fetch:testim": "node fetch-contentful.js --testim"
                  , "fetch:vk": "node fetch-vk.js"
-                 , "postfetch": "npm run autoreplace"
 
              , "autobuild": "npm run build"
              , "deploy": "netlify deploy"
