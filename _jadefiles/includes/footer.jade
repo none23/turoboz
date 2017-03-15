@@ -1,26 +1,26 @@
 include ../mixins.jade
 
 footer#site_footer
-  a.f__contact.f__mail(href='mailto:{{ site.email }}')
-    .f__contact_icon
+  a.footer-contact.footer-contact--mail(href='mailto:{{ site.email }}')
+    .footer-icon
       +iconMail('f__icon__path')
     | {{ site.email }}
-  a.f__contact.f__phone(href="tel:{{ site.phones | first | remove: ' ' }}")
-    .f__contact_icon
+  a.footer-contact.footer-contact--phone(href="tel:{{ site.phones | first | remove: ' ' }}")
+    .footer-icon
       +iconPhone('f__icon__path')
     | {{ site.phones | first }}
-  a.f__contact.f__vk(href='https://{{ site.vk_group }}', target='_blank')
-    .f__contact_icon
+  a.footer-contact.footer-contact--vk(href='https://{{ site.vk_group }}', target='_blank')
+    .footer-icon
       +iconVK('f__icon__path')
     | {{ site.vk_group }}
 
-  .f__corner_box
-    .f__copyright
+  .footer-corner-box
+    .site-copyright
       | ©
       | {{ site.company_legal }},
       | {{ site.copyright_dates }}
-    .f__developer
+    .site-developer
       | Designed and developed by
       +space()
-      a.f__developer__link(href = 'https://github.com/{{ site.github_username }}', target = '_blank')
+      a.site-developer__link(href = 'https://github.com/{{ site.github_username }}', target = '_blank')
         | {{ site.github_username }}

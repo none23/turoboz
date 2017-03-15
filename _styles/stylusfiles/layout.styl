@@ -237,20 +237,20 @@ textarea
     margin-top: 2rem
     z-index: 700
 
-.f__contact
-.f__corner_box
+.footer-contact
+.footer-corner-box
     margin: 1rem
     flex 1 0 13.5rem
 
-.f__contact
+.footer-contact
     margin: 1rem 0.5rem
 
-.f__contact_icon
+.footer-icon
     height: $site_footer_icon_width
     width: @height
     margin: 0 auto 1rem
 
-.f__corner_box
+.footer-corner-box
     padding-right: 1rem
 
 // /site footer }}}
@@ -919,7 +919,7 @@ textarea
     margin-bottom: 2rem
     overflow: hidden
 
-.c__textual
+.business-info
     flex: 0 0 20rem
     padding: 1rem 0
     order: 1
@@ -928,48 +928,48 @@ textarea
     flex-wrap: nowrap
     justify-content: flex-start
 
+.brand
+.contacts-list
+.address
+    margin: 1rem 2rem
+
+.business-info
+    white-space: nowrap
+
 @media(max-width: 710px)
     .contacts__wrap
         flex-direction: column
 
-    .c__textual
+    .business-info
         order: -1
-        flex: 0 1 13rem
+        flex: 1 1 100%
         flex-direction: row
 
-@media(max-width: 600px)
-    .c__textual
-        flex: 0 1 15rem
+    .business-info
+        white-space: pre-wrap
 
 @media(max-width: 564px)
-    .c__textual
+    .business-info
         display: block
         text-align: center
 
-.c__brand
-.c__list
-.c__address
-    margin: 1rem 2rem
 
-.c__contact
-    white-space: nowrap
-
-.c__map__link
+.map
     position: relative
     flex: 1 0 20rem
     order: -1
 
-.c__map__img
+.map__img
     width: 100%
     min-width: 320px
     height: auto
     margin-bottom: -0.30rem
 
-.c__map__tooltip
+.map__tooltip
     top: 0
 
-    .c__map__link:hover &
-    .c__map__link:focus &
+    .map:hover &
+    .map:focus &
         opacity: 1
 
 // /contact page }}}

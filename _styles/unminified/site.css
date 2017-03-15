@@ -508,23 +508,23 @@ textarea {
   margin-top: 2rem;
   z-index: 700;
 }
-.f__contact,
-.f__corner_box {
+.footer-contact,
+.footer-corner-box {
   margin: 1rem;
   -webkit-box-flex: 1;
   -webkit-flex: 1 0 13.5rem;
       -ms-flex: 1 0 13.5rem;
           flex: 1 0 13.5rem;
 }
-.f__contact {
+.footer-contact {
   margin: 1rem 0.5rem;
 }
-.f__contact_icon {
+.footer-icon {
   height: 3rem;
   width: 3rem;
   margin: 0 auto 1rem;
 }
-.f__corner_box {
+.footer-corner-box {
   padding-right: 1rem;
 }
 .page_wrap {
@@ -1514,7 +1514,7 @@ textarea {
   margin-bottom: 2rem;
   overflow: hidden;
 }
-.c__textual {
+.business-info {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 20rem;
       -ms-flex: 0 0 20rem;
@@ -1541,6 +1541,14 @@ textarea {
       -ms-flex-pack: start;
           justify-content: flex-start;
 }
+.brand,
+.contacts-list,
+.address {
+  margin: 1rem 2rem;
+}
+.business-info {
+  white-space: nowrap;
+}
 @media (max-width: 710px) {
   .contacts__wrap {
     -webkit-box-orient: vertical;
@@ -1549,45 +1557,32 @@ textarea {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .c__textual {
+  .business-info {
     -webkit-box-ordinal-group: 0;
     -webkit-order: -1;
         -ms-flex-order: -1;
             order: -1;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 1 13rem;
-        -ms-flex: 0 1 13rem;
-            flex: 0 1 13rem;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 100%;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
         -ms-flex-direction: row;
             flex-direction: row;
   }
-}
-@media (max-width: 600px) {
-  .c__textual {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 1 15rem;
-        -ms-flex: 0 1 15rem;
-            flex: 0 1 15rem;
+  .business-info {
+    white-space: pre-wrap;
   }
 }
 @media (max-width: 564px) {
-  .c__textual {
+  .business-info {
     display: block;
     text-align: center;
   }
 }
-.c__brand,
-.c__list,
-.c__address {
-  margin: 1rem 2rem;
-}
-.c__contact {
-  white-space: nowrap;
-}
-.c__map__link {
+.map {
   position: relative;
   -webkit-box-flex: 1;
   -webkit-flex: 1 0 20rem;
@@ -1598,17 +1593,17 @@ textarea {
       -ms-flex-order: -1;
           order: -1;
 }
-.c__map__img {
+.map__img {
   width: 100%;
   min-width: 320px;
   height: auto;
   margin-bottom: -0.3rem;
 }
-.c__map__tooltip {
+.map__tooltip {
   top: 0;
 }
-.c__map__link:hover .c__map__tooltip,
-.c__map__link:focus .c__map__tooltip {
+.map:hover .map__tooltip,
+.map:focus .map__tooltip {
   opacity: 1;
 }
 .testimonial {
@@ -1736,14 +1731,14 @@ button {
   font-size: 0.9rem;
   line-height: 2.3;
 }
-.f__contact {
+.footer-contact {
   text-align: center;
 }
-.f__corner_box {
+.footer-corner-box {
   text-align: right;
 }
-.f__developer,
-.f__developer__link {
+.site-developer,
+.site-developer__link {
   font-size: 0.7rem;
 }
 .block--textual > p,
@@ -1849,7 +1844,7 @@ button {
       -ms-hyphens: auto;
           hyphens: auto;
 }
-.c__contact {
+.business-info {
   line-height: 2;
 }
 a {
@@ -2053,12 +2048,12 @@ button {
   color: #fff;
   box-shadow: 0 0 0.5rem -0.063rem #26170d;
 }
-.f__contact {
+.footer-contact {
   color: #fff;
   fill: #fff;
 }
-.f__contact:hover,
-.f__contact:focus {
+.footer-contact:hover,
+.footer-contact:focus {
   color: #3485a8;
   fill: #3485a8;
 }
@@ -2074,7 +2069,7 @@ button {
   border-radius: 0.125rem;
   color: #fff;
 }
-.f__developer__link {
+.site-developer__link {
   color: #6aa8c3;
 }
 .block--textual,
@@ -2240,7 +2235,7 @@ button {
   box-shadow: 0 0.2rem 1rem -0.25rem #26170d;
   background: #fff;
 }
-.c__map__img {
+.map__img {
   -webkit-filter: grayscale(0.25);
           filter: grayscale(0.25);
 }
