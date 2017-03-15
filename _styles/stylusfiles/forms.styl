@@ -1,6 +1,6 @@
 @require '../stylusfiles/vars.styl'
-// form-action animation {{{
-@keyframes form_button_submit
+
+@keyframes form_button
     0%
         transform: scale(1)
     20%
@@ -10,91 +10,64 @@
     100%
         transform: scale(1)
 
-// /form-action animation }}}
-// header form {{{
+// header-form {{{
 .header-form__wrap
     position: absolute
     top: 100%
-    right: 0
+    right: 1%
+    max-width: 98%
+    z-index: 1002
+    transition: transform 0.2s ease-out
     transform: rotateY(90deg)
     transform-origin: 100% 0
-    transition: transform 0.2s ease-out
-    z-index: 1002
-    background: $header_form_bg
-    box-shadow: 0 0.25rem 1.25rem -0.25rem $shadowy
-    border-radius: $border-radius
 
     &.is_open
         transform: rotateY(0)
 
+.header-form__wrap
+    background: $header_form_bg
+    box-shadow: 0 0.25rem 1.25rem -0.25rem $shadowy
+    border-radius: $border-radius
+
+// /header-form }}}
+// forms {{{
+.form
 .call-back-form
     display: flex
     justify-content: flex-start
+
+.form
+    flex-direction: column
+    align-items: stretch
+    max-width: 90%
+    width: auto
+    margin: 1rem auto 0
+    padding: 0 5%
+
+.call-back-form
     flex-direction: row
     flex-wrap: wrap
 
-.call-back-form__input
-    order: 0
-    flex: 0 0 calc(50% - 5.5rem)
-    box-shadow: inset 0 0.1rem 0.6rem -0.1rem $shadowy
-
-@media(max-width: 620px)
-    .call-back-form__name
-        flex: 1 1 100%
-
-    .call-back-form__phone
-        flex-grow: 1
-
-.call-back-form__button
-    margin: 0
-    padding-top: 1.1rem
-    padding-bottom: @padding-top
-    background: white
-
-#call-back-form__button
-    order: 2
-    flex: 1 0 100%
-    color: $turbo_blue
-
-    &:hover
-    &:focus
-        color: white
-        background: $turbo_blue
-
-    &:active
-        color: @background
-        background: $turbo_brown
-
-#call-back-form__cancel
-    order: 1
-    flex: 0 0 4rem
-    background: white
-    color: $turbo_cancel_active
-    border-radius: 0
-    -webkit-appearance: none
-    padding-left: 0.8rem
-    padding-right: 0.7rem
-    martgin-right: 0
-
-    &:hover
-    &:focus
-        color: white
-        background: $turbo_cancel
-
-    &:active
-        color: white
-        background: $turbo_cancel_active
-
-// /header form }}}
-// forms {{{
-
 .form
-    max-width: 90%
-    width: auto
+.call-back-form
     border-radius: $border-radius
-    margin: 1rem auto 0
     background: white
-    padding: 0 5%
+
+// /forms }}}
+// inputs {{{
+input
+textarea
+    font-size: 1rem
+    margin: 1rem
+    padding: .4rem 0 .4rem .4rem
+    border: none
+    border-radius: $border-radius
+    box-shadow: inset 0 0.1rem 0.6rem -0.1rem $shadowy
+    background-color: white
+
+textarea
+    height: 4rem
+    resize: none
 
 .form__input_group
     margin: 0 0 .5rem
@@ -113,56 +86,76 @@
 .form__input
     flex-grow: 1
     margin-left: 1.4rem
-    box-shadow: inset 0 0.1rem 0.6rem -0.1rem $shadowy
+
+.call-back-form__input
+    order: 0
+    flex: 0 0 calc(50% - 5.5rem)
+
+@media(max-width: 626px)
+    .call-back-form__name
+        flex: 1 1 95%
+
+    .call-back-form__phone
+        flex-grow: 1
+
+// /inputs }}}
+// buttons {{{
+button
+    font-size: 1.1rem
+    appearance none
+    border none
     border-radius: $border-radius
-    background-color: white
-
-.form__textarea
-    height: 4rem
-
-.hidden_field
-    display: none
-
-.form
-    display: flex
-    flex-direction: column
-    justify-content: flex-start
-    align-items: stretch
-
-// form-buttons {{{
+    transition: transform 0.3s ease-out
 
 .form__button
     width: 111%
     margin: 0 -5.5%
     padding: 1.2rem
 
+.call-back-form__button
+    order: 2
+    flex: 1 0 100%
+    margin: 0
+    padding-top: 1.1rem
+    padding-bottom: @padding-top
+
+#call-back-form__cancel
+    order: 1
+    flex: 0 0 4rem
+    padding-left: 0.8rem
+    padding-right: 0.7rem
+    martgin-right: 0
+
 .form__button
-    appearance: none
+.call-back-form__button
     background: white
     color: $turbo_blue
-    border-radius: $border-radius
-    transition: transform 0.3s ease-out
 
     &:hover
     &:focus
-        animation: form_button_submit 0.3s ease-out forwards
-        background: $turbo_blue
+    &:active
         color: white
 
-.form__button--success
-.form__button--loading
-.form__button--failure
-    animation: form_button_submit 0.3s ease-out forwards
+    &:hover
+    &:focus
+        background: $turbo_darkblue
+
+    &:active
+        background: $turbo_brown
+        animation: form_button 0.3s ease-out forwards
 
 .form__button--success
+    animation: form_button 0.3s ease-out forwards
     background: hsl(120,90%,15%) !important
 
-.form__button--loading
-    background: hsl(60,90%,45%) !important
-    color: hsl(0,0,0) !important
+#call-back-form__cancel
+    color: $turbo_cancel_active
 
-.form__button--failure
-    background: hsl(0,90%,20%) !important
+    &:hover
+    &:focus
+        background: $turbo_cancel
 
-// /form-buttons }}}
-// /forms }}}
+    &:active
+        background: $turbo_cancel_active
+
+// /buttons }}}

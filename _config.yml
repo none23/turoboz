@@ -27,6 +27,7 @@ markdown: kramdown
 exclude: ["node_modules",
           "npm-shrinkwrap.json",
           "package.json",
+          "browserlist",
           "gh-pages",
           "Gemfile",
           "Gemfile.lock",
