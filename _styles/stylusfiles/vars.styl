@@ -1,0 +1,111 @@
+// vars {{{
+
+$site_header_height = 6rem
+$site_header_logo_width = 14rem
+$site_header_logo_height = 5.25rem
+$site_header_contacts_width = 13rem
+
+$tours_nav_header_height = 4.2rem
+$tours_nav_header_padding = 1rem
+$tours_nav_header_margin = -1rem
+$tours_nav_link_height = 1.5rem
+$tours_nav_link_padding_h = 1.5rem
+$tours_nav_link_padding_v = 1rem
+$tours_nav_min-height = $tours_nav_header_height + $tours_nav_header_margin * 2 + $tours_nav_header_padding * 2 + 8 * ($tours_nav_link_height + $tours_nav_link_padding_v * 2)
+
+$tour_card_width = 18rem
+$tour_card_height = 25rem
+
+$site_footer_height = 8rem
+$site_footer_icon_width = 3rem
+$page_wrap_min-height = $tours_nav_min-height + $site_header_height + $site_footer_height
+
+$block-width = 56.25rem
+$block-margins = 2rem
+$block-margins-both = $block-margins * 2
+
+$border-radius = 0.125rem
+$border = 0.063rem solid $turbo_lightblue
+
+$the_font = Ubuntu, Arial, Helvetica, sans-serif
+
+$turbo_cancel = hsl(0, 53%, 42%)
+$turbo_cancel_active = hsl(0, 73%, 33%)
+$turbo_lightbrown = hsl(23, 40%, 34%)
+$turbo_brown = hsl(23, 47%, 26%)
+$turbo_darkbrown = hsl(23, 50%, 18%)
+$turbo_darkblue = hsl(198, 58%, 32%)
+$turbo_blue = hsl(198, 53%, 43%)
+$turbo_lightblue = hsl(198, 48%, 75%)
+$turbo_verylightblue = hsl(198, 13%, 92%)
+$turbo_mixblue = mix($turbo_lightblue, $turbo_blue)
+$turbo_gray = hsl(30, 1%, 44%)
+$shadowy = hsl(23, 50%, 10%, 0.2)
+$body_fg = $turbo_darkbrown
+$body_bg = ivory
+
+$site_nav_bg = hsl(0, 0, 94%)
+$header_form_bg = white
+$mobile_nav_bg = white
+$site_nav_link_fg = $turbo_brown
+$site_nav_link_hover_fg = white
+$site_nav_link_hover_bg = $turbo_blue
+
+$main_heading_bg = hsla(0, 0%, 100%, 0.8)
+
+$site_contacts_phone_fg = $turbo_brown
+$site_contacts_modal_opener_bg = $turbo_brown
+$site_contacts_modal_opener_fg = white
+
+$site_footer_bg = $turbo_darkbrown
+$site_footer_fg  = white
+$site_footer_icons_fg = white
+
+// /vars }}}
+// mixins {{{
+
+SectionWidth()
+    width: 85vw
+    max-width: $block-width
+    min-width: 31.25rem
+    margin: 1rem auto
+
+    @media(max-width: 660px)
+        width: 92vw
+        max-width: @width
+        min-width: 0
+
+Bullets()
+    margin-bottom: 1rem
+    position: relative
+
+    &:before
+        content: ''
+        display: block
+        position: absolute
+        left: -1.3rem
+        top: 25%
+        bottom: 75%
+        right: calc(100% + 0.6rem)
+        background: transparent
+        border-top: 0.32rem solid transparent
+        border-bottom: 0.32rem solid transparent
+        border-left: 0.5rem solid $turbo_mixblue
+        transition: all 0.2s ease-in-out
+        transform: translateX(10%)
+
+    &:hover:before
+    &:focus:before
+        border-left: 0.5rem solid $turbo_darkblue
+        transform: translateX(0%)
+
+textLink(Color=$turbo_blue, Flag=false)
+    color: Color
+    text-decoration: underline
+
+    unless Flag==nohover
+        &:hover
+        &:focus
+            color: $turbo_brown
+
+// /mixins }}}

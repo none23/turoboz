@@ -88,20 +88,6 @@ mixin FormBody(formId, buttonCopy, ...formClasses)
 
 // }}}
 
-mixin OrderForm()
-  +FormBody('order-form', 'Заказать')
-    +formSubject('order-form__subject', 'Заказ {{ page.title }}')
-    +formName('order-form__name')
-    +formMail('order-form__mail')
-    +formPhone('order-form__phone', true)
-
-mixin ReviewForm()
-  +FormBody('review-form', 'Оставить отзыв')
-    +formSubject('review-form__subject', 'Отзыв')
-    +formName('review-form__name')
-    +formMail('review-form__mail')
-    +formText('review-form__question', 'Отзыв', 'Ваш отзыв')
-
 mixin ContactForm()
   +FormBody('contact-form', 'Отправить сообщение')
     +formSubject('contact-form__subject')
@@ -116,3 +102,16 @@ mixin GuideForm()
     +formPhone('guide-form__phone')
     +formText('guide-form__question', 'Сообщение', 'Что вас интересует?')
 
+mixin OrderForm()
+  +FormBody('order-form', 'Заказать')
+    +formSubject('order-form__subject', 'Заказ {{ page.title }}')
+    +formName('order-form__name')
+    +formMail('order-form__mail')
+    +formPhone('order-form__phone', true)
+
+mixin ReviewForm()
+  +FormBody('review-form', 'Оставить отзыв')
+    +formSubject('review-form__subject', 'Отзыв')
+    +formName('review-form__name')
+    +formMail('review-form__mail')
+    +formText('review-form__question', 'Отзыв', 'Ваш отзыв')

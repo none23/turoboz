@@ -131,7 +131,6 @@ function switchActiveNavLink (targetLink) {
 // /page transitions }}}
 //  appcache {{{
 
-// apply only if manifest is set
 ;(function useAppCache () {
   const appcache = window.applicationCache
 
@@ -258,23 +257,4 @@ function callFormToggle () {
 
 // /initiate on page load}}}
 // /forms}}}
-// testimonials{{{
-;(function () {
-  window.addEventListener('DOMContentLoaded', function () {
-    const spoilerButton = document.getElementById('testimonials__spoiler')
-    if (spoilerButton) {
-      spoilerButton.addEventListener('click', () => {
-        const testimonials = document.getElementsByClassName('testimonial')
-        if (testimonials) {
-          for (let i = 5; i < testimonials.length; i++) {
-            testimonials[i].classList.add('testimonial--visible')
-          }
-        }
-        spoilerButton.classList.add('hidden')
-      })
-    }
-  })
-})()
-
-// /testimonials}}}
 // vim:foldmethod=marker

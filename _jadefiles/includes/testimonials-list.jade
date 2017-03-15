@@ -1,7 +1,7 @@
 include ../mixins.jade
 
-mixin Testimonial(tAuthor, tDate, tQuote, tNumber)
-    blockquote.testimonial(class=`testimonial--${tNumber}` )
+mixin Testimonial(tAuthor, tDate, tQuote)
+    blockquote.testimonial
       .testimonial__text
         | {% for paragraph in #{tQuote} %}{{ paragraph | markdownify }}{% endfor %}
       .testimonial__svg
@@ -13,16 +13,9 @@ mixin Testimonial(tAuthor, tDate, tQuote, tNumber)
           | {{ #{tAuthor} }}
 
 section.testimonials
-  | {% assign testimonials = site.data.testimonials | sort: 'dateId' %}{% for tsm in testimonials reversed %}
-  +Testimonial( 'tsm.author'
-              , 'tsm.date'
-              , 'tsm.message'
-              , '{{ forloop.index }}'
-              )
-  | {% if forloop.index == 5 %}
-  button#testimonials__spoiler.testimonials__spoiler.no_custom_transition(type='button')
-    | Показать все
-  | {% endif %}
+  | {% assign testimonials = site.data.testimonials | sort: 'dateId' %}
+  | {% for tsm in testimonials reversed %}
+  +Testimonial('tsm.author', 'tsm.date', 'tsm.message')
   | {% endfor %}
 
 
