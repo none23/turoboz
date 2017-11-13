@@ -8,7 +8,7 @@ const groupId = 33948424
 const vkPostsDirPath = '_vk_news'
 const excludedPostsList = vkPostsDirPath + '/_excluded.json'
 
-const requestURL = `https://api.vk.com/method/wall.get?owner_id=-${groupId}&count=${postsCount}&extended=1&filter=owner&https=1&v=5.53`
+const requestURL = `https://api.vk.com/method/wall.get?owner_id=-${groupId}&count=${postsCount}&extended=1&filter=owner&https=1&access_token=830fb5ea830fb5ea830fb5ea438359bbcd8830f830fb5ead9066f36ceecf2da747bf790&v=5.53`
 
 function attachmentIsPhoto (attachment) {
   return attachment.type.indexOf('photo') >= 0
